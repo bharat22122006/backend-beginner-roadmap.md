@@ -1,19 +1,34 @@
 ---
-id: intro-HTML
+id: intro-html
 title: Introduction of HTML
 sidebar_label: Introduction of HTML
 sidebar_position: 1
-tags: [html, introduction, web development, markup language, hyper text, web pages, career opportunities, personal growth, web-development, web design, web pages, websites, career opportunities, contribute to the web, stay relevant, express yourself, learn other technologies, have fun, how to use html, steps to start using html, set up your development environment, create your first html document, learn html syntax and structure, explore html elements and-attributes]
+tags:
+  [
+    html,
+    introduction of html,
+    what is html,
+    why learn html,
+    how to use html,
+    html syntax,
+    html structure,
+    html elements,
+    html attributes,
+  ]
 description: In this tutorial, you will learn about HTML, its importance, what is HTML, why learn HTML, how to use HTML, steps to start using HTML, and more.
 ---
 
-HTML stands for Hyper Text Markup Language. HTML is the standard markup language for creating Web pages. HTML describes the structure of a Web page. HTML consists of a series of elements that you use to enclose, or wrap, different parts of the content to make it appear a certain way, or act a certain way. The enclosing tags can make a word or image hyperlink to somewhere else, can italicize words, can make the font bigger or smaller, and so on.
+HTML stands for **Hyper Text Markup Language**. HTML is the standard markup language for creating Web pages. HTML describes the structure of a Web page. HTML consists of a series of elements that you use to enclose, or wrap, different parts of the content to make it appear a certain way, or act a certain way. The enclosing tags can make a word or image hyperlink to somewhere else, can italicize words, can make the font bigger or smaller, and so on.
 
-> HTML is a markup language that defines the structure of your content. HTML consists of a series of elements that you use to enclose, or wrap, different parts of the content to make it appear a certain way, or act a certain way. The enclosing tags can make a word or image hyperlink to somewhere else, can italicize words, can make the font bigger or smaller, and so on.
+<AdsComponent />
+
+:::note
+HTML is a markup language that defines the structure of your content. HTML consists of a series of elements that you use to enclose, or wrap, different parts of the content to make it appear a certain way, or act a certain way. The enclosing tags can make a word or image hyperlink to somewhere else, can italicize words, can make the font bigger or smaller, and so on.
+:::
 
 ## What is HTML?
 
-HTML, which stands for Hyper Text Markup Language, is the standard markup language for creating Web pages and design documents on the World Wide Web. It is a system of tags and codes that define the structure and presentation of text and images in a document. HTML is a markup language, not a programming language, and is used to create static web pages that are displayed in web browsers. HTML is important because it provides a standardized way to define elements, making it easier for computers and software applications to interpret and display the content correctly.
+HTML, which stands for **Hyper Text Markup Language**, is the standard markup language for creating Web pages and design documents on the World Wide Web. It is a system of tags and codes that define the structure and presentation of text and images in a document. HTML is a markup language, not a programming language, and is used to create static web pages that are displayed in web browsers. HTML is important because it provides a standardized way to define elements, making it easier for computers and software applications to interpret and display the content correctly.
 
 :::info
 
@@ -48,7 +63,7 @@ HTML, which stands for Hyper Text Markup Language, is the standard markup langua
        ```
        </TabItem>
        <TabItem value="Output">
-       <BrowserWindow url="http://127.0.0.1:5500/index.html">
+       <BrowserWindow url="http://127.0.0.1:5500/index.html" bodyStyle={{backgroundColor: "#f5f5f5", color: "#333"}}>
        <div>
          <h1>This is a Heading</h1>
          <p>This is a paragraph.</p>
@@ -61,6 +76,8 @@ HTML, which stands for Hyper Text Markup Language, is the standard markup langua
 6.  **Platform Independent**: HTML is platform-independent, which means that it can be used on any operating system, such as Windows, macOS, Linux, etc. HTML is supported by all major web browsers, such as Google Chrome, Mozilla Firefox, Microsoft Edge, Safari, etc. This makes HTML a versatile and widely used markup language for creating web pages and design documents on the World Wide Web.
 
 :::
+
+<AdsComponent />
 
 ## Why Learn HTML?
 
@@ -76,6 +93,8 @@ Learning HTML is essential for anyone who wants to create web pages and design d
 8. **Express Yourself**: HTML is a versatile and flexible markup language that allows you to express yourself and create unique and engaging web pages. You can use HTML to add text, images, videos, links, and other elements to your web pages, and customize the appearance and layout of your content. By learning HTML, you will be able to express yourself creatively and share your ideas with the world.
 9. **Learn Other Technologies**: HTML is often used in conjunction with other technologies, such as CSS (Cascading Style Sheets) and JavaScript, to create interactive and dynamic web pages. By learning HTML, you will gain a solid foundation in web development and be able to learn other technologies more easily. You will be able to create modern, responsive, and user-friendly web pages that meet the needs of today's users and devices.
 10. **Have Fun**: Learning HTML can be a fun and rewarding experience. You can experiment with different elements, styles, and layouts, and create web pages that reflect your personality and interests. You can learn new skills, solve problems, and express yourself creatively through HTML. By learning HTML, you will be able to unleash your creativity and have fun building web pages that showcase your talents and passions.
+
+<AdsComponent />
 
 ## How to use HTML?
 
@@ -109,12 +128,14 @@ HTML is used to create structured documents for the web. To start using HTML, yo
        <div>
         <h1>Hello, World!</h1>
         <p>This is my first HTML document.</p>
-       </div>    
+       </div>
       </BrowserWindow>
 
 **3. Learn HTML syntax and structure**: HTML consists of a series of elements that you use to enclose, or wrap, different parts of the content to make it appear a certain way, or act a certain way. Each element is enclosed in angle brackets `< >` and consists of a start tag, content, and an end tag. For example, the `<h1>` element is used to define a heading, and the `<p>` element is used to define a paragraph.
 
 **4. Explore HTML elements and attributes**: HTML provides a wide range of elements and attributes that you can use to create structured documents for the web. Some common HTML elements include headings, paragraphs, lists, links, images, tables, forms, and more. Each element has its own purpose and can be customized using attributes, such as `id`, `class`, `style`, `src`, `href`, and more.
+
+<AdsComponent />
 
 ## Conclusion
 

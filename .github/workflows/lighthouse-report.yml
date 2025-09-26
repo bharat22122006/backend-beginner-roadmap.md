@@ -39,12 +39,8 @@ jobs:
         uses: treosh/lighthouse-ci-action@12.1.0
         with:
           urls: |
-            http://localhost:3000/dsa
-            http://localhost:3000/dsa/problems
-            http://localhost:3000/dsa/problems/category/leetcode-problems
-            http://localhost:3000/dsa/solutions
-            http://localhost:3000/dsa/solutions/category/leetcode-solutions
-            http://localhost:3000/dsa/tags
+            http://localhost:3000/tutorial
+            http://localhost:3000/tutorial/tags
           configPath: ./.github/workflows/lighthouserc.json
           uploadArtifacts: true
           temporaryPublicStorage: true

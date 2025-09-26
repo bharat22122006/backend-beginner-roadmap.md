@@ -146,7 +146,7 @@ Runs the app in development mode. Open [http://localhost:3000](http://localhost:
 <BrowserWindow>
     <div style={{textAlign: 'center'}}>
       <header style={{display:' flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontSize: 'calc(10px + 2vmin)'}}>
-        <img src='https://codeharborhub.github.io/img/docs/react/logo.svg' className="App-logo" alt="logo" />
+        <img src='/img/docs/react/logo.svg' className="App-logo" alt="logo" />
         <br/>
         <p>
           Edit src/App.js and save to reload.

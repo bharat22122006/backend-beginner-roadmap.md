@@ -29,13 +29,19 @@ const config = {
       "@docusaurus/preset-classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        // debug: true,
+        debug: true,
         docs: {
-          sidebarPath: require.resolve("./sidebar.js"),
-          editUrl: "#",
+          sidebarPath: require.resolve("./sidebars.js"),
+          editUrl: "https://github.com/codeharborhub/tutorial/edit/main/",
           routeBasePath: "/",
           remarkPlugins: [remarkMath],
-          rehypePlugins: [rehypeKatex],
+          rehypePlugins: [rehypeKatex],          
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
+          admonitions: {
+            keywords: ["my-custom-admonition"],
+            extendDefaults: true,
+          },
         },
         theme: {
           customCss: "./src/css/custom.css",
@@ -46,7 +52,7 @@ const config = {
 
   scripts: [
     {
-      src:"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5832817025080991",
+      src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5832817025080991",
       async: true,
       crossOrigin: "anonymous",
     },
@@ -73,8 +79,7 @@ const config = {
       image: "img/codeharborhub-social-card.jpg",
       announcementBar: {
         id: "announcementBar",
-        content:
-          'Comming Soon!',
+        content: "Comming Soon!",
         isCloseable: true,
         backgroundColor: "#4d5061",
       },
@@ -372,6 +377,7 @@ const config = {
         disableInDev: false,
       },
     ],
+
     [
       path.join(__dirname, "/plugins/my-plugin"),
       {

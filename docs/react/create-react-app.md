@@ -5,7 +5,9 @@ sidebar_label: Create React App
 sidebar_position: 1
 description: Development and implementation the API of interaction of two sites 
 ---
-  
+
+# Getting Started with React
+
 Welcome to the React tutorial series! In this comprehensive guide, we will take you through the fundamentals of React, a popular JavaScript library for building user interfaces. Whether you're a beginner or have some experience with web development, this tutorial will provide you with a solid foundation to start building dynamic and interactive web applications using React.
 
 ### Content Agenda:
