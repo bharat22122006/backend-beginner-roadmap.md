@@ -11,7 +11,7 @@ const config = {
   title: "CodeHarborHub",
   tagline: "A place to learn and grow",
   favicon: "img/favicon_io/favicon.ico",
-  url: "https://codeharborhub.github.io/",
+  url: "https://codeharborhub.github.io",
   baseUrl: "/tutorial/",
   customFields: {
     admin: "Ajay Dhangar",
@@ -19,10 +19,21 @@ const config = {
   },
 
   organizationName: "codeharborhub",
-  projectName: "dsa",
+  projectName: "tutorial",
 
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
+
+  // ====  // ❌ Deprecated usage ==============
+
+  // onBrokenMarkdownLinks: "warn",
+
+  // ===========================================
+
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: "warn", // ✅ New location
+    },
+  },
 
   presets: [
     [
@@ -31,17 +42,11 @@ const config = {
       ({
         // debug: true,
         docs: {
+          routeBasePath: "/",
           sidebarPath: "./sidebars.js",
           editUrl: "https://github.com/codeharborhub/tutorial/edit/main/",
-          routeBasePath: "/",
           remarkPlugins: [remarkMath],
-          rehypePlugins: [rehypeKatex],          
-          showLastUpdateAuthor: true,
-          showLastUpdateTime: true,
-          admonitions: {
-            keywords: ["my-custom-admonition"],
-            extendDefaults: true,
-          },
+          rehypePlugins: [rehypeKatex],
         },
         theme: {
           customCss: "./src/css/custom.css",
