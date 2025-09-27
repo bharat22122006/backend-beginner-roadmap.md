@@ -125,11 +125,11 @@ const config = {
           target: "_self",
         },
         items: [
-          // {
-          //   to: "/",
-          //   position: "right",
-          //   label: "Tutorial",
-          // },
+          {
+            to: "/",
+            position: "right",
+            label: "Tutorial",
+          },
           {
             href: "https://github.com/codeharborhub",
             position: "right",
