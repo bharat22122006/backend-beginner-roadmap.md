@@ -29,7 +29,7 @@ const config = {
       "@docusaurus/preset-classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        debug: true,
+        // debug: true,
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/codeharborhub/tutorial/edit/main/",
