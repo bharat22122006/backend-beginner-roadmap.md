@@ -11,8 +11,8 @@ const config = {
   title: "CodeHarborHub",
   tagline: "A place to learn and grow",
   favicon: "img/favicon_io/favicon.ico",
-  url: "https://codeharborhub.github.io",
-  baseUrl: "tutorial",
+  url: "https://codeharborhub.github.io/",
+  baseUrl: "/tutorial/",
   customFields: {
     admin: "Ajay Dhangar",
     superman: "Shivay",
@@ -31,7 +31,7 @@ const config = {
       ({
         // debug: true,
         docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
+          sidebarPath: "./sidebars.js",
           editUrl: "https://github.com/codeharborhub/tutorial/edit/main/",
           routeBasePath: "/",
           remarkPlugins: [remarkMath],
