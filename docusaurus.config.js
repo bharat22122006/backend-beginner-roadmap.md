@@ -12,7 +12,6 @@ const config = {
   tagline: "A place to learn and grow",
   favicon: "img/favicon_io/favicon.ico",
   url: "https://codeharborhub.github.io",
-  // baseUrl: "/tutorial/",
   baseUrl: "/tutorial/",
   customFields: {
     admin: "Ajay Dhangar",
@@ -125,11 +124,11 @@ const config = {
           target: "_self",
         },
         items: [
-          {
-            to: "/",
-            position: "right",
-            label: "Tutorial",
-          },
+          // {
+          //   to: "/",
+          //   position: "right",
+          //   label: "Tutorial",
+          // },
           {
             href: "https://github.com/codeharborhub",
             position: "right",
