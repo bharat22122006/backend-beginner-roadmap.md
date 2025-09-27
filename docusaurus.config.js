@@ -11,8 +11,8 @@ const config = {
   title: "CodeHarborHub",
   tagline: "A place to learn and grow",
   favicon: "img/favicon_io/favicon.ico",
-  url: "https://codeharborhub.github.io/",
-  baseUrl: "/tutorial/",
+  url: "https://codeharborhub.github.io",
+  baseUrl: "tutorial",
   customFields: {
     admin: "Ajay Dhangar",
     superman: "Shivay",
