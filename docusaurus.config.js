@@ -12,7 +12,8 @@ const config = {
   tagline: "A place to learn and grow",
   favicon: "img/favicon_io/favicon.ico",
   url: "https://codeharborhub.github.io",
-  baseUrl: "/tutorial/",
+  // baseUrl: "/tutorial/",
+  baseUrl: "/",
   customFields: {
     admin: "Ajay Dhangar",
     superman: "Shivay",
@@ -20,7 +21,7 @@ const config = {
 
   organizationName: "codeharborhub",
   projectName: "tutorial",
-
+  trailingSlash: false,
   onBrokenLinks: "throw",
 
   // ====  // ❌ Deprecated usage ==============
