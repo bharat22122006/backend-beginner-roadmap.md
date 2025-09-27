@@ -100,8 +100,8 @@
     ]
   },
   "engines": {
-    "node": ">=18.0"
+    "node": ">=20.0"
   },
   "license": "MIT",
-  "author": "Ajay-Dhangar"
+  "author": "ajay-dhangar"
 }
