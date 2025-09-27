@@ -13,7 +13,7 @@ const config = {
   favicon: "img/favicon_io/favicon.ico",
   url: "https://codeharborhub.github.io",
   // baseUrl: "/tutorial/",
-  baseUrl: "/",
+  baseUrl: "/tutorial/",
   customFields: {
     admin: "Ajay Dhangar",
     superman: "Shivay",
@@ -22,19 +22,13 @@ const config = {
   organizationName: "codeharborhub",
   projectName: "tutorial",
   trailingSlash: false,
-  onBrokenLinks: "throw",
+  // onBrokenLinks: "throw",
 
   // ====  // ❌ Deprecated usage ==============
 
   // onBrokenMarkdownLinks: "warn",
 
   // ===========================================
-
-  markdown: {
-    hooks: {
-      onBrokenMarkdownLinks: "warn", // ✅ New location
-    },
-  },
 
   presets: [
     [
@@ -83,12 +77,12 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       image: "img/codeharborhub-social-card.jpg",
-      announcementBar: {
-        id: "announcementBar",
-        content: "Comming Soon!",
-        isCloseable: true,
-        backgroundColor: "#4d5061",
-      },
+      // announcementBar: {
+      //   id: "announcementBar",
+      //   content: "Comming Soon!",
+      //   isCloseable: true,
+      //   backgroundColor: "#4d5061",
+      // },
 
       metadata: [
         {
@@ -131,11 +125,11 @@ const config = {
           target: "_self",
         },
         items: [
-          {
-            to: "/",
-            position: "right",
-            label: "📚 Tutorial",
-          },
+          // {
+          //   to: "/",
+          //   position: "right",
+          //   label: "Tutorial",
+          // },
           {
             href: "https://github.com/codeharborhub",
             position: "right",
@@ -295,6 +289,9 @@ const config = {
 
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: "warn",
+    },
   },
   themes: ["@docusaurus/theme-mermaid", "@docusaurus/theme-live-codeblock"],
 

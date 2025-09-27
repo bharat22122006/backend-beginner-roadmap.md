@@ -17,7 +17,6 @@ export default {
   Tabs,
   TabItem,
   BrowserWindow,
-  Highlight,
   GiscusComponent,
   DocCardList,
   FaReact,
