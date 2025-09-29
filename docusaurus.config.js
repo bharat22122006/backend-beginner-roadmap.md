@@ -135,10 +135,11 @@ const config = {
               {
                 type: "html",
                 value: `<div class="dropdown_grid">
+                <a class="dropbtn" href="/tutorial/">Tutorial</a>
                 <div class="dropdown-content">
                   <a href="#" class="nav__icons"> <img src="/icons/html-5.svg" title="HTML5" alt="HTML" /> </a>
                   <a href="#" class="nav__icons"> <img src="/icons/css.svg" title="CSS" alt="CSS" /> </a>
-                  <a href="#" class="nav__icons" > <img src="/icons/js.svg" title="JavaScript" alt="JavaScript" /> </a>
+                  <a href="#" class="nav__icons"> <img src="/icons/js.svg" title="JavaScript" alt="JavaScript" /> </a>
                   <a href="#" class="nav__icons"> <img src="/icons/jsx.svg" title="React.Js" alt="React" /> </a>
                   <a href="#" class="nav__icons"> <img src="/icons/ts.svg" title="TypeScript" alt="TypeScript" /> </a>
                   <a href="#" class="nav__icons"> <img src="/icons/py.svg" title="Python" alt="Python" /> </a>

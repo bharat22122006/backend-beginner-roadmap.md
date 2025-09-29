@@ -1,5 +1,3 @@
-//Swizzled this component to fix TOC sidebar not showing on small screens
-
 import React from 'react';
 import clsx from 'clsx';
 import {useWindowSize} from '@docusaurus/theme-common';

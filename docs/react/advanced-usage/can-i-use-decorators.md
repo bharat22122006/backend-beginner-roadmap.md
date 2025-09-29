@@ -3,7 +3,6 @@ id: can-i-use-decorators
 title: The Power of Decorators in CRA
 sidebar_label: Use Decorators
 sidebar_position: 2
-tags: [decorators, create react app, decorators in create react app, decorators in react, decorators in javascript, decorators in typescript]
 keywords: [decorators, create react app, decorators in create react app, decorators in react, decorators in javascript, decorators in typescript]
 description: Learn how to use decorators in Create React App to enhance and extend the functionality of your components.
 ---
