@@ -22,7 +22,7 @@ Imagine you've cooked a delicious pizza, and now you want to share it with your 
 
 Before we begin, make sure you have the following:
 
-**1. Your completed React app:** If you haven't built it yet, check out our guides on [creating a React app](../getting-started/getting-started.md) and [building components](../building-your-app/importing-a-component) to get started.
+**1. Your completed React app:** If you haven't built it yet, check out our guides on [creating a React app](../getting-started/getting-started.md) and [building components](../building-your-app/importing-a-component.md) to get started.
 
 **2. A version control system:** If you haven't set up Git yet, don't worry! It's like a time-travel machine for your code, allowing you to go back in time if needed.
 
