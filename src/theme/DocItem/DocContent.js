@@ -9,7 +9,6 @@ import {
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import DocPaginator from "@theme/DocPaginator";
-// import DocVersionBanner from "@theme/DocVersionBanner";
 import TOC from "@theme/TOC";
 import clsx from "clsx";
 import styles from "./styles.module.css";
@@ -30,7 +29,6 @@ export const DocContent = ({ Content, contentRef, readingTimeInWords }) => {
   } = useDoc();
 
   const { url: siteUrl } = siteConfig;
-  // const versionMetadata = useDocsVersion();
   const {
     description,
     title,
@@ -70,7 +68,6 @@ export const DocContent = ({ Content, contentRef, readingTimeInWords }) => {
             [styles.docItemCol]: !hideTableOfContents,
           })}
         >
-          {/* <DocVersionBanner versionMetadata={versionMetadata} /> */}
           <div className={styles.docItemContainer}>
             <article className="article-content">              
               {!hideTitle && (

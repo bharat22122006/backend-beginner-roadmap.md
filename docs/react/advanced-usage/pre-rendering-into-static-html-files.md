@@ -3,7 +3,6 @@ id: pre-rendering-into-static-html-files
 title: Pre-Rendering into Static HTML Files
 sidebar_label: Pre-Rendering Static HTML
 sidebar_position: 3
-tags: [React, Pre-Rendering, Static HTML, SEO, Performance]
 keywords: [pre-rendering, static html, react pre-rendering, react static html, pre-rendering in react, static html in react, react performance, react seo]
 description: "Learn how to pre-render your React application into static HTML files to improve performance and SEO."
 ---

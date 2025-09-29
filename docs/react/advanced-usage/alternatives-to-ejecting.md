@@ -3,7 +3,6 @@ id: alternatives-to-ejecting
 title: Alternatives to Ejecting
 sidebar_label: Alternatives to Ejecting
 sidebar_position: 5
-tags: [React, Create React App, Advanced Usage]
 keywords: [alternatives to ejecting, create react app, react-scripts, craco, custom scripts, package.json, ejectify, custom templates, boilerplates]
 description: Learn about alternatives to ejecting from Create React App and how to customize your project without ejecting.
 ---

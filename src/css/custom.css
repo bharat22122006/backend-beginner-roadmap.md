@@ -70,14 +70,6 @@ div[class^="announcementBar_"] {
 div[class^="announcementBar_"] a {
   font-size: 1.2em;
   padding: 1px 4px;
-  /* background: linear-gradient(
-    90deg,
-    rgb(252 176 69 / 100%) 0%,
-    rgb(253 29 29 / 100%) 50%,
-    rgb(229, 223, 232) 100%
-  );
-  background-clip: text;
-  -webkit-text-fill-color: transparent; */
   text-decoration: none;
   color: #48df84;
 }
@@ -98,14 +90,6 @@ div[class^="announcementBar_"] a:hover {
 [data-theme="dark"] div[class^="announcementBar_"] a {
   font-size: 1.2em;
   padding: 1px 4px;
-  /* background: linear-gradient(
-    90deg,
-    rgb(131 58 180 / 100%) 0%,
-    rgb(253 29 29 / 100%) 50%,
-    rgb(252 176 69 / 100%) 100%
-  );
-  background-clip: text;
-  -webkit-text-fill-color: transparent; */
   text-decoration: none;
   color: #48df84;
 }
@@ -191,7 +175,7 @@ mark {
   position: absolute;
   width: 100%;
   height: 2px;
-  bottom: -2px; /* Adjust based on text alignment */
+  bottom: -2px;
   left: 0;
   background-color: #f0db4f;
   visibility: hidden;
@@ -229,12 +213,6 @@ mark {
   -webkit-text-fill-color: transparent;
 }
 
-.dsa-content {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
 .dropdown_grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -263,13 +241,9 @@ mark {
   border-radius: 50%;
 }
 
-.row .col .card {
+/* .row .col .card {
   margin-top: 10px;
-}
-
-.yt-lite {
-  border-radius: 8px;
-}
+} */
 
 [data-theme='dark'] #__docusaurus_skipToContent_fallback {
   background: linear-gradient(rgba(15, 23, 42, 0.796), rgba(15, 23, 42, 0.23));

@@ -1,7 +1,6 @@
 .docTitle {
   font-size: 3rem;
   margin-bottom: -calc(var(--ifm-leading-desktop) * var(--ifm-leading));
-  /* text-align: justify; */
 }
 
 .docsInfoWrapper {
@@ -68,7 +67,6 @@
 }
 
 .docsRating {
-  max-width: 600px;
   text-align: center;
   font-family: var(--ifm-font-family-base);
 }
