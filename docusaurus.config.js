@@ -41,6 +41,9 @@ const config = {
           editUrl: "https://github.com/codeharborhub/tutorial/edit/main/",
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
+          numberPrefixParser: false,
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
         },
         theme: {
           customCss: "./src/css/custom.css",
@@ -124,11 +127,29 @@ const config = {
           target: "_self",
         },
         items: [
-          // {
-          //   to: "/",
-          //   position: "right",
-          //   label: "Tutorial",
-          // },
+          {
+            type: "dropdown",
+            html: '<span class="nav-emoji">📚</span> Tutorials',
+            position: "left",
+            items: [
+              {
+                type: "html",
+                value: `<div class="dropdown_grid">
+                <a class="dropbtn" href="#">Tutorials</a>
+                <div class="dropdown-content">
+                  <a href="#" class="nav__icons"> <img src="/icons/html-5.svg" title="HTML5" alt="HTML" /> </a>
+                  <a href="#" class="nav__icons"> <img src="/icons/css.svg" title="CSS" alt="CSS" /> </a>
+                  <a href="#" class="nav__icons" > <img src="/icons/js.svg" title="JavaScript" alt="JavaScript" /> </a>
+                  <a href="#" class="nav__icons"> <img src="/icons/jsx.svg" title="React.Js" alt="React" /> </a>
+                  <a href="#" class="nav__icons"> <img src="/icons/ts.svg" title="TypeScript" alt="TypeScript" /> </a>
+                  <a href="#" class="nav__icons"> <img src="/icons/py.svg" title="Python" alt="Python" /> </a>
+                  <a href="#" class="nav__icons"> <img src="/icons/tailwind-css.svg" title="Tailwind CSS" alt="Tailwind" /> </a>
+                  <a href="#" class="nav__icons"> <img src="/icons/next-js.svg" title="NextJs" alt="Next" /> </a>
+                </div>
+              </div>`,
+              },
+            ],
+          },
           {
             href: "https://github.com/codeharborhub",
             position: "right",
