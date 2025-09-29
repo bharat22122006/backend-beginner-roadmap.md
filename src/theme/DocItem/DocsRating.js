@@ -12,9 +12,9 @@ const DocsRating = ({ label }) => {
   // const { colorMode } = useColorMode();
   const DiscordInviteURL = "https://discord.gg/8p9Z6jkVru";
   const openDocIssueURL =
-    `https://github.com/codeharborhub/codeharborhub.github.io/issues/new?assignees=&labels=&template=---doc-error-report.md&title=Issue with codeharborhub.github.io${location.pathname}`;
+    `https://github.com/codeharborhub/tutorial/issues/new?assignees=&labels=&template=---doc-error-report.md&title=Issue with codeharborhub.github.io${location.pathname}`;
   const docEnhancementURL =
-    `https://github.com/codeharborhub/codeharborhub.github.io/issues/new?assignees=&labels=&template=---doc-site-enhancement-request.md&title=Doc enhancement request for codeharborhub.github.io${location.pathname}`;
+    `https://github.com/codeharborhub/tutorial/issues/new?assignees=&labels=&template=---doc-site-enhancement-request.md&title=Doc enhancement request for codeharborhub.github.io${location.pathname}`;
 
   const [haveVoted, setHaveVoted] = useState(false);
   const [liked, setLiked] = useState(false);
