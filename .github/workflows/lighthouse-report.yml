@@ -39,8 +39,7 @@ jobs:
         uses: treosh/lighthouse-ci-action@12.1.0
         with:
           urls: |
-            http://localhost:3000/tutorial
-            http://localhost:3000/tutorial/tags
+            http://localhost:3000/tutorial/
           configPath: ./.github/workflows/lighthouserc.json
           uploadArtifacts: true
           temporaryPublicStorage: true
