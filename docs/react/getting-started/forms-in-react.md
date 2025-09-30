@@ -1,9 +1,8 @@
 ---
 id: forms-in-react
 title: Forms in React
-sidebar_label: Forms in React
 tags: [react, forms, frontend, web development, tutorial]
-description: "Learn how to handle forms in React comprehensively with examples covering controlled components, uncontrolled components, textarea, select, file input, and more. This extensive guide covers theory, usage, features, examples, best practices, alternatives, and advanced techniques."
+description: Learn how to handle forms in React comprehensively with examples covering controlled components, uncontrolled components, textarea, select, file input, and more. This extensive guide covers theory, usage, features, examples, best practices, alternatives, and advanced techniques.
 hide_table_of_contents: true
 ---
 
