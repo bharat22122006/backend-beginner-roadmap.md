@@ -2,9 +2,10 @@
 id: adding-flow
 title: Adding Flow
 sidebar_position: 5
-tags: [flow, static, type, checker, create react app, react, javascript, type safety, bug prevention, type annotations, union types, optional types, type checking, type errors, live example, flow-bin, flowconfig, vscode, vim, lsp, absolute imports, type annotations, union types, optional types, type checking, type errors, live example, flow-bin, flowconfig, vscode, vim, lsp, absolute imports]
-keywords: [flow, static, type, checker, create react app, react, javascript, type safety, bug prevention, type annotations, union types, optional types, type checking, type errors, live example, flow-bin, flowconfig, vscode, vim, lsp, absolute imports, type annotations, union types, optional types, type checking, type errors, live example, flow-bin, flowconfig, vscode, vim, lsp, absolute imports]
+tags: [flow, create react app, react, static type checker, type safety, bug prevention, typescript alternative, javascript types, type annotations, type inference, type checking, facebook flow, flow integration, flow setup, flow configuration, flow usage]
+keywords: [flow, create react app, react, static type checker, type safety, bug prevention, typescript alternative, javascript types, type annotations, type inference, type checking, facebook flow, flow integration, flow setup, flow configuration, flow usage]
 description: "Learn how to add Flow, a static type checker, to your Create React App, empowering your code with type safety and bug prevention."
+hide_table_of_contents: true
 ---
 
 Flow, a formidable static type checker, stands ready to protect your code from lurking bugs. Fear not, for we shall guide you on this thrilling journey into the realm of static types in JavaScript. If you are new to this concept, fear not! Delve into this [enchanting introduction](https://medium.com/@preethikasireddy/why-use-static-types-in-javascript-part-1-8382da1e0adb) to discover the power of static types.
@@ -207,5 +208,3 @@ Absolutely! Here's a simple working live example of using Flow in a Create React
 Congratulations, dear apprentice! You have mastered the art of integrating Flow into your Create React App and harnessing its magic to strengthen your codebase. With Flow as your companion, you can fearlessly journey through the lands of React, confident in the knowledge that your types are checked and your code is resilient.
 
 Remember, the path of a Code Mastermind is one of continuous learning and growth. Embrace the power of type checking and let Flow be your guiding light as you unlock new realms of coding excellence!
-
-May your code be elegant, your types be sound, and your journey be filled with joy. Happy coding, and may the magic of Flow be with you always! 

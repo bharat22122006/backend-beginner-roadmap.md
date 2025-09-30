@@ -5,6 +5,7 @@ sidebar_label: CSS Modules Stylesheet
 sidebar_position: 2
 tags: [react, create-react-app, css-modules, css, stylesheet, styling, react-scripts, react-dom, react-app]
 description: "Learn how to add a CSS Modules stylesheet to your Create React App project. Use scoped styling and prevent naming clashes by automatically generating unique class names for your styles."
+hide_table_of_contents: true
 ---
 
 import '../css/style.css'

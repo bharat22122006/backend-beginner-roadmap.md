@@ -4,6 +4,7 @@ title: useCallback Hook Concept
 sidebar_label: useCallback Hook
 sidebar_position: 5
 tags: [react, create-react-app, useCallback, hooks, react-scripts, react-dom, react-app]
+hide_table_of_contents: true
 ---
 
 The `useCallback` hook is a built-in React hook that allows you to memoize functions in functional components. It is particularly useful for optimizing performance by preventing unnecessary re-renders of child components that depend on callback functions.

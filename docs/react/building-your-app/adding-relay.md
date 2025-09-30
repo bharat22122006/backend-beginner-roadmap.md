@@ -2,8 +2,9 @@
 id: adding-relay
 title: Adding Relay
 sidebar_position: 7
-tags: [ react, relay, graphql, create react app, data fetching, data management, efficient, performance, batching, coalescing, over-fetching, server, client, network, environment, store, query, fragment, component, routing, react-router-dom, react-router, react-router-config, react-relay, graphql, relay-runtime, relay-environment-provider, relay-environment, relay-query, relay-fragment, relay-component, relay-routing, relay-graphql, relay-optimization, relay-performance, relay-batching, relay-coalescing, relay-over-fetching, relay-server, relay-client, relay-network, relay-environment, relay-store, relay-query, relay-fragment, relay-component, relay-routing, relay-graphql, relay-optimization, relay-performance, relay-batching, relay-coalescing, relay-over-fetching, relay-server, relay-client, relay-network, relay-environment, relay-store, relay-query, relay-fragment, relay-component, relay-routing, relay-graphql, relay-optimization, relay-performance, relay-batching, relay-coalescing, relay-over-fetching, relay-server, relay-client, relay-network, relay-environment, relay-store, relay-query, relay-fragment, relay-component, relay-routing, relay-graphql, relay-optimization, relay-performance, relay-batching, relay-coalescing, relay-over-fetching, relay-server, relay-client, relay-network, relay-environment, relay-store, relay-query, relay-fragment, relay-component, relay-routing, relay-graphql, relay-optimization, relay-performance, relay-batching, relay-coalescing, relay-over-fetching, relay-server, relay-client, relay-network, relay-environment, relay-store, relay-query, relay-fragment, relay-component, relay-routing, relay-graphql, relay-optimization, relay-performance, relay-batching, relay-coalescing, relay-over-fetching, relay-server, relay-client, relay-network, relay-environment, relay-store, relay-query, relay-fragment, relay-component, relay-routing, relay-graphql, relay-optimization, relay-performance, relay-batching, relay-coalescing, relay-over-fetching, relay-server, relay-client, relay-network, relay-environment, relay-store, relay-query, relay-fragment, relay-component, relay-routing, relay-graphql, relay-optimization, relay-performance, relay-batching, relay-coalescing, relay-over-fetching]
+tags: [ react, create react app, relay, graphql, data fetching, react-relay, relay environment, relay query, github api, react router, routing ]
 description: "Learn how to integrate Relay into your Create React App, enabling efficient data fetching and management from a GraphQL server in your React applications."
+hide_table_of_contents: true
 ---
 
 Relay is a powerful GraphQL client framework developed by Facebook. It allows you to efficiently fetch and manage data from a GraphQL server in your React applications. Relay optimizes data fetching by batching and coalescing requests, reducing over-fetching and making your app more performant.
@@ -215,7 +216,3 @@ Visit `http://localhost:3000/profile` to see your Relay-powered user profile pag
 ## Conclusion
 
 Congratulations! You've successfully integrated Relay into your Create React App and fetched data from the GitHub API. This is just the beginning of what Relay can do for your React applications. Continue exploring Relay's documentation and its powerful features to take your app to the next level.
-
-:::tip Info
-Remember to replace the GitHub API with your own GraphQL API to experiment further with Relay. Happy coding!
-:::

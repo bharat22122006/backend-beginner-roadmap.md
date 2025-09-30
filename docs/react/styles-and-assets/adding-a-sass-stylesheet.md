@@ -5,6 +5,7 @@ sidebar_label: Sass Stylesheet
 sidebar_position: 3
 tags: [react, create-react-app, sass, stylesheet]
 description: "Learn how to add a Sass stylesheet to your Create React App project. Use the power of Sass to write cleaner and more maintainable styles for your React components."
+hide_table_of_contents: true
 ---
 
 :::caution warn
@@ -77,8 +78,9 @@ SASS_PATH=path1;path2;path3
 ```
 :::
 
-Step 5: Using Sass with CSS Modules
-----------------------------------
+
+## Step 5: Using Sass with CSS Modules
+
 You can also use Sass in combination with [CSS modules](adding-a-css-modules-stylesheet.md). To enable this feature, follow the same steps mentioned above, but use `.module.scss` as the file extension instead (e.g., `src/App.module.scss`).
 
 :::tip info

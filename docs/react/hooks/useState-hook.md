@@ -4,6 +4,7 @@ title: useState Hook Concept
 sidebar_label: useState Hook
 sidebar_position: 1
 tags: [react, create-react-app, useState, hooks, react-scripts, react-dom, react-app]
+hide_table_of_contents: true
 ---
 
 The `useState` hook is a built-in React hook that allows functional components to manage state. It provides a way to add stateful logic to functional components, enabling them to hold and update data over time.

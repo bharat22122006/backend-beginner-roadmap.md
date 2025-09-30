@@ -2,8 +2,9 @@
 id: using-global-variables
 title: Using Global Variables
 sidebar_position: 3
-tags: [react, global, variables, global-variables, global-variables-in-react, global-variables-in-javascript, global-variables-in-react-app, global-variables-in-react-component, global-variables-in-react-application, global-variables-in-react-js, global-variables-in-react-jsx, global-variables-in-react-javascript, global-variables-in-react-jsx-javascript, global-variables-in-react-jsx-component, global-variables-in-react-jsx-application, global-variables-in-react-jsx-app, global-variables-in-react-jsx-applications, global-variables-in-react-jsx-components, global-variables-in-react-jsx-javascripts, global-variables-in-react-jsx-javascript, global-variables-in-react-jsx-apps, global-variables-in-react-jsx-applications, global-variables-in-react-jsx-components, global-variables-in-react-jsx-component, global-variables-in-react-jsx-application, global-variables-in-react-jsx-app, global-variables-in-react-jsx-applications, global-variables-in-react-jsx-components, global-variables-in-react-jsx-javascripts, global-variables-in-react-jsx-javascript, global-variables-in-react-jsx-apps, global-variables-in-react-jsx-applications, global-variables-in-react-jsx-components, global-variables-in-react-jsx-component, global-variables-in-react-jsx-application, global-variables-in-react-jsx-app, global-variables-in-react-jsx-applications, global-variables-in-react-jsx-components, global-variables-in-react-jsx-javascripts, global-variables-in-react-jsx-javascript, global-variables-in-react-jsx-apps, global-variables-in-react-jsx-applications, global-variables-in-react-jsx-components, global-variables-in-react-jsx-component, global-variables-in-react-jsx-application, global-variables-in-react-jsx-app, global-variables-in-react-jsx-applications, global-variables-in-react-jsx-components, global-variables-in-react-jsx-javascripts, global-variables-in-react-jsx-javascript, global-variables-in-react-jsx-apps, global-variables-in-react-jsx-applications, global-variables-in-react-jsx-components, global-variables-in-react-jsx-component, global-variables-in-react-jsx-application, global-variables-in-react-jsx-app, global-variables-in-react-jsx-applications, global-variables-in-react-jsx]
+tags: [react, global, variables, global-variables, global-variables-in-react, state-management, react-state, react-context, redux, react-redux, context-api, global-state, global-data, sharing-data, data-sharing]
 description: "Learn how to use global variables in your React applications. Unleash the magic of global variables and wield their power to share data across your entire app!"
+hide_table_of_contents: true
 ---
 
 :::note
@@ -237,5 +238,3 @@ Congratulations, aspiring wizard! You have unlocked the secrets of global variab
 But remember, with great power comes great responsibility. Use global variables wisely, and your journey into the enchanted realm of React shall be filled with joy and triumph.
 
 Now, go forth and create wondrous applications, for you are now equipped with the knowledge to conjure and control the magic of global variables!
-
-May your code be bug-free and your spells enchanting. Onwards to new magical horizons!

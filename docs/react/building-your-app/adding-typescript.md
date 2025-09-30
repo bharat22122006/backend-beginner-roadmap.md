@@ -4,6 +4,7 @@ title: Adding TypeScript
 sidebar_position: 6
 tags: [react, adding-typescript, typescript]
 description: "Learn how to add TypeScript to your Create React App project. Enhance your code with type safety and unleash the power of TypeScript in your React applications."
+hide_table_of_contents: true
 ---
 
 :::note
@@ -76,5 +77,3 @@ As you grow in wisdom, be mindful of the limitations of TypeScript and Babel. Co
 ## Conclusion:
 
 Congratulations, esteemed Code Apprentices! You have harnessed the power of TypeScript within your React projects, ushering in an era of type safety and spellbinding possibilities. Let your code flourish in the embrace of TypeScript, safeguarded from the clutches of runtime errors!
-
-Remember, the journey of a Code Apprentice is never-ending, filled with knowledge and growth. Embrace TypeScript's magic and let your code inspire and dazzle fellow adventurers. May your journey be filled with wonder and enchantment!

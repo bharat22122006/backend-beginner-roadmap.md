@@ -5,6 +5,7 @@ sidebar_label: Loading GraphQL Files
 sidebar_position: 7
 tags: [react, create-react-app, graphql, apollo-client, graphql-code-generator, react-apollo, react-apollo-hooks]
 description: "Learn how to load GraphQL files in a Create React App project. Use Apollo Client or GraphQL Code Generator to fetch data from your GraphQL server and simplify your React application development."
+hide_table_of_contents: true
 ---
 
 GraphQL is a powerful query language for APIs that allows you to efficiently request only the data you need from your server. If you are using GraphQL in your React application created with Create React App, you might wonder how to load your GraphQL files effectively.

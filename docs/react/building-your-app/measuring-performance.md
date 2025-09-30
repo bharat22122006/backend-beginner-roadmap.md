@@ -3,8 +3,9 @@ id: measuring-performance
 title: Measuring Performance in React with Create React App
 sidebar_label: Measuring Performance
 sidebar_position: 11
-tags: [react, performance, web vitals, lighthouse, react devtools, performance.measure, react profiler, performance, web vitals, lighthouse, react devtools, performance.measure, react profiler, performance, web vitals, lighthouse, react devtools, performance.measure, react profiler, performance, web vitals, lighthouse, react devtools, performance.measure, react profiler]
+tags: [react, create react app, performance, measuring performance, web vitals, lighthouse, react devtools, performance profiling]
 description: "Learn how to measure and optimize the performance of your React app using Create React App. Unleash the power of Web Vitals, Lighthouse, and React DevTools to create a blazing-fast user experience!"
+hide_table_of_contents: true
 ---
 
 Create React App comes with a built-in feature to help you measure and analyze your app's performance. It uses something called "Web Vitals," which are helpful metrics that capture how users experience your web page. Let's see how we can use this powerful tool to optimize your app!
@@ -150,5 +151,3 @@ That's it! With these simple steps, you can now measure your app's performance a
 Measuring performance is a critical step in the development process. By using tools like Lighthouse and React DevTools, along with manual profiling techniques, you can identify performance bottlenecks and optimize your React app for a better user experience.
 
 Remember, a faster app not only delights your users but also improves your chances of success in the competitive world of web development!
-
-Now go ahead, measure your app's performance, and unleash the true potential of your React project!

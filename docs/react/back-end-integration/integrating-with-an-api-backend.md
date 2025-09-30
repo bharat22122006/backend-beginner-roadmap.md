@@ -4,12 +4,13 @@ title: Integrating with an API Backend
 sidebar_label: Integrating with an API
 sidebar_position: 3
 tags: [React, API, Backend, Integration]
-keywords: [react, api, backend, integration, axios, fetch, http, request, post, get, put, delete, data, communication, server, client, frontend, backend, fullstack, web development, javascript, node.js, express, rest, json, asynchronous, promise, async, await, state, useEffect, useState, form, submit, create, update, delete, fetch, send, receive, response, error, axios, library, package, npm, install, tool, postman, testing, endpoint, list, data, new, component, app, file, code, example, tutorial, guide, how-to, learn, step-by-step, beginner, basics, introduction, overview, explanation, example, code, source, snippet, tutorial, guide, learn, how-to, steps, react, javascript, web development, frontend, backend, fullstack, integration, api, axios, fetch, http, request, post, get, put, delete, data, communication, server, client, frontend, backend, fullstack, web development, javascript, node.js, express, rest, json, asynchronous, promise, async, await, state, useEffect, useState, form, submit, create, update, delete, fetch, send, receive, response, error, axios, library, package, npm, install, tool, postman, testing, endpoint, list, data, new, component, app, file, code, example, tutorial, guide, how-to, learn, step-by-step, beginner, basics, introduction, overview, explanation, example, code, source, snippet, tutorial, guide, learn, how-to, steps]
+keywords: [react, api, backend, integration, axios, fetch, http, request, post, get, put, delete, data fetching, data posting, rest api, restful api, graphql, authentication, authorization, cors, json, xml]
 description: "Learn how to integrate a React app with an API backend, enabling it to fetch and send data seamlessly."
+hide_table_of_contents: true
 ---
 
 
-Welcome to CodeMastermindHQ! In this tutorial, we will guide you through the process of integrating your React app with an API backend. By the end of this guide, you'll have a solid understanding of how to connect your frontend and backend, enabling your app to fetch and send data seamlessly.
+In this tutorial, we will guide you through the process of integrating your React app with an API backend. By the end of this guide, you'll have a solid understanding of how to connect your frontend and backend, enabling your app to fetch and send data seamlessly.
 
 <AdsComponent />
 

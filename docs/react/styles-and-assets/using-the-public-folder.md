@@ -5,6 +5,7 @@ sidebar_label: Using the Public Folder
 sidebar_position: 8
 tags: [react, create-react-app, public-folder, assets, react-scripts, react-dom, react-app]
 description: "Learn how to use the public folder in a Create React App project. Customize the HTML file and add assets directly to the public folder to enhance your React application."
+hide_table_of_contents: true
 ---
 
 :::tip info
@@ -67,5 +68,3 @@ The `public` folder, though an unconventional ally, shines in rare scenarios whe
 However, dear adventurer, if you dare to add a `<script>` that unleashes global variables, turn your gaze towards the topic of [Using Global Variables](../building-your-app/using-global-variables.md) in the next section. There, you shall find wisdom on how to summon and bind these volatile forces.
 
 With this newfound understanding, go forth and weave the magic of the `public` folder into your React creations, for you are now equipped to conquer the realms of customization and enchantment!
-
-May your code be ever elegant and your journeys forever filled with whimsy
