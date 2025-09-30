@@ -5,7 +5,8 @@ sidebar_label: Advanced Configuration
 sidebar_position: 4
 tags: [Create React App, Advanced Configuration, Environment Variables, Webpack, Babel, CRACO, react-scripts, Custom Scripts, Ejectify, Custom Templates]
 keywords: [create react app, advanced configuration, environment variables, webpack, babel, craco, react-scripts, custom scripts, ejectify, custom templates]
-description: "Learn how to customize and fine-tune your React projects with advanced configuration options in Create React App. Discover powerful features and alternatives to ejecting that will help you take control of your development environment."
+description: "Learn how to customize and fine-tune your React projects with advanced configuration options in Create React App."
+hide_table_of_contents: true
 ---
 
 In Create React App, you have the power to customize various development and production settings using environment variables. These options allow you to control the behavior of your React application without diving into complex configurations. Let's take a closer look at each setting in a handy table format:

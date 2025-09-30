@@ -5,6 +5,7 @@ sidebar_label: Dependency
 sidebar_position: 1
 tags: [react, create react app, npm, dependencies, package, install, installation, node package manager, react-scripts, react-dom, react-icons, react-scripts, react-app, react-app-template]
 description: "Learn how to install a dependency in your Create React App project. Unleash the power of enchanting packages and add new spells to your React app with the help of npm."
+hide_table_of_contents: true
 ---
 
 :::note
@@ -112,7 +113,3 @@ Witness the magic come to life as your app springs forth with the enchanting `Fa
 Congratulations, brave apprentice! You have delved into the secrets of installing dependencies and wielded the magic of `react-icons`. But fear not, for this is just the beginning of your journey.
 
 Explore the vast magical repository of `npm`, and discover new spells to enhance your creations. Unravel the mysteries of more complex dependencies and conquer the challenges that lie ahead.
-
-Remember, the quest of a developer is a never-ending adventure, filled with wonder, excitement, and endless possibilities.
-
-May your code be bug-free, and your creativity know no bounds. Onwards to new magical horizons!

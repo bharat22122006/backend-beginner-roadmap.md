@@ -3,9 +3,10 @@ id: production-build
 title: Creating a Production Build in Create React App
 sidebar_label: Production Build
 sidebar_position: 12
-tags: [react, create react app, production build, react build, production build, create react app production build, react production build, create react app build, react build, production build, create react app production build, react production build, create react app build, react build, production build, create react app production build, react production build, create react app build, react build, production build, create react app production build, react production build, create react app build, react build, production build, create react app production build, react production build, create react app build, react build, production build ]
-keywords: ["create react app production build", "react production build", "create react app build", "react build", "production build", "create react app production build", "react production build", "create react app build", "react build", "production build", "create react app production build", "react production build", "create react app build", "react build", "production build", "create react app production build", "react production build", "create react app build", "react build", "production build" ]
+tags: [react, create react app, production build, react production build, create react app build, react build, production build]
+keywords: ["react", "create react app", "production build", "react production build", "create react app build", "react build", "production build"]
 description: "Learn how to create a production build for your React app using Create React App. Optimize your code, reduce file sizes, and enhance performance for your users with this enchanting guide!"
+hide_table_of_contents: true
 ---
 
 Welcome, aspiring developers, to the magical world of React production builds! In this enchanting guide, we'll walk you through the process of creating a production build for your Create React App. Brace yourselves for optimized code, faster load times, and an immersive user experience!
@@ -135,5 +136,3 @@ With profiling activated, you can leverage the React DevTools to delve into the 
 ## Conclusion
 
 Congratulations, young wizards! You've successfully mastered the art of creating a production build for your React app. Now, your code is optimized, your performance is enchanting, and your users will be spellbound by the experience. As you embark on your coding adventures, remember to cast the spells of optimization and caching to create truly magical web applications!
-
-May your code be bug-free, your designs be captivating, and your journey be filled with awe-inspiring creations. Happy coding!

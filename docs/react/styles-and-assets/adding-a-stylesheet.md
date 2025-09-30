@@ -5,6 +5,7 @@ sidebar_label: Stylesheet
 sidebar_position: 1
 tags: [react, create-react-app, css, stylesheet, styling, react-scripts, react-dom, react-app]
 description: "Learn how to add a stylesheet to your Create React App project. Style your components and make them visually appealing with CSS."
+hide_table_of_contents: true
 ---
 
 In this guide, we will explore how to add a stylesheet to your React application created with Create React App. Cascading Style Sheets (CSS) allow you to style your components and make them visually appealing. We'll walk through the process step by step, making it easy for beginners to understand.

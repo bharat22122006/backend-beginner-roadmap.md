@@ -4,7 +4,7 @@ title: Getting Started with React
 sidebar_label: Getting Started
 sidebar_position: 1
 description: "Learn how to get started with React by creating a new app using Create React App. Follow the steps to set up your development environment and build your first React application." 
-tags: [React, JavaScript, User interfaces, Library, Virtual DOM, Declarative syntax, Components, Rendering, Web applications, Node.js, Create React App, Development server, React fundamentals, State management, Props, React documentation, React hooks, React Router, React Context API, Awesome React]
+hide_table_of_contents: true
 ---
 
 import '../css/style.css';
@@ -156,9 +156,9 @@ npm start
 Runs the app in development mode. Open [http://localhost:3000](http://localhost:3000) in your browser to view it.
 
 <BrowserWindow>
-    <div style={{textAlign: 'center'}}>
-      <header style={{display:' flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontSize: 'calc(10px + 2vmin)'}}>
-        <img src='../img/logo.svg' className="App-logo" alt="logo" />
+    <div style={{textAlign: 'center', overflow: 'hidden', minHeight: '50vh'}}>
+      <header style={{display:' flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontSize: 'calc(10px + vmin)'}}>
+        <img src='/tutorial/img/logo.svg' className="App-logo" alt="logo" />
         <br/>
         <p>
           Edit src/App.js and save to reload.

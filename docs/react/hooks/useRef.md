@@ -4,6 +4,7 @@ title: useRef Hook Concept
 sidebar_label: useRef Hook
 sidebar_position: 7
 tags: [react, create-react-app, useRef, hooks, react-scripts, react-dom, react-app]
+hide_table_of_contents: true
 ---
 
 The `useRef` hook is a built-in React hook that allows you to create mutable references to DOM elements or any other value that persists across renders in functional components.

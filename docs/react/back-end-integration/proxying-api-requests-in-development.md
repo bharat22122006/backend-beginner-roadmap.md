@@ -4,8 +4,8 @@ title: Proxying API Requests in Development
 sidebar_label: Proxying API Requests
 sidebar_position: 1
 tags: [React, API, Backend, Integration, Proxy]
-keywords: [react, api, backend, integration, proxy, proxying, cors, development, server, client, frontend, backend, fullstack, web development, javascript, node.js, express, rest, json, asynchronous, promise, async, await, state, useEffect, useState, form, submit, create, update, delete, fetch, send, receive, response, error, axios, library, package, npm, install, tool, postman, testing, endpoint, list, data, new, component, app, file, code, example, tutorial, guide, how-to, learn, step-by-step, beginner, basics, introduction, overview, explanation, example, code, source, snippet, tutorial, guide, learn, how-to, steps]
 description: "Learn how to proxy API requests during development in a React app using Create React App, avoiding CORS issues and enabling seamless interaction with your backend server."
+hide_table_of_contents: true
 ---
 
 import '../css/style.css'
@@ -53,7 +53,7 @@ Now your app should be running at `http://localhost:3000/`.
 <BrowserWindow>
     <div style={{textAlign: 'center'}}>
       <header style={{minHeight: '80vh', display:' flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontSize: 'calc(10px + 2vmin)'}}>
-        <img src="/code-harbor-hub/img/docs/react/logo.svg" className="App-logo" alt="logo" />
+        <img src="/tutorial/img/logo.svg" className="App-logo" alt="logo" />
         <br/>
         <p>
           Edit src/App.js and save to reload.
@@ -288,5 +288,3 @@ Check out the [official documentation](https://create-react-app.dev/docs/proxyin
 Congratulations! You've successfully learned how to proxy API requests during development with Create React App. By using proxying, you've simplified your development environment and avoided troublesome CORS issues.
 
 Whether you choose the built-in `proxy` field or the more flexible manual setup, understanding how to handle API requests effectively will boost your productivity and make building React apps a delightful experience.
-
-Now that you've mastered proxying, you're ready to build amazing apps with seamless frontend-backend communication. Keep coding and have fun!

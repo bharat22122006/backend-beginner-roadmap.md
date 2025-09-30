@@ -3,9 +3,10 @@ id: making-a-progressive-web-app
 title: Making a Progressive Web App with Create React App
 sidebar_label: Making a Progressive Web App
 sidebar_position: 10
-tags: []
-keywords: [ create react app, react, react-scripts, node, node.js, npm, start, build, test, production, development, local, pwa, progressive web app, service worker, caching, offline, access, fast, loading, engaging, experience, responsive, design, web, mobile, app, native, user, experience, user, retention, web, technologies, html, css, javascript, responsive, devices, desktop, smartphone, tablet, reliable, fast, engaging, offline, access, responsive, design, service, workers, caching, strategies, user, experience, user, retention, web, technologies, html, css, javascript, responsive, devices, desktop, smartphone, tablet, reliable, fast, engaging, offline, access, responsive, design, service, workers, caching, strategies, user, experience, user, retention, web, technologies, html, css, javascript, responsive, devices, desktop, smartphone, tablet, reliable, fast, engaging, offline, access, responsive, design, service, workers, caching, strategies, user, experience, user, retention, web, technologies, html, css, javascript, responsive, devices, desktop, smartphone, tablet, reliable, fast, engaging, offline, access, responsive, design, service, workers, caching, strategies, user, experience, user, retention, web, technologies, html, css, javascript, responsive, devices, desktop, smartphone, tablet, reliable, fast, engaging, offline, access, responsive, design, service, workers, caching, strategies, user, experience, user, retention, web, technologies, html, css, javascript, responsive, devices, desktop, smartphone, tablet, reliable, fast, engaging, offline, access, responsive, design, service, workers, caching, strategies, user, experience, user, retention, web, technologies, html, css, javascript, responsive, devices, desktop, smartphone, tablet, reliable, fast, engaging, offline, access, responsive, design, service, workers, caching, strategies, user, experience, user, retention, web, technologies, html, css, javascript]
+tags: [react, create react app, progressive web app, pwa, react pwa, create react app pwa, service worker, offline support, caching, web app manifest, responsive design, installable app]
+keywords: [ create react app, progressive web app, pwa, react pwa, create react app pwa, service worker, offline support, caching, web app manifest, responsive design, installable app ]
 description: "Learn how to turn your regular React application into a fully-fledged Progressive Web App (PWA) using Create React App."
+hide_table_of_contents: true
 ---
 
 Welcome to the exciting world of Progressive Web Apps (PWAs)! In this guide, we'll explore how to turn your regular React application into a fully-fledged PWA using Create React App.
@@ -129,4 +130,4 @@ Congratulations! You've just transformed your React app into a Progressive Web A
 
 In this guide, we've explored the process of creating a Progressive Web App using Create React App. By implementing service workers and caching strategies, your app is now capable of running offline and delivering a fantastic user experience.
 
-Remember, PWAs are a constantly evolving field, so keep exploring new possibilities and enhancing your app to provide the best user experience possible. Happy coding!
+Remember, PWAs are a constantly evolving field, so keep exploring new possibilities and enhancing your app to provide the best user experience possible.

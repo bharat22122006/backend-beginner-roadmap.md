@@ -3,8 +3,9 @@ id: adding-bootstrap
 title: Adding Bootstrap
 sidebar_position: 4
 tags: [react, create react app, bootstrap, css, styling, components, responsive, layout, design, ui, user interface, integration]
-keywords: [react, create react app, bootstrap, css, styling, components, responsive, layout, design, ui, user interface, integration, npm, install, package, library, framework, pre-designed, enchanting, styles, responsive, layouts, components, buttons, forms, grid, system, columns, rows, container, app, project, example, tutorial, guide, how-to, learn, step-by-step, beginner, basics, introduction, overview, explanation, example, code, source, snippet, tutorial, guide, learn, how-to, steps]
+keywords: [react, create react app, bootstrap, css, styling, components, responsive, layout, design, ui, user interface, integration]
 description: "Learn how to integrate Bootstrap into your Create React App, unlocking the power of pre-designed components, responsive layouts, and enchanting styles."
+hide_table_of_contents: true
 ---
 
 import './style.css'
@@ -186,7 +187,7 @@ export default MagicalApp;
       <p className="lead">Prepare to be enchanted by the wonders they create together.</p>
       <div className="row mt-5">
         <div className="col-sm-6">
-          <img src="/code-harbor-hub/img/svg/static_website.svg" alt="logo" className="img-fluid" />
+          <img src="/tutorial/img/svg/static_website.svg" alt="logo" className="img-fluid" />
         </div>
         <div className="col-sm-6">
           <h2>Discover Your Powers</h2>

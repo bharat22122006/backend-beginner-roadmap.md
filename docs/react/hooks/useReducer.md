@@ -4,6 +4,7 @@ title: useReducer Hook Concept
 sidebar_label: useReducer Hook
 sidebar_position: 4
 tags: [react, create-react-app, useReducer, hooks, react-scripts, react-dom, react-app]
+hide_table_of_contents: true
 ---
 
 The `useReducer` hook is a built-in React hook that provides an alternative way to manage state in functional components, especially when dealing with complex state logic or multiple related state variables.

@@ -4,6 +4,7 @@ title: Available Scripts
 sidebar_position: 3
 tags: [react, create-react-app, scripts, npm, start, test, build, eject, react-scripts, react-dom, react-app]
 description: "Learn about the available scripts in a Create React App project. Use these scripts to start, test, build, and eject your app, as well as to run custom scripts."
+hide_table_of_contents: true
 ---
 
 In your project directory, you can use the following scripts:

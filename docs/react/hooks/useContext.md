@@ -4,6 +4,7 @@ title: useContext Hook Concept
 sidebar_label: useContext Hook
 sidebar_position: 3
 tags: [react, create-react-app, useContext, hooks, react-scripts, react-dom, react-app]
+hide_table_of_contents: true
 ---
 
 The `useContext` hook is a built-in React hook that allows you to consume context values in functional components. It provides a way to access data from a context provider without having to pass props down through multiple levels of the component tree.

@@ -5,6 +5,7 @@ sidebar_label: Importing a Component
 sidebar_position: 2
 tags: [react, import, component, importation, import, export, module, file, path, relative, absolute, jsx, javascript, code, code-splitting, dynamic, lazy, suspense, react.lazy, react.suspense, dynamic-import, import, export, module, file, path, relative, absolute, jsx, javascript, code, code-splitting, dynamic, lazy, suspense, react.lazy, react.suspense, dynamic-import]
 description: "Learn how to import components in your React applications. Unleash the magic of component importation and integrate them into your app with ease!"
+hide_table_of_contents: true
 ---
 
 Welcome, brave Code Wizards, to the wondrous world of component importation! In this guide, we shall unravel the secrets of importing components in your React applications, enabling you to summon their powers and weave them into the fabric of your app.

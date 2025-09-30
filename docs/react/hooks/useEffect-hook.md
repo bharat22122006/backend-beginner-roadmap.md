@@ -4,6 +4,7 @@ title: useEffect Hook Concept
 sidebar_label: useEffect Hook
 sidebar_position: 2
 tags: [react, create-react-app, useEffect, hooks, react-scripts, react-dom, react-app]
+hide_table_of_contents: true
 ---
 
 The `useEffect` hook is a built-in React hook that allows you to perform side effects in functional components. It serves as a combination of lifecycle methods like `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` in class components.

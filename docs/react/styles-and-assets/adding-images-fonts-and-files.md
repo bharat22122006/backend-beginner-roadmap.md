@@ -5,6 +5,7 @@ sidebar_label: Images Fonts and Files
 sidebar_position: 6
 tags: [react, create-react-app, images, fonts, files, assets, react-scripts, react-dom, react-app]
 description: "Learn how to work with images, fonts, and files in a React application. Manage and utilize these assets effectively to create visually appealing and interactive web experiences."
+hide_table_of_contents: true
 ---
 
 In this guide, we'll explore how to work with images, fonts, and files in a React application. These assets are essential for creating visually appealing and interactive web experiences. We'll cover everything you need to know to manage and utilize these assets effectively.
@@ -204,7 +205,3 @@ function App() {
 ```
 
 With this knowledge, you're ready to manage images, fonts, and files effectively in your React app. Have fun experimenting and enhancing your web projects!
-
-Remember, continuous learning is the key to becoming a mastermind developer! 
-
-If you have any questions or need further assistance, don't hesitate to reach out to the React community for support. Happy coding!

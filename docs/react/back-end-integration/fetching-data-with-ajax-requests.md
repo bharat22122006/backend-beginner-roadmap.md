@@ -6,6 +6,7 @@ sidebar_position: 2
 tags: [React, AJAX, Data Fetching, API, Asynchronous]
 keywords: [fetching data in react, ajax requests in react, data fetching in react, react ajax, react fetch, react data fetching, react api]
 description: "Learn how to fetch data with AJAX requests in a React application using the `fetch()` API and the `axios` library."
+hide_table_of_contents: true
 ---
 
 import '../css/style.css';
@@ -39,7 +40,7 @@ The `fetch()` function is a powerful tool for making AJAX requests in modern web
 Here's a basic example of how the `fetch()` API works:
 
 ```js
-fetch('https://api.github.com/users/Ajay-Dhangar')
+fetch('https://api.github.com/users/ajay-dhangar')
   .then((response) => response.json())
   .then((data) => {
     // Process the data here
@@ -50,7 +51,7 @@ fetch('https://api.github.com/users/Ajay-Dhangar')
   });
 ```
 
-In this example, we use the `fetch()` function to make a GET request to the URL `https://api.github.com/users/Ajay-Dhangar`. We then use the `then()` method to handle the response. The `response.json()` method reads the response data and parses it as JSON. Finally, we handle the parsed data or catch any errors that occurred during the request.
+In this example, we use the `fetch()` function to make a GET request to the URL `https://api.github.com/users/ajay-dhangar`. We then use the `then()` method to handle the response. The `response.json()` method reads the response data and parses it as JSON. Finally, we handle the parsed data or catch any errors that occurred during the request.
 
 <AdsComponent />
 
@@ -63,7 +64,7 @@ While chaining `.then()` methods works well, it can lead to callback hell when d
 ```js title="Using async/await"
 async function fetchData() {
   try {
-    const response = await fetch('https://api.github.com/users/Ajay-Dhangar');
+    const response = await fetch('https://api.github.com/users/ajay-dhangar');
     const data = await response.json();
     // Process the data here
     console.log(data);
@@ -135,7 +136,7 @@ const DataFetcher = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://api.github.com/users/Ajay-Dhangar'); // Replace with your API endpoint
+        const response = await axios.get('https://api.github.com/users/ajay-dhangar'); // Replace with your API endpoint
         setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -167,22 +168,25 @@ export default DataFetcher;
      <ul id="u_l"></ul> 
      </div>
      <button onClick={()=>{
-      let display_output_4=documet.getElementById("display_output_4")
-      display_output_4.style.display="block"
-      let btn4=document.getElementById("btn4")
-      btn4.style.display="none"
-       setTimeout(()=>{
-              if(document.getElementById("load_ing")?.style){document.getElementById("load_ing").style.display="none";}
-              [{id:1,name:"John"},{id:2,name:"sam"},{id:3,name:"Arjun"},{id:4,name:"siva"},{id:5,name:"Anbhu"},{id:6,name:"Krishna"}].map(item=>{
-                let li=document.createElement("li")
-                li.textContent=item.name
-                let ul=document.getElementById("u_l")
-                if(ul){
-                ul.appendChild(li)
-                }
-              })
-              },1500) 
-     }} id="btn4">click to see output</button>
+       document.getElementById("display_output_4").style.display="block";
+       document.getElementById("load_ing").style.display="block";
+       document.getElementById("u_l").style.display="none";
+       fetch('https://api.github.com/users/ajay-dhangar')
+       .then((response) => response.json())
+       .then((data) => {
+         // Process the data here
+         console.log(data);
+         document.getElementById("load_ing").style.display="none";
+         document.getElementById("u_l").style.display="block";
+         let ul=document.getElementById("u_l");
+         let li=document.createElement("li");
+         li.appendChild(document.createTextNode(data.name));
+         ul.appendChild(li);
+       })
+       .catch((error) => {
+         console.error('Error fetching data:', error);
+       });
+     }} style={{marginTop:"20px",padding:"10px 20px",fontSize:"1rem",fontWeight:"600",cursor:"pointer",backgroundColor:"#61dafb",border:"none",borderRadius:"5px"}}>Fetch Data</button>
 </BrowserWindow>
 
 In this component, we use the `useEffect` hook to fetch data from the API when the component mounts. We store the fetched data in the `data` state variable using the `useState` hook.
@@ -230,5 +234,3 @@ Congratulations! You've successfully implemented AJAX requests in your React app
 Fetching data with AJAX requests is an integral part of building dynamic and interactive React applications. By using the `fetch()` API or libraries like axios, you can easily communicate with APIs and display data on your web pages. Additionally, leveraging `async / await` can improve the readability of your code and help manage multiple asynchronous requests more efficiently.
 
 Always keep compatibility in mind when using modern features like the `fetch()` API, and consider using polyfills for older browsers. With the knowledge of data fetching in React, you're equipped to create responsive and data-driven web applications.
-
-Happy coding and exploring the possibilities of data integration in your React journey!
