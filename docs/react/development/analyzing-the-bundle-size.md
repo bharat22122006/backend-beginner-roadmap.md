@@ -1,7 +1,6 @@
 ---
 id: analyzing-the-bundle-size
 title: Analyzing Bundle Size
-sidebar_label: Analyzing Bundle Size
 sidebar_position: 3
 tags: [react, create-react-app, source-map-explorer, bundle-size, performance]
 description: "Learn how to analyze the bundle size of your Create React App project using Source Map Explorer. Identify areas of your codebase that might be bloated and optimize them for better performance."
