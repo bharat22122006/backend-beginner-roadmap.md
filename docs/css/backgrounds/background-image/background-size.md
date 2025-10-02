@@ -119,7 +119,7 @@ div {
 
 Now, you can see the output of the above code in the Browser Window like this:
 
-<BrowserWindow url="http://127.0.0.1:5500/index.html" bodyStyle={{ backgroundImage: "url('/assets/jpeg-image.jpg')", color: "#fff", padding: "20px", minHeight: "200px", textAlign:"center", backgroundSize:"cover" }}>
+<BrowserWindow url="http://127.0.0.1:5500/index.html" bodyStyle={{ backgroundImage: "url('/tutorial/assets/jpeg-image.jpg')", color: "#fff", padding: "20px", minHeight: "200px", textAlign:"center", backgroundSize:"cover" }}>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac felis sit
     amet nunc ultrices ultricies. Nullam nec nunc nec nunc ultrices ultricies.

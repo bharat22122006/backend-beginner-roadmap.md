@@ -135,7 +135,7 @@ In the example above, HSLA color values are used to specify the colors of the `<
 
 By using HSLA color values, you can enhance the visual appearance of your web designs and create engaging color schemes with varying levels of transparency. HSLA color values provide a flexible way to specify colors based on hue, saturation, lightness, and alpha values, allowing you to create unique color effects and visually appealing designs in your web projects.
 
-If you want to learn more about CSS colors, you can check out our [CSS Colors](/docs/category/colors) guide for additional information on color models, color functions, and color formats in CSS.
+If you want to learn more about CSS colors, you can check out our [CSS Colors](/tutorial/category/colors) guide for additional information on color models, color functions, and color formats in CSS.
 
 ## Conclusion
 

@@ -118,7 +118,7 @@ p {
 
 Now, you can see the output of the above code in the Browser Window like this:
 
-<BrowserWindow url="http://127.0.0.1:5500/index.html" bodyStyle={{ backgroundImage: "url('/assets/jpeg-image.jpg')", color: "#fff", padding: "20px", minHeight: "200px", textAlign:"center", backgroundAttachment:"fixed" }}>
+<BrowserWindow url="http://127.0.0.1:5500/index.html" bodyStyle={{ backgroundImage: "url('/tutorial/assets/jpeg-image.jpg')", color: "#fff", padding: "20px", minHeight: "200px", textAlign:"center", backgroundAttachment:"fixed" }}>
 <>
   <h1 style={{ fontSize: "2em", marginBottom: "0" }}>Fixed Background Image</h1>
   <p style={{ fontSize: "1.2em", marginTop: "0" }}>This is a div with a fixed background image.</p>

@@ -122,7 +122,7 @@ p {
 
 Now, you can see the output of the above code in the Browser Window like this:
 
-<BrowserWindow url="http://127.0.0.1:5500/index.html" bodyStyle={{ backgroundImage: "url('/assets/jpeg-image.jpg')", padding: "20px", minHeight: "200px", textAlign:"center", backgroundRepeat:"repeat-x", backgroundSize:"cover" }}>
+<BrowserWindow url="http://127.0.0.1:5500/index.html" bodyStyle={{ backgroundImage: "url('/tutorial/assets/jpeg-image.jpg')", padding: "20px", minHeight: "200px", textAlign:"center", backgroundRepeat:"repeat-x", backgroundSize:"cover" }}>
   <p style={{ color: "white", fontSize: "1.5rem" }}>
     This is a div with a background image that repeats horizontally and scales to cover the background area.
   </p>

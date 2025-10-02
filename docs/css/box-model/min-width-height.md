@@ -81,7 +81,7 @@ By using the `min-width` and `min-height` properties, you can ensure that elemen
 <AdsComponent />
 
 :::info Additional Information
-Compare this snippet from [CSS Width and Height](/docs/css/box-model/width-height) to learn how to use the CSS `width` and `height` properties to control the dimensions of elements in your web page layout.
+Compare this snippet from [CSS Width and Height](/tutorial/css/box-model/width-height) to learn how to use the CSS `width` and `height` properties to control the dimensions of elements in your web page layout.
 :::
 
 ## Example for `min-width` and `min-height`

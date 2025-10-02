@@ -130,7 +130,7 @@ Place an image file named `jpeg-image.jpg` in the `assets` directory of your pro
 Open the `index.html` file in a web browser to see the output. You will see a `<div>` element with a background image positioned at the top right corner of the background area.
 
 <BrowserWindow url="http://127.0.0.1:5500/index.html" bodyStyle={{ minHeight: "200px"}}>
-  <div style={{ backgroundImage: "url('/assets/jpeg-image.jpg')", backgroundPosition: "top right", height: "200px", width: "400px", border: "1px solid #333", backgroundSize: "cover", color:"#fff" }}>
+  <div style={{ backgroundImage: "url('/tutorial/assets/jpeg-image.jpg')", backgroundPosition: "top right", height: "200px", width: "400px", border: "1px solid #333", backgroundSize: "cover", color:"#fff" }}>
     <p style={{ padding: "10px" }}>
       This is a div with a background image positioned at the top right corner.
     </p>

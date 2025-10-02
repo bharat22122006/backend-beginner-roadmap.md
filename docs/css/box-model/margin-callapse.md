@@ -8,7 +8,7 @@ keywords:
   - margin collapse
   - css box model
   - css box model margin collapse
-description: Learn how CSS margin collapse works and how to prevent it in your web page layout.
+description: "Learn how CSS margin collapse works and how to prevent it in your web page layout."
 tags: 
     - css
     - margin collapse
@@ -74,7 +74,7 @@ By using these techniques, you can prevent margin collapse and control the spaci
 <AdsComponent />
 
 :::note Try it yourself
-Compare this snippet from [CSS Width and Height](/docs/css/box-model/width-height) to learn how to use the CSS `width` and `height` properties to control the dimensions of elements in your web page layout.
+Compare this snippet from [CSS Width and Height](/tutorial/css/box-model/width-height) to learn how to use the CSS `width` and `height` properties to control the dimensions of elements in your web page layout.
 :::
 
 ## Example for Margin Collapse
