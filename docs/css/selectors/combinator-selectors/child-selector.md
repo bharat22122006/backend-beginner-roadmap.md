@@ -6,11 +6,13 @@ sidebar_position: 2
 tags: [selector, combinator, child]
 description: "Child selector is used to select an element that is a direct child of another element."
 keywords: [child selector, css child selector, css selector, css combinator, css child combinator]
+hide_table_of_contents: true
 ---
 
 In CSS, the child selector is used to select an element that is a direct child of another element. The child selector is represented by the `>` character between two selectors.
 
 <AdsComponent />
+<br />
 
 ## Syntax
 
@@ -58,6 +60,7 @@ The child selector is more specific than the descendant selector and less specif
 :::
 
 <AdsComponent />
+<br />
 
 ## Example: Using Child Selector
 
@@ -164,4 +167,3 @@ In the above example, the CSS rule will apply the color `red` to the text inside
 - [Parent Selector](#): The parent selector selects an element that is a direct parent of another element.
 - [Ancestor Selector](#): The ancestor selector selects an element that is an ancestor of another element.
 - [Universal Selector](#): The universal selector selects all elements in a document.
-- 
