@@ -6,11 +6,13 @@ sidebar_position: 1
 tags: [selector, combinator, descendant]
 description: "Descendant selector is used to select an element that is a descendant of another element."
 keywords: [descendant selector, css descendant selector, css selector, css combinator, css descendant combinator]
+hide_table_of_contents: true
 ---
 
 In CSS, the descendant selector is used to select an element that is a descendant of another element. The descendant selector is represented by a whitespace character (` `) between two selectors.
 
 <AdsComponent />
+<br />
 
 ## Syntax
 
@@ -57,6 +59,7 @@ The descendant selector can be used to select multiple levels of descendants. Fo
 :::
 
 <AdsComponent />
+<br />
 
 ## Example: Using Descendant Selector
 
