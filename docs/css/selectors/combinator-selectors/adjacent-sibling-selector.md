@@ -13,11 +13,13 @@ keywords:
     css combinator,
     css adjacent sibling combinator,
   ]
+hide_table_of_contents: true
 ---
 
 In CSS, the adjacent sibling selector is used to select an element that is immediately preceded by another element. The adjacent sibling selector is represented by the `+` character between two selectors.
 
 <AdsComponent />
+<br />
 
 ## Syntax
 
@@ -64,6 +66,7 @@ The adjacent sibling selector can be used to target specific elements that are a
 :::
 
 <AdsComponent />
+<br />
 
 ## Example: Using Adjacent Sibling Selector
 
