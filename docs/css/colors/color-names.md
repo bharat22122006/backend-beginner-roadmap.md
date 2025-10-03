@@ -12,11 +12,13 @@ keywords:
     css color names list,
   ]
 sidebar_position: 1
+hide_table_of_contents: true
 ---
 
 In CSS, color names are predefined names for colors that can be used to style elements. Color names provide an easy way to specify colors in CSS without having to remember the hexadecimal (hex) or RGB values of the colors. There are 147 color names that are supported by all major browsers, and they can be used to set the color of text, backgrounds, borders, and other CSS properties.
 
 <AdsComponent />
+<br />
 
 ## Syntax
 
@@ -63,6 +65,7 @@ In the HTML code below, the CSS rule will set the color of the `<h1>` element to
 :::
 
 <AdsComponent />
+<br />
 
 ### List of Common Color Names
 
@@ -77,6 +80,7 @@ Here are some common CSS color names:
 You can use these color names in your CSS stylesheets to set the color of elements and create visually appealing designs. Color names provide a convenient way to specify colors in CSS and make it easier to work with colors in web development projects.
 
 <AdsComponent />
+<br />
 
 ### Example: Using Color Names
 
@@ -128,6 +132,7 @@ In this example, the color names `blue` and `darkred` are used to set the color 
 Color names are a convenient way to specify colors in CSS and can be used to create visually appealing designs in web development projects.
 
 <AdsComponent />
+<br />
 
 :::note Extra Information
 **1. How many way to use color in CSS?**
