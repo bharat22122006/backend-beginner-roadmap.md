@@ -32,11 +32,13 @@ keywords:
     css tutorial for beginners 2025,
     css tutorial for learning,
   ]
+hide_table_of_contents: true
 ---
 
 In this tutorial, you will learn how to add comments to your CSS code to make it more readable and maintainable. Comments are used to explain the purpose of the code, provide context, and make it easier for other developers (or your future self) to understand and modify the code.
 
 <AdsComponent />
+<br />
 
 ## Comments in CSS
 
@@ -81,6 +83,7 @@ Comments are an essential part of writing clean and maintainable code. Here are 
 By adding comments to your CSS code, you can make it more readable, maintainable, and understandable for yourself and other developers. Comments are a powerful tool for documenting your code and ensuring its quality and longevity.
 
 <AdsComponent />
+<br />
 
 ## For example
 
