@@ -30,7 +30,7 @@ Repository: [github.com/codeharborhub/tutorial](https://github.com/codeharborhub
 
 CodeHarborHub Tutorials is an open-source project aimed at providing clear, structured tutorials and coding examples to help learners and developers strengthen their skills. Whether you're new to programming or an experienced dev exploring new technologies, this repository offers step-by-step guides, sample projects, and educational content.
 
-The tutorials are published as a site built from this repository and can be viewed at [codeharborhub.github.io/tutorial](https://codeharborhub.github.io/tutorial/). :contentReference[oaicite:0]{index=0}
+The tutorials are published as a site built from this repository and can be viewed at [codeharborhub.github.io/tutorial](https://codeharborhub.github.io/tutorial/).
 
 ---
 
