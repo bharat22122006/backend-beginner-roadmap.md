@@ -13,11 +13,13 @@ keywords:
     css combinator,
     css general sibling combinator,
   ]
+hide_table_of_contents: true
 ---
 
 In CSS, the general sibling selector is used to select an element that is preceded by another element. The general sibling selector is represented by the `~` character between two selectors.
 
 <AdsComponent />
+<br />
 
 ## Syntax
 
@@ -58,6 +60,7 @@ In the HTML code below, the CSS rule will apply the `font-weight: bold` property
 :::
 
 <AdsComponent />
+<br />
 
 ## Example: Using General Sibling Selector
 
@@ -109,6 +112,7 @@ Now, you can see the output of the above code in the Browser Window like this:
 In the above example, the CSS rule will apply the `font-weight: bold` property to the text inside the `<p>` elements that are preceded by an `<h2>` element.
 
 <AdsComponent />
+<br />
 
 ## Summary
 
