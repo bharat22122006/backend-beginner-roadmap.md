@@ -65,7 +65,7 @@ In the HTML code below, the CSS rule will set the color of the `<h1>` element to
 :::
 
 <AdsComponent />
-<br /
+<br />
 
 ### List of Common Color Names
 
@@ -80,6 +80,7 @@ Here are some common CSS color names:
 You can use these color names in your CSS stylesheets to set the color of elements and create visually appealing designs. Color names provide a convenient way to specify colors in CSS and make it easier to work with colors in web development projects.
 
 <AdsComponent />
+<br />
 
 ### Example: Using Color Names
 
