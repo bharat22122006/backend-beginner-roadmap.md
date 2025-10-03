@@ -32,11 +32,13 @@ keywords:
     css tutorial for beginners 2025,
     css tutorial for learning,
   ]
+hide_table_of_contents: true
 ---
 
 In this tutorial, you will learn how to add CSS to an HTML document using internal, external, and inline styles. CSS (Cascading Style Sheets) is a style sheet language that is used to describe the look and formatting of a document written in HTML or XML. It allows you to style web pages and user interfaces, making it easier to create visually appealing and responsive websites.
 
 <AdsComponent />
+<br />
 
 ## How to Add CSS to HTML
 
@@ -81,6 +83,7 @@ When you run this HTML document in a web browser. It will display the content wi
 </BrowserWindow>
 
 <AdsComponent />
+<br />
 
 ### 2. External CSS
 
@@ -116,6 +119,7 @@ h1 {
 In this example, the CSS styles are defined in a separate file named `styles.css`, which is linked to the HTML document using the `<link>` element. The styles defined in the external CSS file are applied to the elements in the HTML document.
 
 <AdsComponent />
+<br />
 
 When you run this HTML document in a web browser. It will display the content with the styles defined in the external CSS.
 
@@ -157,6 +161,7 @@ When you run this HTML document in a web browser. It will display the content wi
 By using internal, external, and inline CSS, you can style web pages and user interfaces to create visually appealing and responsive websites.
 
 <AdsComponent />
+<br />
 
 :::note
 1. Make sure the `styles.css` file is in the same directory as the `index.html` file.
