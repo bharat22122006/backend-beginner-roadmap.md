@@ -33,11 +33,13 @@ keywords:
     css tutorial for beginners 2025,
     css tutorial for learning,
   ]
+hide_table_of_contents: true
 ---
 
 In this tutorial, you will learn what is CSS, why it is used, and how it works. CSS is a style sheet language that is used to describe the look and formatting of a document written in HTML or XML. It allows you to style web pages and user interfaces, making it easier to create visually appealing and responsive websites. CSS is an essential tool for web developers and designers, and it is used by millions of websites around the world.
 
 <AdsComponent />
+<br />
 
 ## What is CSS
 
