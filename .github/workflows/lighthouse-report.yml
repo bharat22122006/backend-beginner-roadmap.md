@@ -40,6 +40,13 @@ jobs:
         with:
           urls: |
             http://localhost:3000/tutorial/
+            http://localhost:3000/tutorial/category/html
+            http://localhost:3000/tutorial/html/intro-html
+            http://localhost:3000/tutorial/category/css
+            http://localhost:3000/tutorial/css/introduction/what-is-css
+            http://localhost:3000/tutorial/category/javascript
+            http://localhost:3000/tutorial/category/react
+            http://localhost:3000/tutorial/react/react-intro
           configPath: ./.github/workflows/lighthouserc.json
           uploadArtifacts: true
           temporaryPublicStorage: true
