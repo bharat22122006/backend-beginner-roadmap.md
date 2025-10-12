@@ -135,7 +135,7 @@ const config = {
               {
                 type: "html",
                 value: `<div class="dropdown_grid">
-                <a class="dropbtn" href="/tutorial/">Tutorial</a>
+                <span></span>
                 <div class="dropdown-content">
                   <a href="/tutorial/category/html/" class="nav__icons"> <img src="/icons/html-5.svg" title="HTML5" alt="HTML" /> </a>
                   <a href="/tutorial/category/css/" class="nav__icons"> <img src="/icons/css.svg" title="CSS" alt="CSS" /> </a>
@@ -149,6 +149,11 @@ const config = {
               </div>`,
               },
             ],
+          },
+          {
+            to: "https://codeharborhub.github.io/blog",
+            label: "Blog",
+            position: "right"
           },
           {
             href: "https://github.com/codeharborhub",
