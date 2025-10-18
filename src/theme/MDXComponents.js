@@ -10,6 +10,8 @@ import TabItem from "@theme/TabItem";
 import Tabs from "@theme/Tabs";
 import { FaReact } from "react-icons/fa";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
+import DocsCard from '@site/src/components/DocsCard';
+import DocsCards from '@site/src/components/DocsCards';
 
 export default {
   // Re-use the default mapping
@@ -23,4 +25,6 @@ export default {
   Image,
   LiteYouTubeEmbed,
   AdsComponent,
+  DocsCard,
+  DocsCards,
 };
