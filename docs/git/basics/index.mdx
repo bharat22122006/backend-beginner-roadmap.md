@@ -1,0 +1,219 @@
+---
+title: "Git Basics: Create, Commit & Track Changes"
+description: "Learn essential Git commands like init, add, commit, and log to start tracking your projects efficiently with Git."
+tags: ["git basics", "git init", "git commit", "version control", "git tutorial"]
+keywords: ["git basics", "git commands", "git add commit", "how to use git", "track changes git"]
+sidebar_position: 2
+---
+
+Welcome to **Part 2** of the **Git & GitHub Tutorial Series** by **CodeHarborHub**. Now that you understand what Git is, let’s dive into **practical commands** that help you start tracking and managing your project history.  
+
+## 1. Create a New Repository
+
+A **repository (repo)** is like a project folder where Git tracks your files and changes.
+
+### Initialize a new repository
+
+```bash
+git init
+````
+
+> This creates a hidden folder `.git/` inside your project directory that stores all Git data.
+
+:::tip
+You only need to run this once per project.
+:::
+
+## 2. Clone an Existing Repository
+
+If you want to work on an existing project hosted on GitHub or another server:
+
+```bash
+git clone https://github.com/username/repo-name.git
+```
+
+This command downloads the entire project and its history.
+
+> Cloning = downloading the repo + linking it to the remote GitHub repository.
+
+## 3. Check Repository Status
+
+At any time, see which files have been changed or staged:
+
+```bash
+git status
+```
+
+- 🟢 **Green** → files ready to commit (staged)
+- 🔴 **Red** → files modified but not yet staged
+
+## 4. Add Changes to Staging Area
+
+Before committing, you must **stage** the files you want to include:
+
+```bash
+git add filename
+```
+
+Or, to add all modified files:
+
+```bash
+git add .
+```
+
+> Think of **staging** as preparing your changes for a “snapshot”.
+
+## 5. Commit Changes
+
+Once staged, you can **commit** your changes — a permanent snapshot in history.
+
+```bash
+git commit -m "Add new feature or fix bug"
+```
+
+- Every commit has a **message** describing what changed.
+- Use clear, meaningful commit messages.
+
+Example:
+
+```bash
+git commit -m "Add homepage UI and update styles"
+```
+
+## 6. View Commit History
+
+To see your commit history:
+
+```bash
+git log
+```
+
+This shows:
+
+* Commit ID (unique hash)
+* Author name & email
+* Date & time
+* Commit message
+
+For a one-line summary:
+
+```bash
+git log --oneline
+```
+
+> Each commit acts like a “save point” in your project timeline.
+
+---
+
+## 7. Ignore Unwanted Files
+
+Use a `.gitignore` file to tell Git which files or folders to skip.
+
+Example `.gitignore`:
+
+```
+node_modules/
+.env
+.DS_Store
+dist/
+```
+
+> This keeps your repository clean and free from temporary or sensitive files.
+
+## 8. Remove or Rename Files
+
+To delete a tracked file:
+
+```bash
+git rm filename
+```
+
+To rename a file:
+
+```bash
+git mv oldname newname
+```
+
+> After renaming or deleting, don’t forget to **commit** your changes.
+
+---
+
+## 9. See File Differences
+
+Check what has changed before committing:
+
+```bash
+git diff
+```
+
+After staging changes:
+
+```bash
+git diff --staged
+```
+
+> Use this to review your modifications before finalizing them.
+
+## 10. Typical Workflow Example
+
+Here’s a simple end-to-end Git flow:
+
+```bash
+# Step 1: Initialize Git
+git init
+
+# Step 2: Check repo status
+git status
+
+# Step 3: Add your files
+git add .
+
+# Step 4: Commit your changes
+git commit -m "Initial project setup"
+
+# Step 5: View history
+git log --oneline
+```
+
+Done — your local Git repository is now tracking your project!
+
+
+## 11. Understanding Git States
+
+| State         | Description                                |
+| ------------- | ------------------------------------------ |
+| **Untracked** | File not yet tracked by Git.               |
+| **Modified**  | File changed after the last commit.        |
+| **Staged**    | File marked to be included in next commit. |
+| **Committed** | Changes saved in local repository.         |
+
+Visual representation:
+
+```
+Working Directory → git add → Staging Area → git commit → Repository
+```
+
+## Summary
+
+| Command         | Description                      |
+| --------------- | -------------------------------- |
+| `git init`      | Start a new Git repository       |
+| `git clone`     | Copy an existing repository      |
+| `git status`    | View current file states         |
+| `git add`       | Stage changes for commit         |
+| `git commit -m` | Save snapshot with message       |
+| `git log`       | Show commit history              |
+| `git diff`      | Compare changes between versions |
+| `.gitignore`    | Ignore unwanted files            |
+
+## Next Up
+
+Now that you’ve mastered the basics, it’s time to explore **branching and merging** — the power that makes Git truly flexible. 👉 [Next: Branching & Merging →](./branching-merging)
+
+## Additional Resources
+
+* [Pro Git Book — Chapter 2: Git Basics](https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository)
+* [Git Reference Manual](https://git-scm.com/docs)
+* [Atlassian Git Tutorials](https://www.atlassian.com/git/tutorials)
+
+💙 *This lesson is part of CodeHarborHub’s Git & GitHub series — empowering you to code, commit, and collaborate effectively.*

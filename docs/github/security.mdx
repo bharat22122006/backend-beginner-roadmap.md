@@ -1,0 +1,162 @@
+---
+title: "GitHub Security"
+description: "Learn how to secure your GitHub account and repositories using SSH keys, HTTPS, personal access tokens, two-factor authentication, and best practices."
+tags: ["github security", "ssh keys", "personal access token", "2FA", "repository security"]
+keywords: ["github security tutorial", "secure github account", "ssh keys github", "personal access token github", "two-factor authentication github"]
+sidebar_position: 13
+---
+
+Welcome to the **Git & GitHub Tutorial Series** by **CodeHarborHub**. Securing your GitHub account and repositories is critical to protect your code, collaboration workflow, and sensitive data. In this guide, you’ll learn essential security practices used by professional developers.
+
+## 1. HTTPS vs SSH for GitHub
+
+When connecting your local repository to GitHub, you have **two options**:
+
+### HTTPS
+```bash
+git clone https://github.com/username/repo.git
+````
+
+* Uses **username and password / personal access token** for authentication
+* Easy setup, works behind firewalls
+* Recommended for beginners or temporary setups
+
+### SSH
+
+```bash
+git clone git@github.com:username/repo.git
+```
+
+* Uses **SSH keys** instead of passwords
+* More secure and convenient for frequent access
+* Recommended for professional developers
+
+:::tip
+Modern GitHub disables password authentication for HTTPS; you need a **personal access token (PAT)
+:::
+
+
+## 2. Setting Up SSH Keys
+
+SSH keys allow **secure password-less authentication** between your machine and GitHub.
+
+### Step 1: Generate SSH Key
+
+```bash
+ssh-keygen -t ed25519 -C "your.email@example.com"
+```
+
+* Press Enter to save in default location (`~/.ssh/id_ed25519`)
+* Set a passphrase for extra security
+
+### Step 2: Add SSH Key to GitHub
+
+1. Copy public key:
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+2. Go to **GitHub → Settings → SSH and GPG keys → New SSH key**
+3. Paste the key and save
+
+### Step 3: Test Connection
+
+```bash
+ssh -T git@github.com
+```
+
+> You should see a welcome message confirming your key is working.
+
+---
+
+## 3. Personal Access Tokens (PAT)
+
+For HTTPS authentication or API access, GitHub uses **personal access tokens**.
+
+### Creating a PAT
+
+1. Go to **GitHub → Settings → Developer Settings → Personal Access Tokens → Tokens (classic) → Generate new token**
+2. Choose scopes/permissions depending on your need (e.g., `repo`, `workflow`, `admin:repo_hook`)
+3. Copy the token (store securely — you won’t see it again!)
+
+### Using PAT with HTTPS
+
+```bash
+git clone https://github.com/username/repo.git
+# Username: your GitHub username
+# Password: paste your PAT
+```
+
+:::info
+PATs replace your GitHub password for Git operations and API access.
+:::
+
+## 4. Two-Factor Authentication (2FA)
+
+2FA adds an **extra layer of security** to your GitHub account.
+
+### Enabling 2FA
+
+1. Go to **GitHub → Settings → Security → Two-factor authentication**
+2. Choose **Authenticator App** or **SMS**
+3. Follow setup instructions and save recovery codes
+
+:::tip
+Even if your password is compromised, attackers cannot access your account without the second factor.
+:::
+
+## 5. Repository Security Best Practices
+
+### Use Protected Branches
+
+* Prevent direct commits to `main` or `master`
+* Require pull requests and code reviews before merging
+
+### Manage Collaborator Permissions
+
+* Assign **roles carefully**: Admin, Write, Read
+* Avoid giving unnecessary write access
+
+### Enable Dependabot
+
+* GitHub Dependabot automatically scans for **vulnerable dependencies**
+* Suggests updates for safe libraries
+
+### Use .gitignore & Secrets
+
+* Never commit sensitive files (`.env`, API keys)
+* Store secrets in GitHub **Actions secrets** for CI/CD
+
+### Regularly Audit Account
+
+* Check **authorized OAuth apps**
+* Review **SSH keys and tokens**
+* Remove inactive collaborators
+
+## 6. Summary of GitHub Security Measures
+
+| Feature                   | Purpose                                   |
+| ------------------------- | ----------------------------------------- |
+| HTTPS / SSH               | Secure Git connections                    |
+| SSH Keys                  | Password-less authentication              |
+| Personal Access Token     | Secure HTTPS access and API usage         |
+| Two-Factor Authentication | Extra layer of account security           |
+| Protected Branches        | Prevent unauthorized changes              |
+| Dependabot                | Automatic dependency vulnerability alerts |
+| Repository Secrets        | Secure sensitive data for workflows       |
+
+## Next Up
+
+With security set, you’re ready to explore **GitHub Actions** — learn how to automate workflows, CI/CD pipelines, and project automation. 👉 [Next: GitHub Actions →](./github-actions)
+
+## 📚 Additional Resources
+
+* [GitHub Docs – SSH Keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
+* [GitHub Docs – Personal Access Tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+* [GitHub Docs – Two-Factor Authentication](https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa)
+* [GitHub Security Best Practices](https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/keeping-your-account-and-data-secure)
+
+---
+
+💙 *This tutorial is part of the CodeHarborHub Git & GitHub series — helping developers secure their accounts, repositories, and workflows professionally.*

@@ -1,0 +1,259 @@
+---
+title: "Advanced Git Concepts"
+description: "Master advanced Git concepts including rebase, cherry-pick, tagging, submodules, squashing, and reflog to handle complex version control workflows like a pro."
+tags: ["git advanced", "rebase", "cherry-pick", "git hooks", "submodules", "squash commits"]
+keywords: ["advanced git tutorial", "git rebase", "git cherry pick", "git submodules", "git hooks", "git reflog"]
+sidebar_position: 6
+---
+
+Welcome to the **Advanced Git Concepts** tutorial — where you’ll move beyond basic commands and learn how professionals handle complex workflows, cleaner histories, and recovery techniques. By the end of this section, you'll confidently use commands like `rebase`, `cherry-pick`, `tag`, `reflog`, and more to manage any situation in Git.
+
+## 1. Rebasing — Cleaner Commit History
+
+**Rebase** helps you *rewrite commit history* by placing your commits on top of another branch’s latest changes.
+
+### Example:
+
+```bash
+# Switch to your feature branch
+git checkout feature-branch
+
+# Rebase it with the main branch
+git rebase main
+```
+
+> Instead of merging (which creates an extra merge commit), rebasing keeps history linear — perfect for clean commit timelines.
+
+<br />
+
+:::warning
+Never rebase public branches that others are working on — it rewrites commit history.
+:::
+
+## 2. Cherry-Picking Commits
+
+**Cherry-pick** allows you to *apply specific commits* from one branch to another without merging everything.
+
+### Example:
+
+```bash
+# Copy a commit from another branch
+git cherry-pick <commit-hash>
+```
+
+Use this when you want to move a single fix or feature to another branch without merging unrelated changes.
+
+## 3. Tagging Versions (Releases)
+
+**Tags** are references that mark specific commits — often used for version releases.
+
+### Create a lightweight tag:
+
+```bash
+git tag v1.0.0
+```
+
+### Create an annotated tag:
+
+```bash
+git tag -a v1.0.0 -m "Initial stable release"
+```
+
+### Push tags to remote:
+
+```bash
+git push origin --tags
+```
+
+> Tags are ideal for marking milestones in projects or generating release versions on GitHub.
+
+## 4. Submodules — Managing Nested Repositories
+
+Submodules allow you to **embed one Git repository inside another** — useful for managing libraries or dependencies.
+
+### Example:
+
+```bash
+# Add a submodule
+git submodule add https://github.com/user/library.git lib/
+
+# Initialize and update
+git submodule init
+git submodule update
+```
+
+> Use submodules when you need an external repository but want to control its version manually.
+
+
+## 5. Squashing Commits
+
+**Squash** combines multiple commits into one — keeping your history neat and readable before merging.
+
+### Example (Interactive Rebase):
+
+```bash
+git rebase -i HEAD~3
+```
+
+This opens an editor — change `pick` to `squash` for the commits you want to merge.
+
+:::tip
+Ideal for cleaning up “WIP” commits before submitting a pull request.
+:::
+
+## 6. Git Hooks — Automate Actions
+
+**Git Hooks** are scripts that automatically run when certain Git events occur (like committing or pushing).
+
+### Example:
+
+* `.git/hooks/pre-commit` — runs before each commit.
+* `.git/hooks/post-merge` — runs after a merge.
+
+You can use hooks to:
+
+* Run tests before committing
+* Format code automatically
+* Enforce commit message rules
+
+> Try tools like **Husky** to manage Git hooks in JavaScript projects easily.
+
+## 7. Reflog — Recover Lost Commits
+
+**Reflog** records every change to your HEAD — perfect for recovering commits after resets or mistakes.
+
+### Example:
+
+```bash
+git reflog
+```
+
+Find the commit hash and restore it:
+
+```bash
+git checkout <commit-hash>
+```
+
+<br />
+
+:::tip Lifesaver
+Even if you accidentally delete branches or commits, `reflog` can bring them back.
+:::
+
+## 8. Bisect — Debugging with Binary Search
+
+Use **`git bisect`** to find which commit introduced a bug.
+
+### Example:
+
+```bash
+git bisect start
+git bisect bad
+git bisect good <commit-hash>
+```
+
+Git checks out commits one by one until it identifies the problematic one.
+
+> Perfect for debugging large projects efficiently.
+
+## 9. Amend Last Commit
+
+Fix small mistakes (like typos or missed files) without creating a new commit.
+
+```bash
+git add .
+git commit --amend -m "Updated commit message"
+```
+
+> Keep commit history clean without unnecessary “fix” commits.
+
+## 10. Worktrees — Multiple Working Directories
+
+Worktrees allow you to work on multiple branches **simultaneously** without switching context.
+
+```bash
+git worktree add ../feature feature-branch
+```
+
+Now you can work on `feature-branch` in another folder while keeping `main` active elsewhere.
+
+## Advanced Git Flow Tips
+
+| Technique       | Use Case                        |
+| --------------- | ------------------------------- |
+| **Rebase**      | Clean, linear history           |
+| **Cherry-pick** | Move specific commits           |
+| **Squash**      | Combine multiple commits        |
+| **Hooks**       | Automate tasks                  |
+| **Reflog**      | Recover deleted commits         |
+| **Worktree**    | Manage multiple branches easily |
+
+## Example Workflow
+
+Here’s how professionals maintain a clean project history:
+
+1. Create feature branch
+
+   ```bash
+   git checkout -b feature/login
+   ```
+2. Make several commits
+3. Squash and rebase before merging
+
+   ```bash
+   git rebase -i main
+   ```
+4. Push clean history to remote
+
+   ```bash
+   git push origin feature/login
+   ```
+
+:::tip Git Tips
+
+* Use **Git aliases** for faster workflows:
+
+  ```bash
+  git config --global alias.st status
+  git config --global alias.co checkout
+  git config --global alias.br branch
+  git config --global alias.cm "commit -m"
+  ```
+
+* Add color output for better readability:
+
+  ```bash
+  git config --global color.ui auto
+  ```
+
+* Use `git log --oneline --graph` to visualize your history beautifully.
+
+:::
+
+## Coming Next
+
+Now that you’ve mastered the advanced Git toolkit, move on to: 👉 [GitHub Actions — Automate Your Workflows](#)
+
+## 📚 Additional Resources
+
+* [Pro Git Book — Chapter 7: Advanced Git](https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging)
+* [Git Documentation: Rebase](https://git-scm.com/docs/git-rebase)
+* [Git Hooks Guide](https://git-scm.com/docs/githooks)
+* [Git Submodules Explained](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
+* [Learn Git Branching (Advanced)](https://learngitbranching.js.org/?demo)
+
+### Summary
+
+| Concept         | Description                                 |
+| --------------- | ------------------------------------------- |
+| **Rebase**      | Reapply commits for clean history.          |
+| **Cherry-pick** | Apply specific commits from another branch. |
+| **Squash**      | Combine multiple commits.                   |
+| **Submodules**  | Manage external repositories.               |
+| **Hooks**       | Automate Git actions.                       |
+| **Reflog**      | Recover lost commits.                       |
+| **Worktrees**   | Work on multiple branches at once.          |
+
+---
+
+💙 *This tutorial is part of the CodeHarborHub Git & GitHub learning series — helping you build professional version control skills used in real-world development.*

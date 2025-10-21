@@ -1,0 +1,266 @@
+---
+title: "Git & GitHub Best Practices"
+description: "Learn essential Git and GitHub best practices for cleaner commits, safer collaboration, and more maintainable projects."
+---
+
+Mastering Git and GitHub isn’t just about commands, it’s about **developing good habits** that make your projects scalable, collaborative, and professional. Whether you’re a solo developer or working with a large team, following best practices ensures smoother development and fewer headaches.
+
+## 1. Use Meaningful Commit Messages
+
+Your commit message tells the story of your code. A clear, concise message helps collaborators understand *what changed* and *why*.
+
+**Good Example:**
+```bash
+git commit -m "Fix: resolved navbar alignment issue on mobile view"
+````
+
+**Bad Example:**
+
+```bash
+git commit -m "fixed stuff"
+```
+
+:::tip
+
+* Use imperative mood (`Add`, `Fix`, `Update`)
+* Keep the first line under 72 characters
+* Use conventional commit prefixes:
+
+  * `feat:` → new feature
+  * `fix:` → bug fix
+  * `docs:` → documentation changes
+  * `refactor:` → code structure improvement
+
+:::
+
+## 2. Keep Branches Clean and Descriptive
+
+Always create a **new branch** for each feature or bug fix.
+
+**Example:**
+
+```bash
+git checkout -b feature/add-authentication
+git checkout -b fix/navbar-responsive
+```
+
+**Best Practices:**
+
+* Don’t commit directly to `main` or `master`
+* Delete merged branches to keep the repo clean
+* Use branch naming conventions consistently
+
+## 3. Use `.gitignore` Wisely
+
+Avoid committing unnecessary files like dependencies, build artifacts, or system files.
+
+Example `.gitignore`:
+
+```gitignore
+node_modules/
+.env
+dist/
+.vscode/
+.DS_Store
+```
+
+:::tip
+Use templates from [github.com/github/gitignore](https://github.com/github/gitignore) for your language or framework.
+:::
+
+## 4. Commit Often, Push When Stable
+
+Small, frequent commits make it easier to:
+
+* Track changes
+* Identify bugs
+* Roll back safely
+
+Push your changes only when your local commits are tested and working.
+Use `git pull --rebase` instead of `git pull` to keep your history clean and linear.
+
+## 5. Write Clear Pull Requests (PRs)
+
+A good Pull Request helps reviewers understand your intent quickly.
+
+**Include in your PR description:**
+
+* Summary of changes
+* Related issue or ticket link
+* Testing details
+* Screenshots (if UI-related)
+
+**Example PR Title:**
+
+> `feat(ui): add dark mode toggle to navbar`
+
+## 6. Review Code Thoughtfully
+
+Code reviews are for *learning and improving*, not just checking syntax.
+
+**Best Practices for Reviews:**
+
+* Be constructive and polite
+* Ask clarifying questions instead of demanding changes
+* Test functionality locally if possible
+* Approve with confidence, not hurry
+
+---
+
+## 7. Use Secure Authentication
+
+Avoid committing sensitive data!
+
+❌ Never commit:
+
+```bash
+API keys
+Passwords
+Private tokens
+```
+
+Use:
+
+* `.env` files with environment variables
+* GitHub Secrets for Actions automation
+* `git-secrets` or `truffleHog` to detect accidental leaks
+
+## 8. Tag and Version Your Releases
+
+Use **semantic versioning (semver)** to track releases properly:
+
+```
+MAJOR.MINOR.PATCH
+```
+
+Example:
+
+```
+v1.0.0 → Initial release
+v1.1.0 → Added new feature
+v1.1.1 → Bug fix
+```
+
+Tags make it easier to rollback or identify stable releases.
+
+```bash
+git tag v1.2.0
+git push origin v1.2.0
+```
+
+## 9. Automate with GitHub Actions
+
+Automation improves consistency and reduces manual effort.
+
+**Examples:**
+
+* Run tests automatically on every PR
+* Deploy code on successful merge
+* Lint and format code before pushing
+
+Example workflow file:
+
+```yaml
+name: Lint and Test
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm ci
+      - run: npm test
+```
+
+## 10. Maintain a Clear Repository Structure
+
+Keep your repository organized:
+
+```
+project/
+├── src/
+├── public/
+├── tests/
+├── docs/
+├── README.md
+├── LICENSE
+└── .gitignore
+```
+
+**Why it matters:**
+
+* Easier onboarding for new contributors
+* Consistent code navigation
+* Better integration with CI/CD tools
+
+## 11. Write a Helpful README
+
+Your `README.md` is the **first impression** of your project.
+
+Include:
+
+* Project title and description
+* Installation steps
+* Usage examples
+* Contribution guidelines
+* License information
+
+Add badges for stars, forks, build status, etc.
+Example:
+
+```md
+![Build Status](https://img.shields.io/github/actions/workflow/status/CodeHarborHub/project/build.yml)
+```
+
+## 12. Follow Open Source Etiquette
+
+When contributing to other projects:
+
+* Respect existing conventions
+* Read `CONTRIBUTING.md`
+* Be polite in PR discussions
+* Give proper credit for ideas or code
+
+Remember: open source is about **collaboration, not competition**.
+
+
+## 13. Back Up and Sync Regularly
+
+If working on multiple devices:
+
+* Use `git fetch` frequently
+* Avoid force-pushing to shared branches
+* Always pull updates before committing new changes
+
+
+## 14. Learn and Improve Continuously
+
+Stay up-to-date with:
+
+* [GitHub Changelog](https://github.blog/changelog/)
+* [Git Documentation](https://git-scm.com/docs)
+* [Pro Git Book](https://git-scm.com/book/en/v2)
+
+Experiment with features like **GitHub Codespaces**, **Projects**, and **Copilot** to stay efficient.
+
+## Summary
+
+| Practice             | Purpose                         |
+| -------------------- | ------------------------------- |
+| Meaningful commits | Trackable and readable history  |
+| Branch management | Isolated development and safety |
+| Secure handling   | Protect sensitive data          |
+| Automation        | Consistent workflows            |
+| Documentation     | Clarity and collaboration       |
+
+
+:::tip
+*"Good developers write code; great developers maintain history, structure, and clarity."*
+:::
+
+
+### Learn More
+
+* [GitHub Best Practices Guide](https://docs.github.com/en/get-started)
+* [Conventional Commits](https://www.conventionalcommits.org)
+* [Pro Git Book](https://git-scm.com/book/en/v2)

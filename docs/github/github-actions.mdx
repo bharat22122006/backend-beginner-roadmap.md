@@ -1,0 +1,207 @@
+---
+title: "GitHub Actions: Automate Workflows"
+description: "Learn how to automate tasks with GitHub Actions using workflows, CI/CD pipelines, YAML configuration, and real-world examples."
+tags: ["github actions", "ci/cd", "workflow automation", "github automation", "yaml github actions"]
+keywords: ["github actions tutorial", "ci cd github", "github workflow automation", "yaml github actions", "automate github tasks"]
+sidebar_position: 14
+---
+
+Welcome to the **Git & GitHub Tutorial Series** by **CodeHarborHub**. GitHub Actions allows you to **automate repetitive tasks, build CI/CD pipelines, and streamline your development workflow** directly within GitHub.
+
+## 1. What are GitHub Actions?
+
+**GitHub Actions** is a CI/CD and automation platform integrated into GitHub.  
+
+It allows you to:
+
+- Automatically **build and test code** when changes are pushed
+- Deploy applications to servers or cloud platforms
+- Automate workflows like labeling issues, sending notifications, or generating reports
+- Trigger actions on **events** like pull requests, pushes, or releases
+
+> Think of GitHub Actions as your **personal automation assistant** for repositories.
+
+---
+
+## 2. Workflow Structure
+
+A **workflow** is a YAML file that defines automated tasks in your repository.
+
+**File location:**  
+
+```
+.github/workflows/workflow-name.yml
+
+```
+
+### Key Components
+
+| Component | Description |
+|-----------|------------|
+| **name** | Name of the workflow |
+| **on** | Event triggers (push, pull_request, schedule) |
+| **jobs** | A set of tasks executed by the workflow |
+| **runs-on** | Operating system for the job (ubuntu-latest, windows-latest) |
+| **steps** | Individual commands, actions, or scripts |
+
+## 3. Example: Simple CI Workflow
+
+This workflow runs **on every push** to the main branch and tests a Node.js project:
+
+```yaml title="node-ci.yaml"
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test
+```
+
+> This workflow automatically checks out your code, installs dependencies, and runs tests — no manual steps required.
+
+## 4. Event Triggers
+
+Workflows are triggered by **GitHub events**:
+
+| Event               | Description                                       |
+| ------------------- | ------------------------------------------------- |
+| `push`              | Triggered when commits are pushed                 |
+| `pull_request`      | Triggered when PRs are opened, updated, or merged |
+| `schedule`          | Run workflows on a cron schedule                  |
+| `workflow_dispatch` | Manual trigger from GitHub UI                     |
+| `release`           | Triggered when a release is published             |
+
+> You can combine multiple events in a single workflow.
+
+## 5. Using Actions
+
+**Actions** are reusable tasks created by GitHub or the community.
+
+* **Official actions:** `actions/checkout`, `actions/setup-node`
+* **Community actions:** Published in [GitHub Marketplace](https://github.com/marketplace?type=actions)
+
+Example: Sending Slack notifications after a workflow:
+
+```yaml
+- name: Send Slack Notification
+  uses: slackapi/slack-github-action@v1.23
+  with:
+    channel-id: 'C12345678'
+    slack-token: ${{ secrets.SLACK_TOKEN }}
+```
+
+> Actions can simplify your workflow without writing complex scripts.
+
+
+## 6. Environment Variables & Secrets
+
+Workflows often need **sensitive information** (API keys, tokens):
+
+* Store secrets in **Repository Settings → Secrets and variables → Actions**
+* Access in YAML using `${{ secrets.YOUR_SECRET_NAME }}`
+
+Example:
+
+```yaml
+- name: Deploy to Server
+  run: scp -r ./dist user@server.com:/var/www/
+  env:
+    SSH_KEY: ${{ secrets.SSH_KEY }}
+```
+
+> Never hardcode sensitive credentials directly in workflow files.
+
+---
+
+## 7. CI/CD Pipeline Example
+
+Example workflow to **build, test, and deploy a Node.js app**:
+
+```yaml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm install
+      - run: npm test
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm run build
+      - name: Deploy to Server
+        run: ./deploy.sh
+```
+
+> The `deploy` job only runs if `build-and-test` succeeds — a simple **CI/CD pipeline**.
+
+---
+
+## 8. Tips & Best Practices
+
+* Keep workflows **small and focused** for faster execution
+* Use **caching** (`actions/cache`) for dependencies to speed up builds
+* Use **branch-specific workflows** for feature branches or release branches
+* Monitor workflow runs regularly in **Actions tab**
+* Use **manual triggers** (`workflow_dispatch`) for flexible automation
+
+---
+
+## Summary
+
+| Feature         | Purpose                                        |
+| --------------- | ---------------------------------------------- |
+| Workflows       | Automate tasks and pipelines                   |
+| Jobs            | Units of execution in a workflow               |
+| Steps           | Commands or actions executed sequentially      |
+| Event Triggers  | Decide when workflows run                      |
+| Actions         | Pre-built or custom reusable tasks             |
+| Secrets & Env   | Store sensitive credentials securely           |
+| CI/CD Pipelines | Automate build, test, and deployment processes |
+
+## Next Up
+
+After mastering GitHub Actions, you can explore **Open Source Contribution** — learn how to contribute effectively to projects and build your developer portfolio. 👉 [Next: Open Source Contribution →](./open-source-contribution)
+
+## Additional Resources
+
+* [GitHub Actions Documentation](https://docs.github.com/en/actions)
+* [GitHub Actions Marketplace](https://github.com/marketplace?type=actions)
+* [GitHub Learning Lab: Automate your workflow](https://lab.github.com/github/learn-github-actions)
+* [Continuous Integration with GitHub Actions](https://docs.github.com/en/actions/automating-builds-and-tests/about-continuous-integration)
+
+---
+
+💙 *This tutorial is part of the CodeHarborHub Git & GitHub series — helping developers automate workflows, deploy faster, and streamline collaboration.*
