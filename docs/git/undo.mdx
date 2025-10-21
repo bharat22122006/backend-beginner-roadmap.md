@@ -1,0 +1,208 @@
+---
+title: "Undoing Changes in Git"
+description: "Learn how to undo mistakes in Git using reset, revert, restore, and stash commands. Master rollback strategies without losing work."
+tags: ["git", "undo", "reset", "revert", "restore", "stash", "troubleshooting"]
+keywords: ["git undo", "git revert vs reset", "git restore", "git stash", "undo commit git", "fix git mistakes"]
+sidebar_position: 5
+---
+
+Even experienced developers make mistakes — committing wrong files, breaking builds, or pushing changes too early. Fortunately, Git gives you multiple ways to **undo, fix, and recover** from almost any situation.
+
+In this tutorial, you’ll learn the safest and most powerful ways to undo changes in Git — from local edits to public commits.
+
+---
+
+## Git’s Safety Principle
+
+Before jumping in, it’s important to understand:
+> Git rarely deletes anything permanently. It keeps a **complete history** of your commits — even after undo operations.
+
+You can always recover past states using `git reflog`.
+
+## 1. Discarding Local Changes (Unstaged)
+
+If you’ve modified a file but haven’t staged it yet (`git add` not used), you can discard those changes:
+
+```bash
+git restore <filename>
+```
+
+Example:
+
+```bash
+git restore index.html
+```
+
+This command reverts the file to the last committed version.
+
+---
+
+## 2. Unstaging Files
+
+If you’ve already staged a file with `git add`, but want to unstage it:
+
+```bash
+git restore --staged <filename>
+```
+
+Example:
+
+```bash
+git restore --staged app.js
+```
+
+This moves the file **out of the staging area** but keeps your changes in the working directory.
+
+---
+
+## 3. Undoing the Last Commit (Without Losing Work)
+
+Made a commit too soon?
+You can “uncommit” it while keeping your changes intact:
+
+```bash
+git reset --soft HEAD~1
+```
+
+* `--soft`: Removes the commit, keeps changes staged.
+* `HEAD~1`: Refers to one commit before the current `HEAD`.
+
+Use this if you forgot to add a file or need to rewrite your message.
+
+## 4. Undoing the Last Commit (Discarding Changes)
+
+If you want to completely discard the last commit and changes:
+
+```bash
+git reset --hard HEAD~1
+```
+
+**Warning:** This permanently deletes uncommitted changes.
+Use this only if you’re absolutely sure you don’t need the changes.
+
+## 5. Reverting a Commit (Safe for Public Repos)
+
+When a commit is already **pushed to GitHub**, don’t use `reset`.
+Instead, create a new commit that “undoes” the previous one:
+
+```bash
+git revert <commit-hash>
+```
+
+Example:
+
+```bash
+git revert a1b2c3d
+```
+
+This creates a new commit reversing the changes — perfect for shared projects.
+
+---
+
+## 6. Stashing Temporary Work
+
+You’re in the middle of coding, but need to switch branches quickly?
+Save your current progress temporarily using **stash**.
+
+```bash
+git stash
+```
+
+Switch branches, then reapply your work:
+
+```bash
+git stash pop
+```
+
+### Useful stash commands:
+
+| Command           | Description                          |
+| ----------------- | ------------------------------------ |
+| `git stash list`  | Show all stashed changes             |
+| `git stash apply` | Apply last stash without deleting it |
+| `git stash clear` | Delete all stashed items             |
+
+---
+
+## 7. Viewing Differences Before Undoing
+
+Always review your changes before undoing anything.
+
+```bash
+git diff
+```
+
+Shows unstaged changes.
+
+```bash
+git diff --staged
+```
+
+Shows staged changes ready for commit. This helps confirm what you’re about to remove or reset.
+
+## 8. Recovering Lost Commits with Reflog
+
+If you’ve reset or deleted something by mistake — don’t panic. Use `git reflog` to view the history of `HEAD` changes:
+
+```bash
+git reflog
+```
+
+Find your lost commit hash and restore it:
+
+```bash
+git checkout <commit-hash>
+```
+
+or move your branch back:
+
+```bash
+git reset --hard <commit-hash>
+```
+
+Git Reflog is your **time machine** — use it to recover almost anything.
+
+## Common Scenarios & Solutions
+
+| Problem                           | Command                       | Safe to Use          |
+| --------------------------------- | ----------------------------- | -------------------- |
+| Undo unstaged edits               | `git restore <file>`          | ✅ Yes                |
+| Unstage a file                    | `git restore --staged <file>` | ✅ Yes                |
+| Undo last commit, keep changes    | `git reset --soft HEAD~1`     | ✅ Yes                |
+| Undo last commit, discard changes | `git reset --hard HEAD~1`     | ⚠️ No (Deletes work) |
+| Undo a pushed commit              | `git revert <commit-hash>`    | ✅ Yes                |
+| Save unfinished work              | `git stash`                   | ✅ Yes                |
+
+## Best Practices
+
+* Always **commit frequently** with meaningful messages.
+* Use `git diff` before resetting or reverting.
+* Use `revert` for shared branches (safe for others).
+* Backup or stash changes before destructive actions.
+* Use `git reflog` when you’ve lost commits.
+
+## Next Up
+
+Now that you know how to undo and recover safely, move on to mastering team collaboration: 👉 [Advanced Git Concepts](./advanced)
+
+## Additional Resources
+
+* [Git Official Docs: Undoing Things](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things)
+* [Atlassian Git Tutorials](https://www.atlassian.com/git/tutorials/undoing-changes)
+* [Learn Git Branching (Interactive)](https://learngitbranching.js.org/)
+* [Git Cheatsheet (GitHub)](https://education.github.com/git-cheat-sheet-education.pdf)
+
+### Summary
+
+| Command                | Purpose               |
+| ---------------------- | --------------------- |
+| `git restore`          | Discard local changes |
+| `git restore --staged` | Unstage changes       |
+| `git reset`            | Move commit pointers  |
+| `git revert`           | Safely undo commits   |
+| `git stash`            | Temporarily save work |
+| `git reflog`           | Recover lost commits  |
+
+---
+
+💙 *This guide is part of the CodeHarborHub Git & GitHub learning path — helping developers debug faster, recover smarter, and collaborate confidently.*

@@ -1,0 +1,146 @@
+---
+title: "GitHub Projects"
+description: "Organize and manage your development workflow efficiently using GitHub Projects from Kanban boards to automated progress tracking."
+---
+
+GitHub Projects help you **plan, track, and manage work** — directly alongside your code. Whether you’re managing personal goals or a team sprint, Projects give you the flexibility of spreadsheets with the power of GitHub integration.
+
+## What Are GitHub Projects?
+
+GitHub Projects are customizable boards or tables that allow you to manage tasks, issues, and pull requests in an organized way. You can:
+* Track progress visually using **Kanban-style boards**
+* Group and filter issues by status, labels, or assignees
+* Automate workflows using **GitHub Actions**
+* Integrate project views directly into repositories or organizations
+
+Projects can exist:
+* **Per repository** – For smaller projects or individual contributors  
+* **At the organization level** – For teams managing multiple repos
+
+## Creating a Project
+
+### Step 1: Open GitHub Projects
+* Go to your **repository** or **organization**.
+* Click on the **Projects** tab.
+* Click **“New Project”** and choose a layout:
+  * **Board (Kanban)** – Ideal for task flow
+  * **Table (Spreadsheet)** – Ideal for data-rich views
+
+### Step 2: Name and Configure
+* Name your project (e.g., *Website Redesign* or *Sprint 1*).
+* Add fields like:
+  * **Status** (To Do, In Progress, Done)
+  * **Priority**
+  * **Assignee**
+  * **Deadline**
+
+## Adding Items to Projects
+
+You can add:
+* **Issues** → Track bugs, tasks, or features  
+* **Pull Requests** → Track code changes under review  
+* **Drafts** → Add notes or to-do items without creating issues  
+
+### Example:
+
+```text
+Add dark/light theme toggle
+Fix navbar collapse on mobile
+Merge API integration PR
+````
+
+You can drag-and-drop items across columns (if using a Kanban layout) or filter using fields (if using a table view).
+
+## Automating Projects with GitHub Actions
+
+You can automate updates using **Actions**.
+For example:
+
+* Move issues to “Done” when PRs are merged
+* Add new issues automatically to your project
+
+Example workflow:
+
+```yaml
+name: Auto add issues to project
+on:
+  issues:
+    types: [opened]
+jobs:
+  add_issue_to_project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add issue to project
+        uses: actions/add-to-project@v0.5.0
+        with:
+          project-url: https://github.com/orgs/CodeHarborHub/projects/1
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+```
+
+## Using Fields and Filters
+
+Projects allow **custom fields** for better tracking:
+
+* **Select** (e.g., Priority: High, Medium, Low)
+* **Iteration** (e.g., Sprint 1, Sprint 2)
+* **Date** (e.g., Due date)
+* **Number** (e.g., Story points)
+
+You can use filters like:
+
+```text
+assignee:@me status:"In Progress"
+```
+
+## Managing Teams and Permissions
+
+* **Public projects** – Anyone can view your progress
+* **Private projects** – Restricted to selected collaborators
+* Assign **roles** (admin, editor, viewer)
+* Mention teammates in notes or comments to collaborate
+
+## Visualizing Progress
+
+You can use:
+
+* **Charts** to track completion rates
+* **Milestones** to group related tasks
+* **Burndown views** for sprint analysis
+
+GitHub Projects integrate with your repository insights to give you a complete picture of progress.
+
+## Real-World Example
+
+Let’s say CodeHarborHub is managing its **“Git & GitHub Tutorials”**:
+
+| Task                     | Status            | Priority | Assignee     |
+| ------------------------ | ----------------- | -------- | ------------ |
+| Write `introduction.mdx` | ✅ Done            | High     | Ajay Dhangar |
+| Write `basics.mdx`       | 🟡 In Progress    | Medium   | Contributor  |
+| Write `projects.mdx`     | 🟢 Ready to Start | Low      | Open         |
+
+This helps contributors know what’s next, track progress, and stay aligned.
+
+## Tips for Better Project Management
+
+* Keep issue titles **concise and descriptive**
+* Use **labels** for grouping (e.g., `frontend`, `backend`, `docs`)
+* Automate repetitive tasks with **Actions**
+* Regularly **review and clean up** completed items
+
+## Summary
+
+GitHub Projects empower developers and teams to:
+
+* **Organize tasks efficiently**
+* **Track real-time progress**
+* **Collaborate seamlessly**
+* **Automate project management**
+
+They transform your repository from just code storage into a **complete development workspace**.
+
+### Learn More
+
+* [GitHub Projects Documentation](https://docs.github.com/en/issues/planning-and-tracking-with-projects)
+* [GitHub Actions for Projects](https://github.com/actions/add-to-project)
+* [CodeHarborHub on GitHub](https://github.com/CodeHarborHub)

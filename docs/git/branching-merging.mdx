@@ -1,0 +1,217 @@
+---
+title: "Git Branching and Merging"
+description: "Learn how to create, switch, merge, and manage branches in Git — the key to parallel development and teamwork."
+tags: ["git", "branching", "merging", "version control", "tutorial"]
+keywords: ["git branch", "git merge", "merge conflict", "git checkout", "feature branching"]
+sidebar_position: 3
+---
+
+Welcome to the **Branching & Merging** section of the **CodeHarborHub Git Tutorials**. Branching is one of Git’s most powerful features — allowing developers to experiment, fix bugs, and work on features **without affecting the main code**.
+
+---
+
+## What is a Branch?
+
+A **branch** in Git is like a separate timeline of your project. Each branch lets you work independently from others — perfect for building new features or fixing bugs safely.
+
+> Think of branches as “parallel universes” for your code — you can switch between them anytime without disturbing the main project.
+
+## Default Branch
+
+When you create a new Git repository, Git automatically creates a **default branch** called:
+- `master` (in older versions) or  
+- `main` (in newer repositories)
+
+You can rename it anytime using:
+
+```bash
+git branch -M main
+```
+
+## Creating a New Branch
+
+Use this command to create a new branch:
+
+```bash
+git branch feature-login
+```
+
+This creates a branch called **feature-login** but doesn’t switch to it yet. To both create and switch at once:
+
+```bash
+git checkout -b feature-login
+```
+
+You’re now working inside your new branch!
+
+## Switching Between Branches
+
+To view all branches in your repository:
+
+```bash
+git branch
+```
+
+To switch to another branch:
+
+```bash
+git checkout main
+```
+
+In modern Git versions, you can also use:
+
+```bash
+git switch main
+```
+
+## Merging Branches
+
+When your work in a branch is complete, you’ll want to **merge it back** into the main branch.
+
+### Steps:
+
+1. Switch to the branch you want to merge **into**:
+
+   ```bash
+   git checkout main
+   ```
+2. Merge the feature branch:
+
+   ```bash
+   git merge feature-login
+   ```
+3. If everything is fine, Git will perform a **fast-forward merge** (simple merge).
+
+## Merge Conflicts
+
+Sometimes, two branches modify the **same part of a file**, causing a **merge conflict**. Git will stop and ask you to resolve it manually.
+
+### Example Conflict Marker:
+
+```text
+<<<<<<< HEAD
+console.log("Hello from main branch");
+=======
+console.log("Hello from feature branch");
+>>>>>>> feature-login
+```
+
+### Steps to Fix:
+
+1. Edit the file to keep the correct version.
+2. Mark conflict as resolved:
+
+   ```bash
+   git add <filename>
+   ```
+3. Complete the merge:
+
+   ```bash
+   git commit
+   ```
+
+Merge conflicts are normal — they simply mean collaboration needs coordination.
+
+
+## Fast-Forward vs Recursive Merge
+
+| Merge Type             | Description                                                                                        |
+| ---------------------- | -------------------------------------------------------------------------------------------------- |
+| **Fast-Forward Merge** | Happens when no new commits exist on the target branch; Git just moves the branch pointer forward. |
+| **Recursive Merge**    | Used when both branches have new commits — Git combines them together.                             |
+
+## Deleting Branches
+
+Once you’ve merged a feature branch, you can safely delete it:
+
+```bash
+git branch -d feature-login
+```
+
+If you want to force-delete it (even if not merged yet):
+
+```bash
+git branch -D feature-login
+```
+
+
+## Viewing Branch History
+
+Use this to visualize your branches and merges:
+
+```bash
+git log --oneline --graph --all
+```
+
+Example Output:
+
+```bash
+* 9e15b3a Merge branch 'feature-login'
+|\  
+| * 9d0c5b1 Added login feature
+* | 2f1e3f9 Updated README
+|/  
+* 4a8c7f2 Initial commit
+```
+
+## Best Practices for Branching
+
+* **Create branches per feature** — keeps code clean and isolated.
+* **Use meaningful names** — e.g., `feature/signup-form` or `bugfix/navbar-alignment`.
+* **Regularly pull from main** — keeps your branch up to date.
+* **Delete merged branches** — avoids clutter.
+* **Protect main branch** on GitHub to prevent accidental pushes.
+
+
+## Team Workflow Example
+
+Here’s how most teams collaborate:
+
+```bash
+# Developer A
+git checkout -b feature-homepage
+# works and commits changes
+
+# Developer B
+git checkout -b feature-navbar
+# works and commits changes
+
+# Both push branches
+git push origin feature-homepage
+git push origin feature-navbar
+
+# After review, merge them into main via Pull Request
+```
+
+## Useful Commands Summary
+
+| Command                     | Description                   |
+| --------------------------- | ----------------------------- |
+| `git branch`                | List all branches             |
+| `git branch <name>`         | Create a new branch           |
+| `git checkout <branch>`     | Switch to a branch            |
+| `git switch <branch>`       | Switch branch (modern syntax) |
+| `git merge <branch>`        | Merge a branch into current   |
+| `git branch -d <branch>`    | Delete a branch               |
+| `git log --graph --oneline` | Visualize branch history      |
+
+---
+
+## Next Step
+
+Now that you’ve mastered branching and merging, move on to the next tutorial: 👉 [Working with Remote Repositories](./remotes)
+
+Here, you’ll learn how to push, pull, and collaborate using GitHub remotes.
+
+---
+
+## Additional Resources
+
+* [Git Branch Documentation](https://git-scm.com/docs/git-branch)
+* [Git Merge Documentation](https://git-scm.com/docs/git-merge)
+* [Atlassian Git Branching Guide](https://www.atlassian.com/git/tutorials/using-branches)
+* [Learn Git Branching (Interactive)](https://learngitbranching.js.org/)
+
+---
+
+💙 *This tutorial is part of the CodeHarborHub Git & GitHub learning path — helping developers collaborate, experiment, and innovate with confidence.*

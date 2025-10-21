@@ -1,0 +1,176 @@
+---
+title: "Collaborating on GitHub"
+description: "Learn how to collaborate effectively on GitHub using repositories, pull requests, issues, code reviews, and project boards."
+tags: ["github collaboration", "pull requests", "issues", "team workflow", "git tutorial"]
+keywords: ["github collaboration tutorial", "pull request guide", "github issues", "team workflow github", "open source contribution"]
+sidebar_position: 11
+---
+
+Welcome to the **Git & GitHub Tutorial Series** by **CodeHarborHub**. GitHub isn’t just for hosting code, it’s a **powerful platform for team collaboration**. This tutorial will guide you through the tools and workflows developers use to work together efficiently.
+
+## 1. Understanding GitHub Repositories
+
+A **repository (repo)** is the central place for your project. It can be:
+
+- **Public** → visible to everyone, ideal for open-source projects.
+- **Private** → visible only to selected collaborators or teams.
+
+### Repository Components
+- **Code:** All project files
+- **Issues:** Track tasks, bugs, or ideas
+- **Pull Requests (PRs):** Propose changes to the codebase
+- **Actions:** Automate CI/CD workflows
+- **Projects:** Organize tasks using Kanban boards
+- **Wiki:** Document project knowledge
+
+## 2. Forking & Cloning
+
+To contribute to someone else’s project:
+
+1. **Fork the repository** → creates a copy under your GitHub account.
+2. **Clone the fork** → download it to your local machine:
+    ```bash
+    git clone https://github.com/your-username/forked-repo.git
+    ```
+
+3. **Add the original repository as upstream**:
+
+    ```bash
+    git remote add upstream https://github.com/original-owner/repo.git
+    ```
+
+:::info
+This ensures you can sync your fork with the main project later.
+:::
+
+## 3. Pull Requests (PRs)
+
+A **Pull Request** is how you propose changes to a repository.
+
+### Workflow
+
+1. Create a **feature branch**:
+
+    ```bash
+    git checkout -b feature/add-login
+    ```
+
+2. Make your changes and commit:
+
+    ```bash
+    git add .
+    git commit -m "Add login functionality"
+    ```
+
+3. Push your branch to GitHub:
+
+    ```bash
+    git push origin feature/add-login
+    ```
+
+4. Open a **Pull Request** on GitHub:
+
+   * Compare your feature branch with the main branch
+   * Add a meaningful title and description
+   * Submit for review
+
+### Best Practices for PRs
+
+* Keep PRs **small and focused**
+* Include **screenshots or examples** if UI changes
+* Write clear, concise **descriptions**
+* Reference related **issues** (`#issue-number`)
+
+## 4. Issues
+
+**Issues** help track tasks, bugs, feature requests, and discussions.
+
+### Creating an Issue
+
+1. Go to the **Issues** tab
+2. Click **New Issue**
+3. Add a descriptive **title** and detailed **description**
+4. Assign labels, assignees, or milestones
+
+### Using Issues Efficiently
+
+* **Bug** → for errors or unexpected behavior
+* **Feature Request** → for new functionalities
+* **Discussion** → for planning or ideas
+* **Good First Issue** → ideal for beginners contributing to open-source
+
+## 5. Code Review
+
+**Code reviews** ensure quality and maintainability.
+
+### How to Perform a Review
+
+* Comment inline on specific lines of code
+* Approve or request changes
+* Suggest improvements with actionable feedback
+
+### Reviewer Best Practices
+
+* Be constructive, not critical
+* Ask questions if unsure
+* Focus on **logic, style, and tests**
+
+> Pull Requests usually require **at least one reviewer approval** before merging.
+
+## 6. Project Boards
+
+GitHub **Project Boards** help manage workflows:
+
+* **Kanban style:** Columns like To Do, In Progress, Done
+* Track **issues and PRs** visually
+* Assign tasks to team members
+* Integrate with GitHub Actions for automation
+
+## 7. Managing Teams & Permissions
+
+Repositories can have multiple collaborators with different **roles**:
+
+| Role      | Permissions                                   |
+| --------- | --------------------------------------------- |
+| **Owner** | Full access, manage repo & teams              |
+| **Admin** | Manage settings, workflows, and collaborators |
+| **Write** | Push commits and manage issues/PRs            |
+| **Read**  | View repository content only                  |
+
+> Teams make collaboration easier for organizations and open-source projects.
+
+## 8. Recommended Collaboration Workflow
+
+1. Fork → Clone → Create a branch
+2. Make changes → Commit → Push
+3. Open PR → Request review
+4. Review & address feedback
+5. Merge → Delete branch → Sync fork
+
+> This workflow keeps repositories clean and collaborative.
+
+## Summary
+
+| Feature             | Purpose                               |
+| ------------------- | ------------------------------------- |
+| Repository          | Central place to store project files  |
+| Fork & Clone        | Work on someone else’s project safely |
+| Pull Request        | Propose code changes for review       |
+| Issues              | Track tasks, bugs, and discussions    |
+| Code Review         | Ensure quality and provide feedback   |
+| Project Boards      | Organize tasks and workflow visually  |
+| Teams & Permissions | Manage contributors and access        |
+
+## Next Up
+
+After mastering collaboration, it’s time to dive into **GitHub Profile & Repositories** — learn to showcase your work and set up a professional GitHub presence. 👉 [Next: GitHub Profile & Repositories →](./profile)
+
+## Additional Resources
+
+* [GitHub Guides – Collaborating with Pull Requests](https://guides.github.com/activities/forking/)
+* [Understanding GitHub Issues](https://docs.github.com/en/issues)
+* [Managing Project Boards](https://docs.github.com/en/issues/organizing-your-work-with-project-boards)
+
+---
+
+💙 *This tutorial is part of the CodeHarborHub Git & GitHub series — helping developers collaborate effectively and contribute to projects worldwide.*

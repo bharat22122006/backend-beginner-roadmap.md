@@ -1,0 +1,149 @@
+---
+title: "Introduction to Git & GitHub"
+description: "Learn what Git and GitHub are, why they’re essential for developers, and how to get started with version control effectively."
+tags: ["git", "github", "version control", "open source", "tutorial"]
+keywords: ["what is git", "git tutorial", "github basics", "version control system", "git setup guide"]
+sidebar_position: 1
+---
+
+Welcome to the **Git & GitHub Tutorial Series** by **CodeHarborHub** — your ultimate guide to mastering version control and collaboration. Whether you’re a beginner or a developer looking to refine your workflow, this guide will help you understand how Git and GitHub work and how to use them efficiently.
+
+## What is Version Control?
+
+**Version Control** is a system that tracks changes to your project’s files over time.  
+
+It allows developers to:
+
+- Save different versions of a project.
+- Revert to previous states if needed.
+- Collaborate with multiple people without conflicts.
+- Keep track of who made what changes and when.
+
+> Imagine working on a big project with your team. Instead of sending updated files manually, Git handles all version tracking automatically — making teamwork seamless.
+
+## What is Git?
+
+**Git** is a **distributed version control system (DVCS)** created by **Linus Torvalds** (the creator of Linux) in 2005. It helps you **track, manage, and synchronize code changes locally and remotely**.
+
+### Key Features of Git
+- **Version Tracking:** Keeps a full history of your project.
+- **Branching & Merging:** Safely experiment without affecting main code.
+- **Offline Work:** All operations can be done locally.
+- **Distributed System:** Every developer has a full copy of the repository.
+
+## What is GitHub?
+
+**GitHub** is a **web-based platform** that hosts your Git repositories online. It adds collaboration features like **issues, pull requests, project boards, actions, and discussions** — making it the world’s largest community for developers and open-source projects.
+
+:::tip In Short
+- **Git = Tool for version control**
+- **GitHub = Platform to host and collaborate on Git repositories**
+:::
+
+## Installing Git
+
+Before using Git, install it on your system.
+
+### Windows
+1. Visit [git-scm.com/downloads](https://git-scm.com/downloads)
+2. Download the Windows installer.
+3. Follow the setup wizard (keep default settings).
+
+### macOS
+```bash
+brew install git
+```
+
+### Linux (Ubuntu/Debian)
+
+```bash
+sudo apt install git
+```
+
+Once installed, verify:
+
+```bash
+git --version
+```
+
+## First-Time Setup
+
+Before committing code, configure your Git identity:
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
+
+To check your setup:
+
+```bash
+git config --list
+```
+
+You’re now ready to start using Git!
+
+---
+
+## Git Workflow Overview
+
+Git follows a **3-stage workflow**:
+
+| Stage                 | Description                                      |
+| --------------------- | ------------------------------------------------ |
+| **Working Directory** | Where you make changes to files.                 |
+| **Staging Area**      | Where you prepare changes before saving them.    |
+| **Repository**        | Where committed versions are stored permanently. |
+
+### Basic Flow:
+
+```
+git add → git commit → git push
+```
+
+---
+
+## Git vs GitHub vs GitLab vs Bitbucket
+
+| Tool          | Type                 | Description                              |
+| ------------- | -------------------- | ---------------------------------------- |
+| **Git**       | Version Control Tool | Tracks code changes locally.             |
+| **GitHub**    | Hosting Platform     | Cloud service for Git repositories.      |
+| **GitLab**    | Hosting + DevOps     | Offers CI/CD pipelines & issue tracking. |
+| **Bitbucket** | Hosting Platform     | Git-based collaboration by Atlassian.    |
+
+
+## Why Developers Use Git & GitHub
+
+* Manage project versions effortlessly
+* Collaborate with teams globally
+* Securely backup and share code
+* Learn from open-source projects
+* Automate workflows with GitHub Actions
+* Showcase your work with GitHub profile and portfolio
+
+---
+
+## Coming Next
+
+Now that you know the basics, move on to the next part: 👉 [Git Basics — Create, Commit & Track Changes](./basics)
+
+## Additional Resources
+
+* [Official Git Documentation](https://git-scm.com/doc)
+* [GitHub Guides](https://guides.github.com/)
+* [Pro Git Book (Free)](https://git-scm.com/book/en/v2)
+* [Learn Git Branching (Interactive)](https://learngitbranching.js.org/)
+
+### Summary
+
+| Concept             | Description                                      |
+| ------------------- | ------------------------------------------------ |
+| **Git**             | Tool for tracking code changes.                  |
+| **GitHub**          | Platform for hosting and collaboration.          |
+| **Version Control** | Tracks project evolution and team changes.       |
+| **Setup Commands**  | Configure Git username and email.                |
+| **Next Step**       | Learn Git Basics and start committing your code! |
+
+
+💙 *This tutorial is part of the CodeHarborHub Git & GitHub learning path — empowering developers to build, collaborate, and grow together.*

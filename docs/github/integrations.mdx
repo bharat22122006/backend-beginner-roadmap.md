@@ -1,0 +1,173 @@
+---
+title: "GitHub Integrations"
+description: "Learn how to connect GitHub with external tools and services using integrations, webhooks, and APIs to enhance automation, productivity, and collaboration."
+tags: ["github integrations", "github api", "webhooks", "ci/cd tools", "third-party apps"]
+keywords: ["github integrations tutorial", "connect github to slack", "github webhooks", "github api guide", "automate workflows with github"]
+sidebar_position: 16
+---
+
+Welcome to the **Git & GitHub Tutorial Series** by **CodeHarborHub**. GitHub isn’t just for code, it’s a complete ecosystem. With **integrations, APIs, and webhooks**, you can connect GitHub to other tools, automate processes, and supercharge your development workflow.
+
+## 1. What are Integrations?
+
+**Integrations** allow GitHub to interact with external apps and services to automate tasks, enhance CI/CD, improve team communication, and provide analytics.
+
+### Types of Integrations
+- **Official GitHub Apps** – Created by GitHub (e.g., Dependabot, Pages)
+- **Marketplace Apps** – Third-party tools from the [GitHub Marketplace](https://github.com/marketplace)
+- **Custom Integrations** – Built using GitHub’s REST or GraphQL API
+
+## 2. Popular GitHub Integrations
+
+Here are some powerful integrations that developers frequently use:
+
+| Tool | Purpose |
+|------|----------|
+| **Slack / Discord** | Receive notifications about issues, PRs, and commits |
+| **Jira / Trello / Notion** | Link GitHub commits to project management boards |
+| **VS Code / JetBrains IDEs** | Commit, push, and review PRs directly from your editor |
+| **CI/CD Tools (Jenkins, CircleCI)** | Automate build and deployment processes |
+| **Figma / Design Tools** | Connect design updates with version control |
+| **Snyk / SonarCloud** | Scan repositories for vulnerabilities and code quality |
+| **Vercel / Netlify** | Auto-deploy front-end apps when changes are pushed |
+| **Google Cloud / AWS / Azure** | Integrate cloud deployments or monitoring pipelines |
+
+> Integrations transform GitHub from a code storage platform into a **complete DevOps ecosystem**.
+
+## 3. Using GitHub Marketplace
+
+The **GitHub Marketplace** is the easiest way to install integrations.
+
+### Steps:
+1. Go to [GitHub Marketplace](https://github.com/marketplace)
+2. Browse tools by category (CI/CD, Code Quality, Project Management, etc.)
+3. Click **Set up a plan** or **Install it for free**
+4. Grant necessary **repository permissions**
+5. Configure integration settings in your repo
+
+> Marketplace apps can automate reviews, manage issues, analyze code, and deploy applications — all without writing a single line of backend code.
+
+## 4. GitHub Webhooks
+
+**Webhooks** are a way for GitHub to notify external systems about repository events in real-time.
+
+For example, when a **commit is pushed**, GitHub can **send a payload** (JSON data) to a custom server endpoint.
+
+### Example: Create a Webhook
+1. Go to your repo → **Settings → Webhooks → Add webhook**
+2. Enter your **Payload URL** (your server endpoint)
+3. Choose **application/json** as the content type
+4. Select **events** (push, pull_request, release)
+5. Save webhook
+
+Now, your app will receive updates whenever selected events occur.
+
+### Example Payload:
+
+```json
+{
+  "ref": "refs/heads/main",
+  "repository": {
+    "name": "example-repo",
+    "full_name": "ajay-dhangar/example-repo"
+  },
+  "pusher": {
+    "name": "ajay-dhangar"
+  }
+}
+```
+
+> Webhooks are great for **custom notifications, analytics dashboards, or CI/CD integrations**.
+
+## 5. GitHub REST & GraphQL API
+
+GitHub offers two APIs for developers to interact programmatically:
+
+### REST API Example
+
+Get repository details:
+
+```bash
+GET https://api.github.com/repos/codeharborhub/codeharborhub.github.io
+```
+
+### GraphQL Example
+
+```graphql
+{
+  repository(owner: "codeharborhub", name: "codeharborhub.github.io") {
+    name
+    stargazers {
+      totalCount
+    }
+    issues(last: 5) {
+      nodes {
+        title
+        state
+      }
+    }
+  }
+}
+```
+
+> APIs are used for building dashboards, bots, GitHub analytics tools, or automation scripts.
+
+## 6. GitHub + Automation Tools
+
+### GitHub + Zapier
+
+* Automate tasks like sending an email when a PR is merged
+* Example: “When an issue is created → Send Slack message + create Trello card”
+
+### GitHub + IFTTT
+
+* Automate lightweight workflows: “Star a repo → Add it to a Notion table”
+
+### GitHub + Actions + APIs
+
+* Combine **GitHub Actions** with APIs for **event-driven automation**
+
+Example:
+
+```yaml
+- name: Send PR details to Slack
+  uses: slackapi/slack-github-action@v1.23
+  with:
+    slack-message: "A new PR has been opened!"
+  env:
+    SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+```
+
+## 7. Managing Integrations Securely
+
+* Use **GitHub Secrets** for storing API tokens
+* Review **permissions** before installing apps
+* Revoke unused **OAuth apps or tokens**
+* Use **organization-level integrations** for team-wide access control
+* Regularly audit connected apps in **Settings → Applications → Authorized OAuth Apps**
+
+> Security should always be a priority when connecting external systems.
+
+## 8. Summary
+
+| Feature          | Description                                  |
+| ---------------- | -------------------------------------------- |
+| Integrations     | Connect GitHub to external services          |
+| Marketplace      | One-click app installations                  |
+| Webhooks         | Real-time event triggers                     |
+| REST/GraphQL API | Custom automation & analytics                |
+| Automation Tools | Connect GitHub with Zapier, Slack, or Trello |
+| Security         | Manage tokens and permissions safely         |
+
+
+## 📚 Additional Resources
+
+* [GitHub Integrations Docs](https://docs.github.com/en/developers/apps)
+* [GitHub Marketplace](https://github.com/marketplace)
+* [GitHub Webhooks Guide](https://docs.github.com/en/developers/webhooks-and-events/webhooks/about-webhooks)
+* [GitHub REST API Reference](https://docs.github.com/en/rest)
+* [GitHub GraphQL API Explorer](https://docs.github.com/en/graphql)
+
+---
+
+💙 *This tutorial is part of the CodeHarborHub Git & GitHub series — empowering developers to automate, integrate, and innovate with GitHub.*
