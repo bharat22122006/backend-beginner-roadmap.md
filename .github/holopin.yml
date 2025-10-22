@@ -1,13 +1,13 @@
-organization: codeharborhub
+user: ajaydhangar
 
 stickers:
   - id: cmh1gvq1000eok004uxmvebx4
     alias: "HTML Mastery"
-    description: "Awarded for mastering HTML fundamentals and contributing valuable HTML content."
+    description: "Awarded to contributors for completing or demonstrating mastery in HTML through CodeHarborHub contributions."
     tags:
       - html
-      - contribution
       - mastery
+      - contribution
 
 holobytes:
   - evolvingStickerId: cmh1gvq1000eok004uxmvebx4
