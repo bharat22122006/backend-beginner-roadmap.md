@@ -1,9 +1,15 @@
 organization: codeharborhub
+
 stickers:
-  - id: cltg4w6r612040fl2r7vweuvv
-    alias: "[automation] outstanding contribution"
+  - id: cmh1gvq1000eok004uxmvebx4
+    alias: "HTML Mastery"
+    description: "Awarded for mastering HTML fundamentals and contributing valuable HTML content."
+    tags:
+      - html
+      - contribution
+      - mastery
 
 holobytes:
-  - evolvingStickerId: cltg4rlqc39020fl51scnguhb
-    alias: contribution
+  - evolvingStickerId: cmh1gvq1000eok004uxmvebx4
+    alias: "html_mastery_contributor"
     in: true
