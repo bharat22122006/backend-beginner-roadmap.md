@@ -1,0 +1,185 @@
+---
+title: "Ethical Hacking Basics"
+description: "Learn the mindset, methodology, and safe tools ethical hackers use to find and fix security weaknesses—always in a controlled, authorized environment."
+tags: [cybersecurity, ethical-hacking, pentest, hands-on]
+---
+
+Ethical hacking is the practice of legally and responsibly probing systems to find security weaknesses **before** malicious actors do. Think of it as authorized stress-testing: you look for problems, then report and help fix them.
+
+This tutorial introduces the ethical hacker mindset, the typical testing workflow, common tools, how to build a safe lab, and beginner-friendly exercises — all with a strong focus on legality and responsibility.
+
+---
+
+## Who is an Ethical Hacker?
+
+An **ethical hacker** (also called a penetration tester or security researcher) is someone who uses hacking techniques with permission to:
+- Discover vulnerabilities in systems, applications, or networks  
+- Demonstrate the impact of those vulnerabilities safely  
+- Provide practical remediation and recommendations
+
+Ethical hackers wear many hats: detective, developer, systems engineer, and — importantly — communicator. Delivering a clear, prioritized report is as vital as finding the issue.
+
+---
+
+## ⚖️ Ethics & Legal Ground Rules (Read this first)
+
+Before you touch any tool or target, these are non-negotiable:
+
+- **Only test systems you own or have explicit written permission to test.**  
+- **Don’t exploit bugs in production systems without authorization.** A vulnerability proof-of-concept on a live customer system can cause outages and legal trouble.  
+- **Follow responsible disclosure policies**: report findings to the owner, give them time to fix, and coordinate public disclosure if applicable.  
+- **Keep data safe**: never exfiltrate or publish sensitive data encountered during testing.
+
+If you want real-world experience, use purpose-built labs (see the Lab Setup section below) or join bug bounty programs that explicitly authorize testing.
+
+---
+
+## 🧭 Pentest Methodology — the typical lifecycle
+
+Ethical hacking follows a repeatable lifecycle. Learn this like a recipe — you’ll reuse it for web apps, networks, and cloud environments.
+
+1. **Scope & Rules of Engagement**  
+   Define what systems, IPs, domains, and time windows are in scope. Get written authorization.
+
+2. **Reconnaissance (Passive & Active)**  
+   Collect public information: domain names, IP ranges, employee emails, open ports. Passive recon avoids directly touching the target; active recon uses scans (only when authorized).
+
+3. **Scanning & Enumeration**  
+   Identify open ports, services, versions, and reachable endpoints. Map assets and running software.
+
+4. **Vulnerability Analysis**  
+   Correlate discovered services with known vulnerabilities and misconfigurations.
+
+5. **Exploitation (Controlled)**  
+   Attempt to confirm vulnerabilities in a way that minimizes risk — typically in a lab or with explicit permission. The goal is *proof*, not destruction.
+
+6. **Post-Exploitation & Pivoting**  
+   If exploitation succeeds, analyze impact: what can an attacker access? Could they escalate privileges or move laterally?
+
+7. **Reporting & Remediation**  
+   Write an actionable report: findings, risk levels, reproduction steps (safe), and prioritized fixes. Work with the owner to validate remediations.
+
+8. **Retest**  
+   Confirm fixes are effective.
+
+---
+
+## 🧰 Common Tools (what ethical hackers use)
+
+Below are the everyday tools you’ll learn to use. Use them only in authorized environments.
+
+- **Nmap** — port scanning & service discovery (first step in enumeration).  
+  Example (for a lab machine): `nmap -sV -p- 192.168.56.101`
+
+- **Wireshark** — packet capture and protocol analysis (learn how protocols look on the wire).
+
+- **Burp Suite** — web application proxy for inspecting and manipulating HTTP(S) traffic.
+
+- **Metasploit Framework** — exploitation framework and payload testing (use in lab only).
+
+- **Nikto / OpenVAS / Nessus** — vulnerability scanning (identify potential issues; validate manually).
+
+- **sqlmap** — automated SQL injection testing (lab-only; focus on learning detection & mitigation).
+
+- **John the Ripper / Hashcat** — password-cracking tools for assessing password strength on hashes you own.
+
+- **OWASP ZAP** — open-source web application scanner & proxy (great beginner tool).
+
+This is not an exhaustive list — as you learn you’ll choose tools that fit the target and your workflow.
+
+---
+
+## 🧪 Lab Setup — a safe place to practice
+
+Never test on production. Build a sandbox using local virtual machines or cloud VMs you own.
+
+Minimal lab components:
+- **Host machine**: your laptop/desktop. Use snapshots so you can revert.
+- **Virtualization**: VirtualBox or VMware Workstation Player.
+- **Attacker machine**: Kali Linux or any distro with pentest tools.
+- **Victim machines/apps** (intentionally vulnerable):
+  - Metasploitable (legacy but instructive)
+  - OWASP Juice Shop (modern, web-app focused)
+  - DVWA (Damn Vulnerable Web App) for SQL/XSS practice
+  - Custom vulnerable containers or intentionally misconfigured VMs
+
+Keep your lab isolated from your home/office network (use host-only or internal network modes), so your testing can’t accidentally touch other devices.
+
+---
+
+## ✅ Practical, safe exercises (beginner → intermediate)
+
+Each exercise should be done in your lab and accompanied by notes you’ll later use in a report.
+
+1. **Reconnaissance & Footprinting**
+   - Identify hosts and services on an isolated network using `nmap`.
+   - Collect banner info and note service versions.
+
+2. **Web App Mapping with Burp**
+   - Proxy a browser through Burp, map all endpoints of the test web app, and identify hidden parameters.
+
+3. **Find a Vulnerability (Discovery)**
+   - Run a scanner (OWASP ZAP or Nikto) against a lab app, then manually verify findings.
+
+4. **Controlled Exploit & Impact Analysis**
+   - In the lab, verify a low-risk vulnerability and document safe proof-of-concept steps. Focus on impact (what data or access is at risk).
+
+5. **Password Policy Check**
+   - Use hash-cracking tools on password hashes in the lab to evaluate password strength and recommend improvements.
+
+6. **Write a Short Report**
+   - For one finding, write a concise report: summary, technical details, risk level, reproduction steps (safe), remediation steps, and suggested timeline.
+
+---
+
+## 🛡️ Defensive & Remediation Mindset
+
+Ethical hacking is not just about finding issues — it’s about enabling fixes. When you find problems, think like a defender:
+
+- What simple configuration change would block this attack?
+- Can the vulnerability be mitigated by patching, or does it require code changes?
+- What monitoring/alerts would detect exploitation attempts?
+- What’s the least disruptive patch schedule for production systems?
+
+Good remediation guidance is specific, prioritized, and cost-aware.
+
+---
+
+## 🧾 Reporting — your most important deliverable
+
+A good pentest report contains:
+- Executive summary (non-technical, risk-focused)  
+- Technical details (reproduction steps, evidence, affected assets)  
+- Risk rating (e.g., High / Medium / Low) and business impact  
+- Concrete remediation steps and suggested testing after fixes  
+- Appendix with raw logs or screenshots (sanitized if needed)
+
+Practice writing clear, usable reports — your findings are only valuable if the owner can act on them.
+
+---
+
+## 🧭 Career & Next Steps
+
+If you enjoy this path, consider:
+- Learning deeper tools and platform-specific testing (cloud, mobile).  
+- Studying relevant certifications (e.g., OSCP, CEH, CompTIA PenTest+) when you have hands-on practice.  
+- Contributing to open-source security projects or building your own test cases and labs.
+
+Remember: curiosity + discipline + ethics = great security work.
+
+---
+
+## ⚠️ Final Warning (again): Be Responsible
+
+Ethical hacking is powerful. Always:
+- Get permission in writing before testing any system you don’t own.  
+- Use controlled labs for learning.  
+- Respect data privacy and follow responsible disclosure processes.
+
+---
+
+### ▶️ Next:
+→ [Cybersecurity Tools ›](./cybersecurity-tools.mdx)
+```
+
+Would you like me to convert any of the hands-on exercises into step-by-step lab guides (with safe, lab-only commands and screenshots) you can drop directly into the `projects/` folder?

@@ -1,0 +1,170 @@
+---
+title: "Ethical Hacking & Cyber Defense"
+description: "Learn ethical hacking techniques, the penetration testing lifecycle, common tools, and defensive strategies to harden systems and respond to attacks."
+tags: [cybersecurity, ethical-hacking, penetration-testing, defense]
+---
+
+Ethical hacking is the practice of intentionally testing systems, networks, and applications to find security weaknesses, but with permission and the goal of improving security. Think of ethical hackers as professional testers: they try to break things so owners can fix them before a real attacker shows up.
+
+This tutorial teaches a practical, responsible approach to offensive security (testing) and defensive security (hardening and response). You’ll learn the standard testing workflow, useful tools, how defenders think, and — importantly — the ethics and legal rules that must guide every test.
+
+---
+
+## Ethics & Legal Boundaries — Read This First
+
+Before you run any tests, remember:
+* **Always get explicit written permission** from the owner of the system.  
+* Only test **within the agreed scope** (specific hosts, apps, time windows).  
+* Maintain **confidentiality** of any sensitive data you find.  
+* Report issues **responsibly and promptly** — provide remediation steps.  
+* Never exploit discovered vulnerabilities for personal gain or to harm others.
+
+If you’re practicing, use intentionally vulnerable labs (DVWA, WebGoat, Hack The Box, local VMs), do **not** test random live sites or networks.
+
+---
+
+## The Penetration Testing (Pentest) Lifecycle
+
+A pentest is usually organized into clear phases. Each phase has goals, techniques, and deliverables.
+
+### 1. Reconnaissance (Passive & Active)
+* **Goal:** Gather information about the target without alerting defenders (passive) and then with direct queries (active).  
+* **Passive techniques:** Public records, WHOIS, search engines, social media, public repos.  
+* **Active techniques:** pings, banner grabs, DNS enumeration.
+
+> Deliverable: Asset list, IP ranges, domain names, public-facing services.
+
+### 2. Scanning & Enumeration
+* **Goal:** Discover live hosts, open ports, services, and versions.  
+* **Techniques:** Port scanning, service/version detection, directory brute-forcing.  
+* **What you learn:** Which services are exposed, outdated software, misconfigurations.
+
+> Deliverable: Scan results, list of vulnerable services to test.
+
+### 3. Exploitation (Gaining Access)
+* **Goal:** Validate vulnerabilities by gaining access or demonstrating exploitability.  
+* **Techniques:** Exploit chains, SQL injection, command injection, misconfigured services, weak credentials.  
+* **Note:** Always follow the rules of engagement — do minimal disruptive actions unless agreed otherwise.
+
+> Deliverable: Proof-of-concept (screenshots, safe logs) showing where/how access was gained.
+
+### 4. Post-Exploitation (Privilege Escalation & Lateral Movement)
+* **Goal:** Determine impact: can an attacker move to other systems, access sensitive data, or maintain persistence?  
+* **Techniques:** Credential harvesting, privilege escalation, pivoting to internal networks.
+
+> Deliverable: Impact analysis (what an attacker could reach) and recommended containment.
+
+### 5. Reporting & Remediation
+* **Goal:** Deliver a clear, prioritized report with evidence and recommended fixes.  
+* Reports should include: Executive summary, technical findings, risk ratings, reproducible steps, remediation guidance, and proof the issue was addressed (if re-tested).
+
+---
+
+## Common Tools (and what they’re used for)
+
+These are standard tools you’ll see in many labs and real-world engagements:
+
+* **Nmap** — network discovery & port scanning.  
+* **Wireshark** — packet capture and analysis.  
+* **Burp Suite** — web application testing and proxy for intercepting traffic.  
+* **OWASP ZAP** — free web-app scanner/proxy.  
+* **Metasploit** — exploitation framework and payload delivery.  
+* **Nikto** — web server scanner for common misconfigurations.  
+* **John the Ripper / Hashcat** — password cracking and hash analysis.  
+* **Netcat** — simple TCP/UDP connections and listeners.  
+* **SQLmap** — automated SQL injection testing.  
+* **Atom/VSCode, curl, telnet, openssl** — utility tools useful in many steps.
+
+:::tip
+Learn one tool well (e.g., Nmap or Burp), then expand. Tools are helpers — the skill is understanding what the tool output means.
+:::
+
+---
+
+## Hands-On Labs & Safe Exercises
+
+Use deliberately vulnerable environments or isolated labs to practice these exercises.
+
+### Lab 1 — Recon & Scanning (Safe VM)
+1. Setup: Provision two VMs on a local network (Attacker + Target).  
+2. Run Nmap from the attacker: `nmap -sC -sV -oN scan.txt <target-ip>`  
+3. Analyze open ports and service versions. Document findings.
+
+**Goal:** Identify services that can be tested further.
+
+### Lab 2 — Web App Assessment (Local DVWA or WebGoat)
+1. Configure your browser proxy (Burp Suite or OWASP ZAP).  
+2. Intercept a login request and attempt input tampering (SQLi patterns).  
+3. Use a safe payload in a test environment to confirm vulnerability.
+
+**Goal:** Understand how input handling leads to vulnerabilities and how interception works.
+
+### Lab 3 — Password Cracking (Local Hashes)
+1. Create a known password hash (bcrypt/sha256) in a test file.  
+2. Use John the Ripper or Hashcat to run a dictionary attack.
+3. Analyze how strong passwords slow down attacks.
+
+**Goal:** Appreciate password strength and the value of hashing + salt.
+
+### Lab 4 — Packet Analysis (Wireshark)
+1. Capture traffic over an isolated network with and without TLS.  
+2. Observe differences between HTTP and HTTPS payloads.  
+3. Identify sensitive information leaking in plaintext.
+
+**Goal:** See the real impact of unencrypted traffic.
+
+---
+
+## Defensive Techniques — What Organizations Should Do
+
+Understanding attacks helps defenders design better systems. Here are practical defenses:
+
+* **Patch Management:** Keep software and firmware updated. Many breaches start with known, unpatched vulnerabilities.  
+* **Least Privilege:** Limit user permissions to only what’s necessary. Reduce blast radius.  
+* **Multi-Factor Authentication (MFA):** Add a second factor beyond passwords to prevent credential misuse.  
+* **Secure Development Lifecycle (SDLC):** Integrate security checks (SAST/DAST) into development and CI/CD pipelines.  
+* **Web Application Firewall (WAF):** Block common web-based attacks like SQLi and XSS at the edge.  
+* **Network Segmentation:** Isolate critical systems so attackers can’t easily move laterally.  
+* **Intrusion Detection/Prevention:** Monitor for suspicious behavior and act quickly.  
+* **Backup & Recovery:** Regular offline backups, tested restores, and ransomware plans.  
+* **Training & Awareness:** Teach staff about phishing, social engineering, and secure behavior.  
+* **Logging & Monitoring:** Centralize logs, use SIEM, and set alerts for anomalous activities.
+
+---
+
+## Reporting: The Most Important Deliverable
+
+A clear report turns technical findings into business value. Include:
+- **Executive summary** (non-technical): What happened and business impact.  
+- **Technical details**: Steps to reproduce, evidence, and affected assets.  
+- **Risk rating & prioritization**: Which issues must be fixed first.  
+- **Remediation steps**: Concrete fixes and code/configuration examples.  
+- **Re-test plan**: How you’ll verify that issues were fixed.
+
+A good report helps engineers fix issues and helps leadership make informed decisions.
+
+---
+
+## Career Paths & Certifications (brief)
+
+Ethical hacking and cyber defense have several career paths:
+* **Penetration Tester / Red Team** — offensive testing.  
+* **Security Analyst / Blue Team** — detection and response.  
+* **Application Security (AppSec)** — secure development and code review.  
+* **Security Engineer / Architect** — design defensive systems.
+
+Certifications (e.g., CEH, OSCP, CISSP) help structure learning and prove skills, but hands-on practice matters most.
+
+---
+
+## Final Notes & Mindset
+
+Ethical hacking is about **curiosity, method, and responsibility**.  
+Two final reminders:
+
+1. **Be curious but lawful.** Curiosity opens doors — legality keeps you out of trouble.  
+2. **Report what you find, don’t exploit it.** The goal is to improve security, not to brag.
+
+If you’d like, I can:
+* Provide a ready-made lab setup script (VM/Docker) for these exercises, or  
+* Generate step-by-step Burp Suite and Nmap playbooks you can paste and run in a safe lab.
