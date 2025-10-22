@@ -1,0 +1,214 @@
+---
+title: "Cryptography and Encryption"
+description: "Learn how cryptography and encryption protect data, ensure privacy, and form the backbone of modern cyber security."
+tags: [cybersecurity, cryptography, encryption, data-security, privacy]
+---
+
+In the digital world, **trust** depends on one simple thing, whether data is **safe and private**. That’s exactly what **cryptography** does.
+
+It ensures that your messages, passwords, and transactions can only be understood by the people who are meant to see them, and no one else.
+
+---
+
+## What Is Cryptography?
+
+**Cryptography** is the practice of securing information by transforming it into a form that cannot be understood by unauthorized people.
+
+It comes from two Greek words:
+* *Krypto* (hidden)
+* *Graphy* (writing)
+
+So, cryptography literally means **“hidden writing.”**
+
+It’s how your **WhatsApp** chats stay private, your bank transactions remain secure, and your passwords aren’t readable to hackers.
+
+---
+
+## The Core Goals of Cryptography
+
+Cryptography isn’t just about hiding data, it’s about protecting it in **four key ways** (often called the “CIAA principles”):
+
+| Principle | Meaning | Example |
+|------------|----------|----------|
+| **Confidentiality** | Keeps data secret from unauthorized users | Encrypting messages so only the recipient can read them |
+| **Integrity** | Ensures data isn’t altered during transmission | Detecting tampered files |
+| **Authentication** | Confirms the identity of users | Digital signatures or certificates |
+| ⏱**Non-repudiation** | Prevents users from denying their actions | Proof that a sender really sent a message |
+
+---
+
+## How Cryptography Works
+
+Cryptography works by converting readable data (**plaintext**) into an unreadable form (**ciphertext**) using a **key**.
+
+Here’s the basic process:
+
+```
+
+Plaintext → Encryption → Ciphertext
+Ciphertext → Decryption → Plaintext
+
+```
+
+Let’s visualize it:
+
+| Step | Action | Example |
+|------|---------|----------|
+| 1️⃣ | You write: “Hello Ajay” | (Plaintext) |
+| 2️⃣ | Encryption turns it into: “H8$k*20z!” | (Ciphertext) |
+| 3️⃣ | The receiver decrypts it with a secret key | (Plaintext restored) |
+
+Without the right **key**, the message is meaningless, that’s the power of encryption.
+
+---
+
+## Types of Cryptography
+
+There are **two main types** of cryptography, each with different purposes and use cases.
+
+---
+
+### 1. Symmetric Encryption
+
+In **symmetric encryption**, the **same key** is used to **encrypt and decrypt** data. It’s fast and efficient but risky, because if the key is leaked, the attacker can decrypt everything.
+
+**Example:**
+* Algorithms: **AES**, **DES**, **Blowfish**
+* Real-life use: Encrypting files on your computer
+
+```
+Sender and Receiver share one secret key.
+```
+
+| Pros | Cons |
+|------|------|
+| Fast and efficient | Key sharing is risky |
+| Works well for large data | Less secure if key is exposed |
+
+---
+
+### 2. Asymmetric Encryption
+
+In **asymmetric encryption**, two keys are used:
+* **Public Key:** Shared openly
+* **Private Key:** Kept secret
+
+Whatever is encrypted with one key can only be decrypted by the other.
+
+**Example:**
+- Algorithms: **RSA**, **ECC**
+- Real-life use: HTTPS websites, emails, digital signatures
+
+```
+Public Key → Encrypts message
+Private Key → Decrypts message
+```
+
+| Pros | Cons |
+|------|------|
+| More secure (no key sharing needed) | Slower than symmetric |
+| Perfect for communication over the internet | Complex to manage |
+
+---
+
+## Example: How Encryption Works on WhatsApp
+
+When you send a message on **WhatsApp**, it uses **end-to-end encryption**:
+* Your device encrypts the message before sending it.
+* Only the recipient’s private key can decrypt it.
+* Even WhatsApp itself can’t read your chat.
+
+So even if a hacker intercepts your message, they’ll only see scrambled data like:
+
+```
+@2h1Lx9!d0eP#rW8Z
+```
+
+That’s encryption in action, invisible but powerful.
+
+---
+
+## Common Encryption Algorithms
+
+| Algorithm | Type | Purpose | Notes |
+|------------|------|----------|--------|
+| **AES (Advanced Encryption Standard)** | Symmetric | File & data encryption | Very secure and widely used |
+| **DES (Data Encryption Standard)** | Symmetric | Legacy encryption | Now outdated due to weaknesses |
+| **RSA** | Asymmetric | Secure key exchange & authentication | Used in HTTPS and emails |
+| **ECC (Elliptic Curve Cryptography)** | Asymmetric | Modern lightweight encryption | Used in mobile & IoT devices |
+| **SHA (Secure Hash Algorithm)** | Hashing | Ensures integrity | Used in passwords & digital signatures |
+
+---
+
+## Cryptography in Everyday Life
+
+You use cryptography *every single day* — often without realizing it.
+
+| Situation | Technology Used |
+|------------|-----------------|
+| Logging into Gmail | SSL/TLS encryption |
+| Online payments | RSA + AES |
+| Saving passwords | Hashing (SHA/Bcrypt) |
+| Sending messages on WhatsApp | End-to-end encryption |
+| Accessing websites (HTTPS) | Digital certificates |
+
+Without cryptography, modern life would be *wide open* to cyberattacks.
+
+---
+
+## Hashing vs Encryption
+
+These two terms often get mixed up — but they’re very different.
+
+| Feature | Encryption | Hashing |
+|----------|-------------|----------|
+| Purpose | Hide data but make it reversible | Verify data integrity (one-way) |
+| Reversible? | Yes (with key) | No |
+| Example | AES, RSA | SHA-256, MD5 |
+| Common Use | Messaging, data transfer | Password storage |
+
+> Hashing is like sealing a fingerprint — you can verify it but never reverse it.
+
+---
+
+## Digital Signatures
+
+A **digital signature** ensures that a message hasn’t been changed and confirms the sender’s identity.
+
+It’s widely used in:
+* Email verification
+* Document signing (like PDFs)
+* Software authenticity (you’ve seen “Verified Publisher” in installers)
+
+It combines hashing and encryption to provide **authenticity + integrity**.
+
+---
+
+## Real-Life Example: HTTPS
+
+When you visit a website with **HTTPS**:
+1. Your browser checks the site’s **digital certificate**.  
+2. It uses **asymmetric encryption (RSA)** to exchange keys.  
+3. Then switches to **symmetric encryption (AES)** for fast data transfer.
+
+That’s how your data (like login credentials or credit card info) stays safe online.
+
+---
+
+## Summary
+
+Let’s recap what we learned:
+
+* Cryptography protects digital information from unauthorized access.  
+* Encryption transforms data into unreadable code using keys.  
+* Two main types — **Symmetric** (same key) and **Asymmetric** (public/private keys).  
+* Hashing ensures integrity but is irreversible.  
+* Cryptography powers everything from WhatsApp to online banking.
+
+---
+
+## What’s Next
+
+In the next tutorial, you’ll explore **Ethical Hacking & Cyber Defense** — how experts use hacking techniques *for good* to strengthen systems.
+
+> Continue learning: [Ethical Hacking & Cyber Defense ›](./ethical-hacking-and-cyber-defense.mdx)

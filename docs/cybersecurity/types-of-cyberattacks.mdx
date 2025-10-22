@@ -1,0 +1,219 @@
+---
+title: "Types of Cyberattacks"
+description: "Explore the most common types of cyberattacks, how they work, and how to protect yourself and your systems from them."
+tags: [cybersecurity, attacks, threats, beginners]
+---
+
+In the digital world, not all battles are fought with weapons, some are fought with code, data, and deception. Cyberattacks are the ways hackers exploit weaknesses in systems, software, or people to gain unauthorized access, steal information, or cause harm.
+
+Understanding how these attacks work is the first step in learning how to **defend** against them. Let’s dive into the most common types you’ll encounter as a cybersecurity learner.
+
+---
+
+## 1. Malware Attacks
+
+**Malware** stands for **malicious software**, any program designed to damage or control your computer without permission.
+
+### Common Types of Malware
+* **Virus** – Attaches to a file and spreads when executed.  
+* **Worm** – Spreads automatically through networks.  
+* **Trojan Horse** – Disguises itself as a legitimate file or app.  
+* **Spyware** – Secretly monitors your activity or steals data.  
+* **Ransomware** – Locks files and demands payment to unlock them.
+
+### Real Example:
+The **WannaCry ransomware attack (2017)** affected over 200,000 computers worldwide, encrypting files and demanding Bitcoin payments.
+
+### How to Defend:
+- Keep your system and software updated.  
+- Avoid downloading unknown files or clicking suspicious links.  
+- Use a trusted antivirus or anti-malware tool.
+
+---
+
+## 2. Phishing Attacks
+
+**Phishing** is one of the most common and effective cyberattacks, it tricks users into revealing sensitive data by pretending to be a trustworthy source.
+
+### How It Works:
+An attacker sends a fake email or message that looks real, like from your bank, employer, or delivery service, asking you to click a link or share credentials.
+
+### Example:
+> “Your account has been suspended. Click here to verify your identity.”
+
+The link leads to a fake login page designed to steal your username and password.
+
+### Variants:
+* **Spear Phishing:** Targeted at specific individuals or organizations.  
+- **Whaling:** Targets high-profile people like CEOs or executives.  
+- **Smishing & Vishing:** Use SMS or voice calls instead of emails.
+
+### How to Defend:
+* Double-check sender addresses.  
+* Never click suspicious links or download unexpected attachments.  
+* Enable two-factor authentication (2FA).  
+* Report suspicious emails to your organization’s IT team.
+
+---
+
+## 3. Denial of Service (DoS) & Distributed DoS (DDoS)
+
+**DoS** and **DDoS** attacks aim to make a website or service unavailable by flooding it with massive traffic requests.
+
+### How It Works:
+Imagine a restaurant receiving 10,000 fake reservations at once, the system crashes, and real customers can’t book a table.
+
+In a **DDoS attack**, this traffic comes from thousands of infected devices (a *botnet*) across the world.
+
+### Real Example:
+In 2016, the **Dyn DNS DDoS attack** took down major websites like Twitter, Netflix, and Reddit by overwhelming internet servers.
+
+### How to Defend:
+* Use **CDNs** and **load balancers** to distribute traffic.  
+* Deploy **firewalls and DDoS protection services** (like Cloudflare).  
+* Monitor unusual traffic patterns.
+
+---
+
+## 4. Man-in-the-Middle (MitM) Attacks
+
+In a **Man-in-the-Middle attack**, the hacker secretly intercepts and alters communication between two parties.
+
+### Example:
+You log in to your bank using public Wi-Fi. A hacker between your device and the router captures your login credentials, without you realizing it.
+
+### Variants:
+* **Session Hijacking:** Stealing cookies or session tokens.  
+* **Eavesdropping:** Listening to unencrypted traffic.  
+* **SSL Stripping:** Downgrading HTTPS connections to HTTP.
+
+### How to Defend:
+* Avoid using public Wi-Fi for sensitive logins.  
+* Always check for HTTPS in the browser bar.  
+* Use **VPNs** to encrypt communication.
+
+---
+
+## 5. SQL Injection (SQLi)
+
+**SQL Injection** happens when attackers insert malicious SQL queries into web forms or URLs to manipulate a database.
+
+### Example:
+A login form that doesn’t validate input properly:
+```sql
+' OR '1'='1
+````
+
+This trick forces the system to bypass authentication and give unauthorized access.
+
+### Real Example:
+
+In 2019, over **9 million records** were exposed from a booking website due to a SQL injection flaw.
+
+### How to Defend:
+
+* Use **prepared statements** and **parameterized queries**.
+* Sanitize and validate all user inputs.
+* Limit database privileges for application accounts.
+
+---
+
+## 6. Cross-Site Scripting (XSS)
+
+**XSS** allows attackers to inject malicious scripts into trusted websites, often targeting users rather than servers.
+
+### Example:
+
+If a comment box on a website doesn’t filter scripts, an attacker could post:
+
+```html
+<script>alert('You have been hacked!')</script>
+```
+
+When others view the comment, the script runs in their browser.
+
+### How to Defend:
+
+* Escape and sanitize user inputs.
+* Use **Content Security Policy (CSP)** headers.
+* Encode data before rendering in the browser.
+
+---
+
+## 7. Insider Threats
+
+Not all cyber threats come from outsiders. Sometimes, employees or contractors misuse their access for malicious purposes.
+
+### Example:
+
+An IT staff member copies confidential client data before leaving a company.
+
+### How to Defend:
+
+* Apply **least privilege principle** — give only necessary access.
+* Monitor insider activities.
+* Use strong access control and logging.
+
+---
+
+## 8. Zero-Day Exploits
+
+A **Zero-Day exploit** targets a software vulnerability before the developer has released a patch, making it extremely dangerous.
+
+### Example:
+
+An attacker discovers a flaw in a browser update before the company knows about it. They exploit it while users are unprotected.
+
+### How to Defend:
+
+* Keep software updated automatically.
+* Use trusted vendors with strong patch policies.
+* Employ **intrusion detection systems**.
+
+---
+
+## 9. Password Attacks
+
+Attackers often use different methods to crack or steal passwords:
+
+### Common Methods:
+
+* **Brute Force:** Trying every possible combination.
+* **Dictionary Attack:** Using a list of common passwords.
+* **Credential Stuffing:** Using leaked passwords from other sites.
+* **Social Engineering:** Tricking people into revealing passwords.
+
+### How to Defend:
+
+* Use **strong, unique passwords** (mix letters, numbers, symbols).
+* Enable **multi-factor authentication**.
+* Avoid reusing passwords across accounts.
+* Use a **password manager**.
+
+---
+
+## Summary Table
+
+| Attack Type      | Target           | Primary Goal          | Prevention         |
+| ---------------- | ---------------- | --------------------- | ------------------ |
+| Malware          | Systems & Data   | Damage or control     | Antivirus, updates |
+| Phishing         | Users            | Steal credentials     | Awareness, 2FA     |
+| DDoS             | Servers          | Disrupt service       | Firewalls, CDNs    |
+| MitM             | Communications   | Eavesdrop, steal data | VPN, HTTPS         |
+| SQL Injection    | Databases        | Gain access           | Input validation   |
+| XSS              | Websites         | Inject scripts        | Output encoding    |
+| Insider Threat   | Internal systems | Data theft            | Access control     |
+| Zero-Day         | Software         | Exploit unknown flaws | Regular updates    |
+| Password Attacks | Users            | Unauthorized access   | Strong passwords   |
+
+---
+
+## Final Thoughts
+
+Cyberattacks evolve constantly, and attackers are becoming smarter every day. But remember, **understanding the threat is the first step in defense**.
+
+You don’t have to be a hacker to fight hackers. You just need awareness, curiosity, and the right mindset.
+
+> “Security isn’t about fear, it’s about being prepared.”
+
+In the next tutorial, we’ll explore how **Network Security** keeps data safe as it travels through the web.

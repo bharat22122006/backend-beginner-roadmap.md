@@ -1,0 +1,230 @@
+---
+title: "Web Application Security"
+description: "Practical guide to securing web applications — threats, secure coding practices, OWASP Top Ten, testing methods, and deployment hardening."
+tags: [cybersecurity, web-security, appsec, secure-coding]
+---
+
+Web applications are where users, data, and business logic meet — and where attackers love to look for weak spots. This guide walks you through the most common web app threats, practical secure-coding patterns, testing techniques, and deployment hardening so your apps stay safe in production.
+
+The tone here is hands-on and pragmatic: think of this as advice from a developer who’s fixed vulnerabilities late at night and then wrote it down so you don’t have to learn the hard way.
+
+---
+
+## Why Web App Security Matters
+
+A single vulnerability in your website can expose user data, compromise servers, or let attackers run malicious code on clients.  
+Bad outcomes include data breaches, regulatory fines, lost user trust, and expensive remediation work. Treat security as part of the product — not an afterthought.
+
+---
+
+## The OWASP Top Ten (Practical Summary)
+
+The OWASP Top Ten is the best practical starting point for web-app security. Here’s a developer-focused summary and what you should do.
+
+1. **A1 — Broken Access Control**  
+   * *Problem:* Users can access functions they shouldn’t (e.g., change other users’ data).  
+   * *Fix:* Enforce access checks server-side on every request; avoid client-side `if` checks as the only protection. Use role-based access and least privilege.
+
+2. **A2 — Cryptographic Failures**  
+   * *Problem:* Weak or missing encryption for sensitive data.  
+   * *Fix:* Use HTTPS everywhere (HSTS), store secrets securely (KMS/secret manager), and use modern algorithms (AES-GCM, RSA/ECDSA). Never roll your own crypto.
+
+3. **A3 — Injection (SQL, OS, NoSQL, LDAP)**  
+   * *Problem:* Untrusted input interferes with query execution.  
+   * *Fix:* Use parameterized queries/prepared statements, ORMs, and input validation. Sanitize inputs where necessary.
+
+4. **A4 — Insecure Design**  
+   * *Problem:* Flaws in architecture or design (no fallback for auth, poor threat modeling).  
+   * *Fix:* Threat model features before release, design for least privilege and failure-safe defaults.
+
+5. **A5 — Security Misconfiguration**  
+   * *Problem:* Default credentials, verbose error messages, unused features enabled.  
+   * *Fix:* Harden servers (CSP, secure headers), remove dev middleware in production, and automate secure baseline configs.
+
+6. **A6 — Vulnerable and Outdated Components**  
+   * *Problem:* Using libraries with known vulnerabilities.  
+   * *Fix:* Keep dependencies up to date, scan with SCA tools (e.g., Dependabot, Snyk), and apply patches promptly.
+
+7. **A7 — Identification & Authentication Failures**  
+   * *Problem:* Broken login flows, weak session handling, insecure password storage.  
+   * *Fix:* Use proven auth frameworks, enforce MFA, use secure cookie flags, and hash passwords with strong algorithms (bcrypt/argon2).
+
+8. **A8 — Software & Data Integrity Failures**  
+   * *Problem:* Trusting unverified updates or deserializing untrusted data.  
+   * *Fix:* Sign artifacts, validate input before deserialization, and use immutable deployment pipelines.
+
+9. **A9 — Security Logging & Monitoring Failures**  
+   * *Problem:* Insufficient logging or monitoring to detect incidents.  
+   * *Fix:* Centralize logs, monitor for anomalies, and keep forensic logs (WORM where required).
+
+10. **A10 — Server-Side Request Forgery (SSRF)**  
+    * *Problem:* Server is tricked into making requests to internal services.  
+    * *Fix:* Block private IP ranges, validate and whitelist URLs, and isolate outgoing network access.
+
+---
+
+## Secure Coding Practices (Checklist)
+
+Adopt these habits in day-to-day development:
+
+* **Validate input, encode output.** Validate on server-side; always escape user data before rendering in HTML, JSON, SQL, etc.
+* **Use parameterized queries / ORM.** Never build SQL with string concatenation.
+* **Principle of least privilege.** Reduce permissions for services, DB users, and tokens.
+* **Avoid verbose error messages.** Show user-friendly errors; log stack traces securely.
+* **Store secrets properly.** Use environment variables + secret manager (AWS Secrets Manager, Vault).
+* **Use prepared statements and safe APIs.** Prefer safe standard libraries over custom parsing.
+* **Enforce secure default configs.** Ship secure defaults (CSP, secure cookies, minimal CORS).
+
+---
+
+## Authentication & Session Management
+
+Common pitfalls and how to avoid them:
+
+* **Passwords:** Hash with bcrypt/argon2; enforce strong policies; support password rotation.
+* **Sessions:** Use secure, HttpOnly, SameSite cookies; rotate session IDs after privilege elevation (login).
+* **MFA:** Encourage or require multi-factor for sensitive actions/accounts.
+* **Remember-me:** Implement long-lived tokens securely (refresh tokens, revocation lists).
+* **OAuth / Social Login:** Validate state and redirect URIs; avoid implicit flow for web apps.
+
+Example (Express + secure cookie):
+
+```js
+res.cookie('sid', sessionId, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production',
+  sameSite: 'Lax'
+});
+```
+
+---
+
+## Input Validation & Output Encoding
+
+* **Whitelist input where possible.** E.g., allow only `[0-9]{10}` for phone numbers.
+* **Use contextual encoding** (HTML encode for HTML, URL encode for URLs, JSON encode for JS).
+* **Never trust client-side validation** — always validate server-side.
+
+Example: Properly handling user-generated content before injecting into HTML:
+
+```js
+const safeText = escapeHtml(userInput); // use a trusted library
+element.innerText = safeText;
+```
+
+---
+
+## Cross-Site Scripting (XSS) & Cross-Site Request Forgery (CSRF)
+
+* **XSS:** Sanitize and encode data rendered on the page. Use templating engines that auto-escape. Use CSP to reduce impact.
+* **CSRF:** Use anti-CSRF tokens for state-changing requests or require sameSite=strict cookies and/or custom request headers.
+
+CSRF token example (server-rendered form):
+
+```html
+<input type="hidden" name="csrf_token" value="{{ csrfToken }}" />
+```
+
+---
+
+## CORS, CSP & Secure Headers
+
+* **CORS:** Whitelist trusted origins; avoid `Access-Control-Allow-Origin: *` for sensitive endpoints.
+* **CSP (Content Security Policy):** Mitigate XSS by restricting script sources. Start with a strict policy and add necessary exceptions.
+* **Other headers:**
+
+  * `X-Frame-Options: DENY` (prevent clickjacking)
+  * `Referrer-Policy: no-referrer-when-downgrade` (or stricter)
+  * `Permissions-Policy` (control feature access)
+  * `Strict-Transport-Security` (HSTS)
+
+Example (Express helmet):
+
+```js
+const helmet = require('helmet');
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "https://trusted.cdn.com"]
+    }
+  }
+}));
+```
+
+---
+
+## Dependency & Supply-Chain Security
+
+* Pin dependency versions (lockfile).
+* Automate vulnerability scanning (Snyk, Dependabot, GitHub Advanced Security).
+* Review third-party packages and avoid unnecessary dependencies.
+* Sign and verify artifacts in CI/CD. Use reproducible builds if possible.
+
+---
+
+## Logging, Monitoring & Incident Response
+
+* **Log important events:** Auth failures, privilege escalations, admin actions.
+* **Protect logs:** Avoid storing secrets in logs. Use centralized, immutable logging.
+* **Alerting:** Set up alerts for unusual spikes, repeated failures, or privilege abuse.
+* **Playbooks:** Maintain incident response runbooks for common scenarios (data leak, RCE, credential compromise).
+
+---
+
+## Secure CI/CD & Deployment
+
+* **Secrets in CI:** Use dedicated secret stores, avoid plaintext variables in pipelines.
+* **Immutable infrastructure:** Use images/artifacts that are tested and signed.
+* **Automated scanning:** Run SAST/DAST in the pipeline; fail builds on high-severity findings.
+* **Runtime protection:** Use runtime application self-protection (RASP), WAFs, and host hardening.
+
+---
+
+## Testing & Tools (Practical)
+
+* **Static Analysis (SAST):** Find insecure code patterns (Semgrep, SonarQube).
+* **Dynamic Analysis (DAST):** Scan running apps for common issues (OWASP ZAP, Burp Scanner).
+* **Interactive App Sec (IAST):** Combine both during functional tests.
+* **Dependency Scanning:** Snyk, Dependabot, npm audit.
+* **Fuzzing:** Test unexpected input shapes to find edge issues.
+
+Useful quick commands:
+
+* Nmap: `nmap -sV <host>` (discover services)
+* Nikto: `nikto -h https://example.com` (check common misconfigs)
+* OWASP ZAP: automated scan of your staging environment
+
+---
+
+## Hands-On Exercises (Mini-Labs)
+
+1. **XSS lab:** Create a small comment form. Demonstrate stored and reflected XSS and mitigate using output encoding + CSP.
+2. **SQLi lab:** Build a sample endpoint that uses parameterized queries and show how injection is prevented.
+3. **Auth lab:** Implement login with hashed passwords, sessions, and MFA (simulate with time-based one-time passcodes).
+4. **CI/CD lab:** Integrate SAST tool into CI and block merges for critical issues.
+
+These labs help bridge knowledge into daily practice.
+
+---
+
+## Quick Security Checklist (For Every Release)
+
+* [ ] HTTPS enforced (HSTS enabled)
+* [ ] Secrets removed from code & CI (use secret manager)
+* [ ] Dependencies scanned and up-to-date
+* [ ] CSP & secure headers configured
+* [ ] Session & cookie flags set (HttpOnly, Secure, SameSite)
+* [ ] Input validation and output encoding in place
+* [ ] Logging & monitoring enabled with alerts
+
+---
+
+## Final Thoughts
+
+Web application security is a constant process: design with security, build defensively, test often, and monitor continuously. Small mistakes in code can have large consequences, but with a consistent, practical approach you can reduce risk dramatically.
+
+If you want, I can:
+
+* Generate a set of practical lab repositories (template code + vulnerable examples) for teaching, or
+* Produce an automated CI pipeline example that runs SAST, DAST, and dependency checks.
