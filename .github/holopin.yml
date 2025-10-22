@@ -1,15 +1,8 @@
 user: ajaydhangar
 
-stickers:
-  - id: cmh1gvq1000eok004uxmvebx4
-    alias: "HTML Mastery"
-    description: "Awarded to contributors for completing or demonstrating mastery in HTML through CodeHarborHub contributions."
-    tags:
-      - html
-      - mastery
-      - contribution
-
-holobytes:
-  - evolvingStickerId: cmh1gvq1000eok004uxmvebx4
-    alias: "html_mastery_contributor"
-    in: true
+badges:
+  html_mastery_contributor:
+    name: "HTML Mastery Contributor"
+    description: "Awarded for contributing to HTML tutorials"
+    criteria: "Contributed to HTML tutorials/docs on CodeHarborHub"
+    issuer: "Ajay Dhangar"
