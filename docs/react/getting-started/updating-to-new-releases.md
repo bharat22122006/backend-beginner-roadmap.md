@@ -1,10 +1,7 @@
 ---
-id: updating-to-new-releases
 title: Updating to New Releases
-sidebar_position: 5
 tags: [react, create-react, react-scripts, updating, upgrading, migration, changelog, breaking-changes, polyfills, babel-loader, browserslist, package.json, npm, yarn, dependencies, development]
 description: "Learn how to update an existing Create React App project to a newer version of react-scripts. Keep your project up to date with the latest features and improvements."
-hide_table_of_contents: true
 ---
 
 In Create React App, there are two important packages:

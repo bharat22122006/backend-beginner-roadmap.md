@@ -1,12 +1,9 @@
 ---
-id: production-build
 title: Creating a Production Build in Create React App
 sidebar_label: Production Build
-sidebar_position: 12
 tags: [react, create react app, production build, react production build, create react app build, react build, production build]
 keywords: ["react", "create react app", "production build", "react production build", "create react app build", "react build", "production build"]
 description: "Learn how to create a production build for your React app using Create React App. Optimize your code, reduce file sizes, and enhance performance for your users with this enchanting guide!"
-hide_table_of_contents: true
 ---
 
 Welcome, aspiring developers, to the magical world of React production builds! In this enchanting guide, we'll walk you through the process of creating a production build for your Create React App. Brace yourselves for optimized code, faster load times, and an immersive user experience!

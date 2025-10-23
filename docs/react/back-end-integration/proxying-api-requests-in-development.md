@@ -1,11 +1,8 @@
 ---
-id: proxying-api-requests-in-development
 title: Proxying API Requests in Development
 sidebar_label: Proxying API Requests
-sidebar_position: 1
 tags: [React, API, Backend, Integration, Proxy]
 description: "Learn how to proxy API requests during development in a React app using Create React App, avoiding CORS issues and enabling seamless interaction with your backend server."
-hide_table_of_contents: true
 ---
 
 import '../css/style.css'

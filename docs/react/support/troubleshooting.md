@@ -1,11 +1,8 @@
 ---
-id: troubleshooting
 title: Troubleshooting
 sidebar_label: Troubleshooting
-sidebar_position: 1
 tags: [react, troubleshooting, create-react-app, react-app, reactjs, react-app-issues, react-app-errors]
 description: "Learn how to troubleshoot common issues and errors in Create React App. This guide provides detailed solutions and tips to help you overcome problems and get back to coding with confidence!"
-hide_table_of_contents: true
 ---
 
 Welcome to the troubleshooting guide for Create React App! If you're new to React or web development, fear not! We'll walk you through common issues with plenty of fun details and tips to get you back on track in no time. Let's dive in!

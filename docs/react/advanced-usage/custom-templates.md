@@ -1,11 +1,8 @@
 ---
-id: custom-templates
 title: Custom Templates
-sidebar_label: Importing a Component
-sidebar_position: 1
+sidebar_label: Custom Templates
 keywords: [create react app, custom templates, custom template, react project, project setup, project configuration, boilerplate, reusable template, npm, npx, cra-template, cra-template-typescript, degit]
 description: "Learn how to create and use custom templates in Create React App to quickly start new projects with specific configurations, dependencies, and folder structures."
-hide_table_of_contents: true
 ---
 
 Custom templates in Create React App (CRA) are pre-configured project setups that allow developers to scaffold new projects with specific configurations, dependencies, and folder structures. They enable you to avoid repetitive manual setup and quickly start your projects with your preferred settings. In this guide, we'll create a custom template that includes a popular UI library, sets up a state management system, and adds some custom scripts for building an engaging React app.

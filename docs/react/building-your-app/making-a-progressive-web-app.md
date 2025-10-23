@@ -1,12 +1,9 @@
 ---
-id: making-a-progressive-web-app
 title: Making a Progressive Web App with Create React App
 sidebar_label: Making a Progressive Web App
-sidebar_position: 10
 tags: [react, create react app, progressive web app, pwa, react pwa, create react app pwa, service worker, offline support, caching, web app manifest, responsive design, installable app]
 keywords: [ create react app, progressive web app, pwa, react pwa, create react app pwa, service worker, offline support, caching, web app manifest, responsive design, installable app ]
 description: "Learn how to turn your regular React application into a fully-fledged Progressive Web App (PWA) using Create React App."
-hide_table_of_contents: true
 ---
 
 Welcome to the exciting world of Progressive Web Apps (PWAs)! In this guide, we'll explore how to turn your regular React application into a fully-fledged PWA using Create React App.

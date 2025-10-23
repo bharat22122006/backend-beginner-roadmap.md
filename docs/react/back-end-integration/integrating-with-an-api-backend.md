@@ -6,7 +6,6 @@ sidebar_position: 3
 tags: [React, API, Backend, Integration]
 keywords: [react, api, backend, integration, axios, fetch, http, request, post, get, put, delete, data fetching, data posting, rest api, restful api, graphql, authentication, authorization, cors, json, xml]
 description: "Learn how to integrate a React app with an API backend, enabling it to fetch and send data seamlessly."
-hide_table_of_contents: true
 ---
 
 

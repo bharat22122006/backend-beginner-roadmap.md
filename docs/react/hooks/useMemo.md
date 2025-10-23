@@ -1,10 +1,7 @@
 ---
-id: useMemo hook
 title: useMemo Hook Concept
 sidebar_label: useMemo Hook
-sidebar_position: 6
 tags: [react, create-react-app, useMemo, hooks, react-scripts, react-dom, react-app]
-hide_table_of_contents: true
 ---
 
 The `useMemo` hook is a built-in React hook that allows you to memoize expensive calculations or computations in functional components. It helps optimize performance by preventing unnecessary recalculations of values that depend on certain inputs.

@@ -1,11 +1,8 @@
 ---
-id: adding-flow
 title: Adding Flow
-sidebar_position: 5
 tags: [flow, create react app, react, static type checker, type safety, bug prevention, typescript alternative, javascript types, type annotations, type inference, type checking, facebook flow, flow integration, flow setup, flow configuration, flow usage]
 keywords: [flow, create react app, react, static type checker, type safety, bug prevention, typescript alternative, javascript types, type annotations, type inference, type checking, facebook flow, flow integration, flow setup, flow configuration, flow usage]
 description: "Learn how to add Flow, a static type checker, to your Create React App, empowering your code with type safety and bug prevention."
-hide_table_of_contents: true
 ---
 
 Flow, a formidable static type checker, stands ready to protect your code from lurking bugs. Fear not, for we shall guide you on this thrilling journey into the realm of static types in JavaScript. If you are new to this concept, fear not! Delve into this [enchanting introduction](https://medium.com/@preethikasireddy/why-use-static-types-in-javascript-part-1-8382da1e0adb) to discover the power of static types.

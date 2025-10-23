@@ -1,12 +1,9 @@
 ---
-id: fetching-data-with-ajax-requests
 title: Fetching Data with AJAX Requests in React
 sidebar_label: Fetching Data
-sidebar_position: 2
 tags: [React, AJAX, Data Fetching, API, Asynchronous]
 keywords: [fetching data in react, ajax requests in react, data fetching in react, react ajax, react fetch, react data fetching, react api]
 description: "Learn how to fetch data with AJAX requests in a React application using the `fetch()` API and the `axios` library."
-hide_table_of_contents: true
 ---
 
 import '../css/style.css';

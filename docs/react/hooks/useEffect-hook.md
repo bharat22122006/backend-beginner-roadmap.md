@@ -1,8 +1,6 @@
 ---
-id: useEffect hook
 title: useEffect Hook Concept
 sidebar_label: useEffect Hook
-sidebar_position: 2
 tags: [react, create-react-app, useEffect, hooks, react-scripts, react-dom, react-app]
 hide_table_of_contents: true
 ---

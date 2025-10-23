@@ -1,11 +1,8 @@
 ---
-id: adding-bootstrap
 title: Adding Bootstrap
-sidebar_position: 4
 tags: [react, create react app, bootstrap, css, styling, components, responsive, layout, design, ui, user interface, integration]
 keywords: [react, create react app, bootstrap, css, styling, components, responsive, layout, design, ui, user interface, integration]
 description: "Learn how to integrate Bootstrap into your Create React App, unlocking the power of pre-designed components, responsive layouts, and enchanting styles."
-hide_table_of_contents: true
 ---
 
 import './style.css'

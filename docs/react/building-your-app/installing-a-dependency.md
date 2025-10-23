@@ -1,11 +1,8 @@
 ---
-id: installing-a-dependency
 title: Installing a Dependency
 sidebar_label: Dependency
-sidebar_position: 1
 tags: [react, create react app, npm, dependencies, package, install, installation, node package manager, react-scripts, react-dom, react-icons, react-scripts, react-app, react-app-template]
 description: "Learn how to install a dependency in your Create React App project. Unleash the power of enchanting packages and add new spells to your React app with the help of npm."
-hide_table_of_contents: true
 ---
 
 :::note
