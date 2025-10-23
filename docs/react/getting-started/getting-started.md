@@ -1,10 +1,7 @@
 ---
-id: getting-started
 title: Getting Started with React
 sidebar_label: Getting Started
-sidebar_position: 1
-description: "Learn how to get started with React by creating a new app using Create React App. Follow the steps to set up your development environment and build your first React application." 
-hide_table_of_contents: true
+description: "Learn how to get started with React by creating a new app using Create React App. Follow the steps to set up your development environment and build your first React application."
 ---
 
 import '../css/style.css';

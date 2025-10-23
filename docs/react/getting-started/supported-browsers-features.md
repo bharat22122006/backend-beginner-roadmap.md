@@ -1,10 +1,7 @@
 ---
-id: supported-browsers-features
 title: Supported Browsers and Features
-sidebar_position: 4
 tags: [react, create-react-app, browsers, browser compatibility, polyfills, modern JavaScript, language features, async/await, object rest/spread properties, dynamic import, class fields, static properties, JSX, Flow, TypeScript, browserslist, react-app-polyfill, JavaScript]
 description: "Learn about the supported browsers and advanced language features in the website project. Understand how to ensure broad browser compatibility and leverage modern JavaScript capabilities."
-hide_table_of_contents: true
 ---
 
 When building your website, it is designed to work well with all modern web browsers. This means that visitors using popular browsers like Chrome, Firefox, Safari, and Edge should have a smooth experience without any issues.

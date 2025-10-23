@@ -1,10 +1,7 @@
 ---
-id: using-global-variables
 title: Using Global Variables
-sidebar_position: 3
 tags: [react, global, variables, global-variables, global-variables-in-react, state-management, react-state, react-context, redux, react-redux, context-api, global-state, global-data, sharing-data, data-sharing]
 description: "Learn how to use global variables in your React applications. Unleash the magic of global variables and wield their power to share data across your entire app!"
-hide_table_of_contents: true
 ---
 
 :::note

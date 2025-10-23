@@ -37,7 +37,7 @@ const config = {
         // debug: true,
         docs: {
           routeBasePath: "/",
-          sidebarPath: "./sidebars.js",
+          sidebarPath: "./sidebars.ts",
           editUrl: "https://github.com/codeharborhub/tutorial/edit/main/",
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
@@ -138,13 +138,12 @@ const config = {
                 <span></span>
                 <div class="dropdown-content">
                   <a href="/tutorial/category/html/" class="nav__icons"> <img src="/icons/html-5.svg" title="HTML5" alt="HTML" /> </a>
-                  <a href="/tutorial/category/css/" class="nav__icons"> <img src="/icons/css.svg" title="CSS" alt="CSS" /> </a>
-                  <a href="/tutorial/category/javascript/" class="nav__icons"> <img src="/icons/js.svg" title="JavaScript" alt="JavaScript" /> </a>
+                  <a href="/tutorial/css/introduction/what-is-css/" class="nav__icons"> <img src="/icons/css.svg" title="CSS" alt="CSS" /> </a>
+                  <a href="/tutorial/javascript/introduction-to-javascript/what-is-js" class="nav__icons"> <img src="/icons/js.svg" title="JavaScript" alt="JavaScript" /> </a>
+                  <a href="/tutorial/git/introduction" class="nav__icons"> <img src="/icons/git.svg" title="Git" alt="Git" /> </a>
+                  <a href="/tutorial/github/introduction-to-github" class="nav__icons"> <img src="/icons/github.svg" title="GitHub" alt="GitHub" /> </a>
                   <a href="/tutorial/category/react/" class="nav__icons"> <img src="/icons/jsx.svg" title="React.Js" alt="React" /> </a>
-                  <a href="#" class="nav__icons"> <img src="/icons/ts.svg" title="TypeScript" alt="TypeScript" /> </a>
-                  <a href="#" class="nav__icons"> <img src="/icons/py.svg" title="Python" alt="Python" /> </a>
-                  <a href="#" class="nav__icons"> <img src="/icons/tailwind-css.svg" title="Tailwind CSS" alt="Tailwind" /> </a>
-                  <a href="#" class="nav__icons"> <img src="/icons/next-js.svg" title="NextJs" alt="Next" /> </a>
+                  <a href="/tutorial/cybersecurity" class="nav__icons"> <img src="/icons/cyber-security.png" title="Cyber Security" alt="Cyber Security" /> </a>
                 </div>
               </div>`,
               },

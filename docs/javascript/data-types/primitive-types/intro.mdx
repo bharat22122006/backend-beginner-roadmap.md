@@ -1,0 +1,141 @@
+---
+title: "Primitive Data Types in JavaScript"
+description: "Understand primitive data types in JavaScript, their types, behavior, and how they differ from reference types."
+---
+
+Primitive data types are the **basic building blocks** of JavaScript. They represent single, immutable values (not objects) and are stored **directly in memory**.
+
+When you assign a primitive value to a variable, that variable holds the actual data — not a reference.
+
+## What Are Primitive Data Types?
+
+JavaScript has **7 primitive data types**:
+
+| Type | Description | Example |
+|------|--------------|----------|
+| **String** | Textual data enclosed in quotes | `"Ajay"` |
+| **Number** | Numeric values (integer or float) | `42`, `3.14` |
+| **Boolean** | Logical values | `true`, `false` |
+| **Undefined** | Declared but not assigned any value | `let x;` |
+| **Null** | Intentional absence of any value | `let y = null;` |
+| **BigInt** | Large integers beyond Number’s limit | `12345678901234567890n` |
+| **Symbol** | Unique and immutable identifiers | `Symbol("id")` |
+
+
+## Key Characteristics
+
+1. **Immutable:**  
+   Once created, their value cannot be changed.
+    ```js
+    let name = "Ajay";
+    name[0] = "a"; // ❌ Doesn't change the original string
+    console.log(name); // "Ajay"
+    ```
+
+2. **Stored by Value:**
+   When assigned or passed, a copy of the value is made.
+
+   ```js
+   let a = 10;
+   let b = a;
+   b = 20;
+   console.log(a); // 10 (not affected)
+   ```
+
+3. **Fixed Memory Size:**
+   Each primitive type has a known, fixed amount of memory.
+
+---
+
+## Primitive Data Types in Action
+
+### 1. **String**
+
+Used for representing text.
+
+```js
+let message = "Hello, World!";
+let greeting = 'Hi!';
+let template = `Welcome, ${message}`;
+```
+
+### 2. **Number**
+
+Represents both integer and floating-point numbers.
+
+```js
+let count = 42;
+let price = 9.99;
+let infinity = Infinity;
+let notANumber = NaN;
+```
+
+### 3. **Boolean**
+
+Represents logical truth values.
+
+```js
+let isOnline = true;
+let hasAccess = false;
+```
+
+### 4. **Undefined**
+
+A variable declared but not initialized.
+
+```js
+let x;
+console.log(x); // undefined
+```
+
+### 5. **Null**
+
+Represents the intentional absence of any object value.
+
+```js
+let user = null;
+console.log(user); // null
+```
+
+### 6. **BigInt**
+
+Used for numbers larger than the safe integer limit (`2^53 - 1`).
+
+```js
+let bigNumber = 123456789012345678901234567890n;
+```
+
+### 7. **Symbol**
+
+Used for creating unique, immutable identifiers (often used in objects).
+
+```js
+let id = Symbol("id");
+let anotherId = Symbol("id");
+console.log(id === anotherId); // false
+```
+
+---
+
+## Type Checking with `typeof`
+
+You can check a variable’s type using the `typeof` operator:
+
+```js
+console.log(typeof "Hello"); // string
+console.log(typeof 42);      // number
+console.log(typeof true);    // boolean
+console.log(typeof undefined); // undefined
+console.log(typeof null);    // object (a historical JS bug)
+console.log(typeof 123n);    // bigint
+console.log(typeof Symbol()); // symbol
+```
+
+## 🧠 Summary
+
+| Feature       | Primitive Types                                          |
+| ------------- | -------------------------------------------------------- |
+| **Stored As** | Value                                                    |
+| **Mutable**   | ❌ No                                                     |
+| **Copied By** | Value                                                    |
+| **Examples**  | String, Number, Boolean, Undefined, Null, BigInt, Symbol |

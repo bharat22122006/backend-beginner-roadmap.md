@@ -1,10 +1,7 @@
 ---
-id: adding-relay
 title: Adding Relay
-sidebar_position: 7
 tags: [ react, create react app, relay, graphql, data fetching, react-relay, relay environment, relay query, github api, react router, routing ]
 description: "Learn how to integrate Relay into your Create React App, enabling efficient data fetching and management from a GraphQL server in your React applications."
-hide_table_of_contents: true
 ---
 
 Relay is a powerful GraphQL client framework developed by Facebook. It allows you to efficiently fetch and manage data from a GraphQL server in your React applications. Relay optimizes data fetching by batching and coalescing requests, reducing over-fetching and making your app more performant.

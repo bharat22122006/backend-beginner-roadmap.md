@@ -1,12 +1,9 @@
 ---
-id: adding-custom-environment-variables
 title: Adding Custom Environment Variables
 sidebar_label: Environment Variables
-sidebar_position: 9
 tags: [environment, variables, env, custom, create react app, react, react-scripts, node, node.js, npm, start, build, test, production, development, local, dotenv, expand, server, client, runtime, embed, build-time, process, api, key, secret, sensitive, information, security, configuration, settings, dynamic, value, html, css, js, bundle]
 keywords: [environment, variables, env, custom, create react app, react, react-scripts, node, node.js, npm, start, build, test, production, development, local, dotenv, expand, server, client, runtime, embed, build-time, process, api, key, secret, sensitive, information, security, configuration, settings, dynamic, value, html, css, js, bundle]
 description: "Learn how to add custom environment variables to your Create React App, empowering your app to configure differently based on the environment in which it runs."
-hide_table_of_contents: true
 ---
 
 Welcome, aspiring Coders, to the enchanting world of React development! In this guide, we will explore the magical realm of custom environment variables and how they empower your React applications.

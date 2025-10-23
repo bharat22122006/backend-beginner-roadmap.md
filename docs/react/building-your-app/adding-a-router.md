@@ -1,11 +1,8 @@
 ---
-id: adding-a-router
 title: Adding a Router
-sidebar_position: 8
 tags: [react, react router, routing, react app, single-page application, spa, create react app, navigation, links, components]
 keywords: [react, react router, routing, react app, single-page application, spa, create react app, navigation, links, components]
 description: "Learn how to add routing capabilities to your React app using React Router, enabling dynamic, multi-page applications without full-page refreshes."
-hide_table_of_contents: true
 ---
 
 In the world of web development, creating dynamic and interactive applications is a common requirement. React, being a popular JavaScript library for building user interfaces, provides a powerful way to create single-page applications (SPAs). However, to enhance the user experience and enable navigation between different views or pages within your React app, you need to implement routing.
