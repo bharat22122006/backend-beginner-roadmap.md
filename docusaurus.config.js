@@ -143,10 +143,7 @@ const config = {
                   <a href="/tutorial/git/introduction" class="nav__icons"> <img src="/icons/git.svg" title="Git" alt="Git" /> </a>
                   <a href="/tutorial/github/introduction-to-github" class="nav__icons"> <img src="/icons/github.svg" title="GitHub" alt="GitHub" /> </a>
                   <a href="/tutorial/category/react/" class="nav__icons"> <img src="/icons/jsx.svg" title="React.Js" alt="React" /> </a>
-                  <a href="#" class="nav__icons"> <img src="/icons/ts.svg" title="TypeScript" alt="TypeScript" /> </a>
-                  <a href="#" class="nav__icons"> <img src="/icons/py.svg" title="Python" alt="Python" /> </a>
-                  <a href="#" class="nav__icons"> <img src="/icons/tailwind-css.svg" title="Tailwind CSS" alt="Tailwind" /> </a>
-                  <a href="#" class="nav__icons"> <img src="/icons/next-js.svg" title="NextJs" alt="Next" /> </a>
+                  <a href="/tutorial/cybersecurity" class="nav__icons"> <img src="/icons/cyber-security.png" title="Cyber Security" alt="Cyber Security" /> </a>
                 </div>
               </div>`,
               },
