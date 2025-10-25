@@ -1,0 +1,237 @@
+---
+title: "Nmap Scanning Basics"
+description: "Learn how to use Nmap for network discovery, port scanning, service/version detection, OS fingerprinting, and safe scanning practices."
+tags: [nmap, network-analysis, cybersecurity, tools, port-scanning]
+---
+
+Nmap (Network Mapper) is the go-to tool for discovering hosts, probing open ports, and gathering service/version and OS information. It’s simple to start with and deep enough to support advanced reconnaissance, a must-have in any security toolkit.
+
+This guide teaches the most useful Nmap scan types, practical command examples, how to interpret results, and responsible scanning etiquette.
+
+## Why Use Nmap?
+
+Nmap helps you discover:
+* Which hosts are *alive* on a network (host discovery)  
+* Which **ports** are open and what **services** run on them  
+* Software versions and possible vulnerabilities (via scripts)  
+* The **operating system** of a host (OS fingerprinting)
+
+Think of Nmap as the first step a security professional takes to map the attack surface.
+
+## Installing Nmap
+
+* **Linux (Debian/Ubuntu):**
+    ```bash
+    sudo apt update
+    sudo apt install nmap -y
+    ```
+
+* **macOS (Homebrew):**
+
+    ```bash
+    brew install nmap
+    ```
+
+* **Windows:**  Download the installer from the official Nmap site and follow the wizard (it installs Npcap as well).
+
+## Basic Scan Types & When to Use Them
+
+### 1. Ping Scan — Find live hosts
+
+Quickly check which IPs are up (no port scan):
+
+```bash
+nmap -sn 192.168.1.0/24
+```
+
+Use when you want a list of responsive hosts on a subnet.
+
+### 2. TCP Connect Scan (`-sT`) — Reliable, works without privileges
+
+Performs a full TCP handshake for each port. Good when you don’t have raw-socket privileges:
+
+```bash
+nmap -sT 10.0.0.5
+```
+
+Slower and noisier than SYN scan, but universally supported.
+
+### 3. SYN Scan (`-sS`) — Fast and stealthier (requires root on UNIX)
+
+Sends SYN and analyzes responses without completing the handshake:
+
+```bash
+sudo nmap -sS 10.0.0.5
+```
+
+Common default for stealthy discovery — often used in pentesting labs.
+
+### 4. Version Detection (`-sV`) — Identify services & versions
+
+Probes open ports to determine which service and version is running:
+
+```bash
+sudo nmap -sV 10.0.0.5
+```
+
+Useful to prioritize vulnerabilities (older versions are more likely vulnerable).
+
+### 5. OS Fingerprinting (`-O`) — Guess the operating system
+
+Attempts to identify OS from network responses:
+
+```bash
+sudo nmap -O 10.0.0.5
+```
+
+Accuracy varies; combine with other data for confidence.
+
+### 6. Aggressive Scan (`-A`) — Combined info (use carefully)
+
+Shortcut to run scans for service/version detection, OS detection, script scanning, and traceroute:
+
+```bash
+sudo nmap -A 10.0.0.5
+```
+
+Great for lab environments — noisy on production networks.
+
+## Useful Options & Flags
+
+| Option            | Purpose                                                                 |
+| ----------------- | ----------------------------------------------------------------------- |
+| `-p`              | Specify port or range — e.g. `-p 22,80,443` or `-p 1-65535`             |
+| `--top-ports N`   | Scan top N most common ports (faster)                                   |
+| `-T0..-T5`        | Timing template (0 slowest, 5 fastest / loudest)                        |
+| `-Pn`             | Skip host discovery (treat hosts as up)                                 |
+| `-oN / -oX / -oG` | Output formats: normal, XML, grepable                                   |
+| `--open`          | Show only open ports in output                                          |
+| `-v` / `-vv`      | Verbose output (more details)                                           |
+| `--script <name>` | Run Nmap Scripting Engine (NSE) scripts (e.g., `--script http-headers`) |
+| `--script vuln`   | Run vulnerability-related NSE scripts                                   |
+
+Examples:
+
+```bash
+# Scan top 100 ports, show only open, faster timing:
+sudo nmap --top-ports 100 --open -T4 10.0.0.5
+
+# Full port range with version detection and scripts:
+sudo nmap -p 1-65535 -sV --script vuln 10.0.0.5
+```
+
+## Nmap Scripting Engine (NSE)
+
+NSE adds powerful scripted checks — from simple info-gathering to complex vulnerability detection. Run specific script categories:
+
+* `--script default` → safe default scripts
+* `--script vuln` → vulnerability scanning scripts
+* `--script discovery` → extra discovery helpers
+
+Example:
+
+```bash
+sudo nmap -sV --script vuln 192.168.1.10
+```
+
+:::warning
+Some NSE scripts can be intrusive. Use with permission.
+:::
+
+## Timing & Stealth
+
+Timing controls (`-T0` to `-T5`) let you balance speed vs detectability:
+
+* `-T0` / `-T1` — very slow; useful to avoid IDS triggers
+* `-T3` — default, balanced
+* `-T4` / `-T5` — fast but noisy; avoid on production
+
+Use `-sS` (SYN) + `-T1` for stealth; use `-sT` + `-T4` for quick scans where stealth isn’t required.
+
+## Output & Reporting
+
+Save scans for later:
+
+```bash
+# Normal text
+nmap -sV 10.0.0.5 -oN result.txt
+
+# XML (useful for automation)
+nmap -sV 10.0.0.5 -oX result.xml
+
+# Grepable output
+nmap -sV 10.0.0.5 -oG result.gnmap
+```
+
+Combine outputs to feed other tools or reports.
+
+## Practical Examples & Workflows
+
+### Quick host discovery + top ports:
+
+```bash
+nmap -sn 192.168.1.0/24
+nmap --top-ports 50 --open 192.168.1.23
+```
+
+### Web server fingerprint + common scripts:
+
+```bash
+sudo nmap -p 80,443 -sV --script http-headers,http-title 203.0.113.5
+```
+
+### Full reconnaissance (lab use only):
+
+```bash
+sudo nmap -A -p 1-65535 203.0.113.5 -oN full_recon.txt
+```
+
+### Targeted service check (SSH):
+
+```bash
+nmap -p 22 --script sshv1,ssh-hostkey 10.0.0.5
+```
+
+## Interpreting Results — Quick Guide
+
+* **open** — a service responded (attack surface)
+* **closed** — port reachable but no service listening
+* **filtered** — packets were blocked (firewall/ACL)
+* **unfiltered** — port reachable but Nmap cannot determine open/closed (less common)
+* **open|filtered** — Nmap cannot distinguish (common for UDP)
+* **closed|filtered** — similar ambiguity in UDP/TCP scans
+
+If a port is `open` and the service version is old, prioritize it for further testing (with permission).
+
+## Legal & Ethical Scanning
+
+Nmap is powerful and scanning other people's networks without permission can be illegal.
+
+* **Scan only systems you own or have written permission for** (e.g., lab, client with scope).
+* **Respect time windows and scope limits** in engagement contracts.
+* **Do not** run aggressive scans against unknown live infrastructure.
+
+Always get explicit permission and document your scope.
+
+## Hands-On Lab Ideas
+
+1. **Local Subnet Discovery:**
+   `nmap -sn 192.168.1.0/24` — identify all live hosts on your home LAN.
+
+2. **Service Identification:**
+   Host a small web app on a VM and run: `sudo nmap -sV -p 80,443 <vm-ip>` — inspect server banners.
+
+3. **NSE Practice:**
+   Run safe discovery scripts: `sudo nmap --script discovery 192.168.56.0/24` on an isolated lab.
+
+4. **Timing & IDS:**
+   Compare `-T1` vs `-T4` scans against a test host and observe logs on a local IDS (like Snort) to see how scan speed affects detection.
+
+## Best Practices Summary
+
+* Start with **non-intrusive scans** (`-sn`, `--top-ports`) to map targets.
+* Use **version detection** (`-sV`) to prioritize further testing.
+* Run **NSE scripts** carefully; know which are intrusive.
+* Adjust **timing (`-T`)** to avoid tripping alarms in production.
+* Save outputs (`-oN`, `-oX`) for reporting and auditing.
+* **Always gain permission** before scanning networks you don’t own.

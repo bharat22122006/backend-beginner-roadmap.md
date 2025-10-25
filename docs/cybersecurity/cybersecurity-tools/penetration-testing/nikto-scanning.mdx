@@ -1,0 +1,260 @@
+---
+title: "Nikto Scanning"
+description: "Learn how to use Nikto, an open-source web server scanner, to identify potential vulnerabilities and misconfigurations in web applications safely and effectively."
+tags: [nikto, web-scanning, web-security, penetration-testing, tools, vulnerability-scanner]
+---
+
+**Nikto** is one of the most widely used open-source web vulnerability scanners.  
+It’s designed to perform comprehensive tests against web servers, identifying security misconfigurations, outdated software, and known vulnerabilities.
+
+Nikto doesn’t exploit vulnerabilities — it’s a **discovery tool**. Think of it as a web app doctor: it checks the “health” of your server and reports what’s unsafe or outdated.
+
+## What is Nikto?
+
+Nikto is a **command-line based scanner** developed in Perl and maintained by the community at [https://github.com/sullo/nikto](https://github.com/sullo/nikto).  
+It’s part of most penetration testing distributions, including **Kali Linux** and **Parrot OS**.
+
+Nikto performs:
+* Server version and banner detection
+* Vulnerability and misconfiguration checks (over 6,700+ known issues)
+* SSL/TLS testing
+* HTTP methods testing (e.g., PUT, DELETE)
+* Directory and file enumeration
+* Cookie and header analysis
+
+## Why Use Nikto?
+
+* Quick **initial reconnaissance** of a target web server.  
+* Identify **insecure configurations**, **default files**, and **outdated versions**.  
+* Test for **common vulnerabilities** (e.g., directory traversal, outdated server components).  
+* Generate reports to support **further manual analysis**.
+
+:::warning Important
+Use Nikto only on systems you own or have explicit permission to test.
+:::
+
+## Installation
+
+If you’re using **Kali Linux**, Nikto comes pre-installed.  
+
+For other systems:
+
+### Ubuntu/Debian:
+```bash
+sudo apt install nikto
+```
+
+### Manual installation:
+
+```bash
+git clone https://github.com/sullo/nikto.git
+cd nikto/program
+perl nikto.pl -h
+```
+
+Check version:
+
+```bash
+nikto -Version
+```
+
+## Basic Usage
+
+To perform a quick scan:
+
+```bash
+nikto -h http://example.com
+```
+
+Output:
+
+```
+- Nikto v2.5.0
+---------------------------------------------------------------------------
++ Target IP:          93.184.216.34
++ Target Hostname:    example.com
++ Target Port:        80
++ Start Time:         2025-10-25 10:00:00
+---------------------------------------------------------------------------
++ Server: Apache/2.4.41 (Ubuntu)
++ Retrieved x-powered-by header: PHP/7.4.3
++ The anti-clickjacking X-Frame-Options header is not present.
++ The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ OSVDB-3092: /icons/: Directory indexing found.
++ End Time:           2025-10-25 10:05:00 (5 seconds)
++ Scan Summary: 200 requests done in 5 seconds, 3 findings reported
+---------------------------------------------------------------------------
+```
+
+## Useful Command Options
+
+| Command                       | Description                | Example |
+|------------------------------|----------------------------|--------|
+| `-h <host>`                   | Target host (IP or domain).                           | `nikto -h http://example.com` |
+| `-p <port>`                   | Specify target port (default: 80).                    | `nikto -h example.com -p 8080` |
+| `-ssl`                        | Force SSL mode (treat target as HTTPS).               | `nikto -h https://example.com -ssl` |
+| `-Tuning <options>`           | Customize types of tests to run (see tuning codes).   | `nikto -h example.com -Tuning 12` |
+| `-output <file>`              | Save results to a report file.                        | `nikto -h example.com -output report.html` |
+| `-Format <csv\|html\|txt\|xml>` | Set report format (choose one).                       | `nikto -h example.com -Format html -output r.html` |
+| `-timeout <secs>`             | Set connection timeout (seconds).                     | `nikto -h example.com -timeout 30` |
+| `-Plugins <p1,p2>`            | Run specific plugins or plugin groups.                | `nikto -h example.com -Plugins xss,ssl` |
+
+### Example:
+
+```bash
+nikto -h https://example.com -p 443 -ssl -output scan_report.html -Format html
+```
+
+## Tuning Scan Types
+
+You can limit or expand scan coverage using the `-Tuning` flag.
+
+| Code | Type of Tests                       |
+| ---- | ----------------------------------- |
+| 0    | File Uploads                        |
+| 1    | Interesting File / Directory checks |
+| 2    | Misconfigurations / Default files   |
+| 3    | Information Disclosure              |
+| 4    | Injection vulnerabilities           |
+| 5    | Remote File Inclusion               |
+| 6    | Denial of Service                   |
+| 7    | Remote Code Execution               |
+| 8    | Command Execution                   |
+| 9    | SQL Injection                       |
+
+### Example:
+
+Scan only for common misconfigurations and file disclosures:
+
+```bash
+nikto -h http://target.com -Tuning 12
+```
+
+## SSL/TLS Scanning
+
+Nikto can test HTTPS configurations:
+
+```bash
+nikto -h https://secure.example.com -ssl
+```
+
+It identifies:
+
+* Expired or weak SSL certificates
+* Deprecated ciphers or protocols
+* Missing HTTP security headers
+
+## Integration with Other Tools
+
+Nikto can work in tandem with other security tools:
+
+| Tool           | Integration Purpose                                               |
+| -------------- | ----------------------------------------------------------------- |
+| **Nmap**       | Discover live hosts, then use Nikto for HTTP service enumeration. |
+| **Burp Suite** | Use results to target deeper manual tests.                        |
+| **Metasploit** | Import Nikto results for vulnerability correlation.               |
+| **OpenVAS**    | Combine reports for detailed vulnerability assessments.           |
+
+### Example workflow:
+
+```bash
+nmap -p80,443 -oG targets.txt 192.168.1.0/24
+nikto -h targets.txt -output nikto_scan.txt
+```
+
+## Interpreting Results
+
+Each finding includes:
+
+* **Vulnerability description**
+* **OSVDB or CVE ID**
+* **Severity level**
+* **Suggested mitigation**
+
+Common example findings:
+
+* Missing security headers (e.g., `X-Frame-Options`)
+* Directory indexing enabled
+* Exposed backup files (`.bak`, `.old`)
+* Outdated server versions
+
+Always verify findings manually — some may be **informational**, not exploitable.
+
+## Best Practices
+
+* Use Nikto in **authorized environments** only.
+* Schedule scans during **off-peak hours** to avoid disruption.
+* Always **verify results manually** and **prioritize fixes** based on impact.
+* Combine with **manual testing** and **code review** for deeper insights.
+* Regularly **update Nikto’s databases** to detect the latest issues:
+
+  ```bash
+  cd /usr/share/nikto
+  git pull
+  ```
+
+## Hands-On Lab
+
+### Lab: Scanning a Local DVWA Server
+
+1. Run DVWA on localhost (e.g., `http://127.0.0.1/dvwa`).
+2. Start Nikto:
+
+   ```bash
+   nikto -h http://127.0.0.1/dvwa -output dvwa_scan.txt
+   ```
+3. Review the report:
+
+   * Check missing headers.
+   * Note any outdated server components.
+   * Verify issues manually.
+
+
+## Example Output (Summary)
+
+```
++ Target IP:          127.0.0.1
++ Target Port:        80
++ Server: Apache/2.4.41 (Ubuntu)
++ OSVDB-3268: /icons/: Directory indexing found.
++ OSVDB-3233: /phpinfo.php: Output from phpinfo() found.
++ The X-Frame-Options header is not present.
++ Scan completed in 3 seconds.
+```
+
+## Reporting
+
+To generate a clean HTML report:
+
+```bash
+nikto -h http://target.com -Format html -output report.html
+```
+
+Other formats:
+
+* `txt` (simple text)
+* `csv` (for spreadsheets)
+* `xml` (for automation pipelines)
+
+:::tip
+Run Nikto behind **Tor** or **proxychains** for privacy during open testing or research (never for unauthorized systems):
+
+```bash
+proxychains nikto -h http://target.com
+```
+:::
+
+## Summary
+
+| Feature          | Description                                    |
+| ---------------- | ---------------------------------------------- |
+| **Purpose**      | Web server vulnerability scanning              |
+| **Language**     | Perl                                           |
+| **Speed**        | Moderate                                       |
+| **Best For**     | Initial reconnaissance, configuration auditing |
+| **Alternatives** | OpenVAS, Acunetix, Nessus                      |
+
+
+:::note
+Nikto is a **discovery tool**, not an exploitation framework. Always follow ethical hacking principles and test only with explicit authorization.
+:::
