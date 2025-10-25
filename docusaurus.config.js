@@ -137,13 +137,13 @@ const config = {
                 value: `<div class="dropdown_grid">
                 <span></span>
                 <div class="dropdown-content">
-                  <a href="/tutorial/category/html/" class="nav__icons"> <img src="/icons/html-5.svg" title="HTML5" alt="HTML" /> </a>
-                  <a href="/tutorial/css/introduction/what-is-css/" class="nav__icons"> <img src="/icons/css.svg" title="CSS" alt="CSS" /> </a>
-                  <a href="/tutorial/javascript/introduction-to-javascript/what-is-js" class="nav__icons"> <img src="/icons/js.svg" title="JavaScript" alt="JavaScript" /> </a>
-                  <a href="/tutorial/git/introduction" class="nav__icons"> <img src="/icons/git.svg" title="Git" alt="Git" /> </a>
-                  <a href="/tutorial/github/introduction-to-github" class="nav__icons"> <img src="/icons/github.svg" title="GitHub" alt="GitHub" /> </a>
-                  <a href="/tutorial/category/react/" class="nav__icons"> <img src="/icons/jsx.svg" title="React.Js" alt="React" /> </a>
-                  <a href="/tutorial/cybersecurity" class="nav__icons"> <img src="/icons/cyber-security.png" title="Cyber Security" alt="Cyber Security" /> </a>
+                  <a href="/tutorial/category/html/" class="nav__icons"> <img src="/tutorial/icons/html-5.svg" title="HTML5" alt="HTML" /> </a>
+                  <a href="/tutorial/css/introduction/what-is-css/" class="nav__icons"> <img src="/tutorial/icons/css.svg" title="CSS" alt="CSS" /> </a>
+                  <a href="/tutorial/javascript/introduction-to-javascript/what-is-js" class="nav__icons"> <img src="/tutorial/icons/js.svg" title="JavaScript" alt="JavaScript" /> </a>
+                  <a href="/tutorial/git/introduction" class="nav__icons"> <img src="/tutorial/icons/git.svg" title="Git" alt="Git" /> </a>
+                  <a href="/tutorial/github/introduction-to-github" class="nav__icons"> <img src="/tutorial/icons/github.svg" title="GitHub" alt="GitHub" /> </a>
+                  <a href="/tutorial/category/react/" class="nav__icons"> <img src="/tutorial/icons/jsx.svg" title="React.Js" alt="React" /> </a>
+                  <a href="/tutorial/cybersecurity" class="nav__icons"> <img src="/tutorial/icons/cyber-security.png" title="Cyber Security" alt="Cyber Security" /> </a>
                 </div>
               </div>`,
               },

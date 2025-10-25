@@ -1,0 +1,177 @@
+---
+title: "Wireshark Basics"
+description: "Learn how to capture, analyze, and understand network packets using Wireshark. A beginner-friendly guide to mastering one of the most powerful network analysis tools."
+tags: [wireshark, network-analysis, cybersecurity, tools, packet-sniffing]
+---
+
+Welcome to your first hands-on lesson in network analysis. In this guide, you’ll learn how to use **Wireshark**, the world’s most popular and powerful **packet analyzer**.
+
+Wireshark allows you to **see what’s happening on your network in real time**, which makes it a go-to tool for cybersecurity analysts, network engineers, and ethical hackers alike.
+
+## What Is Wireshark?
+
+**Wireshark** is an open-source tool used to capture and inspect data packets that travel through a network. It helps you understand how devices communicate, detect problems, and even identify potential security threats.
+
+Think of it as a **microscope for your network**, every packet (data unit) that moves through your system can be analyzed in detail.
+
+## Why Wireshark Is Important in Cybersecurity
+
+Wireshark is not just for engineers, it’s a critical tool for **cyber defenders**.  
+Here’s why it’s so valuable:
+
+* **Detects suspicious network activity** (like malware communication or data leaks).  
+* **Analyzes protocols** (HTTP, TCP, DNS, etc.) to identify vulnerabilities.  
+* **Troubleshoots slow networks or misconfigurations.**  
+* **Trains ethical hackers** to understand how packets move and where to find weaknesses.
+
+It’s one of those tools that **every cybersecurity professional** must learn to master.
+
+## Installing Wireshark
+
+You can install Wireshark on Windows, macOS, or Linux.
+
+### Windows
+
+1. Go to [wireshark.org/download](https://www.wireshark.org/download.html)
+2. Choose the **Windows installer (.exe)**.
+3. During setup, allow installation of **WinPcap** or **Npcap** (required for packet capturing).
+4. Complete installation and open Wireshark.
+
+### Linux (Ubuntu/Debian)
+
+```bash
+sudo apt update
+sudo apt install wireshark -y
+``` 
+
+:::info Optional
+
+Run `sudo usermod -aG wireshark $USER` to capture packets without root access.
+
+:::
+
+### macOS
+
+You can install Wireshark using [Homebrew](https://brew.sh):
+
+```bash
+brew install wireshark
+```
+
+## Getting Started with Wireshark
+
+Once you open Wireshark, here’s what you’ll see:
+
+* A list of **network interfaces** (like Wi-Fi, Ethernet, etc.).
+* Each interface shows real-time traffic activity.
+* The “shark fin” icon starts capturing packets.
+
+### To Start Capturing:
+
+1. Select your active network interface (e.g., Wi-Fi).
+2. Click the **blue shark fin icon** or press `Ctrl + E`.
+3. Watch packets begin to appear in real-time.
+
+You’re now officially *sniffing packets*!
+
+## Understanding Wireshark’s Interface
+
+Wireshark’s interface is divided into **three main panels:**
+
+| Panel                   | Description                                                   |
+| ----------------------- | ------------------------------------------------------------- |
+| **Packet List Pane**    | Displays all captured packets chronologically.                |
+| **Packet Details Pane** | Shows decoded details of a selected packet (protocol layers). |
+| **Packet Bytes Pane**   | Displays raw packet data in hexadecimal and ASCII.            |
+
+Hovering over a packet shows its source, destination, protocol, and brief info.
+
+## Filtering Packets
+
+Network captures can contain **thousands of packets**, so filters help you focus on what matters.
+
+### Display Filter Examples
+
+| Filter                   | Description                             |
+| ------------------------ | --------------------------------------- |
+| `ip.addr == 192.168.1.1` | Show all packets to/from a specific IP. |
+| `tcp.port == 80`         | Display only HTTP (port 80) traffic.    |
+| `dns`                    | Filter only DNS packets.                |
+| `http`                   | Show only HTTP protocol traffic.        |
+| `tcp.flags.syn == 1`     | Capture TCP handshake attempts.         |
+
+You can combine filters using logical operators like `and`, `or`, `not`.
+
+:::tip
+Use the filter bar’s autocomplete — Wireshark helps you find valid filter syntax!
+:::
+
+## Analyzing Common Protocols
+
+Wireshark can decode hundreds of protocols. Here are some you’ll analyze most often:
+
+### HTTP (Web Traffic)
+
+You can view web requests and responses in plain text.
+
+* Filter: `http`
+* Insight: Useful for analyzing GET/POST requests and cookies.
+
+### DNS (Domain Name System)
+
+Helps map domain names to IP addresses.
+
+* Filter: `dns`
+* Insight: Detect suspicious or malicious domain lookups.
+
+### TCP (Transmission Control Protocol)
+
+Used for connection-oriented communication.
+
+* Filter: `tcp`
+* Insight: Check for retransmissions or incomplete handshakes.
+
+## Real-World Example: Detecting a Suspicious Packet
+
+Imagine you notice a system sending packets to an **unknown IP** outside your network.
+
+1. Apply the filter:
+
+   ```bash
+   ip.dst == 45.67.89.12
+   ```
+2. Inspect the **payload data** — if it’s encrypted or unusual, it might indicate malware activity.
+3. Use **Follow → TCP Stream** to view the conversation in sequence.
+
+This helps analysts identify whether data is being **exfiltrated** or **malicious communication** is happening.
+
+## Useful Wireshark Features
+
+| Feature                                | Use Case                                         |
+| -------------------------------------- | ------------------------------------------------ |
+| **Capture Filters**                 | Define what packets to capture before recording. |
+| **Follow TCP Stream**               | View all packets in a communication stream.      |
+| **Export Packets**                  | Save capture data (.pcap) for deeper analysis.   |
+| **Statistics → Protocol Hierarchy** | See which protocols dominate your traffic.       |
+| **IO Graphs**                       | Visualize network activity over time.            |
+
+These features turn Wireshark into a complete **network intelligence platform**.
+
+## Ethical Usage Reminder
+
+While Wireshark is incredibly powerful, it can also capture **sensitive data** such as passwords or session tokens.
+
+> Never use Wireshark on networks you don’t own or have explicit permission to analyze.
+
+Use it only for **authorized learning, testing, or troubleshooting**.
+
+## Summary
+
+Wireshark is your gateway to understanding how networks truly work. By mastering it, you can:
+
+* Analyze traffic at a packet level
+* Detect anomalies and intrusions
+* Learn how attackers move data stealthily
+* Troubleshoot issues like a network pro
+
+It’s a **must-have skill** for anyone serious about cybersecurity.

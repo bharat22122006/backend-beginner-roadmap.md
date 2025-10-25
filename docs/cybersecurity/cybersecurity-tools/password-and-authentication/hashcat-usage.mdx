@@ -1,0 +1,318 @@
+---
+title: "Hashcat — Usage & Practical Guide"
+sidebar_label: "Hashcat — Usage"
+description: "Hands-on guide to Hashcat — GPU-accelerated password recovery tool. Covers installation, attack modes (dictionary, mask, combinator), rule usage, tuning, hash formats, performance tips, and safe lab exercises."
+tags: [hashcat, password-cracking, GPU, tools, cybersecurity, forensics]
+---
+
+**Hashcat** is the industry-standard GPU-accelerated password cracking tool. Where CPU tools like John the Ripper are great for many tasks, Hashcat excels at high-speed, large-scale cracking using modern GPUs. This guide shows how to install Hashcat, pick attack modes, craft masks and rules, handle salts and formats, tune performance, and run ethical, repeatable labs.
+
+:::warning Ethics reminder
+Use Hashcat **only** in authorized test environments or on data you own. Cracking third-party credentials without permission is illegal.
+:::
+
+## Installation (Quick)
+
+### Linux (recommended: Ubuntu / Kali)
+
+```bash
+# On Debian/Ubuntu/Kali (drivers + hashcat)
+sudo apt update
+sudo apt install -y hashcat
+# Or get the latest binary from https://hashcat.net/hashcat/
+```
+
+### macOS
+
+Use Homebrew for community builds:
+
+```bash
+brew install hashcat
+```
+
+### Windows
+
+Download the official package from [https://hashcat.net/hashcat/](https://hashcat.net/hashcat/) and extract. Ensure GPU drivers (NVIDIA or AMD) are installed and up to date.
+
+### Verify
+
+```bash
+hashcat --help
+hashcat -I   # lists devices (GPUs) recognized
+```
+
+## Hashcat Concepts & Workflow
+
+1. **Identify** the hash type and format.
+2. **Select** an attack mode (dictionary, mask, combinator, rule-based, hybrid).
+3. **Prepare** wordlists, rules, masks, and GPU settings.
+4. **Run** Hashcat with the correct `-m` (hash type) and `-a` (attack mode).
+5. **Review** cracked results and produce a remediation report.
+
+## Common Options
+
+| Option                    | Meaning                                                                         |
+| ------------------------- | ------------------------------------------------------------------------------- |
+| `-m <num>`                | Hash type (see list below)                                                      |
+| `-a <mode>`               | Attack mode (0=dictionary,1=comb,3=mask,6=hybrid wordlist+mask,7=mask+wordlist) |
+| `-o <file>`               | Output cracked passwords to file                                                |
+| `--username`              | Strip username:hash file format and use only hash                               |
+| `-w <profile>`            | Workload profile (1..4) — affects GPU utilization                               |
+| `-O`                      | Optimized kernel (faster but limited to shorter passwords)                      |
+| `--show`                  | Display cracked hashes from potfile                                             |
+| `--status`                | Show runtime status periodically                                                |
+| `--restore` / `--session` | Resume a previous session                                                       |
+| `-r <rulefile>`           | Apply custom rule file                                                          |
+| `-i`                      | Incremental mode (with masks)                                                   |
+| `-d <device>`             | Specify GPU device(s)                                                           |
+
+Example:
+
+```bash
+hashcat -m 1000 -a 0 hashes.txt /usr/share/wordlists/rockyou.txt -o found.txt --status --status-timer=10
+```
+
+## Common `-m` Hash Type Examples
+
+| `-m`    | Format                                         |
+| ------- | ---------------------------------------------- |
+| `0`     | MD5                                            |
+| `100`   | SHA1                                           |
+| `1400`  | SHA256                                         |
+| `1800`  | SHA512                                         |
+| `1000`  | NTLM                                           |
+| `3200`  | bcrypt (OpenBSD)                               |
+| `7400`  | sha1(ssh)                                      |
+| `22000` | WPA/WPA2 (using hcxdumptool/hcxtools workflow) |
+
+Full list: `hashcat --help` or [https://hashcat.net/wiki/doku.php?id=hashcat](https://hashcat.net/wiki/doku.php?id=hashcat)
+
+## Identifying Hash Types
+
+Use `hashid` or `hash-identifier`, or inspect application code/DB schema. Wrong `-m` will fail or produce garbage. Example:
+
+```bash
+hashid hashes.txt
+```
+
+## Attack Modes (Practical)
+
+### 1. Dictionary Attack (`-a 0`) — fast and effective
+
+Uses words from a wordlist (optionally with rules to mutate words).
+
+```bash
+hashcat -m 1000 -a 0 hashes.txt /usr/share/wordlists/rockyou.txt -r rules/best64.rule
+```
+
+`best64.rule` applies common mutations (capitalization, suffixes, leetspeak).
+
+### 2. Mask Attack (`-a 3`) — targeted brute force
+
+Great when you know password structure (e.g., `?l?l?l?l?d?d` for 4 letters + 2 digits).
+
+Common charsets:
+
+* `?l` = lowercase
+* `?u` = uppercase
+* `?d` = digits
+* `?s` = special
+* `?a` = all
+
+Example:
+
+```bash
+hashcat -m 1000 -a 3 hashes.txt ?l?l?l?l?d?d -w 3
+```
+
+Use `-i` (incremental) to try shorter lengths as well:
+
+```bash
+hashcat -m 1000 -a 3 -i hashes.txt ?d?d?d?d?d
+```
+
+### 3. Combinator Attack (`-a 1`) — combine two wordlists
+
+Combine `wordlist1` + `wordlist2` (useful for passphrase generation).
+
+```bash
+hashcat -m 1000 -a 1 hashes.txt wordlist1.txt wordlist2.txt
+```
+
+### 4. Hybrid (Wordlist + Mask) (`-a 6` or `-a 7`)
+
+Append or prepend masks to words (e.g., word + 2 digits).
+
+```bash
+# word + 2 digits
+hashcat -m 1000 -a 6 hashes.txt /usr/share/wordlists/rockyou.txt ?d?d
+# 2 digits + word
+hashcat -m 1000 -a 7 hashes.txt /usr/share/wordlists/rockyou.txt ?d?d
+```
+
+### 5. Rules Engine (`-r rules/file.rule`)
+
+Rules mutate words efficiently. Combine with dictionary or combinator.
+
+Example with `rules/best64.rule`:
+
+```bash
+hashcat -m 1800 -a 0 hashes.txt wordlist.txt -r rules/best64.rule
+```
+
+## Performance Tips & GPU Tuning
+
+* Use latest GPU drivers and proper OpenCL/CUDA support.
+* Choose appropriate workload (`-w 3` or `-w 4` for high utilization).
+* Use `--optimized-kernel-enable` (`-O`) for faster kernels (but limited password length).
+* Benchmark: `hashcat -b` to see speed on your hardware.
+* Use multiple GPUs with `-d 1,2` or let Hashcat auto-detect.
+* For large jobs, run with a session name: `--session=myjob` and `--status`/`--restore`.
+
+Example performance run:
+
+```bash
+hashcat -m 1000 -a 3 hashes.txt ?a?a?a?a?a -w 4 --session=fasttest
+```
+
+## Handling Salts & Complex Formats
+
+* Many modern hashes include salts (e.g., `sha256(salt+pass)`); Hashcat supports many salted formats — pick correct `-m`.
+* For custom formats, preprocess or convert to Hashcat-supported format.
+* For bcrypt/scrypt/Argon2, expect slow cracking; focus on targeted wordlists and MFA enforcement rather than mass brute force.
+
+## Tools & Utilities for Wordlists & Rules
+
+* `hashcat-utils` (e.g., `hcstatgen`, `maskprocessor`) — generate masks and stats.
+* `maskprocessor` (mpc) — create custom mask lists.
+* `cupp` — common user password profiler to create targeted wordlists.
+* `rockyou.txt`, `SecLists` (GitHub) — excellent starting wordlists.
+* `john --rules` or custom scripts to generate candidate lists.
+
+Generate a targeted list with `cewl` (crawl site for words):
+
+```bash
+cewl -w words.txt https://example.com
+```
+
+Combine and uniq:
+
+```bash
+cat words.txt other.txt | sort -u > combined.txt
+```
+
+## WPA/WPA2 & PMKID Workflow
+
+Hashcat supports `.hccapx` or the newer `22000` format. Use `hcxdumptool` + `hcxpcapngtool` to capture and convert.
+
+Example:
+
+```bash
+# Convert pcapng to 22000
+hcxpcapngtool -o capture.22000 capture.pcapng
+
+# Crack WPA handshake
+hashcat -m 22000 capture.22000 /usr/share/wordlists/rockyou.txt -w 3
+```
+
+## Practical Examples
+
+1. **NTLM dictionary + rules**
+
+```bash
+hashcat -m 1000 -a 0 ntlm_hashes.txt /usr/share/wordlists/rockyou.txt -r rules/best64.rule -o found.txt
+```
+
+2. **SHA256 mask incremental**
+
+```bash
+hashcat -m 1400 -a 3 -i --increment-min=6 --increment-max=10 hashes.txt ?a?a?a?a?a?a?a?a -w 4
+```
+
+3. **Resume a session**
+
+```bash
+hashcat --session=myrun --restore
+```
+
+4. **Show cracked**
+
+```bash
+hashcat --show -m 1000 hashes.txt
+```
+
+## Output & Reporting
+
+* Hashcat writes results to `hashcat.potfile` by default. Use `-o results.txt` to capture outputs.
+* `--show` prints cracked passwords in `hash:plaintext` or `username:hash:plaintext` if `--username` used.
+* Treat cracked plaintext as **sensitive** — include only aggregated findings in external reports (e.g., “X accounts weak; Y cracked”), and store evidence securely.
+
+Example to export in readable format:
+
+```bash
+hashcat -m 1000 --show hashes.txt > cracked.txt
+```
+
+## Hands-On Lab Ideas (Safe)
+
+1. **Local MD5 Cracking Lab**
+
+   * Create test hashes:
+
+     ```bash
+     echo -n "password" | md5sum > md5.txt
+     ```
+   * Run:
+
+     ```bash
+     hashcat -m 0 -a 0 md5.txt /usr/share/wordlists/rockyou.txt -o found.txt
+     ```
+
+2. **NTLM Windows Hashes (Local)**
+
+   * Extract SAM hashes in a lab, convert to Hashcat format, and run wordlist + mask.
+
+3. **WPA Handshake**
+
+   * Use a test AP in a lab, capture handshake with `hcxdumptool`, convert to `22000` and crack with small wordlist.
+
+4. **Mask Tuning**
+
+   * If you know password policy (e.g., 2 letters + 4 digits), craft masks to drastically reduce search space.
+
+## Best Practices & Tips
+
+* **Targeted > Exhaustive:** Use intelligence (usernames, patterns) to craft masks/wordlists instead of blind brute force.
+* **Use rules wisely:** A small set of effective rules yields more results than brute forcing everything.
+* **Avoid long full keyspace masks** unless you have massive GPU clusters.
+* **Keep GPU temps monitored** and use adequate cooling. Hashcat can push cards hard.
+* **Use sessions & restores** for long-running jobs.
+* **Combine Hashcat with John/other tools** — each tool has strengths (Hashcat = GPU speed, John = flexibility).
+
+## Legal & Ethical Recap
+
+* Always get **written permission** before running Hashcat against any system you do not own.
+* Treat cracked data as **sensitive evidence**. Securely store or destroy plaintexts after reporting.
+* Use Hashcat to strengthen defenses: enforce MFA, migrate to strong hash algorithms (bcrypt/Argon2), and mandate strong passphrases.
+
+## Quick Reference Commands
+
+```bash
+# Benchmark your GPUs
+hashcat -b
+
+# Dictionary + rules
+hashcat -m 1000 -a 0 hashes.txt rockyou.txt -r rules/best64.rule -o found.txt
+
+# Mask attack
+hashcat -m 1000 -a 3 hashes.txt ?l?l?l?l?d?d -w 3
+
+# Hybrid (word + mask)
+hashcat -m 1000 -a 6 hashes.txt rockyou.txt ?d?d
+
+# WPA2 (22000)
+hashcat -m 22000 capture.22000 wordlist.txt -w 3
+
+# Show cracked
+hashcat --show -m 1000 hashes.txt
+```

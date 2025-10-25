@@ -1,0 +1,262 @@
+---
+title: "John the Ripper (Password Cracking)"
+sidebar_label: "John the Ripper"
+description: "Practical guide to John the Ripper — installation, workflows (identification → wordlist → rules → incremental), common commands, hash formats, and safe hands-on labs."
+tags: [john-the-ripper, password-cracking, tools, cybersecurity, forensics]
+---
+
+**John the Ripper** (often abbreviated *John*) is a powerful, flexible password-cracking tool used by security professionals to test password strength and recover lost credentials in controlled environments. It’s not magic, it’s a set of strategies (wordlists, rules, and brute-force) combined with efficient implementations for many hash formats.
+
+This guide gives you practical, hands-on knowledge: how to identify hashes, run common cracking modes, tune performance, and report results — all with ethical safeguards in mind.
+
+:::warning Ethics & Legality
+Only use John on systems and data you own or where you have explicit written permission. Unauthorized cracking is illegal and unethical.
+:::
+
+## What John Can Do
+
+* Crack a wide range of hash types (MD5, SHA variants, NTLM, bcrypt, etc.).  
+* Work in many modes: **single**, **wordlist (+rules)**, **incremental (brute-force)**, and **external**.  
+* Parse and combine password files (e.g., `/etc/passwd` + `/etc/shadow`) using helper tools.  
+* Resume sessions, export cracked passwords, and integrate with other workflows.
+
+There are two commonly used builds:
+* **John (core)** — stable and lightweight.  
+* **John Jumbo** — extended format and OpenCL/GPU support (recommended for broader format support).
+
+## Installing John
+
+### Linux (Debian / Ubuntu)
+
+```bash
+# Core package (works but limited)
+sudo apt update
+sudo apt install john -y
+
+# Recommended: install John Jumbo from source for extra formats & OpenCL
+sudo apt install build-essential libssl-dev libbz2-dev libz-dev \
+  libgcrypt20-dev pkg-config libopenmpi-dev git -y
+
+git clone https://github.com/openwall/john -b bleeding-jumbo john-jumbo
+cd john-jumbo/src
+./configure
+make -s clean && make -sj4
+# Binary will be in ../run/
+```
+
+### macOS (Homebrew)
+
+```bash
+brew install john-jumbo
+```
+
+### Windows
+
+Use the precompiled binaries from the John project or use WSL (recommended) for parity with Linux commands.
+
+## Identify Hash Type
+
+John supports many formats, but you should identify the hash type first.
+
+* Quick list of supported formats:
+
+```bash
+john --list=formats | less
+```
+
+* Use helper tools to detect hash type (examples): `hash-identifier`, `hashid`, or online detectors (use cautiously and privately).
+  Example:
+
+```bash
+hashid 098f6bcd4621d373cade4e832627b4f6
+# Output will suggest MD5, etc.
+```
+
+## Common Workflows
+
+### 1) Wordlist Attack (+ Rules) — Fast & Effective
+
+This is the most common workflow: feed John a wordlist (dictionary) and optionally apply **rules** that modify words (add numbers, leetspeak, suffixes, capitalization).
+
+```bash
+john --wordlist=/usr/share/wordlists/rockyou.txt --rules hashes.txt
+```
+
+* `--rules` applies rule sets defined in `john.conf` (default rules are solid).
+* `rockyou.txt` is a classic wordlist (usually in Kali: `/usr/share/wordlists/rockyou.txt`).
+
+**Show cracked results:**
+
+```bash
+john --show hashes.txt
+```
+
+### 2) Single Mode — Grep-style quick wins
+
+Single mode uses information from username fields and other file metadata to mutate likely passwords (very fast for `/etc/shadow` style inputs).
+
+```bash
+john --single passwd_unshadowed.txt
+```
+
+### 3) Incremental (Brute-force) — Exhaustive
+
+Try all combinations for a given character set/length. Very powerful but slow; ideal for short weak passwords.
+
+```bash
+john --incremental hashes.txt
+# Or specify a specific incremental charset:
+john --incremental=ASCII hashes.txt
+```
+
+### 4) External & Custom Rules
+
+Create custom rules or use an external program to generate candidates:
+
+```bash
+john --wordlist=custom.txt --rules=custom_rule_set hashes.txt
+```
+
+You can write external generators in C or other languages and pipe them to John.
+
+## Practical Examples
+
+### Crack an MD5 hash with rockyou:
+
+```bash
+echo '5f4dcc3b5aa765d61d8327deb882cf99' > md5.txt   # "password"
+john --wordlist=/usr/share/wordlists/rockyou.txt --format=raw-md5 md5.txt
+john --show md5.txt
+```
+
+### Crack NTLM hashes (Windows):
+
+```bash
+john --format=NT hashes_ntlm.txt --wordlist=/usr/share/wordlists/rockyou.txt
+```
+
+### Combine `/etc/passwd` and `/etc/shadow` (Linux offline cracking)
+
+On a local lab VM:
+
+```bash
+sudo unshadow /etc/passwd /etc/shadow > unshadowed.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
+john --show unshadowed.txt
+```
+
+`unshadow` merges both files into a cracking-friendly format (present in John’s run directory).
+
+## Tuning John: Rules, Sessions, Restore
+
+* **Rules**: John’s `john.conf` contains rule sets (`Single`, `Wordlist`, `Extra`, etc.). Add or tweak rules to increase hit rate without brute forcing everything.
+* **Sessions**:
+
+  * Save: `--session=session_name`
+  * Restore: `--restore=session_name`
+* **Show cracked**: `john --show hashes.txt`
+* **List formats**: `john --list=formats`
+* **Status**: `john --status=session_name` or `john --status` to display progress.
+
+## Performance Notes & GPU
+
+* John Jumbo supports OpenCL for GPU acceleration, but **Hashcat** is often preferred for GPU-heavy cracking (faster, more features).
+* For CPU-based cracking, John’s incremental modes are efficient and highly optimized.
+* Use `--fork=N` to spawn N parallel processes for CPU-bound tasks on multi-core systems (Jumbo builds):
+
+```bash
+john --fork=4 --wordlist=rockyou.txt hashes.txt
+```
+
+* When dealing with bcrypt, scrypt, or Argon2, expect slow cracking — these algorithms are intentionally expensive.
+
+## Handling Salted & Iterated Hashes
+
+* Salted hashes (like many modern storage schemes) are harder — John supports many salted formats (`bcrypt`, `sha512crypt`, `md5crypt`, etc.).
+* For very slow hashes (bcrypt/argon2), consider targeted password lists and social-engineering insights rather than blind brute force.
+
+## Reporting & Documentation
+
+When performing authorized password audits, include in your report:
+
+* **Which accounts were cracked** (usernames) — avoid publishing raw passwords in reports; treat them as sensitive.
+* **Hash formats and sources** (e.g., `/etc/shadow`, exported DB column).
+* **Methods used** (wordlist + rules, incremental, time spent).
+* **Risk assessment & remediation**: force password resets, enable MFA, enforce strong password policies, use password hashing best practices (bcrypt/Argon2 with proper salts), deploy rate-limiting and account lockouts.
+
+Example remediation suggestions:
+
+* Enforce minimum length (12+) and complexity or passphrases.
+* Implement MFA for sensitive accounts.
+* Migrate weak hash algorithms to bcrypt/Argon2 with proper parameters.
+* Use password screening against breached lists.
+
+## Hands-On Labs (Safe & Local)
+
+**Lab A — Crack a test `/etc/shadow`**
+
+1. Create two VMs: Kali (attacker) and a Linux victim.
+2. On the victim, set a few test passwords (weak & strong).
+3. Copy `/etc/passwd` and `/etc/shadow` (authorized lab only).
+4. On Kali:
+
+   ```bash
+   unshadow /path/to/passwd /path/to/shadow > myhashes.txt
+   john --wordlist=/usr/share/wordlists/rockyou.txt myhashes.txt
+   john --show myhashes.txt
+   ```
+5. Document which passwords cracked and recommend fixes.
+
+**Lab B — Hash format identification**
+
+1. Create sample hashes manually:
+
+   ```bash
+   echo -n "password" | md5sum
+   echo -n "password" | sha1sum
+   ```
+2. Try cracking and explicitly set format flags to see differences:
+
+   ```bash
+   john --format=raw-md5 md5file
+   john --format=raw-sha1 sha1file
+   ```
+
+## Best Practices & Safety
+
+* **Never** publish cracked plaintexts in public reports. Treat them as sensitive evidence.
+* Use **dedicated lab environments** and isolated networks for all cracking practice.
+* Prefer **wordlist + rules** over blind incremental brute force — faster and often more productive.
+* Maintain **audit logs** and explicit consent documentation for any engagement.
+
+## Quick Command Cheat Sheet
+
+```bash
+# List supported formats
+john --list=formats
+
+# Wordlist + rules
+john --wordlist=/usr/share/wordlists/rockyou.txt --rules hashes.txt
+
+# Single mode (uses username info & GECOS)
+john --single hashes.txt
+
+# Incremental brute force
+john --incremental hashes.txt
+
+# Show cracked passwords
+john --show hashes.txt
+
+# Resume a session
+john --restore=session_name
+
+# Use specific format (e.g., NTLM)
+john --format=NT hashes_ntlm.txt
+
+# Use fork to parallelize (Jumbo)
+john --fork=4 --wordlist=rockyou.txt hashes.txt
+```
+
+## Final Thoughts
+
+John the Ripper is a foundational tool for password auditing. It teaches you where human weaknesses and poor password policies live. Use John to improve security — by finding weak credentials, enforcing better policies, and helping organizations adopt modern hashing algorithms and multi-factor authentication.

@@ -1,0 +1,218 @@
+---
+title: "Burp Suite Overview"
+description: "A practical, hands-on overview of Burp Suite — proxy workflow, core tools (Proxy, Repeater, Intruder, Scanner), extensions, and safe lab exercises for web application testing."
+tags: [burpsuite, web-security, penetration-testing, tools, proxy, appsec]
+---
+
+Burp Suite is the de-facto toolkit for web application security testing. It’s a proxy-based platform that lets you intercept, inspect, and modify HTTP(S) traffic between your browser and a web app, then run scanners, brute-force attacks, and targeted manipulations to find vulnerabilities.  
+
+There are two common editions:
+* **Community (Free)** — great for learning and manual testing (no automated scanner or Collaborator features).  
+* **Professional (Paid)** — adds an automated scanner, Burp Collaborator, advanced Intruder features, and many productivity improvements.
+
+This guide focuses on practical usage: how to set up Burp, the core workflow, useful modules, and safe labs you can run in a controlled environment.
+
+## Installation & Quick Setup
+
+* Download from: https://portswigger.net/burp  
+* Java is included in the installer for recent versions, but verify requirements on the download page.
+* Start Burp:
+  ```bash
+  java -jar burpsuite_pro.jar     # or run the installer/binary for your OS
+  ```
+
+### Configure your browser to use Burp as a proxy
+
+By default Burp listens on `127.0.0.1:8080`.
+
+1. Set your browser’s HTTP & HTTPS proxy to:
+
+   * Host: `127.0.0.1`
+   * Port: `8080`
+2. Install Burp’s CA certificate in the browser to view/decrypt HTTPS traffic:
+
+   * In browser visit: `http://burp` (while Burp is running) → **CA Certificate** → download and import as trusted.
+
+:::tip
+Use a dedicated testing browser profile (or a temporary profile) so you don’t risk trusting the Burp CA on your daily browser.
+:::
+
+## Core Workflow (Proxy → Inspect → Test)
+
+1. **Proxy (Intercept)**
+
+   * Route browser traffic through Burp Proxy.
+   * Intercept requests/responses, modify them on the fly, or forward them to the server.
+   * Useful for understanding request structure, cookies, headers, and parameters.
+
+2. **Target & Site Map**
+
+   * Burp records all discovered endpoints in the **Target → Site map**.
+   * Use this to enumerate the application surface and find interesting pages or hidden endpoints.
+
+3. **Scanner (Pro)**
+
+   * Automatic active and passive scanning of requests to find common vulnerabilities (SQLi, XSS, CSRF issues, etc.).
+   * Use scan findings as pointers — manual verification and context-aware analysis are crucial.
+
+4. **Repeater**
+
+   * Send a single request to Repeater and manually tweak values, headers, or payloads to observe responses.
+   * Ideal for iterative testing of inputs and attack payloads.
+
+5. **Intruder**
+
+   * Automate input fuzzing, brute force, or parameter enumeration by defining positions and payload sets.
+   * Extremely powerful but noisy; use carefully and with permission. (Community edition has limited speed and functionality.)
+
+6. **Sequencer**
+
+   * Analyze randomness of session tokens or anti-CSRF tokens to check for predictability.
+
+7. **Extender / BApp Store**
+
+   * Install extensions (BApps) to add features — common picks: **Autorize**, **ActiveScan++**, **Logger++**, **Retire.js**.
+   * You can write custom extensions in Java, Python (Jython), or JavaScript.
+
+## Key Tools & When to Use Them
+
+### Proxy (Intercept)
+
+* Use to examine raw HTTP(S) requests and responses.
+* Great for learning how inputs map to server behavior.
+* Example: Intercept a login request and change `username=alice` → `username=admin` to test authorization checks (only in-scope/authorized tests).
+
+### Repeater
+
+* Manual, iterative testing of a single request.
+* Example: Re-send POST requests with modified JSON payloads to test input validation.
+
+### Intruder
+
+* Automate injection of payload lists (wordlists, fuzzing sets).
+* Use cases: brute-forcing form fields, testing enumeration, header fuzzing.
+* Example payload positions:
+
+  ```
+  POST /login HTTP/1.1
+  username=§USER§&password=§PASS§
+  ```
+
+### Scanner (Pro)
+
+* Automated vulnerability discovery. Good starting point but always validate findings manually.
+* Configure scan policies — tune for speed vs subtlety on staging environments.
+
+### Sequencer
+
+* Paste a set of tokens and check entropy/statistics to assess randomness and predictability.
+
+### Comparer & Decoder
+
+* **Comparer:** diff two responses to spot subtle changes.
+* **Decoder:** quickly encode/decode URL, Base64, HTML entities, etc.
+
+## Practical Examples & Short Recipes
+
+### Intercept & Modify a Request
+
+1. Set browser proxy to Burp and enable **Intercept**.
+2. Trigger a web action (e.g., submit form).
+3. In Burp, edit the request (change form fields, headers) and forward.
+4. Observe the server response in the Response tab.
+
+### Manual SQL Injection Testing with Repeater
+
+1. Find a form or parameter that accepts input.
+2. Send request to **Repeater**.
+3. Try payloads like:
+
+   ```
+   ' OR '1'='1
+   ' UNION SELECT NULL, version() --
+   ```
+4. Observe response differences and error messages for injection signs.
+
+### Brute Force a Parameter with Intruder (lab only)
+
+1. Send a login POST to Intruder → Positions.
+2. Clear auto positions; mark username field position.
+3. Select **Payloads** → load a username list (e.g., common users).
+4. Start attack (monitor response lengths, status codes).
+5. Validate any "hits" manually.
+
+## Burp Extensions & Automation
+
+The Burp **BApp Store** extends functionality. Popular extensions:
+
+* **Logger++** — advanced request/response logging.
+* **Autorize** — automated access control testing.
+* **ActiveScan++** — enhanced scanning checks.
+* **Retire.js** — JS library vulnerability detection.
+
+You can also use **Burp’s REST API** (in Pro) to automate tasks and integrate with CI/CD for scanning staging apps.
+
+## Safe Testing Practices & Ethics
+
+* **Only test in-scope targets** — never unauthorized systems.
+* **Use staging or local labs** for intrusive tests.
+* **Limit impact**: avoid destructive payloads unless explicitly authorized.
+* **Record evidence**: save requests, responses, timestamps for reporting and remediation.
+* **Coordinate with ops/dev teams**: schedule tests to avoid business disruption.
+
+## Hands-On Labs
+
+### Lab 1 — Intercept & Inspect
+
+* Environment: a local vulnerable app (DVWA, WebGoat, or Juice Shop).
+* Goal: Intercept a login request, modify parameters, and observe server behavior.
+* Steps:
+
+  1. Configure browser proxy and install Burp CA.
+  2. Log into the app with a test account while intercept is on.
+  3. Modify a parameter and forward; document server response.
+
+### Lab 2 — Repeater XSS Testing
+
+* Environment: DVWA (stored XSS lab).
+* Goal: Manually craft payloads in Repeater to test reflected & stored XSS vectors.
+* Steps:
+
+  1. Identify input and send to Repeater.
+  2. Test payloads like `<script>alert(1)</script>` and encoded variants.
+  3. Observe output and use **Decoder** to craft safe encodings.
+
+### Lab 3 — Intruder Fuzzing (Controlled)
+
+* Environment: Local staging app with a non-critical admin login.
+* Goal: Use Intruder to fuzz headers or parameters to find input validation issues.
+* Steps:
+
+  1. Send request to Intruder, pick parameter positions.
+  2. Load a relevant payload list (e.g., common XSS payloads).
+  3. Run attack at slow speed and inspect anomalies.
+
+## Reporting & Evidence
+
+Good findings include:
+
+* Full intercepted request/response pairs (saved as Burp items or exported).
+* Exact steps to reproduce and the tool/module used (e.g., Repeater, Intruder, Scanner).
+* Impact assessment (data exposed, authentication bypassed, business impact).
+* Remediation guidance (code/config fixes, input validation, header hardening).
+
+Attach screenshots where helpful and include raw Burp items for developers to reproduce.
+
+:::tip Tips & Tricks
+
+* Use a **dedicated browser profile** for testing and never browse everyday websites through Burp.
+* Save useful requests to the **Project** for later automation and scans.
+* Learn to use **match/replace rules** to streamline testing (e.g., auto-set headers).
+* Combine Burp with other tools (e.g., Nmap, Nikto, OWASP ZAP) for a full coverage approach.
+* Keep Burp updated; the BApp ecosystem evolves fast.
+
+:::
+
+:::warning Reminder
+Burp is a powerful offensive tool, learn responsibly. Only test systems you own or have explicit written permission to test.
+:::
