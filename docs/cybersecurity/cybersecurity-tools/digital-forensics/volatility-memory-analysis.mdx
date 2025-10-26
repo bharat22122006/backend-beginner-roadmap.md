@@ -1,3 +1,274 @@
-import ComingSoon from '@site/src/components/ComingSoon';
+---
+title: "Volatility — Memory Forensics and Analysis"
+description: "Learn how to use Volatility for deep memory forensics — extract running processes, detect malware, uncover persistence, and analyze live system behavior from RAM dumps."
+tags: [volatility, memory-forensics, digital-forensics, dfir, malware-analysis, incident-response]
+---
 
-<ComingSoon />
+**Volatility** is a powerful, open-source **memory forensics framework** used to analyze volatile data captured from a system’s RAM. It allows investigators to dig into what was happening *in memory* at the time of acquisition — processes, network connections, registry hives, loaded DLLs, and even hidden malware.
+
+Unlike disk forensics, memory forensics gives **a snapshot of the live system state**, including activities that never touch the disk — making Volatility essential for malware detection, incident response, and threat hunting.
+
+## What Is Memory Forensics?
+
+Memory forensics focuses on analyzing the **contents of RAM** captured during or shortly after an incident. This volatile data reveals:
+* Running processes and their hierarchy  
+* Command-line history and open files  
+* Network connections (open ports, remote IPs)  
+* Injected code, in-memory malware, or rootkits  
+* User activity, clipboard data, cached credentials  
+* Decrypted content from encrypted sessions (sometimes)
+
+Memory evidence is often the *missing link* in understanding advanced attacks — ransomware, APTs, and live malware infections.
+
+## What Is Volatility?
+
+Volatility is a Python-based framework created to **analyze memory dumps** from Windows, Linux, and macOS systems. It extracts forensic artifacts using plugins (modular commands) and supports multiple image formats like `.raw`, `.vmem`, `.mem`, `.dmp`, or `.lime`.
+
+:::note
+The Volatility project has two main versions:
+* **Volatility 2** (stable, Python 2/3 compatible)
+* **Volatility 3** (next-generation rewrite, Python 3 only, improved plugin structure and speed)
+:::
+
+## Installing Volatility
+
+### Windows / macOS / Linux (Python environment)
+
+#### Volatility 3 (recommended)
+
+```bash
+# Clone the Volatility3 repository
+git clone https://github.com/volatilityfoundation/volatility3.git
+cd volatility3
+
+# Install dependencies
+python3 -m venv venv
+source venv/bin/activate  # or .\venv\Scripts\activate on Windows
+pip install -r requirements.txt
+```
+
+Run Volatility:
+
+```bash
+python3 vol.py -h
+```
+
+#### Volatility 2 (legacy)
+
+```bash
+git clone https://github.com/volatilityfoundation/volatility.git
+cd volatility
+python vol.py -h
+```
+
+## Acquiring Memory Dumps
+
+Volatility works on memory images captured with tools like:
+
+| OS          | Memory Capture Tools        |
+| ----------- | --------------------------- |
+| **Windows** | FTK Imager, DumpIt, WinPMem |
+| **Linux**   | LiME, AVML, fmem            |
+| **macOS**   | osxpmem                     |
+
+Example:
+
+```bash
+winpmem.exe -o memory_dump.raw
+```
+
+Once captured, verify the hash (MD5/SHA256) for integrity before analysis.
+
+## Basic Workflow: Analyzing Memory with Volatility
+
+1. **Identify the image information**
+
+   ```bash
+   python3 vol.py -f memory_dump.raw windows.info
+   ```
+
+   → Determines OS version, architecture, and build number.
+
+2. **List running processes**
+
+   ```bash
+   python3 vol.py -f memory_dump.raw windows.pslist
+   ```
+
+   → Displays process IDs, parent processes, and creation times.
+
+3. **Detect hidden/malicious processes**
+
+   ```bash
+   python3 vol.py -f memory_dump.raw windows.psscan
+   ```
+
+   → Scans for processes not linked in standard structures (often malware).
+
+4. **View network connections**
+
+   ```bash
+   python3 vol.py -f memory_dump.raw windows.netstat
+   ```
+
+   → Shows active TCP/UDP connections, local/remote IPs, and ports.
+
+5. **Analyze DLLs loaded by processes**
+
+   ```bash
+   python3 vol.py -f memory_dump.raw windows.dlllist --pid 1234
+   ```
+
+6. **Dump suspicious processes for malware analysis**
+
+   ```bash
+   python3 vol.py -f memory_dump.raw windows.memmap --pid 1234
+   python3 vol.py -f memory_dump.raw windows.dumpfiles --pid 1234
+   ```
+
+7. **Check for registry keys in memory**
+
+   ```bash
+   python3 vol.py -f memory_dump.raw windows.registry.printkey --key "Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+   ```
+
+8. **Command history (useful for attack reconstruction)**
+
+   ```bash
+   python3 vol.py -f memory_dump.raw windows.cmdline
+   ```
+
+## Advanced Plugins & Use Cases
+
+### Malware Detection
+
+* `malfind` — Identify injected code in process memory.
+* `modules` — List kernel modules to find unauthorized drivers.
+* `ldrmodules` — Detect unlinked DLLs (common stealth technique).
+* `svcscan` — List running services.
+
+### User Activity
+
+* `consoles` — View console commands entered by users.
+* `clipboard` — Retrieve clipboard content.
+* `shellbags` — Track folder browsing activity.
+* `iehistory` — Analyze Internet Explorer browsing data.
+
+### Network & Persistence
+
+* `netscan` — Discover network connections (Volatility 3).
+* `autoruns` — Detect persistence mechanisms (startup entries, services).
+* `handles` — Examine open files, mutexes, and registry handles.
+
+## Example Investigation Scenario
+
+**Scenario:** A suspicious binary is executed on a user machine. The system is imaged and a memory dump is captured.
+
+### Step-by-step:
+
+1. Identify system info:
+
+   ```bash
+   python3 vol.py -f infected.raw windows.info
+   ```
+2. List all processes:
+
+   ```bash
+   python3 vol.py -f infected.raw windows.pslist
+   ```
+
+   You find `suspicious.exe` running under `explorer.exe` (PID 3260).
+3. Check for injected code:
+
+   ```bash
+   python3 vol.py -f infected.raw windows.malfind --pid 3260
+   ```
+
+   → Volatility reports injected memory sections.
+4. Dump the process memory:
+
+   ```bash
+   python3 vol.py -f infected.raw windows.dumpfiles --pid 3260
+   ```
+
+   → Extract to analyze with antivirus or YARA.
+5. Review network connections:
+
+   ```bash
+   python3 vol.py -f infected.raw windows.netstat
+   ```
+
+   → Detects a connection to a suspicious external IP: `185.142.213.50:443`.
+6. Generate a quick timeline:
+
+   ```bash
+   python3 vol.py -f infected.raw timeliner
+   ```
+
+   → Cross-reference activity times with other forensic data.
+
+## Volatility 3 Highlights
+
+Volatility 3 brings:
+
+* Python 3 support and modular architecture
+* Cleaner plugin design and better cross-platform coverage
+* Faster scanning and reduced memory footprint
+* Easier creation of custom plugins
+
+:::note
+Example Volatility 3 command:
+
+```bash
+python3 vol.py -f mem.raw windows.pslist
+```
+:::
+
+## Hands-On Lab Ideas
+
+### Lab 1: Process Enumeration
+
+* Capture memory from a Windows VM with several open programs.
+* Use Volatility to list processes, identify parents/children, and spot anomalies.
+
+### Lab 2: Hidden Malware Discovery
+
+* Run a sample malware in a sandbox VM (e.g., Meterpreter payload).
+* Dump memory and use `malfind` and `psscan` to detect hidden processes.
+
+### Lab 3: Command History & Network Tracing
+
+* Execute commands in PowerShell and open web connections.
+* Analyze with `cmdline`, `netscan`, and `consoles` plugins.
+
+## Combining Volatility with Other Tools
+
+| Purpose            | Tool                 |
+| ------------------ | -------------------- |
+| Disk Analysis      | Autopsy / Sleuth Kit |
+| Malware Sandboxing | Cuckoo Sandbox       |
+| YARA Rule Scanning | YARA                 |
+| Memory Imaging     | WinPMem / LiME       |
+| Log Correlation    | ELK / Timesketch     |
+
+Volatility data integrates well with **Autopsy** (via case linking), enabling a full DFIR workflow: disk + memory + network.
+
+## Legal & Operational Best Practices
+
+* Capture memory **immediately** after isolating the system — delays can lose critical data.
+* Always **hash memory dumps** before and after transfer to preserve integrity.
+* Use **write-blockers** and **read-only mounts** when analyzing extracted files.
+* Document every action (commands, timestamps, tool versions) for chain of custody.
+
+## Summary
+
+| Concept     | Key Point                                                    |
+| ----------- | ------------------------------------------------------------ |
+| Tool        | Volatility (memory forensics framework)                      |
+| Input       | RAM image (.raw, .vmem, .dmp, .lime)                         |
+| Output      | Processes, network, code injections, registry, user activity |
+| Use Case    | Malware investigation, IR, APT detection                     |
+| Strength    | Visibility into volatile, in-memory evidence                 |
+| Skill Level | Intermediate to advanced (with practice)                     |
+
+Volatility gives unparalleled visibility into what was *actually happening* at runtime — information that disk forensics alone can’t provide. Mastering Volatility means you can reconstruct live attacks, identify stealthy implants, and make evidence-based decisions in your IR workflows.

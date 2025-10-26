@@ -1,3 +1,181 @@
-import ComingSoon from '@site/src/components/ComingSoon';
+---
+title: "Autopsy — Introduction to Digital Forensics"
+description: "Learn the fundamentals of Autopsy — an easy-to-use digital forensics platform for analyzing disk images, recovering files, timeline analysis, and creating forensic reports."
+tags: [autopsy, digital-forensics, dfir, tools, incident-response, forensics]
+---
 
-<ComingSoon />
+**Autopsy** is a user-friendly, open-source digital forensics platform that helps examiners investigate disk images, recover deleted files, analyze timelines, and build reproducible forensic reports. It wraps powerful command-line tools (Sleuth Kit, log parsers, file carvers) in an intuitive web-based UI so beginners and experienced analysts can work efficiently.
+
+This page gives a practical introduction: what Autopsy does, why it’s useful, how to install and start an investigation, core workflows, hands-on lab ideas, and reporting tips — all written in a clear, instructor-style voice.
+
+## What Is Autopsy and When to Use It
+
+Autopsy is a forensic graphical interface for analyzing:
+* Disk images (E01, raw/dd, AFF)  
+* Logical file dumps and exported directories  
+* Memory captures (in some flows)  
+* File system artifacts (Windows Registry, event logs, browser history, $MFT)
+
+Use Autopsy when you need to:
+* Investigate a compromised machine in an incident response (IR) case  
+* Recover deleted or hidden files from evidence media  
+* Build a timeline of user/system activity for root cause analysis  
+* Produce an evidence-backed report for remediation or legal processes
+
+## Why Autopsy Is Helpful
+
+* **Accessible UI** that lowers the entry barrier for new analysts  
+* **Modular architecture**: ingest modules for web history, email, timelines, hash sets, and more  
+* **Extensible** via plugins (ingest modules and modules for parsing new artifacts)  
+* **Reporting**: export case details, alerts, and evidence in formats useful to managers or legal teams  
+* **Reproducible investigations**: stores metadata and findings so you can re-open and re-run analysis
+
+Autopsy speeds up DFIR work by automating repetitive parsing and by making complex artifacts searchable.
+
+## Installing Autopsy (Quick)
+
+Autopsy runs on Windows, Linux, and macOS (via packages or installers). Basic steps:
+
+### Windows
+1. Download the installer from the Autopsy website.  
+2. Run the installer — it bundles Java and the Sleuth Kit often.  
+3. Launch **Autopsy** from Start Menu.
+
+### Linux (Ubuntu / Debian example)
+
+```bash
+# Install Java and dependencies first (if required)
+sudo apt update
+sudo apt install default-jre sleuthkit -y
+
+# Download autopsy tarball or use a package repo if available
+# Example (community builds vary): extract and run the autopsy script
+./autopsy/bin/autopsy
+```
+
+### macOS
+
+* Use available binaries or build from source depending on the release. Check installation notes for Java versions.
+
+:::tip
+Use the latest stable Autopsy release and ensure Sleuth Kit tools (fls, mmls, icat, etc.) are present in PATH for full functionality.
+:::
+
+## Core Forensic Workflow in Autopsy
+
+1. **Create a Case**
+
+   * New case → case name, examiner, base directory. Autopsy stores analysis artifacts under the case folder.
+
+2. **Add Data Source**
+
+   * Supported sources: disk image (E01/RAW), logical files, directories, or device images.
+   * Choose ingest modules to run (file type identification, hash lookup, timeline, email parsing, web history, etc.).
+
+3. **Run Ingest**
+
+   * Ingest parses the data source, extracts artifacts (files, registry keys, timelines), and categorizes findings (e.g., notable files, keywords hits).
+
+4. **Review Results**
+
+   * Use the left navigation: **Data Sources → File Types → Recent Activity → Web History → Email → Registry**.
+   * Search and filter by keywords, hash matches, or specific artifact types.
+
+5. **Timeline & Analysis**
+
+   * Use Autopsy’s timeline features to order events (file creation, modification, access, MFT entries) to reconstruct user/system activity.
+
+6. **File Recovery & Carving**
+
+   * Recover deleted files using file carving and by viewing unallocated space. Export extracted files for deeper analysis.
+
+7. **Generate Report**
+
+   * Export findings, notable items, and timelines in HTML, PDF, or other formats for stakeholders or legal use.
+
+## Key Modules & Features to Know
+
+* **File Type Identification & Hashing** — fingerprints files and compares to known-good or blacklists (NSRL, custom hash sets).
+* **Keyword Search** — search entire evidence for terms (usernames, exfil keywords, IP addresses).
+* **Email & Browser History Parsers** — extract email files, attachments, browsing history, and cookies.
+* **Timeline / Recent Activity** — visualize events to spot suspicious behavior.
+* **Registry Examiner** — parse Windows registry hives to find installed programs, startup keys, and user activity.
+* **File Carver** — extract files from unallocated space based on headers/signatures.
+* **SQLite Viewer** — inspect app databases (Chrome, Firefox, Slack, others).
+* **Exif & Metadata** — view file metadata (image EXIF, document metadata).
+
+## Example: Quick Investigation Walkthrough
+
+**Scenario:** A user reports suspicious outbound connections and deleted documents.
+
+1. Create a new case: `CaseName = "IR_2025-10-26_EndpointA"`.
+2. Add the disk image `endpointA.E01`.
+3. Select ingest modules: File Type ID, Hash Lookup (NSRL), Recent Activity, Web History, and Keyword Search (keywords: `invoice`, `exfil`, `rclone`, `ftp`).
+4. Run ingest and wait for parsing to complete.
+5. Open **Results** → **Recent Activity**. Sort by time and look for suspicious processes or new accounts.
+6. Inspect **Deleted Files** and **Unallocated Space** for documents: recover and export any `*.docx` or `*.pdf` matching `invoice`.
+7. Check **Network Artifacts** (browser history, saved sessions) for external IPs or suspicious domains.
+8. Use **Timeline** to correlate file deletion time with outbound connection timestamps.
+9. Export relevant files and generate a concise report (findings, evidence exported, recommended containment steps).
+
+## Hands-On Labs (Safe Practice)
+
+### Lab A — Recover Deleted Documents
+
+* Prepare: Create a VM and a disk image. Create a few documents, delete them, then shutdown and image the disk.
+* Steps:
+
+  1. Load image into Autopsy.
+  2. Use **File Types** / **Deleted Files** to locate deleted documents.
+  3. Recover and export files; verify contents.
+
+### Lab B — Timeline Correlation
+
+* Prepare: On a Windows test VM, create files, open webpages, run known benign tools, then create an image.
+* Steps:
+
+  1. Parse the image with Recent Activity and Timeline ingest modules.
+  2. Use the timeline view to correlate file timestamps with browser visits and process execution.
+  3. Document the sequence of events.
+
+### Lab C — Hashset Matching
+
+* Prepare: Collect a set of known-good hashes (e.g., system files) and a custom hashset of suspicious files.
+* Steps:
+
+  1. Configure Autopsy to use the hash sets (NSRL + custom).
+  2. Run hash lookup and surface notable matches (known-bad or known-good).
+  3. Review false positives and contextualize matches.
+
+## Legal & Chain-of-Custody Considerations
+
+* Always **document** evidence acquisition: who imaged the device, tool versions, dates/timestamps, and commands used.
+* Maintain **read-only** access to evidence (mount images read-only) to avoid contaminating the data.
+* Keep **hash values** (MD5/SHA1/SHA256) of original images and exported files to prove integrity.
+* Use Autopsy’s logging and case metadata to support chain-of-custody documentation if evidence is needed in legal proceedings.
+
+:::tip Best Practices & Practical Tips
+* Work on **copies** of evidence images; never analyze on the original media.
+* Keep Autopsy and Sleuth Kit **up to date** to benefit from new parsers and bug fixes.
+* Build **ingest profiles** that fit your common case types (IR, eDiscovery, malware triage).
+* Combine Autopsy with specialized tools (Volatility for memory, VirusTotal for quick file checks, and YARA for custom signatures).
+* Use **keyword lists** tailored to your environment (company names, app identifiers, known exfil tools).
+:::
+
+## Reporting from Autopsy
+
+When reporting, include:
+
+* Case metadata (examiner, date, evidence ID).
+* Summary of findings (executive summary).
+* Technical detail: artifacts, timestamps, recovered files, hashes, and exported evidence paths.
+* Impact and suggested remediation (containment, credential resets, patching).
+* Appendices: exported files, screenshots of key artifacts, and command logs.
+
+Autopsy can export many items directly; include those exports as annexes for investigators or legal teams.
+
+## Final Thoughts
+
+Autopsy is an approachable and powerful platform for digital forensics and incident response. It enables analysts to move from raw images to actionable intelligence quickly while keeping investigations reproducible and well-documented.
+
+Start with small, controlled labs to learn modules and workflows. Over time, integrate Autopsy into your IR playbooks and pair it with memory forensics and network data sources to build full-spectrum investigations.
