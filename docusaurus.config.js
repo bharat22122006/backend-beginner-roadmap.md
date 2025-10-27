@@ -126,32 +126,51 @@ const config = {
           href: "https://codeharborhub.github.io/",
           target: "_self",
         },
-        items: [
+        items: [     
           {
-            type: "dropdown",
+            to: "/tutorial/",
             html: '<span class="nav-emoji">📚</span> Tutorials',
-            position: "left",
-            items: [
-              {
-                type: "html",
-                value: `<div class="dropdown_grid">
-                <span></span>
-                <div class="dropdown-content">
-                  <a href="/tutorial/category/html/" class="nav__icons"> <img src="/tutorial/icons/html-5.svg" title="HTML5" alt="HTML" /> </a>
-                  <a href="/tutorial/css/introduction/what-is-css/" class="nav__icons"> <img src="/tutorial/icons/css.svg" title="CSS" alt="CSS" /> </a>
-                  <a href="/tutorial/javascript/introduction-to-javascript/what-is-js" class="nav__icons"> <img src="/tutorial/icons/js.svg" title="JavaScript" alt="JavaScript" /> </a>
-                  <a href="/tutorial/git/introduction" class="nav__icons"> <img src="/tutorial/icons/git.svg" title="Git" alt="Git" /> </a>
-                  <a href="/tutorial/github/introduction-to-github" class="nav__icons"> <img src="/tutorial/icons/github.svg" title="GitHub" alt="GitHub" /> </a>
-                  <a href="/tutorial/category/react/" class="nav__icons"> <img src="/tutorial/icons/jsx.svg" title="React.Js" alt="React" /> </a>
-                  <a href="/tutorial/cybersecurity" class="nav__icons"> <img src="/tutorial/icons/cyber-security.png" title="Cyber Security" alt="Cyber Security" /> </a>
-                </div>
-              </div>`,
-              },
-            ],
+            position: "left"
           },
           {
+            to: "/tutorial/category/html/",
+            html: '<span class="nav-emoji">🧱</span> HTML',
+            position: "left"
+          },
+          {
+            to: "/tutorial/css/introduction/what-is-css/",
+            html: '<span class="nav-emoji">🎨</span> CSS',
+            position: "left"
+          },
+          {
+            to: "/tutorial/javascript/introduction-to-javascript/what-is-js",
+            html: '<span class="nav-emoji">⚡</span> JavaScript',
+            position: "left"
+          },
+          {
+            to: "/tutorial/git/introduction",
+            html: '<span class="nav-emoji">🌳</span> Git',
+            position: "left"
+          },
+          {
+            to: "/tutorial/github/introduction-to-github",
+            html: '<span class="nav-emoji">🐙</span> JavaScript',
+            position: "left"
+          },
+          {
+            to: "/tutorial/react/react-intro",
+            html: '<span class="nav-emoji">⚛️</span> React',
+            position: "left"
+          },
+          {
+            to: "/tutorial/cybersecurity",
+            html: '<span class="nav-emoji">🛡️</span> Cyber Security',
+            position: "left"
+          },
+
+          {
             to: "https://codeharborhub.github.io/blog",
-            label: "Blog",
+            html: '<span class="nav-emoji">📝</span> Blog',
             position: "right"
           },
           {
@@ -302,7 +321,7 @@ const config = {
         // theme: prismThemes.vsDark,
         darkTheme: prismThemes.dracula,
         // darkTheme: prismThemes.github,
-        additionalLanguages: ["powershell"],
+        additionalLanguages: ["powershell", "php", "bash"],
       },
       docs: {
         sidebar: {
