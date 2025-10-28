@@ -154,7 +154,7 @@ const config = {
           },
           {
             to: "/tutorial/github/introduction-to-github",
-            html: '<span class="nav-emoji">🐙</span> JavaScript',
+            html: '<span class="nav-emoji">🐙</span> GitHub',
             position: "left"
           },
           {
@@ -321,7 +321,7 @@ const config = {
         // theme: prismThemes.vsDark,
         darkTheme: prismThemes.dracula,
         // darkTheme: prismThemes.github,
-        additionalLanguages: ["powershell", "php", "bash"],
+        additionalLanguages: ["powershell", "php", "bash", "http"],
       },
       docs: {
         sidebar: {

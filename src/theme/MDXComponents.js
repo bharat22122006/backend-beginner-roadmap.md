@@ -12,6 +12,7 @@ import { FaReact } from "react-icons/fa";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import DocsCard from '@site/src/components/DocsCard';
 import DocsCards from '@site/src/components/DocsCards';
+import ComingSoon from '@site/src/components/ComingSoon';
 
 export default {
   // Re-use the default mapping
@@ -27,4 +28,5 @@ export default {
   AdsComponent,
   DocsCard,
   DocsCards,
+  ComingSoon,
 };
