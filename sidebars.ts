@@ -458,6 +458,13 @@ const sidebars: SidebarsConfig = {
       label: "Cybersecurity",
       href: "/cybersecurity/",
     },
+
+    // Internet
+     {
+      type: "link",
+      label: "Internet",
+      href: "/internet/introduction/",
+    },
   ],
 
   css: [
@@ -909,12 +916,75 @@ const sidebars: SidebarsConfig = {
         description: `A practical, hands-on collection of learning resources for everyone building real-world cybersecurity skills. This index groups tutorials, tool guides, labs, and checklists organized from fundamentals (networking, cryptography, web security) to offensive and defensive workflows (pentesting, DFIR, incident response). Each entry includes clear objectives, step‑by‑step exercises, and ethics-first guidance so you can practice safely in labs and apply what you learn to production-ready security work. Use the "Getting Started" path to move from beginner-friendly topics to specialized tool tutorials and certification-ready material.`,
       },
       items: [
-        'cybersecurity/resources/glossary',
-        'cybersecurity/resources/books-and-courses',
-        'cybersecurity/resources/tools-list',
-        'cybersecurity/resources/links',
+        "cybersecurity/resources/glossary",
+        "cybersecurity/resources/books-and-courses",
+        "cybersecurity/resources/tools-list",
+        "cybersecurity/resources/links",
       ],
     },
+  ],
+
+  internet: [
+    "internet/introduction",
+    {
+      type: "category",
+      label: "Basics",
+      link: {
+        type: "generated-index",
+        title: "Internet Basics",
+        description:
+          "Learn how the Internet works — from clients, servers, and IP addresses to DNS and HTTP protocols.",
+        keywords: ["internet", "basics", "http", "dns", "ip"],
+      },
+      items: [
+        "internet/how-internet-works",
+        "internet/clients-and-servers",
+        "internet/ip-addresses",
+        "internet/dns",
+        "internet/http-vs-https",
+      ],
+    },
+    {
+      type: "category",
+      label: "Advanced Concepts",
+      link: {
+        type: "generated-index",
+        title: "Advanced Internet Concepts",
+        description:
+          "Explore deeper topics like TCP/IP model, routing, CDN, firewalls, and cybersecurity basics.",
+        keywords: ["internet", "tcp/ip", "routing", "cdn", "firewall"],
+      },
+      items: [
+        "internet/tcp-ip-model",
+        "internet/routing-and-packets",
+        "internet/cdn",
+        "internet/firewalls",
+        "internet/security-basics",
+      ],
+    },
+    {
+      type: "category",
+      label: "Tools & Utilities",
+      link: {
+        type: "generated-index",
+        title: "Internet Tools & Utilities",
+        description:
+          "Get familiar with practical tools like ping, traceroute, nslookup, and browser developer tools.",
+        keywords: [
+          "internet tools",
+          "ping",
+          "traceroute",
+          "nslookup",
+          "devtools",
+        ],
+      },
+      items: [
+        "internet/ping-and-traceroute",
+        "internet/nslookup",
+        "internet/browser-devtools",
+      ],
+    },
+    "internet/quiz",
   ],
 };
 
