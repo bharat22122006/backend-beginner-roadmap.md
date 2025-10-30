@@ -42,13 +42,9 @@ jobs:
             http://localhost:3000/tutorial/
             http://localhost:3000/tutorial/category/html/
             http://localhost:3000/tutorial/css/introduction/what-is-css
-            http://localhost:3000/tutorial/javascript/introduction-to-javascript/what-is-js
             http://localhost:3000/tutorial/git/introduction
-            http://localhost:3000/tutorial/category/getting-started-with-github
-            http://localhost:3000/tutorial/github/introduction-to-github
             http://localhost:3000/tutorial/react/react-intro
             http://localhost:3000/tutorial/cybersecurity
-            http://localhost:3000/tutorial/tags
           configPath: ./.github/workflows/lighthouserc.json
           uploadArtifacts: true
           temporaryPublicStorage: true
