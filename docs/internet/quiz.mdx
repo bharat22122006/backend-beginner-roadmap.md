@@ -1,1 +1,128 @@
-<ComingSoon />
+---
+title: Internet Quiz
+description: Test your knowledge of how the Internet works with this interactive quiz.
+keywords: ["internet", "quiz", "networking", "web", "dns", "http", "tcp-ip"]
+---
+
+import { Quiz } from "@site/src/components/Quiz";
+
+**Think you understand how the Internet works?**
+
+Take this quiz to test your skills on DNS, IP, HTTP, TCP/IP, and more!
+
+<Quiz
+  questions={[
+    {
+      question: "What is the primary purpose of DNS?",
+      options: [
+        "To secure internet connections",
+        "To translate domain names into IP addresses",
+        "To route packets across networks",
+        "To store website data"
+      ],
+      answer: 1,
+      explanation:
+        "DNS (Domain Name System) translates domain names like example.com into IP addresses so browsers can locate servers."
+    },
+    {
+      question: "Which protocol is more secure: HTTP or HTTPS?",
+      options: ["HTTP", "HTTPS", "Both are equally secure", "None"],
+      answer: 1,
+      explanation:
+        "HTTPS adds an encryption layer (SSL/TLS) over HTTP, securing data transmission between the client and server."
+    },
+    {
+      question: "What is the function of a router in a network?",
+      options: [
+        "It stores website data",
+        "It translates IP addresses",
+        "It directs data packets to their destination",
+        "It filters malware"
+      ],
+      answer: 2,
+      explanation:
+        "A router directs data packets between networks to ensure they reach their correct destinations."
+    },
+    {
+      question: "Which layer of the TCP/IP model handles IP addressing?",
+      options: [
+        "Application Layer",
+        "Network Layer",
+        "Transport Layer",
+        "Physical Layer"
+      ],
+      answer: 1,
+      explanation:
+        "The Network Layer (Internet Layer in TCP/IP) is responsible for logical addressing (IP) and routing."
+    },
+    {
+      question: "What tool is commonly used to check if a server is reachable?",
+      options: ["Traceroute", "Ping", "Nslookup", "SSH"],
+      answer: 1,
+      explanation:
+        "Ping sends ICMP echo requests to test if a host is reachable and measures round-trip time."
+    },
+    {
+      question: "What is the purpose of a CDN (Content Delivery Network)?",
+      options: [
+        "To deliver content faster by caching data closer to users",
+        "To block malicious traffic",
+        "To manage domain names",
+        "To encrypt all network traffic"
+      ],
+      answer: 0,
+      explanation:
+        "CDNs cache content on multiple servers around the world to reduce latency and speed up delivery."
+    },
+    {
+      question: "Which command helps in tracking the path data takes to reach a destination?",
+      options: ["Ping", "Traceroute", "Nslookup", "Whois"],
+      answer: 1,
+      explanation:
+        "Traceroute (or tracert) shows the sequence of routers data passes through on its way to the destination."
+    },
+    {
+      question: "What is the main role of firewalls in a network?",
+      options: [
+        "To accelerate network speed",
+        "To protect against unauthorized access",
+        "To translate domain names",
+        "To manage IP addresses"
+      ],
+      answer: 1,
+      explanation:
+        "Firewalls act as barriers that monitor and control incoming/outgoing network traffic based on security rules."
+    },
+    {
+      question: "What does nslookup command do?",
+      options: [
+        "Checks network latency",
+        "Finds DNS information about a domain",
+        "Tracks packet routes",
+        "Scans ports on a server"
+      ],
+      answer: 1,
+      explanation:
+        "Nslookup queries DNS servers to retrieve domain and IP address information."
+    },
+    {
+      question: "Which of the following best describes 'Client-Server Architecture'?",
+      options: [
+        "Clients store and serve web content",
+        "Servers request data from clients",
+        "Clients request data and servers provide it",
+        "Both client and server perform identical tasks"
+      ],
+      answer: 2,
+      explanation:
+        "In client-server architecture, clients send requests for data or services, and servers respond by providing them."
+    }
+  ]}
+/>
+
+---
+
+
+:::tip 
+You can revisit topics like **DNS, HTTP, TCP/IP, Firewalls, and CDNs** before retrying the quiz to improve your score.
+:::
