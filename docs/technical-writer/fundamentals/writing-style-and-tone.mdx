@@ -1,0 +1,101 @@
+---
+title: Writing Style and Tone
+sidebar_label: "2. Writing Style and Tone"
+description: "Master the core principles of clear and concise technical writing, including active voice, positive language, and maintaining a consistent, professional tone."
+image: /tutorial/img/tutorials/technical-writer/style-and-tone-cover.png 
+---
+
+import SkillCard from '@site/src/components/SkillCard';
+import thumbnail from '/img/tutorials/technical-writer/style-and-tone-cover.png';
+
+<Image img={thumbnail} />
+
+<br />
+
+Technical writing isn't about beautiful prose; it's about **efficiency and clarity**. The goal is to transmit information to the reader with the least amount of effort required to understand it.
+
+Your style should be concise, direct, and unambiguous. Your tone should be helpful, authoritative, and consistent.
+
+---
+
+## The Three Pillars of Technical Style
+
+Every word you write must serve a purpose. Here are the three commandments of technical writing style:
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+    <SkillCard
+        title="1. Be Concise"
+        description="Eliminate unnecessary words and phrases. Say 'Run the app' instead of 'It is advisable to proceed with the running of the application.' Cut the filler!"
+        icon="code"
+    />
+    <SkillCard
+        title="2. Be Clear"
+        description="Use simple, concrete language. Avoid corporate jargon, pretentious vocabulary, and unnecessarily complex sentence structures. Write for the least technical reader in your audience."
+        icon="shuffle"
+    />
+    <SkillCard
+        title="3. Be Accurate"
+        description="Always verify your facts, steps, and code examples. A technical document that doesn't work is worse than no document at all. This builds trust with your technical audience."
+        icon="terminal"
+    />
+</div>
+
+### Style Rule Focus: Active Voice
+
+If you remember only one rule from this page, make it this one. **Use the Active Voice.**
+
+Active voice is clear, direct, and tells the reader *who* is performing the action. Passive voice is vague and often requires more words.
+
+| Passive Voice (Weak) | Active Voice (Strong) |
+| :--- | :--- |
+| The file **was saved** by the system. | The system **saved** the file. |
+| The update **can be performed** by running the script. | **Run** the script to **perform** the update. |
+| The error **will be reported** to the user. | The tool **reports** the error to the user. |
+
+<br />
+
+:::tip
+In instructional writing (how-to guides), the subject of the sentence is usually the reader. Use the imperative mood: "**Install** the package," not "The package should be installed."
+:::
+
+---
+
+## Establishing Your Tone
+
+Tone refers to the attitude conveyed in your writing. While style is about grammar and structure, tone is about personality.
+
+A technical document should always maintain a **helpful, objective, and professional** tone.
+
+### Avoid Emotional and Subjective Language
+
+Technical documents are not blogs or marketing copy. Your goal is to convey facts and instructions, not feelings.
+
+| Tone to Avoid | Example | Professional Tone |
+| :--- | :--- | :--- |
+| **Exaggerated** | "Our API delivers an *astonishingly* seamless experience." | "The API provides a seamless integration." |
+| **Subjective** | "This is the **best** way to configure the feature." | "This configuration is recommended for production environments." |
+| **Casual/Slang** | "If stuff breaks, hit us up on Slack." | "If an error occurs, contact support via our Slack channel." |
+
+### Use Positive Language
+
+Whenever possible, phrase instructions and messages to focus on the positive outcome, not the negative failure.
+
+| Negative Framing | Positive Framing | Impact |
+| :--- | :--- | :--- |
+| **Do not** forget to restart the server. | **Remember** to restart the server. | **Focuses on action.** |
+| You **cannot** proceed until the license is purchased. | You **can** proceed after purchasing the license. | **Focuses on success.** |
+| If the connection **fails**, run the troubleshooting script. | If the connection **is unsuccessful**, run the troubleshooting script. | **Reduces user anxiety.** |
+
+---
+
+## Consistency: The Unspoken Rule
+
+Consistency across your entire documentation set is vital. It creates a predictable, trustworthy reading experience. This is typically enforced using a **Style Guide**. 
+
+A Style Guide defines:
+
+* **Terminology:** Is it 'Git,' 'git,' or 'GIT'? Is it 'database' or 'DB'? (e.g., Always use **Git**).
+* **Voice:** Are we friendly and casual (like a startup) or formal and serious (like a financial institution)? (e.g., We use a helpful, authoritative, and direct voice).
+* **Formatting:** How do you capitalize headings? Do you use serial commas (the Oxford comma)? (e.g., Always use the Oxford comma).
+
+When you start a new documentation project, the first questions you should ask are: **"Do we have a Style Guide? Can I see the Glossary?"**

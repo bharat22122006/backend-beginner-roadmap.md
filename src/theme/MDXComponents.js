@@ -13,6 +13,9 @@ import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import DocsCard from '@site/src/components/DocsCard';
 import DocsCards from '@site/src/components/DocsCards';
 import ComingSoon from '@site/src/components/ComingSoon';
+import AuthorProfile from '@site/src/components/AuthorProfile';
+import Link from '@docusaurus/Link';
+import ToolCard from '@site/src/components/ToolCard';
 
 export default {
   // Re-use the default mapping
@@ -29,4 +32,7 @@ export default {
   DocsCard,
   DocsCards,
   ComingSoon,
+  Link,
+  AuthorProfile,
+  ToolCard
 };

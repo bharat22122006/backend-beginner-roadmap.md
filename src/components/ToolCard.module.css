@@ -1,0 +1,69 @@
+/*
+ * ToolCard.module.css
+ * Styles for the custom <ToolCard /> component.
+ */
+
+/* Main card container styling */
+.toolCardContainer {
+  /* Margin at the bottom for spacing when stacked */
+  margin-bottom: 24px; 
+  /* Subtle box shadow for lift and distinction */
+  box-shadow: var(--ifm-color-gray-300) 0px 4px 6px -1px, var(--ifm-color-gray-200) 0px 2px 4px -2px;
+  /* Add a border to highlight it more */
+  border-left: 5px solid var(--ifm-color-primary); 
+}
+
+/* Tool Name Header Styling */
+.toolCardHeader {
+  background-color: var(--ifm-color-emphasis-100); /* Light background for the header */
+  padding: 1rem;
+}
+
+.toolCardHeader h3 {
+  /* Use the primary color for the tool name */
+  color: var(--ifm-color-primary); 
+  margin: 0;
+}
+
+/* Description text styling */
+.descriptionText {
+  font-size: 1em;
+  color: var(--ifm-font-color-base);
+}
+
+/* Use Case Section Styling */
+.useCaseSection {
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--ifm-color-emphasis-300);
+}
+
+.useCaseTitle {
+  font-weight: 700;
+  color: var(--ifm-color-primary-dark);
+  font-size: 0.9em;
+  margin-bottom: 0.3rem;
+}
+
+.useCaseText {
+  font-size: 0.95em;
+  /* Slightly muted text for the use case details */
+  color: var(--ifm-font-color-base); 
+}
+
+/* Dark Theme Adjustments */
+/* Docusaurus handles dark mode inversion for most colors, 
+   but we can fine-tune the background and shadows */
+:root:global(.dark) .toolCardContainer {
+  border-left: 5px solid var(--ifm-color-primary-light); /* Lighter border in dark mode */
+  box-shadow: none; /* Dark mode often looks cleaner without box shadow */
+  background-color: var(--ifm-background-surface-color);
+}
+
+:root:global(.dark) .toolCardHeader {
+  background-color: var(--ifm-color-emphasis-200);
+}
+
+:root:global(.dark) .useCaseSection {
+  border-top: 1px dashed var(--ifm-color-emphasis-400);
+}

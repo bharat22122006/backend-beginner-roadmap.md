@@ -1,0 +1,96 @@
+---
+title: Types of Technical Writing
+sidebar_label: "2. Types of Technical Writing"
+description: "A breakdown of the four main categories of documentation (Conceptual, Procedural, Reference, and Tutorials) and how they fit together using the Diátaxis framework."
+tags:
+  [
+    technical-writing,
+    documentation,
+    diataxis,
+    conceptual,
+    procedural,
+    reference,
+    tutorial
+  ]
+keywords:
+  - diataxis framework
+  - types of documentation
+  - procedural knowledge
+  - reference documentation
+  - conceptual documentation
+  - technical writing taxonomy
+image: /tutorial/img/tutorials/technical-writer/types-of-technical-writing-cover.png
+---
+
+import Image from '@theme/IdealImage';
+import thumbnail from '/img/tutorials/technical-writer/types-of-technical-writing-cover.png';
+
+Technical writing is a broad field, but in the software world, almost all content falls into four primary categories. When your documentation is missing one of these, you have a knowledge gap.
+
+<Image img={thumbnail} />
+
+<br />
+
+We will focus on the structure promoted by the **Diátaxis framework**, which is the gold standard for organizing technical docs today. Think of it as the ultimate cheat sheet for what to write and where to put it.
+
+## The Four Types of Technical Writing
+
+The Diátaxis framework divides documentation into four distinct types, each serving a unique purpose and audience need. 
+
+The four categories are:
+
+1.  **Tutorials (Learning)**: The 'walkthrough'
+2.  **How-To Guides (Practical)**: The 'instructions'
+3.  **Reference (Information)**: The 'encyclopedia'
+4.  **Conceptual (Understanding)**: The 'explanation'
+
+### 1. Tutorials (Learning)
+
+The tutorial is where a beginner starts. Its goal is to allow the user to **successfully complete a task** in a controlled, guided environment.
+
+* **Goal:** Learn how to do something for the **first time**.
+* **Tone:** Friendly, encouraging, and highly prescriptive ("Do this, then do that.").
+* **Structure:** A sequence of steps that lead to a tangible result. It must be repeatable.
+* **Example:** "Setting up your first API connection in 5 minutes," or "How to build a simple To-Do app with our SDK."
+
+### 2. How-To Guides (Practical)
+
+How-to guides (also called **Procedural Documentation**) are the bread and butter of your documentation. The user already knows *what* the product is and *why* they need it—they just need to get a specific job done quickly.
+
+* **Goal:** Solve a **specific, real-world problem** or accomplish a task.
+* **Tone:** Direct, action-oriented, and matter-of-fact.
+* **Structure:** A short, numbered list of steps that focus on a singular outcome.
+* **Example:** "How to reset your password," "How to configure two-factor authentication," or "How to deploy to a staging environment."
+
+:::tip The Key Difference
+A **Tutorial** is for learning. A **How-To Guide** is for doing (and usually re-doing). A tutorial teaches you to fish; a how-to guide tells you where to cast your line today.
+:::
+
+### 3. Reference (Information)
+
+Reference documentation is the authoritative source of truth. It's not meant to be read from start to finish. It's a technical encyclopedia for when you need a quick, specific fact.
+
+* **Goal:** Provide **accurate, complete, and low-level detail** on system components.
+* **Tone:** Neutral, objective, and dense with facts.
+* **Structure:** Highly consistent and predictable (e.g., alphabetically or by hierarchy).
+* **Example:** **API documentation** (listing every parameter, data type, and error code), command-line interface (CLI) manuals, or configuration file reference.
+
+### 4. Conceptual (Understanding)
+
+Conceptual documentation is the "why" that ties everything together. It helps the reader build a mental model of the product. It explains the high-level architecture, the design decisions, and the *philosophy* behind the product.
+
+* **Goal:** Explain the **big picture** and provide context.
+* **Tone:** Explanatory, analytical, and informative.
+* **Structure:** Prose, often using diagrams, metaphors, and analogies.
+* **Example:** "An Overview of our Microservices Architecture," "Understanding the Data Model," or "How our Caching Layer Works."
+
+## The Diátaxis Quadrant
+
+The magic of this framework is how these four types interlock. No single document type can satisfy every user need, which is why your documentation must contain all four.
+
+| | **Practical Use** | **Theoretical Use** |
+| :--- | :--- | :--- |
+| **Goal: Learn** | **1. TUTORIALS** (Get started) | **4. CONCEPTUAL** (Understand the "why") |
+| **Goal: Do** | **2. HOW-TO GUIDES** (Complete a task) | **3. REFERENCE** (Look up a specific fact) |
+
+As a developer writing documentation, you must ask yourself: **"What is the user trying to achieve right now?"** and choose the corresponding format.
