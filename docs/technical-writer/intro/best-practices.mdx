@@ -1,0 +1,78 @@
+---
+title: "Best Practices for Technical Documentation"
+description: "Essential guidelines for clarity, consistency, and maintaining high-quality documentation in a Docs-as-Code environment."
+sidebar_label: "4. Best Practices"
+image: /tutorial/img/tutorials/technical-writer/best-practices.png
+---
+
+import thumbnail from '/img/tutorials/technical-writer/best-practices.png';
+
+<Image img={thumbnail} />
+
+<br />
+
+Having the right tools is just the beginning. **Best practices** are the rules that ensure your documentation is clear, accurate, and scalable over time.
+
+These guidelines are focused on maintaining high quality in a modern, developer-centric environment.
+
+## 1. Adopt the Diátaxis Framework
+
+This is the single most important rule for structuring your documentation. The Diátaxis framework helps you categorize content based on the user's intent, solving the problem of "where do I put this?"
+
+| Type | User Intent | Primary Goal | Best Practice |
+| :--- | :--- | :--- | :--- |
+| **Tutorials** | Learning how to do something new. | Teach the user, step-by-step. | **Hands-on, single path.** Start with "Hello World" and end with success. |
+| **How-To Guides** | Solving a specific problem. | Show how to achieve a goal. | **Focused, actionable steps.** Title should be a verb: "Configure," "Integrate," "Troubleshoot." |
+| **Conceptual** | Understanding the topic/product. | Explain the why and the how it works. | **High-level, narrative.** Use diagrams (Mermaid!) and analogies. |
+| **Reference** | Looking up technical specifics. | Provide accurate technical details. | **Structured, pure facts.** Use tables, parameters, and code snippets. |
+
+<br />
+
+:::tip Best Practice 
+Never mix document types. Do not put conceptual explanations inside a How-To Guide, or a reference table inside a Tutorial. Link, don't combine.
+:::
+
+## 2. Embrace the Docs-as-Code Workflow
+
+Since you're using Docusaurus, you are already committed to this workflow. Maximize its benefits:
+
+### 2.1 Treat Docs Like Code
+
+* **Version Control:** Use Git. Commit early and often. Every content change should be traceable to a specific, descriptive commit message.
+* **Pull Requests (PRs):** All content changes should go through a PR process. This enables peer review from developers (for technical accuracy) and other writers (for clarity and style).
+* **Branching:** Always work on a separate feature branch. The docs for a new feature should live on the same branch as the code for that feature, ensuring they merge and deploy together.
+
+### 2.2 Prioritize Plain Text
+
+* **Stick to Markdown/MDX:** Avoid embedding complex formatting or elements that break the portability of the plain text file. The simpler the text file, the easier it is to maintain for years.
+* **Automate Quality:** Configure your repository to use a linter (like **write-good** or **Vale**) to check for grammatical, stylistic, and tone errors automatically with every commit.
+
+## 3. Focus on Clarity and Consistency
+
+The cardinal sins of documentation are ambiguity and inconsistency. Here’s how to avoid them:
+
+### 3.1 Write for Your Audience
+
+* **Define Jargon:** Always define specialized terms on first use. If your audience is diverse, you may need a separate **Glossary** (a Conceptual document!).
+* **The Golden Rule:** Always write one level *below* your audience’s presumed knowledge. If you're writing for mid-level developers, explain everything as if you're writing for junior developers. Over-explaining is better than under-explaining.
+
+### 3.2 Maintain a Style Guide
+
+Consistency is achieved through rules. If your company doesn't have a technical writing style guide (e.g., *Google Developer Documentation Style Guide*), adopt one.
+
+| Element | Rule | Example |
+| :--- | :--- | :--- |
+| **Voice** | Use the active voice and direct address ("you"). | **Good:** You must run the installer. **Bad:** The installer should be run. |
+| **UI Elements** | Use **bold** for buttons, screen names, or menu items. | Click the **Settings** menu, then select **Deploy**. |
+| **Code** | Use inline code blocks (`code`) for file paths, variable names, and function names. | Set the `MAX_RETRIES` variable in the `config.yaml` file. |
+
+## 4. Maintenance is Mandatory
+
+Documentation is not a one-time task; it's a perpetual commitment. If the code changes, the docs *must* change.
+
+* **Schedule Audits:** Regularly audit your existing documentation. Tools can find broken links, but only a human writer can identify outdated procedures.
+    * *Self-Correction:* If an old doc is still receiving high traffic but is outdated, either update it or archive it with a clear note linking to the current version.
+* **Use Feedback Loops:** Encourage users to report errors or suggest improvements. Docusaurus makes this easy with "Edit this page" links that direct users to GitHub to create a PR. **You are only as good as the feedback you receive.**
+* **Deprecation:** When you remove a feature or API, update the documentation *before* the code is merged, or at the very least, simultaneously. Never leave a deprecated feature fully documented.
+
+You've now established your methodology. The next crucial step is determining *who* you are writing for, which governs everything from tone to vocabulary.

@@ -1,0 +1,192 @@
+---
+title: "The Essential Toolkit for Modern Technical Writers"
+sidebar_label: "3. Tools For Technical Writers"
+description: "An introduction to the core tools—Markdown, Git, VS Code, and Docusaurus—that power a modern Docs-as-Code workflow for technical writers."
+image: /tutorial/img/tutorials/technical-writer/tools-for-technical-writers.png
+---
+
+import thumbnail from '/img/tutorials/technical-writer/tools-for-technical-writers.png';
+
+Welcome to the job! If you're coming from the world of term papers and memos, you might expect your main tool to be Microsoft Word. Think again.
+
+<Image img={thumbnail} />
+
+<br />
+
+In the modern software world, documentation is built like code. This is called the **Docs-as-Code** workflow, and it requires a unique and powerful set of tools that we'll explore here.
+
+## 1. The Core: Plain Text and Markup
+
+Every modern documentation site, including this one (built with Docusaurus!), starts with simple text files.
+
+### A. Markdown and MDX
+
+Forget proprietary file formats. We use **Markdown** because it’s a lightweight language that’s easy to read, write, and convert into HTML.
+
+**MDX** is Markdown's superpower. It allows you to embed interactive web components (written in React) directly into your documents. This is how we create custom features like the `ToolCard` you see below!
+
+<ToolCard 
+  name="Markdown and MDX" 
+  description="The foundation of all modern technical documentation. Markdown provides easy formatting; MDX allows for powerful interactivity."
+  useCase="Writing 99% of your content. If you can write an email, you can write Markdown."
+/>
+
+### B. The Workbench: VS Code
+
+Since your files are just plain text, you need a high-powered text editor, not a word processor.
+
+<ToolCard 
+  name="Visual Studio Code (VS Code)" 
+  description="The universal choice for developers and technical writers. It’s free, fast, and has powerful features for a better writing experience."
+  useCase="Essential for: Built-in Markdown preview, seamless Git integration, and a massive extension library (like Grammarly and spell-checkers)."
+/>
+
+---
+
+## 2. The Infrastructure: Docusaurus and Git
+
+These tools automate the hard parts of documentation: publishing, versioning, and collaborating.
+
+### A. The Publishing Engine: Docusaurus
+
+Since your team has chosen Docusaurus, you get powerful features straight out of the box that traditional tools simply cannot offer.
+
+| Docusaurus Feature | Why It Matters to the Technical Writer |
+| :--- | :--- |
+| **Document Versioning** | Crucial for software! Automatically maintains separate documentation for different releases (e.g., v1.0, v2.0). |
+| **Search (Algolia Integration)** | Provides blazing-fast, high-quality search functionality across all your docs. |
+| **MDX Support** | Allows you to embed interactive code blocks or custom design components. |
+| **Sidebar Navigation** | Simplifies organizing complex information into a logical, hierarchical structure. |
+
+### B. The Safety Net: Git and GitHub
+
+As a technical writer, you will quickly learn to use **Git** (the version control system) via **GitHub** (the hosting platform).
+
+This allows your content to be managed exactly like the software code. 
+
+* **You never lose work:** Git tracks every change. Made a mistake? You can instantly rewind the file to any previous version.
+* **You collaborate cleanly:** When a developer spots a typo, they don't email you; they submit a **Pull Request (PR)**. This forces a clean review process before the change goes live.
+* **You stay in sync:** You write docs on a separate branch that only merges into the main site when the corresponding code is ready for release.
+
+<ToolCard 
+  name="Git and GitHub" 
+  description="The backbone of modern collaboration. Git tracks changes; GitHub hosts your repositories and enables team workflows."
+  useCase="Managing document versions, collaborating with developers, and integrating with CI/CD pipelines for automated publishing."
+/>
+
+## 3. The Quality Assurance Stack
+
+These tools ensure your words are perfect and your visuals are clear, and your math is precise.
+
+### **A. Mathematical Notation: KaTeX**
+
+For technical writers in data science, mathematics, or physics, rendering complex equations is a daily task. Docusaurus (via MDX) handles this beautifully using **KaTeX** or **MathJax**.
+
+<ToolCard 
+  name="KaTeX/MathJax" 
+  description="Allows you to render complex mathematical formulas using LaTeX syntax, ensuring scientific accuracy and professional typography."
+  useCase="Documenting algorithms, equations, formulas, or statistical models directly within the content."
+/>
+
+You can use LaTeX syntax in your MDX files in two ways:
+
+1.  **Inline Formula (Single Dollar Signs):** Use `$` to embed math directly within a sentence.
+
+    <Tabs>
+      <TabItem value="inline-code" label="Inline Code">
+      ````md
+      This is an inline equation: $E = mc^2$, which relates energy and mass.
+      ````
+    </TabItem>
+    <TabItem value="output" label="Visual Output">
+        This is an inline equation: $E = mc^2$, which relates energy and mass.
+    </TabItem>
+    </Tabs>
+
+
+2.  **Block Formula (Double Dollar Signs):** Use `$$` to center and display complex equations on their own line.
+
+    <Tabs>
+      <TabItem value="block-code" label="Block Code">
+      ````md
+      Here is a block equation:
+      
+      $$
+      \int_{a}^{b} x^2 \,dx = \frac{b^3}{3} - \frac{a^3}{3}
+      $$
+      ````
+    </TabItem>
+    <TabItem value="output" label="Visual Output">
+    Here is a block equation:
+    
+    $$
+    \int_{a}^{b} x^2 \,dx = \frac{b^3}{3} - \frac{a^3}{3}
+    $$
+    </TabItem>
+    </Tabs>
+
+There are two ways to include LaTeX in your MDX files: inline and block.
+
+
+### B. Style and Grammar
+
+No matter how good your writing is, you need a second pair of eyes that can enforce a specific style guide.
+
+<ToolCard 
+  name="Grammarly / ProWritingAid" 
+  description="These advanced AI-powered tools check grammar, spelling, and style. They are crucial for maintaining clarity and conciseness, especially when writing about complex topics."
+  useCase="Final proofreading and enforcing specific corporate or brand style guidelines."
+/>
+
+### C. Visual Content (Screenshots and Diagrams)
+
+The best tutorials show, not just tell.
+
+#### 1. Screen Capture and Annotation
+
+Every technical writer needs a high-quality screen capture and annotation tool to create clear, visually consistent instructional images.
+
+<ToolCard 
+  name="Snagit (or ShareX)" 
+  description="The industry favorite for screen capture. You can easily add arrows, numbered steps, blur sensitive data, and crop images to a consistent size."
+  useCase="Creating professional, annotated screenshots for steps in a tutorial or how-to guide."
+/>
+
+#### 2. Code-Based Diagramming: Mermaid
+
+Forget saving diagrams as separate `.png` files that quickly become outdated. **Mermaid** allows you to draw diagrams using simple text syntax directly in your MDX file.
+
+<Tabs>
+  <TabItem value="mermaid-code" label="Mermaid Code (in your MDX)">
+  ````md
+  ```mermaid
+    graph TD;
+        A[Idea for Feature] --> B{Code Complete?};
+        B -- Yes --> C[Docs PR Ready];
+        C --> D[Review/Merge];
+        D --> E(Deploy New Docs);
+        B -- No --> A;
+    ```
+    ````
+
+</TabItem>
+<TabItem value="output" label="Visual Output">
+    ```mermaid
+    graph TD;
+        A[Idea for Feature] --> B{Code Complete?};
+        B -- Yes --> C[Docs PR Ready];
+        C --> D[Review/Merge];
+        D --> E(Deploy New Docs);
+        B -- No --> A;
+    ```
+
+</TabItem>
+</Tabs>
+
+<ToolCard
+name="Mermaid"
+description="Allows you to create flowcharts and sequence diagrams from plain text. The diagram is versioned and editable in the same file as the doc itself."
+useCase="Quickly generating complex flowcharts, decision trees, or system architecture diagrams."
+/>
+
+You've now got the entire foundation for a modern technical writing career.

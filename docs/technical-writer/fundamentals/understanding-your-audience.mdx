@@ -1,0 +1,111 @@
+---
+title: "Understanding Your Audience"
+sidebar_label: "1. Understanding Your Audience"
+description: "Learn the fundamental process of audience analysis, identify the four core technical audience types, and create user personas for effective documentation."
+image: /tutorial/img/tutorials/technical-writer/audience-cover.png
+---
+
+import SkillCard from '@site/src/components/SkillCard';
+import AudiencePersona from '@site/src/components/AudiencePersona';
+import thumbnail from '/img/tutorials/technical-writer/audience-cover.png';
+
+<Image img={thumbnail} />
+
+<br />
+
+The single most important rule in technical writing is this: **Know Your Audience.**
+
+Your job is not to write what you know, but to write what the reader **needs** to know, presented in a way they can instantly understand and use. A document written for a CEO must look completely different from one written for a junior developer.
+
+This page breaks down the process of audience analysis and introduces the four classic audience types you will encounter.
+
+---
+
+## The Four Core Audience Types
+
+In the world of documentation, readers can generally be segmented into four major categories based on their **technical knowledge** and **purpose for reading**.
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+    <SkillCard
+        title="1. Expert"
+        description="The R&D scientist, the core platform engineer. They know the theory and design better than you do. They need concise details, design rationale, and complex data."
+        icon="terminal"
+    />
+    <SkillCard
+        title="2. Technician / Operator"
+        description="The System Administrator, the DevOps specialist. They maintain, configure, and operate the system. They need practical steps, troubleshooting guides, and clear procedures."
+        icon="boxes"
+    />
+    <SkillCard
+        title="3. Executive / Manager"
+        description="The CEO, the Product Manager. They make business decisions. They have minimal technical knowledge but need high-level summaries, cost-benefit analyses, and strategic implications."
+        icon="hand-heart"
+    />
+    <SkillCard
+        title="4. Non-Specialist / Layperson"
+        description="The end-user or customer. They just want to use the product to accomplish a specific task. They need simple, jargon-free instructions and clear visual aids."
+        icon="shuffle"
+    />
+</div>
+
+### Handling Mixed Audiences
+
+It’s rare that a document will *only* be read by one type. A design document, for example, might be read by **Experts** (to validate the technical approach) and **Executives** (to approve the budget).
+
+**How to Adapt:**
+
+1.  **Prioritize:** Identify the **primary audience** (the one who will use the document most often). Write the main body for them.
+2.  **Sectioning:** Use tools like **Executive Summaries** (for managers) and **Appendixes** (for experts) to isolate information.
+3.  **Headings:** Use clear, descriptive headings (e.g., "**Implementation Details for Developers**" or "**Quick Start: For Non-Technical Users**") so readers can navigate past what they don't need.
+
+---
+
+## User Personas: Bringing Your Reader to Life
+
+While the four types are a great starting point, a true professional uses **User Personas**. A persona is a **fictional, yet research-based, profile** that represents a specific segment of your audience.
+
+Personas make abstract analysis concrete and actionable.
+
+### The Persona Profile Example
+
+Let's meet two personas for a new API product:
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 my-8">
+    {/* This component will be defined in the next step! */}
+    <AudiencePersona 
+        name="Devon the Developer"
+        role="Senior Software Engineer"
+        expertise="High"
+        goal="Integrate the API and get to 'Hello World' in under 15 minutes."
+        painpoint="Slow, fragmented documentation that forces him to jump between pages."
+        needs="Detailed API Reference, code samples in multiple languages, and clear error troubleshooting."
+    />
+    <AudiencePersona 
+        name="Penny the Product Manager"
+        role="Product Lead"
+        expertise="Low"
+        goal="Understand the business value and how the API solves a user problem."
+        painpoint="Getting bogged down in technical prerequisites and engineering jargon."
+        needs="High-level feature overview, use case summaries, and pricing/rate limit details."
+    />
+</div>
+
+### How to Use Your Personas
+
+Whenever you write a section, ask yourself:
+
+* "Would **Devon** find this confusing?"
+* "Does this paragraph provide the information **Penny** actually needs?"
+
+If the answer is no, you rewrite it. Personas are a shared reference point that keeps the entire team focused on the customer experience.
+
+---
+
+## Key Takeaways
+
+| Principle | Actionable Step |
+| :--- | :--- |
+| **Always start here.** | Before writing the first word, identify the primary reader's **Knowledge Level** and **Goal**. |
+| **Avoid Jargon.** | Define every technical term that your target audience might not know, even if it feels obvious to you. |
+| **Don't Assume.** | If you have multiple audiences, use summaries and clear headings to guide them quickly to their section. |
+| **Create a Face.** | Build at least one User Persona to make the abstract reader a real person you are writing *for*. |

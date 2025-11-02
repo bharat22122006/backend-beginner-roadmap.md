@@ -126,52 +126,52 @@ const config = {
           href: "https://codeharborhub.github.io/",
           target: "_self",
         },
-        items: [     
+        items: [
           {
             to: "/tutorial/",
             html: '<span class="nav-emoji">📚</span> Tutorials',
-            position: "left"
+            position: "left",
           },
           {
             to: "/tutorial/category/html/",
             html: '<span class="nav-emoji">🧱</span> HTML',
-            position: "left"
+            position: "left",
           },
           {
             to: "/tutorial/css/introduction/what-is-css/",
             html: '<span class="nav-emoji">🎨</span> CSS',
-            position: "left"
+            position: "left",
           },
           {
             to: "/tutorial/javascript/introduction-to-javascript/what-is-js",
             html: '<span class="nav-emoji">⚡</span> JavaScript',
-            position: "left"
+            position: "left",
           },
           {
             to: "/tutorial/git/introduction",
             html: '<span class="nav-emoji">🌳</span> Git',
-            position: "left"
+            position: "left",
           },
           {
             to: "/tutorial/github/introduction-to-github",
             html: '<span class="nav-emoji">🐙</span> GitHub',
-            position: "left"
+            position: "left",
           },
           {
             to: "/tutorial/react/react-intro",
             html: '<span class="nav-emoji">⚛️</span> React',
-            position: "left"
+            position: "left",
           },
           {
             to: "/tutorial/cybersecurity",
             html: '<span class="nav-emoji">🛡️</span> Cyber Security',
-            position: "left"
+            position: "left",
           },
 
           {
             to: "https://codeharborhub.github.io/blog",
             html: '<span class="nav-emoji">📝</span> Blog',
-            position: "right"
+            position: "right",
           },
           {
             href: "https://github.com/codeharborhub",
@@ -321,7 +321,14 @@ const config = {
         // theme: prismThemes.vsDark,
         darkTheme: prismThemes.dracula,
         // darkTheme: prismThemes.github,
-        additionalLanguages: ["powershell", "php", "bash", "http"],
+        additionalLanguages: [
+          "powershell",
+          "php",
+          "bash",
+          "http",
+          "latex",
+          "markdown",
+        ],
       },
       docs: {
         sidebar: {
