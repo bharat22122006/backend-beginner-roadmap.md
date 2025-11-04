@@ -16,6 +16,7 @@ import ComingSoon from '@site/src/components/ComingSoon';
 import AuthorProfile from '@site/src/components/AuthorProfile';
 import Link from '@docusaurus/Link';
 import ToolCard from '@site/src/components/ToolCard';
+import SkillCard from '@site/src/components/SkillCard';
 
 export default {
   // Re-use the default mapping
@@ -34,5 +35,6 @@ export default {
   ComingSoon,
   Link,
   AuthorProfile,
-  ToolCard
+  ToolCard,
+  SkillCard,
 };
