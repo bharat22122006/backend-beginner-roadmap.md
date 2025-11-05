@@ -1,1 +1,99 @@
-<ComingSoon />
+---
+title: "API Documentation"
+sidebar_label: "1. API Documentation"
+description: "Master the essential structure of API documentation—Conceptual, Reference, and Tutorials—to enable quick and effective developer integration."
+image: /tutorial/img/tutorials/technical-writer/api-documentation-cover.png
+---
+
+import SkillCard from '@site/src/components/SkillCard';
+import { FaBookOpen, FaLaptopCode, FaWrench, FaCogs } from 'react-icons/fa';
+
+For developers, an **API (Application Programming Interface) is the product, and the documentation is the user experience.** Your goal is to make the API so easy to use that the developer spends less time reading your words and more time writing their code.
+
+:::warning Think of it this way
+The API is the engine, and your documentation is the owner's manual. If the manual is missing pages or is unclear, the engine is useless.
+:::
+
+---
+
+## The Three Pillars of API Documentation
+
+Good API documentation is organized into three distinct, yet interconnected, sections. This structure ensures users can find the information they need based on their current goal (understanding, building, or looking up a detail).
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+    <SkillCard
+        title="1. Conceptual (The WHY)"
+        description="Explains the purpose, architecture, and high-level concepts of the API. It tells the developer what problem the API solves."
+        icon={<FaBookOpen className="text-blue-500 w-6 h-6" />}
+    />
+    <SkillCard
+        title="2. Tutorials (The HOW)"
+        description="Provides step-by-step guides for achieving specific, common use cases (e.g., 'Authenticate and create a resource')."
+        icon={<FaLaptopCode className="text-green-500 w-6 h-6" />}
+    />
+    <SkillCard
+        title="3. Reference (The WHAT)"
+        description="A comprehensive, detailed list of every endpoint, parameter, and response body. This is the dictionary of the API."
+        icon={<FaWrench className="text-red-500 w-6 h-6" />}
+    />
+</div>
+
+### Detailed Content Breakdown
+
+| Section | Target Audience | Key Content to Include |
+| :--- | :--- | :--- |
+| **Conceptual** | New users, decision-makers, architects | Overview, Use Cases, Core Concepts, Authentication/Authorization, Rate Limits. |
+| **Tutorials** | Developers integrating for the first time | Quickstart Guide, Step-by-step for key workflows, Error handling examples. |
+| **Reference** | Developers actively coding and debugging | Detailed list of **Endpoints**, HTTP Methods (`GET`, `POST`, `PUT`), **Parameters** (query, path, body), **Request/Response bodies** (schemas), **Status Codes**. |
+
+---
+
+## Best Practices for Reference Documentation
+
+The Reference section is often the most challenging to write, but thanks to specifications like **OpenAPI (Swagger)**, much of it can be *auto-generated* from the code itself.
+
+### 1. Endpoint Clarity
+
+Every endpoint must be documented with the following:
+
+* **URI:** The path (e.g., `/v1/users/{id}`).
+* **Method:** The HTTP verb (`GET`, `POST`, `DELETE`).
+* **Description:** A clear, concise sentence explaining what the endpoint does (e.g., "Retrieves the user object for a given ID.").
+
+### 2. Parameter Detail
+
+For every parameter (whether in the path, query string, or request body):
+
+| Field | Example | Must Include |
+| :--- | :--- | :--- |
+| **Name** | `id` | Required |
+| **Location** | Path | Required |
+| **Type** | `integer` | Required |
+| **Description** | The unique ID of the user. | Required |
+| **Example** | `12345` | Highly Recommended |
+
+### 3. Request and Response Bodies
+
+Show, don't tell. A JSON payload is worth a thousand words.
+
+* **Request Body:** Provide a complete example of the JSON or XML payload expected for `POST` or `PUT` requests.
+* **Response Body:** Provide successful (`200 OK`, `201 Created`) and common error (`400 Bad Request`, `404 Not Found`) response examples. Always clearly document the schema (data structure).
+
+```json
+// Example of a successful 200 GET /v1/users/12345 response
+{
+  "user_id": 12345,
+  "first_name": "Alex",
+  "last_name": "Damon",
+  "status": "active" 
+}
+```
+
+### 4. Interactive Documentation
+
+The gold standard for API docs is **interactivity**. Using tools like **Swagger UI** or **Postman**, developers should be able to:
+
+  * **Try it Out:** Make a live API call directly from the documentation.
+  * **Code Samples:** See the request generated in multiple languages (cURL, Python, JavaScript) to copy-paste.
+
+If your tool chain supports auto-generation, **make the documentation a single source of truth** by pulling directly from the OpenAPI file. If the code changes, the documentation changes—or it fails to build!

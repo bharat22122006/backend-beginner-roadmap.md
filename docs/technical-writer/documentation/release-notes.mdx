@@ -1,1 +1,82 @@
-<ComingSoon />
+---
+title: "Release Notes & Announcements"
+sidebar_label: "5. Release Notes"
+description: "Learn the concise structure and critical content selection process for writing effective Release Notes that delight users and manage expectations during product updates."
+---
+
+Release Notes (or Release Announcements) are brief, direct documents that accompany a new product release, patch, or update. They serve as the official record of what has changed, fixed, or been added.
+
+The challenge? They must appeal to both the excited early adopter and the frustrated user looking for a specific bug fix, all while being short enough to be read in under a minute.
+
+## Audience and Purpose
+
+The audience for Release Notes is the **active user base**. They want to know three things, in order:
+
+1.  **Is this important to me?** (Determine if they need to update now.)
+2.  **What problem does it solve?** (Validate a frustration they had.)
+3.  **How do I use the new thing?** (The next step.)
+
+| Goal | Description |
+| :--- | :--- |
+| **Manage Expectations** | Inform users that known issues are addressed, or that a requested feature is now live. |
+| **Reduce Support Load** | Announce known issues or workarounds, preventing a flood of tickets after an update. |
+| **Provide a Legal Record** | Serve as a formal record of changes for regulatory compliance (common in finance/health sectors). |
+| **Generate Excitement** | Highlight major new features to drive user engagement and adoption. |
+
+## The Essential Structure of Release Notes
+
+Unlike formal reports or comprehensive manuals, Release Notes are highly standardized and prioritized by impact. The structure is essentially a concise list categorized by type of change.
+
+### 1. Header and Summary
+
+* **Title:** Clear, high-level version designation (e.g., "Version 4.5.1 Released," or "May 2025 Security Patch").
+* **Release Date:** The date the changes went live.
+* **A Brief Overview:** A one-paragraph summary of the **most significant changes**. If there's one major feature, lead with it. If it's all bug fixes, state that clearly.
+
+### 2. Categorized Changes (The Core)
+
+The content should be grouped using clear, bold headings. This allows users to quickly scan for what interests them.
+
+#### **A. New Features and Enhancements**
+
+* Focus on the **user benefit**, not the technical implementation.
+* Use a one-sentence description, followed by a link to the detailed documentation (e.g., the User Manual).
+* **Format Example:**
+    * **New:** **Dark Mode Theme.** You can now switch to Dark Mode in the User Settings menu for improved viewing comfort. [Link to documentation]
+    * **Enhanced:** **Faster Report Generation.** Large data reports now complete 40% faster due to backend optimization.
+
+#### **B. Fixed Bugs (The "Bug Smash")**
+
+* List the fixed issues clearly. If possible, use the exact wording or ticket ID the user might have reported or seen in a forum.
+* Avoid overly technical descriptions unless the audience is highly technical (e.g., developer APIs).
+* **Format Example:**
+    * Fixed an issue where filtering by date range would occasionally exclude the last day of the selection.
+    * Resolved **API Error 500** that occurred when attempting batch uploads with more than 100 items.
+
+#### **C. Known Issues and Deprecations**
+
+* This is crucial for setting expectations. Tell the user what you know is broken or what is going away.
+* For known issues, provide a temporary **workaround** if one exists.
+* For deprecations, clearly state *why* the item is being removed and *what* the new replacement is.
+
+
+
+## Best Practices for Writing Clear Release Notes
+
+### 1. Be Concise and Direct
+
+If you can say it in 5 words, don't use 25. Release Notes are a news flash, not a novel. Avoid marketing fluff in the detail sections.
+
+> **Bad:** "We have developed a groundbreaking, highly innovative new solution that completely changes the paradigm of saving."
+>
+> **Good:** "Improved Save Function: Saving large documents is now instantaneous."
+
+### 2. Prioritize the User’s Perspective
+
+* When describing a fix, don't just state the action, state the outcome for the user.
+    * **Good:** "Fixed: Clicking the 'Export' button no longer freezes the application."
+* Use **present or past tense** consistently, depending on your company's style guide (e.g., "We fixed," "We have introduced," or "Fixes: ...," "Adds: ...").
+
+### 3. Maintain Consistency (The Series Effect)
+
+Release notes are rarely standalone documents; they are a series. Maintain a consistent structure, tone, and set of headings across every release. Users should know exactly where to look for the "Bug Fixes" section every time.
