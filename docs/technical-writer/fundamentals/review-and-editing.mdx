@@ -1,1 +1,93 @@
-<ComingSoon />
+---
+title: "Review and Editing"
+sidebar_label: "5. Review and Editing"
+description: "Implement a rigorous review cycle, focusing on technical accuracy, clarity, and consistency before publishing any documentation."
+image: /tutorial/img/tutorials/technical-writer/review-editing-cover.png 
+---
+
+import thumbnail from '/img/tutorials/technical-writer/review-editing-cover.png';
+
+<Image img={thumbnail} />
+
+<br />
+
+The best technical writers treat the review process as the most important phase of the writing cycle. Documentation that is technically incorrect or riddled with errors erodes user trust instantly.
+
+The review process has two distinct stages: **Self-Editing** (you check the words) and **Peer Review** (others check the facts).
+
+---
+
+## Stage 1: The Self-Editing Checklist
+
+Before you hand your work to an engineer or a manager, you must run a final check on your own work. Think of this as your final build step before deployment.
+
+### 1. Technical Accuracy Check (The "Can I Copy-Paste This?" Rule)
+
+This is paramount for developer documentation.
+
+* **Execute Every Step:** Go through your instructions *as if you were the user*, following only the text you wrote. Do all commands work? Do all links resolve?
+* **Verify Code Snippets:** Copy-paste every single code block and command line argument into a terminal. Do they run without errors? Do they produce the expected output?
+* **Check Screenshots:** Do your visual aids still accurately reflect the UI? (UIs change faster than code).
+
+### 2. Style and Tone Check (The "Plain English" Rule)
+
+Review your draft using the principles we discussed in the **Writing Style and Tone** section.
+
+* **Active Voice:** Search for forms of "to be" (`is`, `was`, `will be`). Can you rewrite the sentence in the active voice?
+* **Conciseness:** Delete all filler phrases: "in order to," "it should be noted that," "as you can see."
+* **Terminology:** Check your document against your team's style guide or glossary. Are you using the correct capitalization for product names and acronyms (e.g., is it `GitHub` or `Github`)?
+
+### 3. Formatting and Structure Check
+
+* **Hierarchy:** Do you have a consistent use of H1, H2, and H3 headings?
+* **Lists:** Are all sequential steps written as **numbered lists**? Are all non-sequential items in bullet lists?
+* **Cross-References:** Do all internal links and cross-references (e.g., "See the **API Reference** for details...") point to the correct location?
+
+---
+
+## Stage 2: Peer and Technical Review
+
+After you've done your due diligence, you need external eyes. You need two main types of reviewers:
+
+### 1. The Subject Matter Expert (SME) Review
+
+**Goal: 100% Technical Accuracy.**
+
+* **Who:** The engineer, developer, or product manager who built the feature you are documenting.
+* **Focus:** The SME doesn't need to check your grammar; they need to confirm that your steps, code, prerequisites, and explanations are *factually correct*.
+* **How:** Use a Git-based workflow (like a Pull Request in GitHub/GitLab) so the SME can easily comment directly on the lines of code or steps that are wrong.
+
+### 2. The Fresh Eyes Review
+
+**Goal: Clarity and Usability.**
+
+* **Who:** Another technical writer, an editor, or a tester who is *unfamiliar* with the feature.
+* **Focus:** This person acts as a proxy for your user. They should be able to follow the documentation **without any prior knowledge**.
+* **Key Question:** If they get stuck, your documentation is the problem, not their skill level.
+
+:::note Wit Check
+If your reviewer has to ask, "Wait, what does that acronym mean?" or "Where do I find that button?", your document failed the clarity test. Fix it.
+:::
+
+:::warning Choosing the Right Reviewer
+Avoid asking the SME to do the Fresh Eyes review. They are too close to the material and will unconsciously fill in gaps that a new user would struggle with.
+:::
+
+:::tip Clarity Tips for Fresh Eyes Reviewers
+Provide your reviewer with a checklist to guide their review:
+* **Follow the Steps:** Can they complete the task by following only your documentation?
+* **Highlight Confusing Parts:** Ask them to mark any sections that were unclear or ambiguous.
+* **Suggest Improvements:** Encourage them to propose clearer wording or additional explanations where needed.
+:::
+
+### Iterative Process: Review is a Loop
+
+Reviewing is not a single step; it’s a cycle. The ideal flow looks like this:
+
+1.  **Draft Complete**
+2.  **Self-Edit & Test** (Fix 80% of errors)
+3.  **SME Review** (Fix technical errors)
+4.  **Fresh Eyes Review** (Fix clarity errors)
+5.  **Final Polish and Publish**
+
+After each review, revise your document and, if necessary, send it back for another round of review until all parties are satisfied.
