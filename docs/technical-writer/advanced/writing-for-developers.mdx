@@ -1,1 +1,77 @@
-<ComingSoon />
+---
+title: Writing for Developers
+sidebar_label: "1. Writing for Developers"
+description: "Advanced strategies for creating technical content (APIs, SDKs, Tutorials) that meets the specific needs of engineers—prioritizing code, clarity, and task completion."
+---
+
+The developer audience is perhaps the most discerning and impatient audience you will face. They are highly technical, highly task-oriented, and have an immediate, specific goal: **make the code work.**
+
+Your documentation should be treated as another tool in their kit—it must be functional, accurate, and optimized for speed.
+
+## 1. The Mindset: Goal-Oriented Documentation
+
+Forget the traditional structure of a book. Developer documentation must be structured around what the engineer is trying to **achieve**.
+
+The most effective documentation follows the **Diátaxis Framework**, which categorizes content into four essential types:
+
+| Type | Goal | Question it Answers | Use Case |
+| :--- | :--- | :--- | :--- |
+| **Tutorials** | Learning (Getting Started) | **How do I do X?** | A step-by-step guide to achieve a tangible, working result (e.g., "Build your first 'Hello World' app with our SDK"). |
+| **How-To Guides** | Doing (Problem Solving) | **How do I achieve this specific task?** | Recipes for common, real-world tasks (e.g., "Configure OAuth 2.0 authentication," "Handle a 429 Rate Limit error"). |
+| **Reference** | Information (The Facts) | **What is X, and what are its parameters?** | The exhaustive, technical specification for every function, endpoint, or class (e.g., API reference tables). |
+| **Explanation** | Understanding (Context) | **Why does X exist?** | High-level context and architectural overviews (e.g., "Why we chose a microservices architecture," "Overview of the data model"). |
+
+:::tip Time-to-First-Successful-Call (TTFSC)
+The primary metric for a developer's first experience is the TTFSC. Your **Tutorials** must be ruthlessly optimized to get the user a working result in the minimum number of steps. Reduce friction by making code **copy-pastable** and assumptions **explicit**.
+:::
+
+## 2. Prioritizing Code and Examples
+
+Code is the universal language of developers. Your text is secondary to the code examples you provide.
+
+* **Copy-Paste Ready:** Every code snippet—from the `curl` request to the Python client—must be tested and designed to be copied directly into the terminal or IDE. No manual edits should be necessary unless explicitly noted (e.g., replacing an API key).
+* **The Request/Response Block:** For API documentation, the request and response samples are the most critical elements. Show:
+    1.  The complete **Request** (method, URL, headers, and body).
+    2.  The complete **Response** for a successful `200 OK` call.
+    3.  A sample **Error Response** (e.g., `400 Bad Request` or `401 Unauthorized`) with clear JSON error messages for debugging.
+* **Language Variety:** If your SDK supports multiple languages (Python, Node.js, Go), provide examples for the most common languages your audience uses. Use tabs or conditional content to keep the page clean.
+
+```json title="example_response.json"
+{
+  "status": "success",
+  "data": {
+    "widgetId": "wg_1923847",
+    "name": "SuperWidget",
+    "is_enabled": true
+  }
+}
+```
+
+## 3. The Power of Reference Tables
+
+Engineers rely on tables to quickly find a fact or confirm a detail. Design your reference documentation for **scanning**, not reading.
+
+For API endpoints or function parameters, always use a table with four consistent columns:
+
+| Parameter/Field | Data Type | Required? | Description |
+| :--- | :--- | :--- | :--- |
+| `widget_id` | `string` | **Yes** | The unique identifier for the widget being modified. |
+| `new_status` | `integer` | No | New state of the widget: `0` for inactive, `1` for active. Defaults to `0`. |
+| `auth_token` | `string` | **Yes** | **(Header)** OAuth token required for authentication. Must be type **Bearer**. |
+
+## 4\. The Developer-Friendly Tone
+
+Developers value **authenticity, accuracy, and efficiency**. Your tone should reflect this:
+
+  * **Be Direct and Imperative:** Use active voice and tell the user exactly what to do.
+      * **Good:** "Run this command." "The function returns a Promise."
+      * **Bad:** "You may consider running this command." "A Promise is returned by the function."
+  * **Acknowledge Complexity:** It's okay to say something is complex or difficult. Use **Warnings** and **Notes** to flag potential pitfalls.
+
+      :::warning
+       Generating and managing OAuth tokens is often the trickiest part of integration. Verify your scopes carefully.
+      :::
+
+  * **Avoid Marketing Fluff:** Cut all corporate buzzwords, excessive adjectives, and vague promises. Get straight to the technical utility. **The documentation should state what the code does, not how great the company is.**
+  
+  * **Respect the User's Time:** Developers are goal-oriented and impatient. Keep explanations concise and to the point. Use bullet points, numbered steps, and code blocks to facilitate quick comprehension.

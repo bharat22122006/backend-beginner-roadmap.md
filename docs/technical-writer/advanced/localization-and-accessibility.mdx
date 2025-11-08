@@ -1,1 +1,62 @@
-<ComingSoon />
+---
+title: Localization and Accessibility
+sidebar_label: "2. Localization and Accessibility"
+description: "Advanced principles for designing documentation that can be easily translated (localized) and used by people with disabilities (accessible)."
+---
+
+Professional documentation doesn't stop at the English language, nor does it assume all users have perfect vision or motor skills. **Localization (L10N)** and **Accessibility (A11Y)** are advanced practices that ensure your content is ready for a global and diverse audience.
+
+## 1. Localization (L10N): Writing for Translation
+
+Localization is the process of adapting a product or content to a specific target market, including language translation and cultural adjustments. As a technical writer, your primary job is to make your source English content easy and cost-effective to translate.
+
+### **A. Global-Ready Writing**
+
+Before translation starts, optimize your source text:
+
+* **Avoid Idioms and Slang:** Phrases like "hit the ground running," "low-hanging fruit," or "piece of cake" do not translate literally and cause confusion or require costly rewriting.
+    * **Bad:** "You'll need to hit the ground running with this new feature."
+    * **Good:** "You will need to quickly begin using this new feature."
+* **Keep Sentences Short and Direct:** Complex, compound sentences are easily mangled by translation software and human translators alike. Use one idea per sentence.
+* **Be Consistent (Especially in Style Guides):** Translators often rely on glossaries. If you call an element the "Dashboard" in one place and the "Admin Panel" in another, you force the translator to guess, leading to errors. Stick to your defined terminology.
+* **Minimize Text in Images:** When text is embedded in a screenshot or diagram (e.g., callout labels), it cannot be easily extracted for translation without recreating the image for every language. Use captions or external lists instead.
+
+### **B. Tooling and Process**
+
+Most modern Docs-as-Code platforms support localization through external files.
+
+1.  **Extract Strings:** Your content management system (or localization tool) extracts the translatable text (strings) from your Markdown files (e.g., `.mdx`) and places them into key-value files (e.g., `.json`, `.po`, or `.xliff`).
+2.  **Translation:** These string files are sent to human translators or machine translation services.
+3.  **Insertion:** The translated strings are loaded back into the documentation build process, creating separate language sites (e.g., `/docs/en`, `/docs/de`, `/docs/ja`).
+
+:::warning Context is King
+When working with translators, provide **context**. If a string is "Open," specify whether it's the verb (e.g., "Open the file") or the adjective (e.g., "The API is Open"). This avoids grammatical errors in languages with gendered nouns.
+:::
+
+## 2. Accessibility (A11Y): Designing for Inclusive Use
+
+Accessibility means ensuring people with disabilities—including visual, auditory, cognitive, and motor impairments—can perceive, understand, navigate, and interact with your documentation. This is often mandated by law (like the WCAG standards) and is always a matter of good practice.
+
+### **A. Visual Accessibility**
+
+This primarily helps users who rely on screen readers or have low vision.
+
+* **Semantic HTML and Headings:** Always use proper Markdown headings (`#`, `##`, `###`). Screen readers use these to create a navigable outline. **Never skip heading levels** (e.g., going directly from an `##` to an `####`). 
+* **Alt Text for Images:** Every instructional image, diagram, or chart must have descriptive "alternative text." Screen readers read this text aloud, providing context for non-sighted users.
+    * **Bad:** `![Diagram]`
+    * **Good:** `![Diagram showing the Authentication Flow: User sends credentials to the server, server returns an OAuth token, which the user then includes in all API requests.]`
+* **Color Contrast:** Ensure a high color contrast ratio between text and the background (e.g., dark text on a light background). Avoid using color alone to convey meaning (e.g., "The red text indicates an error").
+
+### **B. Navigation and Input Accessibility**
+
+This addresses users who cannot use a mouse.
+
+* **Keyboard Navigation:** All interactive elements (search bars, navigation menus, code tabs) must be accessible using only the keyboard's **Tab** key. The focus indicator (a visible outline around the element) must be clear.
+* **Descriptive Links:** Links should clearly indicate their destination, even when read out of context.
+    * **Bad:** "To learn more, **click here**."
+    * **Good:** "To learn more, read the **Security Overview guide**."
+* **Transcripts for Videos:** If you embed video tutorials, always provide a full, accurate text transcript or closed captions for users who are deaf or hard of hearing.
+
+---
+
+By prioritizing global-ready content and adhering to WCAG standards, you move beyond simply writing words and embrace the role of a true **Information Designer**, creating documentation that is open and useful to everyone, everywhere.

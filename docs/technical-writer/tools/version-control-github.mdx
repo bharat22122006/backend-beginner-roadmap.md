@@ -1,1 +1,98 @@
-<ComingSoon />
+---
+title: Version Control for Docs
+sidebar_label: "3. Version Control GitHub"
+description: "Master the core concepts of Git, the industry standard for version control, and use GitHub to collaborate on and manage documentation alongside source code."
+---
+
+**Git** is the distributed version control system (VCS) used by virtually every modern software team. **GitHub** (or GitLab, Bitbucket) is the cloud service that hosts Git repositories and provides a web interface for collaboration.
+
+For a technical writer practicing **Docs-as-Code**, Git is the tool that tracks every sentence, comma, and code block change, ensuring your documentation remains safe, auditable, and collaborative.
+
+## Core Concept: Commits and History
+
+Git's main job is to take "snapshots" of your project files (including your Markdown docs) over time.
+
+* A **Commit** is a single snapshot that records all the changes you made since the last snapshot. Every commit must have a descriptive message (e.g., "DOCS: Fixed broken link in installation guide").
+* The **History** is the sequence of all commits, forming a linear record of your project's evolution. If something breaks, you can always revert the entire project to a past, working commit.
+
+## The Central Workflow: Branches, Pull Requests, and Merges
+
+When working on docs, you should never edit the main, live version (usually called `main` or `master`). Instead, you follow a standardized process to manage changes safely.
+
+### 1. **Clone the Repository**
+
+You start by downloading a copy of the central project files (the repository) from GitHub to your local machine. This is called **cloning**.
+
+```bash title="Downloads the repository from the cloud to your computer"
+git clone [repository-url]
+```
+
+### 2. **Create a Branch**
+
+```bash title="Creates a new branch for your changes"
+git checkout -b [branch-name]
+```
+
+A **Branch** is a safe, parallel line of development. Any changes you make in your branch won't affect the live documentation until you explicitly approve them.
+
+```bash title="Creates a new branch named 'fix-bug-in-api-doc' and switches to it"
+git checkout -b fix-bug-in-api-doc
+```
+
+### 3. **Commit Your Changes (The Snapshot)**
+
+```bash title="Commits your changes"
+git commit -m "DOCS: Fixed broken link in installation guide"
+``` 
+After writing your content, you need to stage the files and commit them.
+
+1.  **Stage Files:** Tell Git which files you want to include in your commit.
+
+    ```bash title="Stages all changed files in the current directory"
+    git add .
+    ```
+
+2.  **Commit:** Create the snapshot with a descriptive message.
+
+    ```bash title="Creates the commit"
+    git commit -m "DOCS: Clarified input parameters for POST endpoint /users."
+    ```
+
+### 4. **Push to GitHub**
+
+You upload your local branch and its new commits to the remote GitHub repository.
+
+```bash title="Pushes the branch (and its changes) to GitHub"
+git push origin fix-bug-in-api-doc
+```
+
+### 5. **Create a Pull Request (PR)**
+
+```bash title="Creates a pull request"
+gh pr create --base main --head fix-bug-in-api-doc --title "Fix broken link in installation guide" --body "This PR fixes a broken link in the installation guide."
+```
+The **Pull Request** is the heart of collaboration.
+
+  * Once your changes are on GitHub, you open a PR asking for your new branch (`fix-bug-in-api-doc`) to be merged into the main line of documentation (`main`).
+  * The PR is the place where other writers, engineers, or product managers **review** your changes, suggest edits, and approve the content.
+
+### 6. **Merge and Deploy**
+
+Once the PR is approved, a lead writer or engineer **merges** your branch into `main`. This is the point where your documentation changes become part of the central, live codebase.
+
+Often, merging the PR triggers an automated process (like a **Continuous Integration/Continuous Deployment, or CI/CD, pipeline**) that automatically rebuilds and publishes the documentation website.
+
+## Best Practices for Technical Writer Commits
+
+Because your commits are part of the permanent record, clarity is paramount.
+
+| Goal | Best Practice | Example |
+| :--- | :--- | :--- |
+| **Clarity** | Use a clear prefix to identify the change type. | `DOCS:`, `FEAT:`, `FIX:`, `CHORE:` |
+| **Conciseness** | Keep the subject line short (under 50 characters). | `FIX: Corrected error in setup script parameters` |
+| **Specificity** | Reference the location or ticket number. | `DOCS: Updated requirements for feature X (JIRA-203)` |
+| **Tense** | Use the **imperative mood** (it tells what the commit *does*). | **Good:** `Update` the title. **Bad:** `Updated` the title. |
+
+> **A good commit message should answer the question:** "If this commit is applied, it will..."
+
+Mastering the Git workflow is the single most valuable tool a modern technical writer can possess, as it fully integrates you into the product development lifecycle.

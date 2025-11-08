@@ -1,1 +1,74 @@
-<ComingSoon />
+---
+title: SEO for Documentation
+sidebar_label: "3. SEO for Documentation"
+description: "Advanced techniques for optimizing documentation content, metadata, and site structure to rank higher in search engines and serve user needs directly."
+---
+
+**Search Engine Optimization (SEO)** is the process of improving your documentation's visibility so users can find the answers they need quickly, often bypassing your primary navigation entirely. For technical content, this means ranking well for **problem-solving queries** like "how to install X" or "Y API error code."
+
+The core principle of docs SEO is simple: **Solve the user's problem better than anyone else.**
+
+## 1. On-Page Optimization: Content is King
+
+The first place to optimize is within the content itself. You must align your writing with the terms your audience is actually searching for.
+
+### A. Keyword Research (The User's Question)
+
+Your users rarely search for product names alone; they search for **solutions**.
+
+* **Focus on Long-Tail Keywords:** These are specific phrases that indicate a strong intent to solve a problem.
+    * **Bad:** *API*
+    * **Good:** *"API error 401 unauthorized fix"* or *"docusaurus deploy github pages failure"*
+* **Use the Exact Language of the Problem:** If the command is `npm install`, your content should use that exact phrase, not synonyms like "npm setup" or "package fetching."
+
+### B. Strategic Keyword Placement
+
+Use your target keywords naturally in the most important sections of the page:
+
+1.  **Title:** The page title (defined in the front matter) is the single most important ranking signal.
+2.  **Description:** The page description (also in the front matter) doesn't directly affect ranking, but it becomes the snippet of text shown in Google's results—it must be compelling and accurate.
+3.  **Headings (H2/H3):** Include keywords naturally in your section headings to establish content hierarchy.
+4.  **Body Text:** Use the keywords in the first paragraph, and maintain a natural density throughout the article.
+
+### C. Optimize Code Blocks and Tables
+
+Search engines primarily read plain text. Ensure your solutions are available in an easily crawlable format:
+
+* **Code Blocks:** Ensure your code blocks have clear, descriptive text explaining their purpose *before* the code itself.
+* **Error Codes:** Dedicate a section or table to error codes. A table with columns for **Error Code, Meaning, and Solution** is highly crawlable and often appears as a **Featured Snippet** in Google.
+
+## 2. Technical SEO: Docusaurus and Structure
+
+Technical SEO ensures that search engine bots can effectively crawl, index, and understand your documentation site. Docusaurus handles much of this automatically, but you must configure it correctly.
+
+### A. Front Matter (The Metadata)
+
+The MDX front matter (the block at the top of your file) is crucial for SEO and sharing.
+
+* `title:`: Should be concise and contain the primary keyword.
+* `description:`: A compelling, 150–160 character summary of the content.
+* `slug:`: The end of the URL. Ensure your slugs are descriptive and contain keywords (e.g., `/api-error-401-fix` is better than `/page-15`).
+
+### B. Internal Linking (The Connective Tissue)
+
+Internal links signal to search engines which pages on your site are most important and help bots discover new content.
+
+* **Connect Concepts:** When you mention a related topic (e.g., "See the **API Reference** for details..."), ensure the term is a direct link to the relevant page.
+* **Navigation:** Your Docusaurus sidebar acts as a major source of internal links, ensuring all main pages are reachable and discoverable.
+
+### C. Sitemaps and Robots.txt
+
+* **Sitemaps:** Docusaurus automatically generates a `sitemap.xml` file, which lists all the crawlable pages on your site. **Submit this to Google Search Console.**
+* **Robots.txt:** This file tells search bots which parts of your site *not* to crawl. Use it sparingly, mainly to block utility pages or old, duplicated content that you don't want indexed.
+
+## 3. SEO-Driven Content Strategy
+
+Use SEO insights to drive your content creation, ensuring you always write what people need.
+
+* **Focus on the Missing Manuals:** Use Google Search Console or analytics to identify common queries that lead to a "404 Not Found" or a high bounce rate. These represent content gaps you need to fill.
+* **The "How-To" Structure:** The user is often looking for a task. Structure your content as a clear, numbered list of steps, as this format is often preferred by Google for **Featured Snippets** (the summary box at the top of search results). 
+* **Measure and Iterate:** Use tools like **Google Search Console** and **Google Analytics** to track which queries bring users to your site and whether those users are finding what they need (low bounce rate). Optimize pages with high traffic but poor engagement.
+
+---
+
+By applying these SEO principles, you ensure your documentation is not only accurate but also easily accessible to the global community of developers who rely on search to find immediate answers.

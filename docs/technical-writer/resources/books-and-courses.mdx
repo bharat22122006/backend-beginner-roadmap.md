@@ -1,1 +1,103 @@
-<ComingSoon />
+---
+title: Books and Courses for Technical Writers
+sidebar_label: "1. Books and Courses"
+description: A curated list of essential books, courses, and resources to help technical writers advance their skills in documentation, API writing, and career development.
+---
+
+import LinkCard from '@site/src/components/LinkCard';
+import SkillCard from '@site/src/components/SkillCard';
+import { FaBook, FaGlobe, FaCode, FaGraduationCap } from 'react-icons/fa';
+
+The best technical writers are lifelong learners. The tools, platforms, and even the programming languages change constantly, but the foundational principles of clarity and audience focus remain constant.
+
+Here is a curated list of resources to help you deepen your skills in specialized areas, from content strategy to hands-on tooling.
+
+---
+
+## 1. Essential Foundational Books
+
+These texts are widely recognized as foundational reading for professional technical writers, offering timeless principles on grammar, style, and structure.
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+    <SkillCard
+        title="The IBM Style Guide: Conventions for Writers and Editors"
+        description="A comprehensive guide used globally. Excellent for learning strict, unambiguous rules on capitalization, hyphenation, and writing command-line instructions."
+        icon={<FaBook className="text-blue-600 w-6 h-6" />}
+    />
+    <SkillCard
+        title="Docs for Developers: An Engineer's Field Guide to Technical Writing"
+        description="Written specifically for engineers (and technical writers working with engineers), this book focuses on practical applications and the Docs-as-Code philosophy."
+        icon={<FaCode className="text-green-600 w-6 h-6" />}
+    />
+    <SkillCard
+        title="Technical Writing 101: A Real-World Guide"
+        description="A great practical handbook covering the entire documentation lifecycle, from gathering information to managing reviews and publishing."
+        icon={<FaGraduationCap className="text-yellow-600 w-6 h-6" />}
+    />
+    <SkillCard
+        title="The Microsoft Manual of Style (MS MoS)"
+        description="While specific to Microsoft products, its rules for UI text, accessibility, and clarity are invaluable for any writer working on modern software interfaces."
+        icon={<FaGlobe className="text-red-600 w-6 h-6" />}
+    />
+</div>
+
+---
+
+## 2. Recommended Online Courses
+
+For hands-on learning and practical application of tools, online courses offer structured paths to specialized skills.
+
+### A. API Documentation
+
+Mastering API documentation is a high-value skill that often commands higher salaries. These courses dive deep into specification languages and tooling.
+
+<LinkCard
+    title="API Documentation Fundamentals (Multiple Platforms)"
+    description="Learn to use the OpenAPI Specification (OAS/Swagger) and tools like Postman to document REST APIs. Focuses on writing clear parameter and response descriptions."
+    link="https://www.google.com/search?q=API+Documentation+Course" 
+    icon="code"
+/>
+
+### B. Docs-as-Code Tooling
+
+To successfully integrate with engineering teams, you must be comfortable with the command line and version control.
+
+<LinkCard
+    title="Git and GitHub for Technical Writers"
+    description="Courses on platforms like Coursera or LinkedIn Learning can quickly teach you the essential Git workflow: cloning, branching, committing, and creating Pull Requests."
+    link="https://www.google.com/search?q=Git+and+GitHub+Course" 
+    icon="git"
+/>
+
+### C. Content Strategy and Information Architecture
+
+For senior writers, understanding how to structure and govern large documentation sets is key.
+
+<LinkCard
+    title="Information Architecture or Content Strategy Courses"
+    description="Focus on principles like the Diátaxis framework, content modeling, and building effective navigation menus."
+    link="https://www.google.com/search?q=Content+Strategy+Course" 
+    icon="terminal"
+/>
+
+---
+
+## 3. Essential Online Style Guides
+
+You don't need to buy a book for basic style rules. Always keep these public guides bookmarked:
+
+* **Google Developer Documentation Style Guide:** (Free) Excellent for code examples, API reference, and general tone for a developer audience.
+* **A List Apart:** While not a style guide, this resource offers deep dives into content strategy, web writing, and usability.
+* **The Write the Docs Glossary:** A great, community-maintained resource for quickly looking up technical writing jargon and industry terms.
+
+---
+
+## 4. The Best Resource: Community
+
+The single most valuable resource in technical writing is the community.
+
+* **Write the Docs:** The largest and most active technical writing community. They host conferences, run local meetups, and maintain an extremely helpful Slack channel.
+* **Reddit (r/technicalwriting):** A great source for career advice, tooling debates, and finding answers to common problems.
+* **Local Meetups:** Search for local technical writing, documentation, or user assistance groups in your area for in-person networking.
+
+By engaging with these resources, you ensure your skills are always current, relevant, and in demand.

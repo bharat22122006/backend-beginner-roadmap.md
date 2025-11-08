@@ -1,1 +1,83 @@
-<ComingSoon />
+---
+title: Open Source Contributions
+sidebar_label: "4. Open Source Contributions"
+description: "Learn the technical and social etiquette of contributing documentation to open-source projects, a vital step for advancing your technical writing career."
+---
+
+Contributing to open-source (OSS) documentation is a pivotal step in a technical writer's career. It gives you hands-on experience with modern tools (like Git, Markdown, and various SSGs) and demonstrates your ability to collaborate with engineering teams on critical, live codebases.
+
+## 1. Why Contribute to OSS Docs?
+
+It's a high-impact, low-risk way to learn and prove your skills.
+
+| Benefit | Description |
+| :--- | :--- |
+| **Portfolio Builder** | A merged Pull Request (PR) on a major project (like Kubernetes, React, or a popular Node library) is the best proof of your skills you can offer a potential employer. |
+| **Tooling Mastery** | You gain practical experience using **Git/GitHub**, working with **Markdown/MDX**, and navigating complex **Static Site Generators (SSGs)**. |
+| **Learn Best Practices** | You are forced to adhere to a project's strict **style guides** and **submission workflows**, which are often best-in-class. |
+| **Networking** | You interact directly with core maintainers and engineers, expanding your professional network. |
+
+## 2. Finding a Project and Your First Contribution
+
+Don't start by trying to rewrite the whole manual. Start small, targeted, and highly valuable.
+
+### A. Finding the Right Project
+
+* **Use the Tools You Know:** Start with a project whose technology you already use (e.g., if you use Python, look at Django or Flask docs). You already understand the user pain points.
+* **Look for Doc Gaps:** Look for sections in documentation that are sparse, confusing, or outdated.
+* **Good Starter Projects:** Many projects use labels like `good first issue`, `documentation`, or `help wanted` on their GitHub issue trackers. 
+
+### B. The Easiest Wins (Low-Friction Contributions)
+
+1.  **Fix Typos and Grammar:** Spotting a misplaced comma or a typo is an easy way to get familiar with the project's **Git workflow** and earn your first merged PR.
+2.  **Clarify Error Messages:** If a step throws a confusing error, clarify what the error means and provide a direct solution or workaround.
+3.  **Update Outdated Commands:** Sometimes the documentation uses an old command line flag or package name. Verifying and updating these is highly valuable.
+4.  **Enhance the README:** The `README.md` is the project's front door. Improving its clarity, adding prerequisites, or cleaning up the installation instructions is a great contribution.
+
+## 3. The Contribution Workflow (Technical Etiquette)
+
+Contributing documentation requires strict adherence to the project’s technical workflow, which is almost always based on Git and GitHub.
+
+### Step 1: **Fork and Clone**
+
+* **Fork:** Click the **Fork** button on the project's GitHub page. This creates a personal copy of the entire repository under your account.
+* **Clone:** Clone your personal fork to your local machine.
+
+```bash title="Terminal"
+git clone https://github.com/your-username/project-name.git
+```
+
+### Step 2: **Create a New Branch**
+
+```bash title="Terminal"
+cd project-name
+```
+
+Always isolate your change in a new branch. Use the naming convention (if provided by the project, e.g., `docs/fix-readme`).
+
+```bash title="Terminal"
+git checkout -b docs/fix-broken-link
+```
+
+### Step 3: **Commit with Clarity**
+
+  * Make your changes locally.
+  * Commit your changes using a clear, descriptive commit message that follows the project's style. Use a prefix like `DOCS:` or `FIX:`
+      * **Good Commit:** `DOCS: Clarified prerequisites in installation tutorial`
+
+### Step 4: **Open the Pull Request (PR)**
+
+  * **Push:** Push your new branch to your fork on GitHub.
+  * **PR:** Navigate to the original project repository on GitHub and click the **Compare & Pull Request** button.
+  * **Fill out the Template:** Most serious projects have a **PR template**. **Fill it out completely!** Explain *what* you changed and *why* (e.g., "The previous steps failed on Windows," or "I added a section on error handling").
+
+## 4. The Social Etiquette (Non-Technical Rules)
+
+Technical writers are collaborators. A positive, respectful interaction is essential.
+
+1.  **Read the Contribution Guide:** Before you do anything, find the project's `CONTRIBUTING.md` file. It explains the PR process, required testing, and preferred style guides.
+2.  **Be Humble and Patient:** A core maintainer is volunteering their time. They might take days or weeks to review your work. Be polite, respond clearly to their feedback, and avoid demanding quick merges.
+3.  **Accept Feedback (and Refactor):** Expect suggestions. Maintainers may ask you to rewrite sentences, move a section, or change your branch name. This is normal; it’s part of adhering to the project's standards.
+4.  **Close the Loop:** If you opened an issue for a problem you fixed, reference the issue in your PR description (e.g., "Closes \#1234").
+
+Open-source contribution is the gold standard for proving your technical writing skills, offering continuous learning, and directly impacting the developer community.
