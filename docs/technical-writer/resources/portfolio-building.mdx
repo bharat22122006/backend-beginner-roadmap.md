@@ -1,1 +1,93 @@
-<ComingSoon />
+---
+title: Portfolio Building
+sidebar_label: "4. Portfolio Building"
+description: "Step-by-step guide on how to build a professional, high-impact technical writing portfolio that demonstrates mastery of modern tools and documentation standards."
+---
+
+import LinkCard from '@site/src/components/LinkCard';
+
+Your portfolio is your professional calling card. It’s what hiring managers and recruiters look at **first**, often before they even read your resume. A strong portfolio doesn't just show your writing; it demonstrates your mastery of the entire **Docs-as-Code workflow**.
+
+## 1. What a Modern Portfolio Must Demonstrate
+
+A hiring manager needs proof of three things. Your portfolio should explicitly showcase all of them.
+
+### A. Technical Proficiency (The Tools)
+
+You must prove you can work in a modern engineering environment.
+
+* **GitHub/GitLab:** All your projects should be hosted in a **public Git repository**. This proves you understand version control, branching, and pull requests.
+* **Modern Tooling:** Your portfolio site itself should be built using a **Static Site Generator (SSG)** like Docusaurus, MkDocs, or Hugo. This shows you can handle the command line and modern publishing workflows.
+* **Code Samples:** Demonstrate comfort with **Markdown, JSON, XML, and code blocks** with proper syntax highlighting.
+
+### B. Writing and Clarity (The Content)
+
+You need to show you can adapt your voice to different audiences.
+
+* **Task-Orientation:** The documentation should guide the user to a successful outcome (a finished task).
+* **Clarity and Conciseness:** No fluff, no marketing jargon. Just clear, unambiguous instructions.
+* **Style Guide Adherence:** Use consistent formatting, terminology, and tone.
+
+### C. Information Architecture (The Structure)
+
+You must prove you can organize complex information.
+
+* **Navigational Structure:** Show that you can structure a sidebar logically and use cross-linking effectively.
+* **Content Hierarchy:** Use clear headings (H2, H3) and lists to break down text for scannability.
+
+---
+
+## 2. Essential Portfolio Projects (The Core Four)
+
+Aim for 3–5 high-quality projects. A few excellent, polished examples are infinitely better than ten mediocre ones.
+
+| Project Type | Skill Demonstrated | Example Topic Idea |
+| :--- | :--- | :--- |
+| **1. API Reference** | Writing for developers, structured data (JSON/YAML), tables, request/response. | Document a public API (e.g., NASA, OpenWeatherMap, a cryptocurrency exchange). |
+| **2. Setup/How-To Guide** | Task-oriented writing, numbered lists, prerequisites, troubleshooting, visual aids. | How to set up a Docker container, how to configure a simple serverless function, or how to run a React app locally. |
+| **3. Conceptual Explanation** | Explaining complex concepts simply, analogies, diagrams, high-level overviews. | Explain "What is OAuth 2.0?" or "How does a CDN work?" for a non-technical manager. |
+| **4. Release Notes/Changelog** | Conciseness, categorizing changes, identifying user value. | Write a sample set of release notes for the latest update of a popular app (e.g., Slack, VS Code). |
+
+<LinkCard
+    title="Tip: The Live Project"
+    description="If you contribute documentation to an Open Source project, that merged Pull Request (PR) is your single most powerful portfolio piece—it's real-world proof of collaboration and quality."
+    link="/tutorial/technical-writer/advanced/open-source-contributions"
+    icon="code"
+/>
+
+---
+
+## 3. Step-by-Step Guide to Building Your Site
+
+Follow this simple, professional workflow for creating your portfolio site:
+
+### Step 1: Choose Your Platform
+
+Build your portfolio using a modern SSG. **Docusaurus** is a great choice because it's built for documentation and handles sidebars, navigation, and search out of the box.
+
+### Step 2: Create a Repository
+
+1.  Create a new public repository on **GitHub** (e.g., `my-portfolio-docs`).
+2.  Commit all your project files (Markdown, config, images) here.
+3.  Use the `main` branch only for the live content.
+
+### Step 3: Write Your Projects
+
+Use the core four types listed above. For each project:
+
+* Create a separate Markdown file (`api-reference.mdx`, `docker-setup.mdx`).
+* Ensure every file has a clear front matter (`title`, `description`, `slug`).
+* Embed sample code blocks and **screenshots**  (use placeholders if you can't generate actual UIs).
+
+### Step 4: Add Context and Links
+
+* **The "About Me" Section:** Include a short, professional paragraph explaining your technical background and specific skill set (e.g., "Experienced in documenting cloud APIs and CI/CD pipelines").
+* **The Live Links:** For every project, clearly link to:
+    1.  The **Live Documentation Page** (e.g., `yourname.github.io/portfolio/api-reference`).
+    2.  The **Source File** on GitHub (e.g., `github.com/yourname/my-portfolio-docs/api-reference.mdx`). This shows transparency and Git mastery.
+
+### Step 5: Get Feedback
+
+Share your portfolio link with other technical writers (e.g., in the Write the Docs Slack). Ask them specific questions: Is the navigation confusing? Did the code sample work? Is the tone consistent?
+
+A portfolio that shows off your writing and your ability to use modern tools will set you apart from 90% of the competition.

@@ -1,1 +1,177 @@
-<ComingSoon />
+---
+title: Templates and Samples
+sidebar_label: "3. Templates and Samples"
+description: "Ready-to-use templates and structural samples for common documentation types, including API Reference, Release Notes, and Step-by-Step Guides."
+---
+
+import LinkCard from '@site/src/components/LinkCard';
+import SkillCard from '@site/src/components/SkillCard';
+import { FaFileCode, FaClipboardList, FaBullhorn, FaBook } from 'react-icons/fa';
+
+Starting a new document from a blank page is the hardest part. The templates below provide a proven structural foundation for the most common types of technical documentation, ensuring you hit all the necessary points right from the start.
+
+Use these as boilerplate to focus immediately on the content, not the formatting.
+
+---
+
+## 1. API Reference Endpoint Template (Markdown/MDX)
+
+This structure is ideal for documenting a single, specific endpoint (e.g., `POST /v1/users`). It ensures all required details for a developer are immediately visible.
+
+<SkillCard
+    title="Key Focus"
+    description="Zero-friction reference material. Optimize for quick scanning and copy-pasting."
+    icon={<FaFileCode className="text-indigo-500 w-6 h-6" />}
+/>
+
+
+````markdown
+---
+title: POST /v1/resource
+---
+
+## Endpoint: Create a New Resource
+
+### Description
+Creates a new [Resource Name] object in the system. Use this endpoint to initialize new data structures.
+
+### Request Details
+| Field | Value |
+| :--- | :--- |
+| **Method** | `POST` |
+| **URL** | `https://api.example.com/v1/resource` |
+| **Authentication** | Required (Bearer Token in Header) |
+| **Rate Limit** | 100 requests per minute |
+
+### Request Parameters (Body: JSON)
+| Parameter | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| `name` | `string` | Yes | The user-friendly name of the resource. |
+| `settings.config_id` | `integer` | No | Optional configuration ID to apply. Defaults to 0. |
+
+### Request Example (cURL)
+```bash
+curl -X POST 'https://api.example.com/v1/resource' \
+  -H 'Authorization: Bearer [YOUR_TOKEN]' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "name": "New Project Widget",
+    "settings": { "config_id": 10 }
+  }'
+```
+
+### Response Codes
+
+| Code | Status | Description |
+| :--- | :--- | :--- |
+| **201** | Created | The resource was created successfully. |
+| **400** | Bad Request | The required `name` field was missing. |
+| **401** | Unauthorized | Invalid or expired Bearer Token provided. |
+
+### Successful Response Example (201)
+
+```json
+{
+  "status": "success",
+  "data": {
+    "resource_id": "res_a01b2c",
+    "status": "pending_setup"
+  }
+}
+```
+
+````
+
+---
+
+## 2. Release Notes Template (Structured for Scanning)
+
+This template prioritizes categorized lists and concise language, ensuring users can find new features or bug fixes in seconds.
+
+<SkillCard
+    title="Key Focus"
+    description="Conciseness and categorical clarity. Answer the user's question: 'What changed that affects me?'"
+    icon={<FaBullhorn className="text-yellow-500 w-6 h-6" />}
+/>
+
+````markdown
+# Release Notes: Version X.Y.Z (Released Month Day, Year)
+
+This release focuses on improving dashboard performance and introducing a highly requested Dark Mode theme.
+
+## New Features and Enhancements
+
+* **Dark Mode Theme:** Users can now switch to a comfortable dark viewing experience under **Settings > Display**.
+* **Faster Loading:** Optimized asset loading reduces the initial dashboard load time by 35%.
+* **Enhanced API Filtering:** The `/reports` API endpoint now supports filtering by resource status.
+
+## Fixed Bugs
+
+* Resolved an issue where saved reports would sometimes display data from the previous user session.
+* Fixed a bug that prevented the **Export to CSV** button from being clickable on mobile devices.
+* Corrected a styling error causing overlapping text in the "Help" section sidebar.
+
+## Known Issues and Workarounds
+
+* **Issue:** The real-time activity feed may briefly disconnect when changing network connections.
+* **Workaround:** Simply refresh the page to restore the connection. We are actively working on a fix for version X.Y.Z+1.
+````
+
+-----
+
+## 3. Step-by-Step Procedure Guide Template
+
+The essential template for any **How-To Guide** or **Tutorial** (Task-Oriented Content).
+
+<SkillCard
+title="Key Focus"
+description="Action verbs, clear numbering, and explicit visual confirmation points."
+icon={<FaClipboardList className="text-green-500 w-6 h-6" />}
+/>
+
+````markdown
+# How to [Achieve a Specific Goal]
+
+This guide walks you through the steps required to [Goal/Outcome]. This typically takes [X minutes].
+
+## Prerequisites
+
+* You must have **Admin** privileges on the account.
+* The system requires [Software/Tool] version X.0 or higher.
+
+## Procedure
+
+1.  **Navigate** to the main Dashboard page.
+2.  In the top navigation bar, **click** the **Settings** icon (gear).
+3.  From the Settings menu, **select** **System Configuration**.
+    * *Note: If you do not see this option, your user role may be insufficient.*
+4.  **Enter** the required value (`my-app-id`) into the field labeled **Application ID**.
+5.  **Click** the **Apply Changes** button at the bottom of the page.
+
+
+## Verification
+
+To verify your changes, [describe a simple check the user can perform]. For example, refresh the Dashboard and look for the new indicator lights to turn green.
+````
+
+-----
+
+## 4. External Template Resources
+
+For more comprehensive templates and structural frameworks, check out these external resources that often provide full repository examples.
+
+<LinkCard
+title="The Diátaxis Framework Structure"
+description="Study the philosophical framework that advocates separating documentation into four distinct categories: Tutorial, How-To, Reference, and Explanation."
+link="https://diataxis.fr/"
+icon="book"
+/>
+
+<LinkCard
+title="Docusaurus Official Templates"
+description="Review the source code of the official Docusaurus templates on GitHub. They provide excellent examples of MDX usage, sidebar structure, and front matter."
+link="https://www.google.com/search?q=https://docusaurus.io/docs/next/installation%23scaffolding-your-site"
+icon="code"
+/>
+
+This collection of templates should help you get started quickly on your documentation projects, ensuring clarity and consistency across your work.

@@ -1,1 +1,124 @@
-<ComingSoon />
+---
+title: Markdown Basics
+sidebar_label: "1. Markdown Basics"
+description: "Learn the fundamental syntax and structure of Markdown (MDX) to efficiently write, format, and maintain technical documentation across modern platforms."
+---
+
+Markdown is a lightweight, easy-to-read markup language that technical writers use to format text using a plain text editor. Its design goal is to allow people to write using an easy-to-read, easy-to-write format, and then convert it to structurally valid HTML (or other formats).
+
+For technical writers, Markdown is essential because it keeps the focus on **content structure** rather than decorative styling.
+
+## The Core Concept: Structure, Not Style
+
+Think of Markdown not as a word processor, but as a system for defining document structure.
+
+* A `#` is not a huge font; it is a **Heading 1**.
+* A `*` is not a bold font; it denotes **strong emphasis**.
+
+When you write in Markdown, the structure is preserved, and the styling (font, color, spacing) is handled later by a **Stylesheet (CSS)**, often provided by your documentation tool (Docusaurus, GitBook, etc.).
+
+## Essential Markdown Syntax
+
+Mastering a few simple symbols is all it takes to handle 90% of your documentation needs.
+
+### 1. Headings (Creating Hierarchy)
+
+Headings are critical for document navigation and SEO. Markdown uses the hash symbol (`#`) to denote hierarchy. Always skip H1 after the main title.
+
+| Markdown Syntax | Output/Meaning | Best Practice Use |
+| :--- | :--- | :--- |
+| `## Section Header` | Heading 2 (H2) | Major sections of your document. |
+| `### Subsection Header` | Heading 3 (H3) | Logical divisions within a major section. |
+| `#### Topic Detail` | Heading 4 (H4) | Specific topics or steps in a procedure. |
+| `# Title of Document` | Heading 1 (H1) | Reserved for the document's main title (often generated automatically by MDX). |
+
+### 2. Text Formatting (Emphasis)
+
+Use these sparingly—bolding should guide the user's eye to key terms (like interface elements).
+
+| Markdown Syntax | Output/Meaning | Best Practice Use |
+| :--- | :--- | :--- |
+| `**Bold Text**` or `__Bold Text__` | **Bold Text** (Strong Emphasis) | Highlighting interface elements (`Click **Save**`), warnings, or keywords. |
+| `*Italic Text*` or `_Italic Text_` | *Italic Text* (Emphasis) | Highlighting book titles, file names, or new terminology. |
+
+### 3. Lists (The Technical Writer's Best Friend)
+
+Lists are how you break down complex information. Use numbered lists for sequences and bulleted lists for non-sequential items.
+
+#### **1. Ordered (Numbered) Lists**
+Used for **procedures, steps, or ranked items**. The number you use doesn't matter; Markdown will render the sequence correctly.
+
+```markdown
+1. First step in the process.
+1. Second step (Markdown handles the numbering).
+    1. A sub-step indented by four spaces or one tab.
+```
+
+#### **2. Unordered (Bulleted) Lists**
+
+Used for **features, prerequisites, or collections** where the order doesn't matter.
+
+```markdown
+* Feature A
+* Feature B
+    * Detail of Feature B
+* Feature C
+```
+
+### 4. Code and Terminal Commands
+
+This is essential for any technical content. Markdown offers two ways to handle code:
+
+| Markdown Syntax | Use Case | Example |
+| :--- | :--- | :--- |
+| **Inline Code** | Highlighting a variable, a command, or a file name within a sentence. | Type `npm install` in your terminal. |
+| **Code Blocks** | Displaying larger snippets of code, configuration files, or command output. | Wrap the code in three backticks (\`\`\`) and specify the language for syntax highlighting. |
+
+````markdown title="JavaScript Code Block Example"
+```javascript
+function calculate(x) {
+  return x * 2;
+}
+```
+````
+
+### 5. Links and Images (Connecting the Docs)
+
+Documentation lives and dies by its links.
+
+#### **1. Links**
+The format is simple: `[Text to Display](URL/Path)`.
+
+```markdown title="Link Examples"
+// External Link
+[Visit Google](https://www.google.com)
+
+// Internal Link (Relative Path is Common in MDX)
+[Installation Guide](../installation/setup.md) 
+```
+
+#### **2. Images**
+
+Images follow the same link syntax, but are prefixed with an exclamation mark (`!`).
+
+```markdown title="Image Example"
+![Alternative text for accessibility](path/to/image.png)
+```
+
+### 6. Blockquotes and Callouts
+
+Blockquotes (`>`) are often used to highlight notes, definitions, or warnings in documentation systems.
+
+```markdown
+> This is a Blockquote.
+> Use it for important notes, warnings, or caution statements.
+```
+
+## Why Markdown is Better for Technical Writing
+
+1.  **Version Control (Git/GitHub):** Unlike binary files (like `.doc` or `.pdf`), Markdown files are plain text, making them easy to track, compare, and merge using Git. This is foundational for collaborative documentation.
+2.  **Conversion:** Markdown can be instantly converted to beautiful HTML, PDFs, and even EPUB formats using automation tools.
+3.  **Future-Proofing:** It uses simple ASCII characters, ensuring your content will be readable on any system, decades from now.
+4.  **MDX (Markdown + JSX):** Many modern documentation frameworks use MDX, which allows you to embed interactive UI components (like live code editors or custom warnings) directly within your Markdown file, combining simplicity with modern web functionality.
+
+This guide covers the essentials, but Markdown has many more features to explore. As you become more comfortable, you'll find that Markdown empowers you to create clear, structured, and maintainable technical documentation efficiently.

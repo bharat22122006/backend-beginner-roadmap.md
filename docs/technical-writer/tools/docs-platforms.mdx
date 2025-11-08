@@ -1,1 +1,133 @@
-<ComingSoon />
+---
+title: Documentation Platforms and Static Site Generators
+sidebar_label: "2. Docs Platforms"
+tags: ["technical-writing", "tools", "documentation-platforms", "static-site-generators"]
+description: "An overview of the tools and platforms technical writers use to manage, build, and deploy documentation, focusing on static site generators like Docusaurus and MkDocs."
+---
+
+Once you've written your brilliant Markdown (`.mdx`) files, you need a system to turn that plain text into a beautiful, searchable website. This system is typically a **Documentation Platform** or a **Static Site Generator (SSG)** tailored for docs.
+
+## The Shift: From Word Processors to Code
+
+A key difference in modern technical writing is that your documentation is treated like code. It's stored in a repository, built by a program, and deployed via automation. This offers huge benefits in speed, consistency, and collaboration.
+
+### The Two Main Approaches
+
+| Platform Type | Description | Best For | Examples |
+| :--- | :--- | :--- | :--- |
+| **SaaS/Cloud Platforms** | All-in-one solutions that handle editing, hosting, and publishing entirely within a web interface. Less setup, less customization. | Small teams, non-technical writers, and rapid deployment. | Confluence, ReadMe, Help Scout |
+| **Static Site Generators (SSGs)** | Programs that take your source files (Markdown, images) and convert them into simple HTML/CSS/JS files, which are fast and cheap to host. | Developers, technical writers, open-source projects, and high customization needs. | Docusaurus, Next.js, Hugo, MkDocs |
+
+:::tip Why SSGs?
+SSGs are the darlings of modern tech documentation because they are incredibly fast, highly secure (since they generate no server-side code), and align perfectly with development workflows (Git).
+:::
+
+## Deep Dive: Key SSG Features for Technical Docs
+
+When choosing an SSG (like the one running **CodeharborHub**), look for these critical features designed specifically for documentation:
+
+### 1. Versioning (The Time Machine)
+
+The most vital feature. Products change quickly, but your users need documentation for the version they are *currently* using.
+
+* **Concept:** Allows you to freeze the state of your documentation for a specific product version (e.g., v1.0, v2.0).
+* **User Impact:** A user on an older product version can view accurate, corresponding instructions without seeing features that don't exist yet.
+* **How it Works:** The SSG manages separate directories for each version (e.g., `docs/v1.0`, `docs/v2.0`).
+
+### 2. Search (The North Star)
+
+If users can't find it, it doesn't exist. Effective documentation platforms integrate powerful, full-text search.
+
+* **Local Search:** Some small SSGs use client-side search (using only JavaScript).
+* **External Search:** Most professional sites use dedicated indexing services (like Algolia or ElasticSearch) that integrate seamlessly into the platform's UI. This is usually faster and more accurate.
+
+### 3. Navigation and Structure
+
+A good platform automatically manages the relationship between your files and the site structure.
+
+* **Sidebar Generation:** Creates the hierarchical sidebar based on your file structure and a simple configuration file (`_sidebar.yml` or similar).
+* **Table of Contents (TOC):** Automatically generates the right-hand TOC based on your `H2`, `H3`, and `H4` headings within a Markdown file, making long pages digestible.
+
+### 4. Custom Components (MDX)
+
+As a technical writer, you'll often need more than just text. MDX allows you to embed interactive elements:
+
+* **Tabs:** Displaying code snippets in different languages (e.g., JavaScript, Python) that a user can switch between.
+* **Callouts/Admonitions:** Custom blocks for `Note`, `Warning`, `Tip`, and `Danger` that look better than standard blockquotes.
+
+```markdown title="Callout Example in a tool like Docusaurus"
+:::tip
+Remember to clear your cache after updating the firmware!
+:::
+```
+
+:::info Static Site Generators (SSGs)
+
+<br />
+
+SSGs are the **developer's choice**. They compile your content into static HTML, CSS, and JavaScript files during a "build" process. The resulting site is incredibly fast, secure, and easily version-controlled.
+
+| Feature | Description | Best For | Examples |
+| :--- | :--- | :--- | :--- |
+| **Content Format** | Markdown (MDX) | **Engineers** writing documentation alongside code. | Docusaurus (React-based, great for versioning), MkDocs (Python/simple), Jekyll (Ruby/GitHub Pages). |
+| **Pros** | **Speed** (lightning fast), **Security** (no server-side database), **Cost-effective** (often free to host). | Companies with **GitHub/Git workflow maturity** and developers willing to manage the setup. | Docusaurus, MkDocs, Hugo |
+| **Cons** | **Setup complexity** (requires Node.js, Python, or Go knowledge), **No built-in editor** (you edit in Markdown files). | Writers with **minimal coding experience** or teams needing an editor. | |
+
+**Why SSGs ?**
+
+Static sites are the standard for modern API and product documentation because they integrate perfectly with the development team's existing Git workflow. Your documentation is treated as code (**Docs-as-Code**).
+
+:::
+
+## Deployment: From Localhost to Live Site
+
+The final step is getting your documentation online. This is where the "Static" part of SSG shines.
+
+1.  **Local Build:** You run a command (e.g., `npm run build` or `mkdocs build`).
+2.  **Asset Generation:** The SSG processes your Markdown and creates a folder full of `.html`, `.css`, and `.js` files.
+3.  **Hosting:** You upload that entire folder to a web server (like Netlify, Vercel, or GitHub Pages). Since there's no server-side processing, the hosting is simple, fast, and secure.
+
+:::info Hosted, Cloud-Based Solutions
+
+These platforms provide a full, all-in-one service: the editor, the hosting, and the search functionality. They are designed to get documentation live quickly with minimal setup.
+
+| Feature | Description | Best For | Examples |
+| :--- | :--- | :--- | :--- |
+| **Content Format** | Web Editor (WYSIWYG or Markdown) | **Small teams** or companies prioritizing speed-to-market and simplicity. | Document360, Help Scout, Zendesk Guide, GitBook. |
+| **Pros** | **Zero setup/maintenance**, **Built-in authoring tools** (no local environment needed), **Excellent collaboration** and permissions. | Teams where technical writers and support agents co-author and non-technical stakeholders must contribute. | GitBook, Document360 |
+| **Cons** | **Vendor lock-in** (content lives on their servers), **Less customization** of the final design/UI. | Teams with **strict design requirements** or complex data integration needs. | |
+
+**Why Hosted Solutions?**
+
+Hosted documentation platforms are ideal for teams that want to focus on content creation without worrying about the technical aspects of site generation and deployment. They offer a user-friendly interface and built-in features that streamline collaboration and publishing.
+
+:::
+
+## Component Content Management Systems (CCMS) & Headless CMS
+
+These are the enterprise solutions, built for extreme scale, content reuse, and complex workflows.
+
+### A. CCMS (Component CMS)
+
+CCMS tools like **Paligo** or **MadCap Flare** focus on **Single-Sourcing** and **Topic-Based Authoring (DITA)**. This means you write small, reusable topics that are pulled into different documents.
+
+* **Best For:** Manufacturing, Aerospace, Finance, or any environment with high regulatory needs, complex product families, or extreme language/localization requirements.
+
+### B. Headless CMS
+
+A Headless CMS (**Contentful, Strapi**) is purely a content repository—it provides the "body" of the content via an API, but no "head" (frontend website).
+
+* **Best For:** Companies needing to publish the **same content** to a website, a mobile app, and a chatbot simultaneously (omnichannel delivery). The content is authored once and pulled into multiple frontends.
+
+:::tip Choosing Your Platform: Key Questions
+
+<br />
+
+| Question | SSG (Docusaurus/MkDocs) | Hosted (GitBook/Document360) | CCMS (Paligo/Flare) |
+| :--- | :--- | :--- | :--- |
+| **What is your budget?** | Low (free software, pay for simple hosting). | Mid-High (per-user subscription fees). | Very High (significant annual enterprise license). |
+| **Who will be writing/contributing?** | Developers and Technical Writers (Markdown). | Anyone (simple web editor). | Technical Writers and Subject Matter Experts. |
+| **Do you need versioning (v1.0, v2.0)?** | Yes, **Native and excellent.** | Yes, usually good, sometimes an add-on. | Yes, **Essential and core functionality.** |
+| **Do you need extreme content reuse?** | Possible, but requires complex template logic. | Limited, typically page-by-page. | **Yes, this is their core purpose.** |
+
+:::

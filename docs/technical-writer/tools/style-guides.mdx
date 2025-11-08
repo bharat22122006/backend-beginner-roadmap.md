@@ -1,1 +1,79 @@
-<ComingSoon />
+---
+title: Style Guides for Technical Writers
+sidebar_label: "5. Style Guides"
+description: "Understand the necessity of style guides, the difference between internal and external guides, and how to apply rules for professional, unambiguous technical communication."
+---
+
+A **Style Guide** is a set of standards for the writing and design of documents. It's the central authority that dictates everything from capitalization and hyphenation to tone and grammar.
+
+If the documentation set feels cohesive, professional, and easy to read, you can bet there's a good style guide behind it. Its primary function is to eliminate ambiguity and enforce **consistency** across all authors and documents.
+
+## Why Consistency is Crucial in Tech Docs
+
+For creative writers, variety is a virtue. For technical writers, it is a liability.
+
+| Inconsistent Style | Consistent Style (from a Guide) | Impact on the User |
+| :--- | :--- | :--- |
+| Use **Log In**, **login**, and **Log-in** randomly. | Always use **Log in** (verb) and **login** (noun/adjective). | Confusion, distraction, and perceived lack of quality control. |
+| Refer to the user as "we" or "they." | Always use the direct **"you"** and the imperative mood. | Focuses the user on the action they must take, reducing cognitive load. |
+| **API** vs. **Api** vs. **A.P.I.** | Always capitalize the full acronym: **API**. | Ensures the term is recognized instantly and consistently. |
+
+A style guide frees the writer from making hundreds of minor editorial decisions, allowing them to focus on explaining complex concepts clearly.
+
+## Major Categories of Style Guides
+
+Technical writers typically work with two types of style guides:
+
+### 1. General Linguistic Style Guides (External)
+
+These guides define the fundamental rules of grammar, mechanics, and syntax. They are often adopted from major external authorities to avoid reinventing the wheel.
+
+| Guide Name | Focus | Core Principles for Tech Writers |
+| :--- | :--- | :--- |
+| **Microsoft Writing Style Guide** | Software, IT, and user interface text. | Excellent guidance on voice, tone, and writing for international audiences. Emphasizes clarity and conciseness. |
+| **Google Developer Documentation Style Guide** | API documentation, tutorials, and developer-focused content. | Strong rules for code formatting, imperative voice, and handling technical concepts. |
+| **Chicago Manual of Style (CMOS)** | Traditional publishing, citations, and formal academic text. | Used for long-form reports or books, particularly for citation and reference formatting. |
+
+### 2. Product and Brand Style Guides (Internal)
+
+These guides are unique to your company and product. They define proprietary terminology and the specific voice the company wants to project.
+
+#### **A. Terminology and Glossary**
+This is the most important section for a technical writer. It contains the approved spellings and usage for product features.
+
+* **Example:** Is it "CodeharborHub," "CodeHarborHub," "Code Harbor Hub" or "Codeharbor Hub?" The guide must specify.
+
+#### **B. Voice and Tone**
+This defines the emotional aspect of your writing. Should your documentation be formal and academic, or conversational and witty?
+
+* **Formal Tone:** "The application necessitates user authentication prior to resource access."
+* **Conversational Tone:** "You must log in to access your files."
+
+#### **C. UI Element Rules**
+How do you refer to elements the user sees on the screen?
+
+* **Rule:** **Bold** interface elements (e.g., Click the **Save** button).
+* **Rule:** Use *italics* for file names (e.g., Open the *config.yaml* file).
+
+#### **D. Punctuation and Capitalization**
+This section covers the nitty-gritty details of punctuation and capitalization.
+* **Rule:** Use the Oxford comma for lists (e.g., "Install Python, Node.js, and Git.").
+* **Rule:** Capitalize product names consistently (e.g., "Codeharbor" vs. "CodeHarbor").
+
+## How to Apply a Style Guide
+
+A style guide is useless if it's sitting unread on a shelf. Effective adoption relies on integration.
+
+1.  **Use a Linter (Review from the previous tutorial):** As mentioned in the **Writing Tools** tutorial, integrate a tool like [Vale](https://docs.errata.ai/) into your Git workflow. This automatically flags violations of your style guide rules *before* the content is published.
+2.  **Define and Maintain a Glossary:** Keep a running, shared list of approved terms. If a new product name is launched, ensure it's immediately added to the glossary and communicated.
+3.  **Perform Style Reviews:** During the Pull Request (PR) process, treat style and clarity issues with the same importance as technical accuracy. Style reviews ensure standards are consistently upheld across the team.
+
+:::warning Guarding Against Scope Creep
+A Style Guide is *not* a process manual. Avoid including rules about workflow (e.g., "how to name files") in your style guide. Stick to rules about language, presentation, and content consistency.
+:::
+
+---
+
+You now understand the importance of style guides in professional technical communication.
+
+By adhering to a well-defined style guide, you ensure that your documentation is not only clear and consistent but also reflects the professionalism of your organization.
