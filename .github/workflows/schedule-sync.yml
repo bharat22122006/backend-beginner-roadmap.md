@@ -1,0 +1,40 @@
+name: Weekly Team Sync Issue
+
+# This workflow runs automatically based on a schedule.
+on:
+  schedule:
+    # Cron expression: 
+    # Runs at 09:00 AM UTC every Monday
+    - cron: '0 9 * * 1'
+  # Allows you to manually trigger the workflow from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  create_issue:
+    runs-on: ubuntu-latest
+    
+    # Permissions are necessary for the workflow to create an issue
+    permissions:
+      issues: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Calculate next Monday's date for title
+        id: date
+        run: echo "issue_date=$(date -d 'next Monday' +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
+      - name: Create Weekly Sync Issue
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          # Token is required to create the issue
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+          # Path to the template file created in step 1
+          issue-template: .github/ISSUE_TEMPLATE/weekly_sync.md
+          
+          # Optional: Replace the placeholder date in the title
+          title: 'Weekly Team Sync: ${{ steps.date.outputs.issue_date }}'
+          
+          assignees: ajay-dhangar
