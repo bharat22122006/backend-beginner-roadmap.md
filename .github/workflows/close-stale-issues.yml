@@ -1,0 +1,64 @@
+name: Close Inactive Issues
+
+# This workflow runs automatically every week (e.g., every Sunday at 10:00 AM UTC).
+on:
+  schedule:
+    # Runs at 10:00 AM UTC every Sunday
+    - cron: '0 10 * * 0'
+  # Allows you to manually trigger the workflow from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    
+    # Permissions are required to read issues and write comments/close issues
+    permissions:
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Close Inactive Issues and Pull Requests
+        uses: actions/stale@v9
+        with:
+          # Token is required for the action to interact with issues
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          
+          # ----------------------------------------------------
+          # INACTIVE CHECK SETTINGS
+          # ----------------------------------------------------
+          
+          # Number of days of inactivity before an issue/PR is labeled as stale.
+          days-before-stale: 60
+          
+          # Number of days an issue/PR can be stale before being closed.
+          days-before-close: 7
+          
+          # The label to apply to issues/PRs when they become stale.
+          stale-issue-label: 'stale'
+          stale-pr-label: 'stale'
+          
+          # Comment posted when an issue/PR is marked as stale.
+          stale-issue-message: >
+            This issue has been automatically marked as **stale** because it has not had 
+            recent activity. It will be closed in 7 days if no further activity occurs. 
+            Thank you for your contributions.
+          
+          # Comment posted when an issue/PR is actually closed. (Optional)
+          close-issue-message: >
+            This issue was marked as stale and has been automatically closed due to inactivity. 
+            Please feel free to re-open if you still need this feature or assistance!
+            
+          # ----------------------------------------------------
+          # EXCLUSIONS
+          # ----------------------------------------------------
+          
+          # Issues/PRs that have any of these labels will never be marked as stale.
+          exempt-issue-labels: 'bug, enhancement, keep, priority'
+          exempt-pr-labels: 'bug, enhancement, keep, priority'
+          
+          # Issues/PRs that are assigned to a user will not be marked as stale.
+          exempt-all-assignees: true
+          
+          # Issues/PRs that are linked to a milestone will not be marked as stale.
+          exempt-all-milestones: true
