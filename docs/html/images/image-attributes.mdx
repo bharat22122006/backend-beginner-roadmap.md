@@ -1,152 +1,134 @@
 ---
-id: image-attributes
-title: Image Attributes in HTML
-sidebar_label: Image Attributes
-sidebar_position: 2
-tags: [html, web-development, image-attributes, images]
-description: "In this tutorial, you will learn about image attributes in HTML. Image attributes define the appearance, behavior, and alignment of images on web pages."
-keywords:
-  [
-    HTML image attributes,
-    HTML img tag,
-    image attributes in HTML,
-    image alignment,
-    image behavior,
-    image appearance,
-    web development,
-    HTML tutorial,
-  ]
+title: "Image Attributes in HTML"
+sidebar_label: "Image Attributes"
+tags: [html, web-development, image-attributes, images, performance, accessibility, srcset, loading]
+description: "Learn about the essential attributes of the HTML <img> tag, focusing on required attributes (src, alt) and performance attributes (width, height, loading) to build accessible and fast websites."
 ---
 
-Images are an essential part of web development and are used to enhance the visual appeal of web pages. In HTML, images are inserted using the `<img>` (image) tag, which specifies the location of the image file and other attributes that control its appearance and behavior.
+While the **`<img>` tag** is simple, its attributes are powerful. They are the settings you use to define not just what the image is, but **how it behaves**, **how it loads**, and **how accessible** it is.
+
+Mastering these attributes is crucial for creating fast, compliant, and user-friendly web pages.
 
 <AdsComponent />
 <br />
 
-## Image Attributes
+## 1. Required Attributes: `src` and `alt`
 
-When inserting an image in HTML, you can use various attributes to control the appearance, behavior, and alignment of the image. Here are some common image attributes that you can use with the `<img>` tag:
+These two attributes are the absolute minimum for a valid and functional image element.
 
-### The `src` Attribute
+### The `src` Attribute (Source)
 
-The `src` attribute is the most important attribute of the `<img>` tag and specifies the URL of the image file to be displayed. It can be a relative or absolute URL pointing to the location of the image file on the web server or the internet.
+The **`src`** attribute (Source) specifies the file path or URL of the image you want to display. The browser cannot display the image without this attribute.
 
-Here's an example of using the `src` attribute to insert an image into a web page:
+* **Value:** A **relative path** (e.g., `../images/photo.jpg`) or an **absolute URL** (e.g., `https://example.com/images/photo.jpg`).
 
-```html title="index.html"
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Example</title>
-</head>
-<body>
-  <h1>My Pet</h1>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dog_Breeds.jpg/800px-Dog_Breeds.jpg" alt="A cute dog" />
-</body>
-</html>
-```
+### The `alt` Attribute (Alternative Text)
 
-In this example, the `src` attribute specifies the URL of the image file, and the `alt` attribute provides alternative text for the image, which is displayed if the image cannot be loaded or accessed by the user.
+The **`alt`** attribute is essential for accessibility and error handling. It provides a brief, descriptive replacement for the image.
 
-<BrowserWindow url="http://.../index.html" bodyStyle={{backgroundColor: "#fff", color: "#333"}}>
-<>
-  <h1>My Pet</h1>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dog_Breeds.jpg/800px-Dog_Breeds.jpg" alt="A cute dog" />
-</>
-</BrowserWindow>
+* **Purpose:**
+    * **Accessibility:** Screen readers vocalize this text for users with visual impairments.
+    * **Fallback:** It displays this text if the image file fails to load (due to slow network or broken link).
+    * **SEO:** Search engines use `alt` text to understand the image content.
+ 
+:::tip Best Practice
 
-### The `alt` Attribute
+The `alt` text should describe the **content and function** of the image, not just what it is (e.g., "Company logo linking to homepage," not just "Company logo").
 
-The `alt` attribute provides alternative text for the image, which is displayed if the image cannot be loaded or accessed by the user. It is also used by screen readers to describe the content of the image to visually impaired users.
+:::
 
-Here's an example of using the `alt` attribute with an image:
+---
 
-```html title="index.html"
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Example</title>
-</head>
-<body>
-  <h1>My Pet</h1>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dog_Breeds.jpg/800px-Dog_Breeds.jpg" alt="A cute dog" />
-</body>
-</html>
-```
+## 2. Critical Performance Attributes
 
-In this example, the `alt` attribute provides a description of the image content, which is useful for accessibility and SEO purposes.
-
-<BrowserWindow url="http://.../index.html" bodyStyle={{backgroundColor: "#fff", color: "#333"}}>
-<>
-  <h1>My Pet</h1>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dog_Breeds.jpg/800px-Dog_Breeds.jpg" alt="A cute dog" />
-</>
-</BrowserWindow>
+These attributes are essential for optimizing your site's speed and preventing visual instability.
 
 ### The `width` and `height` Attributes
 
-The `width` and `height` attributes specify the dimensions of the image in pixels. These attributes can be used to control the size of the image displayed on the web page.
+The `width` and `height` attributes define the image's dimensions in **pixels**.
 
-Here's an example of using the `width` and `height` attributes with an image:
+* **Value:** Numeric pixel values (e.g., `width="400"`).
+
+:::tip Modern Performance Rule
+
+Always specify the `width` and `height` directly in the HTML. By setting these dimensions, the browser knows exactly how much space to reserve for the image *before* the image file downloads. This prevents the content below the image from jumping around as the image loads, a common issue known as **Cumulative Layout Shift (CLS)**.
+
+:::
+
+### **Example Combining Core and Sizing Attributes**
 
 ```html title="index.html"
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Example</title>
-</head>
-<body>
-  <h1>My Pet</h1>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dog_Breeds.jpg/800px-Dog_Breeds.jpg" alt="A cute dog" width="400" height="300" />
-</body>
-</html>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dog_Breeds.jpg/800px-Dog_Breeds.jpg" 
+     alt="A cute dog sitting in a field" 
+     width="400" 
+     height="300" 
+/>
 ```
-
-In this example, the `width` and `height` attributes are used to set the dimensions of the image to 400 pixels in width and 300 pixels in height.
 
 <BrowserWindow url="http://.../index.html" bodyStyle={{backgroundColor: "#fff", color: "#333"}}>
 <>
-  <h1>My Pet</h1>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dog_Breeds.jpg/800px-Dog_Breeds.jpg" alt="A cute dog" width="400" height="300" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dog_Breeds.jpg/800px-Dog_Breeds.jpg" alt="A cute dog sitting in a field" width="400" height="300" style={{border: "2px solid #333"}} />
 </>
 </BrowserWindow>
+
+---
+
+## 3. Advanced and Optional Attributes
+
+These attributes offer more control over user experience, loading behavior, and display information.
+
+### The `loading` Attribute
+
+The `loading` attribute controls when the browser starts fetching the image resource. This is a major factor in page load speed.
+
+| Value | Description | When to Use |
+| :--- | :--- | :--- |
+| **`eager`** | (Default) Load the image immediately, regardless of where it is on the page. | Use for images that are **above the fold** (immediately visible upon loading). |
+| **`lazy`** | Wait to load the image until it is close to (or in) the user's viewport. | Use for images that are **below the fold** (require scrolling to see). |
+
+```html
+<img src="/assets/large-footer-image.jpg" alt="Photo of our office team" loading="lazy" width="800" height="600">
+```
 
 ### The `title` Attribute
 
-The `title` attribute adds a title or tooltip to the image that is displayed when the user hovers over it with the mouse cursor. It provides additional information about the image content.
+The `title` attribute provides supplementary information that is displayed as a tooltip when the user hovers the mouse over the image.
 
-Here's an example of using the `title` attribute with an image:
+* **Usage Tip:** Use `title` only for non-essential context. **Never** put important information in `title` that should be in the `alt` attribute.
 
-```html title="index.html"
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Example</title>
-</head>
-<body>
-  <h1>My Pet</h1>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dog_Breeds.jpg/800px-Dog_Breeds.jpg" alt="A cute dog" title="My Pet" />
-</body>
-</html>
+```html
+<img src="icon.png" alt="Search icon" title="Click to start a new search">
 ```
 
-In this example, the `title` attribute is used to provide a title for the image, which is displayed as a tooltip when the user hovers over the image.
+### The `srcset` Attribute (Responsive Images)
 
-<BrowserWindow url="http://.../index.html" bodyStyle={{backgroundColor: "#fff", color: "#333"}}>
-<>
-  <h1>My Pet</h1>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dog_Breeds.jpg/800px-Dog_Breeds.jpg" alt="A cute dog" title="My Pet" />
-</>
-</BrowserWindow>
+The **`srcset`** attribute is essential for modern web design. It allows you to provide the browser with a list of **different image files** at different sizes.
 
-## Conclusion
+The browser then intelligently chooses the most appropriate image based on the user's screen size, resolution, and pixel density. This saves bandwidth and speeds up the page for mobile users.
 
-By using image attributes in HTML, you can control the appearance, behavior, and alignment of images on web pages. These attributes help make your web content more accessible, visually appealing, and informative to users.
+```html
+<img 
+    src="/img/small-dog.jpg" 
+    alt="A dog sitting in a field" 
+    width="400" 
+    height="300"
+    srcset="/img/small-dog.jpg 400w, /img/large-dog.jpg 800w" 
+/>
+```
+> **Explanation:** This tells the browser: "If the viewport needs an image width up to 400 pixels, use `small-dog.jpg`; if it needs an image width up to 800 pixels, use `large-dog.jpg`."
+
+## 4. Image Attributes Summary Table
+
+| Attribute | Category | Purpose | Mandatory? |
+| :--- | :--- | :--- | :--- |
+| **`src`** | Core | Specifies the file path of the image. | Yes |
+| **`alt`** | Core/Accessibility | Provides descriptive text for screen readers and errors. | Yes |
+| **`width`** | Performance/Layout | Sets the image width in pixels. | Highly Recommended |
+| **`height`** | Performance/Layout | Sets the image height in pixels. | Highly Recommended |
+| **`loading`** | Performance | Controls when the image file starts downloading (`lazy` or `eager`). | Recommended |
+| **`title`** | Optional | Displays a tooltip on mouse hover. | No |
+| **`srcset`** | Responsive | Provides a set of different image files for the browser to choose from. | Recommended for large images |
+
+---
+
+Understanding and correctly applying these attributes is fundamental to being a responsible web developer. By focusing on `alt` for accessibility and `width`/`height`/`loading` for performance, you ensure your images are powerful assets, not site slowdowns.
