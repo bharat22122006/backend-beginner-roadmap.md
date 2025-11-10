@@ -1,0 +1,42 @@
+name: Issue Label Commenter
+
+# This workflow runs when a label is added to an issue or pull request.
+on:
+  issues:
+    types: [labeled]
+  pull_request_target:
+    types: [labeled]
+
+jobs:
+  comment_on_documentation_label:
+    runs-on: ubuntu-latest
+    
+    # Check if the added label matches 'documentation'
+    if: github.event.label.name == 'documentation'
+    
+    # Permissions are required to write comments on issues/PRs
+    permissions:
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Post Comment for Documentation Label
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issueNumber = context.issue.number;
+            const issueType = context.payload.issue ? 'issue' : 'pull request';
+            
+            // Define the message to post
+            const message = `👋 Thanks for adding the **documentation** label!
+            
+            This ${issueType} is now marked as needing content updates for the CodeHarborHub site. Please ensure the description contains all necessary technical details.`;
+            
+            // Post the comment using the GitHub API
+            github.rest.issues.createComment({
+              issue_number: issueNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: message
+            });
