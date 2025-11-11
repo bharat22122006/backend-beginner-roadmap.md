@@ -1,94 +1,106 @@
 ---
-title: Table Attributes in HTML
+title: "Table Attributes (Focus on Accessibility)"
 sidebar_label: Table Attributes
-tags: [html, web-development, table-attributes, tables]
-description: "In this tutorial, you will learn about table attributes in HTML. Table attributes define the appearance, behavior, and structure of tables on web pages."
-keywords:
-  [
-    html table attributes,
-    html table properties,
-    html table attributes list,
-    web development,
-    html tutorial,
-  ]
+tags: [html, tables, attributes, accessibility, id, headers, scope, class, style, deprecated]
+description: "Learn about modern and legacy HTML attributes for tables. This tutorial focuses on essential accessibility attributes (id, headers) and discourages the use of deprecated styling attributes."
+keywords: [html table attributes, table accessibility, scope attribute, headers attribute, deprecated html table attributes, table styling, html id]
 ---
 
-Tables in HTML can be customized and styled using various attributes that define the appearance, behavior, and structure of the table. By using these attributes, you can control the alignment, borders, spacing, and other properties of the table to create visually appealing and well-organized tables on your web pages.
+When HTML was first developed, most table styling (like colors, borders, and alignment) was controlled directly by attributes on the `<table>`, `<tr>`, `<th>`, and `<td>` tags.
+
+Today, due to the principle of separating structure (HTML) from presentation (CSS), **nearly all styling attributes are deprecated**. Modern HTML table attributes primarily focus on **accessibility** and providing hooks for CSS or JavaScript.
 
 <AdsComponent />
 <br />
 
-## Common Table Attributes
+## 1. Essential Accessibility Attributes
 
-The following table lists some of the most commonly used attributes for customizing HTML tables:
+These attributes are vital for non-visual users (screen readers) and for organizing complex data.
 
-| Attribute          | Description                                                     | Example                                      |
-| ------------------ | --------------------------------------------------------------- | -------------------------------------------- |
-| `border`           | Specifies the width of the border around the table.             | `<table border="1"></table>`                 |
-| `cellpadding`      | Defines the space between the cell content and the cell border. | `<table cellpadding="5"></table>`            |
-| `cellspacing`      | Sets the space between cells in the table.                      | `<table cellspacing="10"></table>`           |
-| `width`            | Specifies the width of the table.                               | `<table width="100%"></table>`               |
-| `height`           | Sets the height of the table.                                   | `<table height="200"></table>`               |
-| `align`            | Aligns the table with respect to the surrounding content.       | `<table align="center"></table>`             |
-| `bgcolor`          | Sets the background color of the table.                         | `<table bgcolor="#f0f0f0"></table>`          |
-| `bordercolor`      | Defines the color of the table border.                          | `<table bordercolor="#333333"></table>`      |
-| `bordercolordark`  | Sets the color of the dark border around the table.             | `<table bordercolordark="#000000"></table>`  |
-| `bordercolorlight` | Sets the color of the light border around the table.            | `<table bordercolorlight="#ffffff"></table>` |
+### A. The `scope` Attribute (On `<th>`)
 
-## Example: Using Table Attributes
+As briefly covered in the cell spanning tutorial, the **`scope`** attribute is used on the **header cell (`<th>`)** to clarify whether the header applies to the data in the row or the data in the column.
 
-Here is an example that demonstrates how to use table attributes to customize the appearance of an HTML table:
+| `scope` Value | Relationship | Purpose |
+| :--- | :--- | :--- |
+| **`col`** | Column Header | The header applies to all data cells below it in the column. (Most common) |
+| **`row`** | Row Header | The header applies to all data cells to its right in the row. (Used for the first cell in a data row) |
 
-```html title="table-attributes-example.html"
-<table border="1" cellpadding="10" cellspacing="5" width="50%" height="200" align="center" bgcolor="#f0f0f0" bordercolor="#333333" bordercolordark="#000000" bordercolorlight="#ffffff">
+```html title="Using scope on Headers"
+<thead>
   <tr>
-    <td>Row 1, Cell 1</td>
-    <td>Row 1, Cell 2</td>
+    <th scope="col">Product ID</th>
+    <th scope="col">Price</th>
   </tr>
+</thead>
+<tbody>
   <tr>
-    <td>Row 2, Cell 1</td>
-    <td>Row 2, Cell 2</td>
+    <th scope="row">P-452A</th>
+    <td>$19.99</td>
   </tr>
+</tbody>
+```
+
+### B. The `id` and `headers` Attributes (For Complex Tables)
+
+For very complex tables where simple `scope="col"` or `scope="row"` is insufficient (e.g., tables with multiple header levels), you must explicitly link data cells to their respective header cells using the **`id`** and **`headers`** attributes.
+
+1.  **`id` (on `<th>`):** Assigns a unique ID to a header cell.
+2.  **`headers` (on `<td>`):** Contains a space-separated list of the IDs of all headers that apply to that specific data cell.
+
+This creates a robust map for screen readers, allowing them to announce the correct headers for any cell.
+
+```html title="Linking Headers to Data Cells"
+<table>
+  <thead>
+    <tr>
+      <th id="prod">Product</th>
+      <th id="q1">Q1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="nameA" headers="prod">Widget Alpha</th>
+      <td headers="prod q1">$100</td> 
+    </tr>
+  </tbody>
 </table>
 ```
 
-In the example above, we have applied various attributes to the `<table>` element to customize the appearance of the table. The resulting table will have a border width of `1`, cell padding of `10`, cell spacing of `5`, a width of `50%`, a height of `200`, aligned to the center, with a background color of `#f0f0f0`, and border colors defined.
+-----
 
-By using these attributes, you can create visually appealing tables that suit your design requirements and enhance the presentation of tabular data on your web pages.
+## 2. General Purpose and Styling Attributes
 
+These attributes are supported across all HTML elements, but are particularly important for table styling and functionality.
 
-```html title="table-attributes-example.html"
-<table border="1" cellpadding="10" cellspacing="5" width="50%" height="200" align="center" bgcolor="#f0f0f0" bordercolor="#333333" bordercolordark="#000000" bordercolorlight="#ffffff">
-  <tr>
-    <td>Row 1, Cell 1</td>
-    <td>Row 1, Cell 2</td>
-  </tr>
-  <tr>
-    <td>Row 2, Cell 1</td>
-    <td>Row 2, Cell 2</td>
-  </tr>
-</table>
-```
+| Attribute | Applies To | Purpose | Example |
+| :--- | :--- | :--- | :--- |
+| **`class`** | All Table Elements | Applies one or more CSS classes for external styling. **Highly Recommended** | `<table class="striped-rows">` |
+| **`id`** | All Table Elements | Provides a unique hook for styling specific tables or rows, or for JavaScript access. | `<tbody id="current-data">` |
+| **`style`** | All Table Elements | Applies inline CSS directly to the element. **Use sparingly.** | `<td style="color: red;">` |
+| **`title`** | All Table Elements | Provides advisory information about the element (often displayed as a tooltip on hover). | `<table title="2024 Sales Performance">` |
 
-In the example above, we have applied various attributes to the `<table>` element to customize the appearance of the table. The resulting table will have a border width of `1`, cell padding of `10`, cell spacing of `5`, a width of `50%`, a height of `200`, aligned to the center, with a background color of `#f0f0f0`, and border colors defined.
+## 3. Deprecated Styling Attributes (Avoid\!)
 
-By using these attributes, you can create visually appealing tables that suit your design requirements and enhance the presentation of tabular data on your web pages.
+The following attributes still work in most modern browsers for backward compatibility, but they are **obsolete** and should be controlled using CSS instead. Using them violates the core separation of concerns principle.
 
-<BrowserWindow url="http://.../table-attributes-example.html" bodyStyle={{backgroundColor: "#fff", color: "#333"}} >
+:::caution Deprecated Attributes
 
-<table border="1" cellpadding="10" cellspacing="5" width="50%" height="200" align="center" bgcolor="#f0f0f0" bordercolor="#333333" bordercolordark="#000000" bordercolorlight="#ffffff">
-  <tr>
-    <td>Row 1, Cell 1</td>
-    <td>Row 1, Cell 2</td>
-  </tr>
-  <tr>
-    <td>Row 2, Cell 1</td>
-    <td>Row 2, Cell 2</td>
-  </tr>
-</table>
+**DO NOT USE** these attributes for new web development. Use CSS properties like `border-collapse`, `width`, `text-align`, and `padding` instead.
 
-</BrowserWindow>
+:::
+
+| Deprecated Attribute | Replacement CSS Property | Element Used On |
+| :--- | :--- | :--- |
+| **`border`** | `border: 1px solid black;` | `<table>` |
+| **`width`**, **`height`** | `width: 100%; height: auto;` | `<table>`, `<th>`, `<td>` |
+| **`align`** | `text-align: center;` | `<table>`, `<tr>`, `<th>`, `<td>` |
+| **`bgcolor`** | `background-color: #eee;` | `<table>`, `<tr>`, `<th>`, `<td>` |
+| **`cellpadding`** | `padding` on `<th>` and `<td>` | `<table>` |
+| **`cellspacing`** | `border-spacing` or `border-collapse` | `<table>` |
+
+-----
 
 ## Conclusion
 
-In this tutorial, you learned about the common table attributes in HTML that can be used to customize the appearance and structure of tables on web pages. By applying these attributes, you can control the border width, cell padding, cell spacing, width, height, alignment, and background color of tables to create visually appealing and well-organized tables that enhance the presentation of tabular data. Experiment with different attributes to create tables that suit your design requirements and improve the user experience on your website.
+Modern HTML table attributes prioritize **semantic meaning** and **accessibility**. By avoiding deprecated styling attributes and focusing on tools like **`scope`**, **`id`**, and **`headers`**, you ensure your tables are robust, well-structured, and usable by all audiences.

@@ -1,8 +1,6 @@
 ---
-id: understanding-semantic-html
 title: Understanding Semantic HTML
 sidebar_label: Understanding Semantic HTML
-sidebar_position: 1
 tags: [html, web-development, semantic-html]
 description: "In this tutorial, you will learn about semantic HTML and how it can improve the accessibility, search engine optimization (SEO), and maintainability of your web pages."
 keywords: [semantic html, semantic html elements, semantic html tags, semantic html benefits, semantic html importance]
@@ -15,11 +13,32 @@ Semantic HTML refers to HTML that introduces meaning to the web page rather than
 
 ## What is Semantic HTML?
 
-Semantic HTML or semantic markup is HTML that introduces meaning to the web page rather than just presentation. It uses HTML tags that give information about the contents of those tags that goes beyond just how they look on the page.
+**Semantic HTML** (or Semantics in HTML) refers to using HTML tags to define the **meaning** or **purpose** of the content they enclose, rather than merely defining how the content should look.
+
+In simple terms, HTML should answer the question: *"What is this piece of content?"*
+
+* Is it the main content of the page? Use `<main>`.
+* Is it a list of navigation links? Use `<nav>`.
+* Is it a self-contained blog post? Use `<article>`.
 
 :::info
 Semantic HTML elements clearly describe their meaning in a human- and machine-readable way. Elements such as `<header>`, `<footer>`, `<article>`, and `<section>` not only structure the content but also define its purpose.
 :::
+
+### The Core Difference: Meaning vs. Style
+
+In the past, developers relied heavily on generic tags like `<div>` and gave them an ID or class to indicate their purpose (e.g., `<div id="header">`).
+
+| Non-Semantic (Generic) | Semantic (Meaningful) |
+| :--- | :--- |
+| `<div id="header">` | **`<header>`** |
+| `<div class="navigation">` | **`<nav>`** |
+| `<div class="main-content">` | **`<main>`** |
+
+Both sets of tags look identical on a screen *before* CSS is applied. However, the semantic tags immediately tell the browser, screen readers, and search engine bots exactly what kind of content is inside.
+
+<AdsComponent />
+<br />
 
 ## Importance of Semantic HTML
 
