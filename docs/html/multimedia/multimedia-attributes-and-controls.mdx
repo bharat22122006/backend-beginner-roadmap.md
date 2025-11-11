@@ -1,8 +1,6 @@
 ---
-id: multimedia-attributes-and-controls
 title: Multimedia Attributes and Controls in HTML
 sidebar_label: Multimedia Attributes and Controls
-sidebar_position: 3
 tags: [html, web-development, multimedia, multimedia-attributes, multimedia-controls]
 description: "In this tutorial, you will learn about the multimedia attributes and controls available in HTML for embedding audio and video content in your web pages."
 keywords: [html multimedia attributes, html multimedia controls, html audio attributes, html video attributes, html multimedia controls, html audio controls, html video controls]
@@ -50,7 +48,7 @@ Here's an example of how you can use the `<audio>` element with various attribut
 ```
 
 <BrowserWindow url="http://127.0.0.1:5500/index.html">
-  <audio src="/audio/audio.mp3" controls autoplay loop preload="auto" muted volume="0.5">
+  <audio src="/tutorial/audio/audio.mp3" controls autoplay loop preload="auto" muted volume="0.5">
     Your browser does not support the audio element.
   </audio>
 </BrowserWindow>
@@ -98,7 +96,7 @@ Here's an example of how you can use the `<video>` element with various attribut
 ```
 
 <BrowserWindow url="http://127.0.0.1:5500/index.html">
-  <video src="/video/video.mp4" controls autoplay loop preload="auto" muted className="w-full h-auto">
+  <video src="/tutorial/video/video.mp4" controls autoplay loop preload="auto" muted className="w-full h-auto">
     Your browser does not support the video element.
   </video>
 </BrowserWindow>
@@ -140,14 +138,14 @@ You can provide multiple sources for audio and video files using the `<source>` 
 
 <BrowserWindow url="http://127.0.0.1:5500/index.html">
   <audio controls>
-    <source src="/audio/audio.mp3" type="audio/mpeg" />
-    <source src="/audio/audio.ogg" type="audio/ogg" />
+    <source src="/tutorial/audio/audio.mp3" type="audio/mpeg" />
+    <source src="/tutorial/audio/audio.ogg" type="audio/ogg" />
     Your browser does not support the audio element.
   </audio>
 
   <video controls className="w-full h-auto">
-    <source src="/video/video.mp4" type="video/mp4" />
-    <source src="/video/video.webm" type="video/webm" />
+    <source src="/tutorial/video/video.mp4" type="video/mp4" />
+    <source src="/tutorial/video/video.webm" type="video/webm" />
     Your browser does not support the video element.
   </video>
 </BrowserWindow>

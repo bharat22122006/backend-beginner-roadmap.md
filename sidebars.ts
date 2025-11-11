@@ -45,19 +45,20 @@ const sidebars: SidebarsConfig = {
           ],
         },
 
+        
         {
           type: "category",
-          label: "Forms",
+          label: "Text Formatting",
           link: {
             type: "generated-index",
-            title: "HTML Forms",
+            title: "HTML Text Formatting",
             description:
-              "Understand how to create and manage forms in HTML for collecting user input.",
+              "Style and format text using HTML tags like headings, paragraphs, and spans.",
           },
           items: [
-            "html/forms/form-input-element",
-            "html/forms/form-attribute",
-            "html/forms/building-form",
+            "html/text-formatting/headings",
+            "html/text-formatting/paragraphs",
+            "html/text-formatting/text-formatting",
           ],
         },
 
@@ -125,22 +126,23 @@ const sidebars: SidebarsConfig = {
             "html/tables/table-attributes",
           ],
         },
-
+        
         {
           type: "category",
-          label: "Text Formatting",
+          label: "Forms",
           link: {
             type: "generated-index",
-            title: "HTML Text Formatting",
+            title: "HTML Forms",
             description:
-              "Style and format text using HTML tags like headings, paragraphs, and spans.",
+              "Understand how to create and manage forms in HTML for collecting user input.",
           },
           items: [
-            "html/text-formatting/headings",
-            "html/text-formatting/paragraphs",
-            "html/text-formatting/text-formatting",
+            "html/forms/form-input-element",
+            "html/forms/form-attribute",
+            "html/forms/building-form",
           ],
         },
+
 
         {
           type: "category",

@@ -1,177 +1,150 @@
 ---
-title: Creating Tables in HTML
+title: "Creating Complex HTML Tables"
 sidebar_label: Creating Tables
-tags: [html, web-development, tables]
-description: "In this tutorial, you will learn how to create tables in HTML. Tables are used to display data in rows and columns, making it easier to organize and present information on web pages."
-keywords: [html tables, creating tables in html, html table tags, html table structure, html table example]
+tags: [html, tables, rowspan, colspan, accessibility, scope, table structure]
+description: "Master the creation of complex HTML tables by learning how to use the rowspan and colspan attributes to merge cells, and the scope attribute for improved accessibility."
+keywords: [html table colspan, html table rowspan, merge table cells, html table scope attribute, accessible tables, complex tables]
 ---
 
-Creating tables in HTML is a common task when building web pages. Tables are used to display data in rows and columns, making it easier to organize and present information. In this tutorial, you will learn how to create tables in HTML using the `<table>`, `<tr>`, and `<td>` tags.
+While the basic structure (`<table>`, `<tr>`, `<th>`, `<td>`) allows for simple grids, real-world data often requires **merged cells** and enhanced **accessibility features**.
+
+This tutorial focuses on two critical attributes used within the table cells (`<th>` or `<td>`) to create complex and semantic tables: **`colspan`** and **`rowspan`**.
 
 <AdsComponent />
 <br />
 
-This guide will explore how to construct tables step by step and demonstrate using different elements and attributes.
+## 1. Merging Cells: `colspan` and `rowspan`
 
-### Step 1: Start with the `<table>` Element
+Cell spanning allows a single table cell to occupy the space of multiple columns or multiple rows. This is essential for creating category headings, subtotals, or complex headers.
 
-To create a table, you start with the `<table>` tag, which serves as the container for all table content. Inside this tag, you define rows and cells.
+### A. Spanning Columns: The `colspan` Attribute
 
-Example:
+The **`colspan`** attribute merges a cell horizontally across multiple columns.
 
-```html title="table-example.html"
+* **Value:** A number indicating how many columns the cell should span.
+
+#### **`colspan` Example**
+
+We want the header **"Sales Data"** to cover both the "Q1" and "Q2" columns below it.
+
+```html title="colspan Example"
 <table>
-  <!-- Table content goes here -->
+  <thead>
+    <tr>
+      <th colspan="2">Sales Data (2024)</th>
+    </tr>
+    <tr>
+      <th>Q1</th>
+      <th>Q2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>$500</td>
+      <td>$750</td>
+    </tr>
+  </tbody>
 </table>
 ```
 
-### Step 2: Add Table Rows (`<tr>`) and Cells (`<td>`)
+### B. Spanning Rows: The `rowspan` Attribute
 
-Inside the `<table>` element, you define rows using the `<tr>` tag. Each row contains one or more cells, which are created using the `<td>` tag. Cells are the individual data points within the table.
+The **`rowspan`** attribute merges a cell vertically across multiple rows. This is often used when a single label applies to several entries below it.
 
-Example:
+  * **Value:** A number indicating how many rows the cell should span.
 
-```html title="table-example.html"
+#### **`rowspan` Example**
+
+We want the cell **"Category A"** to span the two product rows associated with that category.
+
+```html title="rowspan Example"
 <table>
-  <tr>
-    <td>Row 1, Cell 1</td>
-    <td>Row 1, Cell 2</td>
-  </tr>
-  <tr>
-    <td>Row 2, Cell 1</td>
-    <td>Row 2, Cell 2</td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Product</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2">Category A</td>
+      <td>Item X</td>
+      <td>$10</td>
+    </tr>
+    <tr>
+      <td>Item Y</td>
+      <td>$15</td>
+    </tr>
+  </tbody>
 </table>
 ```
 
-In the example above, we have a table with two rows, each containing two cells. The table structure is as follows:
+:::note Key Rule
 
-<BrowserWindow url="http://.../index.html" bodyStyle={{backgroundColor: "#fff", color: "#333"}}>
-  <table>
-    <tr>
-      <td>Row 1, Cell 1</td>
-      <td>Row 1, Cell 2</td>
-    </tr>
-    <tr>
-      <td>Row 2, Cell 1</td>
-      <td>Row 2, Cell 2</td>
-    </tr>
-  </table>
-</BrowserWindow>
+When using `rowspan`, you must **omit** the corresponding `<td>` or `<th>` from the subsequent rows that the cell is spanning over. If you forget to omit it, the table structure will break.
+
+:::
 
 <AdsComponent />
+<hr />
 
-### Step 3: Add Table Headings (`<th>`)
+## 2. Accessibility: The `scope` Attribute
 
-In addition to regular cells, you can use the `<th>` tag to define table headings. Headings are displayed in bold by default and are useful for labeling rows or columns.
+The **`scope`** attribute is vital for making tables accessible to users who rely on screen readers. It tells the screen reader whether a header cell (`<th>`) applies to the entire row or the entire column.
 
-Example:
+Without `scope`, a screen reader may not correctly announce which column or row heading belongs to a piece of data.
 
-```html title="table-example.html"
+| `scope` Value | Purpose | When to Use |
+| :--- | :--- | :--- |
+| **`col`** | The `<th>` is a **column header**. | Use for typical column titles at the top of the table. |
+| **`row`** | The `<th>` is a **row header**. | Use for labels that identify the content in the rest of that row (common for the first cell in a data row). |
+
+### **`scope` Example**
+
+In this example, the first column acts as a header for each row, identifying the programming language.
+
+```html title="scope Attribute Example"
 <table>
-  <tr>
-    <th>Header 1</th>
-    <th>Header 2</th>
-  </tr>
-  <tr>
-    <td>Row 1, Cell 1</td>
-    <td>Row 1, Cell 2</td>
-  </tr>
-  <tr>
-    <td>Row 2, Cell 1</td>
-    <td>Row 2, Cell 2</td>
-  </tr>
+  <thead>
+    <tr>
+      <th scope="col">Language</th>
+      <th scope="col">Type</th>
+      <th scope="col">Release Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Python</th>
+      <td>Interpreted</td>
+      <td>1991</td>
+    </tr>
+    <tr>
+      <th scope="row">JavaScript</th>
+      <td>JIT/Interpreted</td>
+      <td>1995</td>
+    </tr>
+  </tbody>
 </table>
 ```
 
-In the example above, we have added table headings to the first row of the table. The headings are displayed in bold:
+:::tip Best Practice
 
-<BrowserWindow url="http://.../index.html" bodyStyle={{backgroundColor: "#fff", color: "#333"}}>
-  <table>
-    <tr>
-      <th>Header 1</th>
-      <th>Header 2</th>
-    </tr>
-    <tr>
-      <td>Row 1, Cell 1</td>
-      <td>Row 1, Cell 2</td>
-    </tr>
-    <tr>
-      <td>Row 2, Cell 1</td>
-      <td>Row 2, Cell 2</td>
-    </tr>
-  </table>
-</BrowserWindow>
+Always use `<th>` for both column and row headers. Use the `scope` attribute to clarify the relationship, especially when the first column contains meaningful labels.
 
-### Step 4: Add Table Captions (`<caption>`)
-
-You can include a caption for the table using the `<caption>` tag. The caption appears above or below the table and provides a brief description or title for the table content.
-
-Example:
-
-```html title="table-example.html"
-<table>
-  <caption>Sample Table</caption>
-  <tr>
-    <th>Header 1</th>
-    <th>Header 2</th>
-  </tr>
-  <tr>
-    <td>Row 1, Cell 1</td>
-    <td>Row 1, Cell 2</td>
-  </tr>
-  <tr>
-    <td>Row 2, Cell 1</td>
-    <td>Row 2, Cell 2</td>
-  </tr>
-</table>
-```
-
-In the example above, we have added a caption to the table:
-
-<BrowserWindow url="http://.../index.html" bodyStyle={{backgroundColor: "#fff", color: "#333"}}>
-  <table>
-    <caption>Sample Table</caption>
-    <tr>
-      <th>Header 1</th>
-      <th>Header 2</th>
-    </tr>
-    <tr>
-      <td>Row 1, Cell 1</td>
-      <td>Row 1, Cell 2</td>
-    </tr>
-    <tr>
-      <td>Row 2, Cell 1</td>
-      <td>Row 2, Cell 2</td>
-    </tr>
-  </table>
-</BrowserWindow>
+:::
 
 <AdsComponent />
+<hr />
 
-### Step 5: Styling the Table
+## Summary of Advanced Table Attributes
 
-You can style the table using CSS to change its appearance, such as the background color, text color, border, padding, and spacing. Here is an example of styling the table using CSS:
+| Attribute | Applies To | Purpose | Usage |
+| :--- | :--- | :--- | :--- |
+| **`colspan`** | `<th>` or `<td>` | Merges a cell **horizontally** across columns. | `<td colspan="3">` |
+| **`rowspan`** | `<th>` or `<td>` | Merges a cell **vertically** across rows. | `<td rowspan="2">` |
+| **`scope`** | `<th>` only | Clarifies if the header applies to the **column** or the **row**. | `<th scope="row">` |
 
-```css title="styles.css"
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
+## Conclusion
 
-th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-```
-
-In this CSS code snippet, we set the table width to 100%, collapse the borders, add padding to cells, align text to the left, and style the table headings with a light gray background.
-
-### Conclusion
-
-In this tutorial, you learned how to create tables in HTML using the `<table>`, `<tr>`, `<td>`, `<th>`, and `<caption>` tags. Tables are essential for displaying data in a structured format on web pages. You can further enhance the appearance of tables by applying CSS styles to customize their look and feel.
+Mastering `colspan` and `rowspan` allows you to construct complex data grids that accurately reflect the data structure. Crucially, the **`scope`** attribute ensures that your complex tables remain fully accessible, reinforcing the principles of semantic and inclusive web development.
