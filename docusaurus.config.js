@@ -138,7 +138,7 @@ const config = {
             position: "left",
           },
           {
-            to: "/tutorial/css/introduction/what-is-css/",
+            to: "/tutorial/css/introduction",
             html: '<span class="nav-emoji">🎨</span> CSS',
             position: "left",
           },

@@ -45,7 +45,6 @@ const sidebars: SidebarsConfig = {
           ],
         },
 
-        
         {
           type: "category",
           label: "Text Formatting",
@@ -126,7 +125,7 @@ const sidebars: SidebarsConfig = {
             "html/tables/table-attributes",
           ],
         },
-        
+
         {
           type: "category",
           label: "Forms",
@@ -142,7 +141,6 @@ const sidebars: SidebarsConfig = {
             "html/forms/building-form",
           ],
         },
-
 
         {
           type: "category",
@@ -259,7 +257,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "link",
       label: "CSS",
-      href: "/css/introduction/what-is-css",
+      href: "/css/introduction",
     },
 
     // JavaScript Tutorial Structure
@@ -476,18 +474,178 @@ const sidebars: SidebarsConfig = {
     },
   ],
 
+  // css: [
+  //   {
+  //     type: "category",
+  //     label: "Introduction to CSS",
+  //     link: {
+  //       type: "doc",
+  //       id: "css/introduction/what-is-css",
+  //     },
+  //     items: [
+  //       "css/introduction/what-is-css",
+  //       "css/introduction/how-to-add-css-to-html",
+  //       "css/introduction/comments-in-css",
+  //     ],
+  //   },
+
+  //   {
+  //     type: "category",
+  //     label: "Selectors",
+  //     link: {
+  //       type: "doc",
+  //       id: "css/selectors/attribute-selectors",
+  //     },
+  //     items: [
+  //       {
+  //         type: "category",
+  //         label: "Simple Selectors",
+  //         items: [
+  //           "css/selectors/simple-selectors/element-selector",
+  //           "css/selectors/simple-selectors/class-selector",
+  //           "css/selectors/simple-selectors/id-selector",
+  //           "css/selectors/simple-selectors/grouping-selectors",
+  //           "css/selectors/simple-selectors/universal-selector",
+  //         ],
+  //       },
+  //       {
+  //         type: "category",
+  //         label: "Combinator Selectors",
+  //         items: [
+  //           "css/selectors/combinator-selectors/descendant-selector",
+  //           "css/selectors/combinator-selectors/child-selector",
+  //           "css/selectors/combinator-selectors/adjacent-sibling-selector",
+  //           "css/selectors/combinator-selectors/general-sibling-selector",
+  //         ],
+  //       },
+  //       "css/selectors/attribute-selectors",
+  //       "css/selectors/compound-selectors",
+  //       "css/selectors/pseudo-class-selectors",
+  //       "css/selectors/pseudo-elements-selectors",
+  //     ],
+  //   },
+
+  //   {
+  //     type: "category",
+  //     label: "Colors",
+  //     link: {
+  //       type: "doc",
+  //       id: "css/colors/color-names",
+  //     },
+  //     items: [
+  //       "css/colors/color-names",
+  //       "css/colors/rgb",
+  //       "css/colors/rgba",
+  //       "css/colors/hex",
+  //       "css/colors/hsl",
+  //       "css/colors/hsla",
+  //     ],
+  //   },
+
+  //   {
+  //     type: "category",
+  //     label: "Box Model",
+  //     link: {
+  //       type: "doc",
+  //       id: "css/box-model/intro",
+  //     },
+  //     items: [
+  //       "css/box-model/intro",
+  //       "css/box-model/width-height",
+  //       "css/box-model/min-width-height",
+  //       "css/box-model/max-width-height",
+  //       "css/box-model/margin",
+  //       "css/box-model/margin-callapse",
+  //       "css/box-model/padding",
+  //       "css/box-model/border",
+  //       "css/box-model/border-radius",
+  //       "css/box-model/box-sizing",
+  //     ],
+  //   },
+
+  //   {
+  //     type: "category",
+  //     label: "Backgrounds",
+  //     link: {
+  //       type: "doc",
+  //       id: "css/backgrounds/background-color",
+  //     },
+  //     items: [
+  //       "css/backgrounds/background-color",
+  //       {
+  //         type: "category",
+  //         label: "Background Image",
+  //         items: [
+  //           "css/backgrounds/background-image/background-attachment",
+  //           "css/backgrounds/background-image/background-position",
+  //           "css/backgrounds/background-image/background-repeat",
+  //           "css/backgrounds/background-image/background-size",
+  //         ],
+  //       },
+  //     ],
+  //   },
+
+  //   {
+  //     type: "category",
+  //     label: "Fonts and Text Properties",
+  //     link: {
+  //       type: "doc",
+  //       id: "css/fonts-and-text-properties/font-size",
+  //     },
+  //     items: [
+  //       "css/fonts-and-text-properties/font-size",
+  //       "css/fonts-and-text-properties/font-style",
+  //       "css/fonts-and-text-properties/font-weight",
+  //       "css/fonts-and-text-properties/font-align",
+  //       "css/fonts-and-text-properties/generic-vs-specific-font-families",
+  //     ],
+  //   },
+
+  //   "css/opacity",
+  // ],
+
   css: [
+    "css/introduction",
     {
       type: "category",
-      label: "Introduction to CSS",
+      label: "CSS Basics",
       link: {
-        type: "doc",
-        id: "css/introduction/what-is-css",
+        type: "generated-index",
+        title: "Getting Started with CSS Basics",
+        description:
+          "Learn about different ways to apply CSS: inline, internal, and external styles, along with the cascading order concept.",
+        keywords: ["css", "inline css", "internal css", "external css"],
+        // image: "/img/github.png",
       },
       items: [
-        "css/introduction/what-is-css",
-        "css/introduction/how-to-add-css-to-html",
-        "css/introduction/comments-in-css",
+        "css/basics/inline",
+        "css/basics/internal",
+        "css/basics/external",
+        "css/basics/cascading-order",
+      ],
+    },
+
+    {
+      type: "category",
+      label: "Syntax Basics",
+      link: {
+        type: "generated-index",
+        title: "CSS Syntax and Rules",
+        description:
+          "Understand CSS syntax structure, selectors, declarations, and how comments work in CSS files.",
+        keywords: ["css syntax", "selectors", "rules", "comments"],
+      },
+      items: [
+        {
+          type: "category",
+          label: "Rules",
+          items: [
+            "css/syntax-basics/rules/selector",
+            "css/syntax-basics/rules/properties-and-values",
+            "css/syntax-basics/rules/declaration",
+          ],
+        },
+        "css/syntax-basics/comments",
       ],
     },
 
@@ -495,35 +653,115 @@ const sidebars: SidebarsConfig = {
       type: "category",
       label: "Selectors",
       link: {
-        type: "doc",
-        id: "css/selectors/attribute-selectors",
+        type: "generated-index",
+        title: "CSS Selectors Guide",
+        description:
+          "Master different types of selectors from simple to combinators and attribute-based selectors.",
+        keywords: [
+          "css selectors",
+          "simple selectors",
+          "combinator selectors",
+          "attribute selectors",
+        ],
       },
       items: [
         {
           type: "category",
           label: "Simple Selectors",
           items: [
-            "css/selectors/simple-selectors/element-selector",
-            "css/selectors/simple-selectors/class-selector",
-            "css/selectors/simple-selectors/id-selector",
-            "css/selectors/simple-selectors/grouping-selectors",
-            "css/selectors/simple-selectors/universal-selector",
+            "css/selectors/simple/element",
+            "css/selectors/simple/class",
+            "css/selectors/simple/id",
+            "css/selectors/simple/universal",
+            "css/selectors/simple/grouping",
           ],
         },
         {
           type: "category",
           label: "Combinator Selectors",
           items: [
-            "css/selectors/combinator-selectors/descendant-selector",
-            "css/selectors/combinator-selectors/child-selector",
-            "css/selectors/combinator-selectors/adjacent-sibling-selector",
-            "css/selectors/combinator-selectors/general-sibling-selector",
+            "css/selectors/combinators/descendant",
+            "css/selectors/combinators/child",
+            "css/selectors/combinators/adjacent-sibling",
+            "css/selectors/combinators/general-sibling",
           ],
         },
         "css/selectors/attribute-selectors",
-        "css/selectors/compound-selectors",
-        "css/selectors/pseudo-class-selectors",
-        "css/selectors/pseudo-elements-selectors",
+        "css/selectors/pseudo-classes",
+        "css/selectors/pseudo-elements",
+      ],
+    },
+
+    {
+      type: "category",
+      label: "Typography",
+      link: {
+        type: "generated-index",
+        title: "Typography in CSS",
+        description:
+          "Learn how to style and structure text in CSS covering fonts, text styles, spacing, alignment, shadows, and more.",
+        keywords: [
+          "css typography",
+          "css fonts",
+          "text style",
+          "font family",
+          "text shadow",
+        ],
+      },
+      items: [
+        {
+          type: "category",
+          label: "Fonts",
+          link: {
+            type: "generated-index",
+            title: "CSS Fonts",
+            description:
+              "Understand CSS font properties including font-family, font-size, style, shorthand, and Google Fonts integration.",
+            keywords: [
+              "css fonts",
+              "font family",
+              "font size",
+              "font shorthand",
+              "google fonts",
+            ],
+          },
+          items: [
+            "css/typography/fonts/font-family",
+            "css/typography/fonts/font-style",
+            "css/typography/fonts/font-size",
+            "css/typography/fonts/font-shorthand",
+            "css/typography/fonts/google-fonts",
+            "css/typography/fonts/font-variant",
+          ],
+        },
+        {
+          type: "category",
+          label: "Text Style",
+          link: {
+            type: "generated-index",
+            title: "CSS Text Styles",
+            description:
+              "Master text styling with CSS control alignment, decoration, transformation, spacing, and shadows.",
+            keywords: [
+              "css text",
+              "text decoration",
+              "text transform",
+              "line height",
+              "text shadow",
+            ],
+          },
+          items: [
+            "css/typography/text-style/color",
+            "css/typography/text-style/direction",
+            "css/typography/text-style/text-alignment",
+            "css/typography/text-style/text-decoration",
+            "css/typography/text-style/text-transform",
+            "css/typography/text-style/text-spacing",
+            "css/typography/text-style/line-height",
+            "css/typography/text-style/text-shadow",
+            "css/typography/text-style/word-wrap",
+          ],
+        },
       ],
     },
 
@@ -531,37 +769,19 @@ const sidebars: SidebarsConfig = {
       type: "category",
       label: "Colors",
       link: {
-        type: "doc",
-        id: "css/colors/color-names",
+        type: "generated-index",
+        title: "Backgrounds and Colors in CSS",
+        description:
+          "Explore CSS color systems gradients, images, RGBA, HSLA, and more.",
+        keywords: ["css", "css colors", "gradients", "rgba", "hsl"],
       },
       items: [
         "css/colors/color-names",
         "css/colors/rgb",
         "css/colors/rgba",
-        "css/colors/hex",
         "css/colors/hsl",
         "css/colors/hsla",
-      ],
-    },
-
-    {
-      type: "category",
-      label: "Box Model",
-      link: {
-        type: "doc",
-        id: "css/box-model/intro",
-      },
-      items: [
-        "css/box-model/intro",
-        "css/box-model/width-height",
-        "css/box-model/min-width-height",
-        "css/box-model/max-width-height",
-        "css/box-model/margin",
-        "css/box-model/margin-callapse",
-        "css/box-model/padding",
-        "css/box-model/border",
-        "css/box-model/border-radius",
-        "css/box-model/box-sizing",
+        "css/colors/gradients",
       ],
     },
 
@@ -569,19 +789,80 @@ const sidebars: SidebarsConfig = {
       type: "category",
       label: "Backgrounds",
       link: {
-        type: "doc",
-        id: "css/backgrounds/background-color",
+        type: "generated-index",
+        title: "CSS Backgrounds",
+        description:
+          "Master CSS backgrounds learn background color, images, gradients, positioning, size, repeat, and shorthand properties to create stunning visual designs.",
+        keywords: [
+          "css background",
+          "background color",
+          "background image",
+          "css gradients",
+          "background size",
+          "background shorthand",
+        ],
       },
       items: [
-        "css/backgrounds/background-color",
+        "css/background/background-color",
+        "css/background/background-image",
+        "css/background/background-gradient",
+        "css/background/background-position",
+        "css/background/background-size",
+        "css/background/background-repeat",
+        "css/background/background-attachment",
+        "css/background/background-shorthand",
+      ],
+    },
+
+    {
+      type: "category",
+      label: "Box Model",
+      link: {
+        type: "generated-index",
+        title: "CSS Box Model",
+        description:
+          "Understand the CSS Box Model, learn how elements are structured with margins, borders, padding, and content areas. Explore dimensions, outlines, shadows, and box-sizing for precise layouts.",
+        keywords: [
+          "css box model",
+          "margin",
+          "padding",
+          "border",
+          "box sizing",
+          "width and height",
+          "box shadow",
+          "css layout",
+        ],
+      },
+      items: [
+        "css/box-model/margin",
+        "css/box-model/padding",
+        "css/box-model/border",
+        "css/box-model/outline",
+        "css/box-model/width",
+        "css/box-model/height",
+        "css/box-model/box-sizing",
+        "css/box-model/box-shadow",
         {
           type: "category",
-          label: "Background Image",
+          label: "CSS Units",
+          link: {
+            type: "generated-index",
+            title: "CSS Units",
+            description:
+              "Learn CSS units to control element sizes understand absolute vs. relative units, viewport-based sizing, and how to use them with CSS functions for responsive designs.",
+            keywords: [
+              "css units",
+              "absolute units",
+              "relative units",
+              "viewport units",
+              "em vs rem",
+              "responsive design",
+            ],
+          },
           items: [
-            "css/backgrounds/background-image/background-attachment",
-            "css/backgrounds/background-image/background-position",
-            "css/backgrounds/background-image/background-repeat",
-            "css/backgrounds/background-image/background-size",
+            "css/box-model/css-units/absolute-vs-relative",
+            "css/box-model/css-units/viewport-units",
+            "css/box-model/css-units/units-with-functions",
           ],
         },
       ],
@@ -589,21 +870,382 @@ const sidebars: SidebarsConfig = {
 
     {
       type: "category",
-      label: "Fonts and Text Properties",
+      label: "Layout",
       link: {
-        type: "doc",
-        id: "css/fonts-and-text-properties/font-size",
+        type: "generated-index",
+        title: "CSS Layout",
+        description:
+          "Learn how CSS controls page structure and element positioning. Explore display modes, positioning techniques, overflow handling, and modern layouts like Flexbox, Grid, and Container Queries.",
+        keywords: [
+          "css layout",
+          "css display",
+          "css position",
+          "flexbox",
+          "grid",
+          "container queries",
+          "css overflow",
+          "css z-index",
+        ],
       },
       items: [
-        "css/fonts-and-text-properties/font-size",
-        "css/fonts-and-text-properties/font-style",
-        "css/fonts-and-text-properties/font-weight",
-        "css/fonts-and-text-properties/font-align",
-        "css/fonts-and-text-properties/generic-vs-specific-font-families",
+        {
+          type: "category",
+          label: "Display",
+          link: {
+            type: "generated-index",
+            title: "CSS Display Property",
+            description:
+              "Understand CSS display modes — block, inline, inline-block, none, and visibility to control how elements appear and interact in the layout.",
+            keywords: [
+              "css display",
+              "block vs inline",
+              "inline-block",
+              "display none",
+              "visibility hidden",
+            ],
+          },
+          items: [
+            "css/layout/display/block",
+            "css/layout/display/inline",
+            "css/layout/display/inline-block",
+            "css/layout/display/none",
+            "css/layout/display/visibility",
+          ],
+        },
+        {
+          type: "category",
+          label: "Position",
+          link: {
+            type: "generated-index",
+            title: "CSS Position Property",
+            description:
+              "Master the CSS position property and learn how to control element placement using static, relative, absolute, fixed, and sticky positioning with z-index layering.",
+            keywords: [
+              "css position",
+              "relative",
+              "absolute",
+              "fixed",
+              "sticky",
+              "z-index",
+              "css positioning",
+            ],
+          },
+          items: [
+            "css/layout/position/static",
+            "css/layout/position/relative",
+            "css/layout/position/absolute",
+            "css/layout/position/fixed",
+            "css/layout/position/sticky",
+            "css/layout/position/z-index",
+          ],
+        },
+        "css/layout/float-and-clear",
+        "css/layout/overflow",
+        "css/layout/display-flow",
+        {
+          type: "category",
+          label: "Modern Layouts",
+          link: {
+            type: "generated-index",
+            title: "Modern CSS Layouts",
+            description:
+              "Explore the most powerful layout systems in CSS including Flexbox, Grid, Subgrid, Multi-Column Layouts, Container Queries, Nesting, and Logical Properties.",
+            keywords: [
+              "css flexbox",
+              "css grid",
+              "css subgrid",
+              "multi column layout",
+              "container queries",
+              "css nesting",
+              "logical properties",
+            ],
+          },
+          items: [
+            "css/layout/modern-layouts/flexbox",
+            "css/layout/modern-layouts/grid",
+            "css/layout/modern-layouts/subgrid",
+            "css/layout/modern-layouts/multi-column-layout",
+            "css/layout/modern-layouts/container-queries",
+            "css/layout/modern-layouts/nesting",
+            "css/layout/modern-layouts/logical-properties",
+          ],
+        },
       ],
     },
 
-    "css/opacity",
+    {
+      type: "category",
+      label: "Effects",
+      link: {
+        type: "generated-index",
+        title: "CSS Effects",
+        description:
+          "Dive into CSS visual effects to make your designs pop. Learn how to use opacity, filters, blend modes, clipping, masking, and backdrop filters to create dynamic, polished visuals.",
+        keywords: [
+          "css effects",
+          "css opacity",
+          "css filters",
+          "css blend modes",
+          "clip-path",
+          "css mask",
+          "backdrop-filter",
+          "visual effects",
+        ],
+      },
+      items: [
+        "css/effects/opacity",
+        "css/effects/filters-and-blend",
+        "css/effects/clip-path",
+        "css/effects/mask",
+        "css/effects/backdrops",
+      ],
+    },
+
+    {
+      type: "category",
+      label: "Transitions & Animations",
+      link: {
+        type: "generated-index",
+        title: "CSS Transitions & Animations",
+        description:
+          "Learn how to create smooth transitions, transformations, and keyframe animations in CSS. Master timing functions, easing, and animation best practices to add motion and interactivity to your web designs.",
+        keywords: [
+          "css transitions",
+          "css animations",
+          "css transforms",
+          "keyframes",
+          "animation timing",
+          "motion design",
+          "web animation",
+        ],
+      },
+      items: [
+        "css/transitions-and-animations/transforms",
+        "css/transitions-and-animations/transitions",
+        "css/transitions-and-animations/keyframes",
+        "css/transitions-and-animations/animation-timing",
+      ],
+    },
+
+    {
+      type: "category",
+      label: "Responsiveness",
+      link: {
+        type: "generated-index",
+        title: "CSS Responsiveness",
+        description:
+          "Master responsive design in CSS using media queries, container queries, responsive typography, and fluid layouts. Learn to create websites that adapt perfectly to any screen size or device.",
+        keywords: [
+          "css responsiveness",
+          "responsive design",
+          "media queries",
+          "container queries",
+          "responsive typography",
+          "fluid layouts",
+          "adaptive web design",
+        ],
+      },
+      items: [
+        "css/responsiveness/media-queries",
+        "css/responsiveness/container-queries",
+        "css/responsiveness/responsive-images",
+        "css/responsiveness/responsive-typography",
+        "css/responsiveness/fluid-layouts",
+      ],
+    },
+
+    {
+      type: "category",
+      label: "Advanced Features",
+      link: {
+        type: "generated-index",
+        title: "Advanced CSS Features",
+        description:
+          "Explore the most powerful and modern CSS capabilities. Learn about CSS variables, functions, cascade layers, specificity, inheritance, and Shadow DOM to write scalable, modular, and maintainable styles.",
+        keywords: [
+          "advanced css",
+          "css variables",
+          "css functions",
+          "css layers",
+          "cascade layers",
+          "css specificity",
+          "css inheritance",
+          "shadow dom",
+          "modern css",
+        ],
+      },
+      items: [
+        "css/advanced-features/css-variables",
+        "css/advanced-features/css-functions",
+        "css/advanced-features/css-layers",
+        "css/advanced-features/cascade-layers",
+        "css/advanced-features/specificity",
+        "css/advanced-features/inheritance",
+        "css/advanced-features/shadow-dom",
+      ],
+    },
+
+    {
+      type: "category",
+      label: "Utilities",
+      link: {
+        type: "generated-index",
+        title: "CSS Utilities",
+        description:
+          "Learn essential CSS utilities for handling common elements like tables, lists, images, and icons. Master how to style, align, and optimize these components for better readability and accessibility across devices.",
+        keywords: [
+          "css utilities",
+          "css tables",
+          "css lists",
+          "css images",
+          "css icons",
+          "frontend styling",
+          "web design",
+        ],
+      },
+      items: [
+        "css/utilities/tables",
+        "css/utilities/lists",
+        "css/utilities/images",
+        "css/utilities/icons",
+      ],
+    },
+
+    {
+      type: "category",
+      label: "Best Practices",
+      link: {
+        type: "generated-index",
+        title: "CSS Best Practices",
+        description:
+          "Discover the essential CSS best practices for building high-performance, accessible, and maintainable websites. Learn how to structure your styles, improve scalability, and follow naming conventions like BEM, OOCSS, and SMACSS.",
+        keywords: [
+          "css best practices",
+          "css performance",
+          "css accessibility",
+          "css maintainability",
+          "css scalability",
+          "css naming conventions",
+          "bem",
+          "oocss",
+          "smacss",
+        ],
+      },
+      items: [
+        "css/best-practices/performance",
+        "css/best-practices/accessibility",
+        "css/best-practices/maintainability",
+        "css/best-practices/scalability",
+        "css/best-practices/naming-conventions",
+      ],
+    },
+
+    {
+      type: "category",
+      label: "CSS Frameworks",
+      link: {
+        type: "generated-index",
+        title: "CSS Frameworks",
+        description:
+          "Learn popular CSS frameworks that simplify and accelerate modern web development. Explore Tailwind CSS, Bootstrap, Bulma, Foundation, and Materialize — understand their philosophy, utility systems, and how to integrate them into your workflow.",
+        keywords: [
+          "css frameworks",
+          "tailwind css",
+          "bootstrap",
+          "bulma",
+          "foundation",
+          "materialize",
+          "frontend tools",
+          "web design",
+          "responsive frameworks",
+          "ui development",
+        ],
+      },
+      items: [
+        "css/css-frameworks/tailwind-css",
+        "css/css-frameworks/bootstrap",
+        "css/css-frameworks/bulma",
+        "css/css-frameworks/foundation",
+        "css/css-frameworks/materialize",
+      ],
+    },
+
+    {
+      type: "category",
+      label: "Modern CSS Tools",
+      link: {
+        type: "generated-index",
+        title: "Modern CSS Tools",
+        description:
+          "Explore modern CSS tools that enhance productivity, scalability, and maintainability in front-end development. Learn about preprocessors (SASS, LESS, Stylus), PostCSS, CSS-in-JS, and Browser DevTools — the backbone of modern web styling automation.",
+        keywords: [
+          "modern css tools",
+          "sass",
+          "less",
+          "stylus",
+          "postcss",
+          "css-in-js",
+          "browser devtools",
+          "frontend optimization",
+          "css workflow",
+        ],
+      },
+      items: [
+        {
+          type: "category",
+          label: "Preprocessors",
+          link: {
+            type: "generated-index",
+            title: "CSS Preprocessors",
+            description:
+              "Learn CSS preprocessors that simplify writing scalable, modular, and maintainable styles. Understand the advantages and use cases of SASS, LESS, and Stylus in modern front-end development.",
+            keywords: [
+              "sass",
+              "less",
+              "stylus",
+              "css preprocessors",
+              "modular css",
+            ],
+          },
+          items: [
+            "css/modern-css-tools/preprocessors/sass",
+            "css/modern-css-tools/preprocessors/less",
+            "css/modern-css-tools/preprocessors/stylus",
+          ],
+        },
+        "css/modern-css-tools/postcss",
+        "css/modern-css-tools/css-in-js",
+        "css/modern-css-tools/browser-devtools",
+      ],
+    },
+
+    {
+      type: "category",
+      label: "Project Practicals",
+      link: {
+        type: "generated-index",
+        title: "CSS Project Practicals",
+        description:
+          "Apply your CSS knowledge through practical projects. Build layouts, animations, and responsive designs while optimizing performance — turning theory into real-world skills.",
+        keywords: [
+          "css projects",
+          "practical css",
+          "layout practice",
+          "animation projects",
+          "responsive design",
+          "performance optimization",
+          "hands-on css",
+          "web development practice",
+        ],
+      },
+      items: [
+        "css/project-practicals/mini-projects",
+        "css/project-practicals/layout-practice",
+        "css/project-practicals/animation-practice",
+        "css/project-practicals/responsive-design-practice",
+        "css/project-practicals/performance-optimization",
+      ],
+    },
   ],
 
   javascript: [
@@ -1011,7 +1653,7 @@ const sidebars: SidebarsConfig = {
         "technical-writer/intro/what-is-technical-writing",
         "technical-writer/intro/types-of-technical-writing",
         "technical-writer/intro/tools-for-technical-writers",
-        "technical-writer/intro/best-practices",        
+        "technical-writer/intro/best-practices",
         "technical-writer/intro/skills-required",
       ],
     },

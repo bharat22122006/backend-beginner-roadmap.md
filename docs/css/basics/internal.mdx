@@ -1,0 +1,90 @@
+---
+title: Internal Stylesheets
+description: "Learn how to use Internal Stylesheets with the style tag in the HTML head. Understand when to use this method and its role in the Cascade."
+keyword: [CSS Internal Style, Embedded CSS, style tag, CSS basics, HTML head, CodeHarborHub CSS]
+sidebar_label: Internal Styles
+---
+
+In the previous lesson, we learned about **Inline Styles**, which put CSS directly onto a single HTML element. While fast, that method is messy and unscalable.
+
+The next step up is using an **Internal Stylesheet**, also known as **Embedded CSS**. This method keeps the style code in one central location within the same HTML document, offering better organization than inline styles.
+
+## How to Implement Internal Styles
+
+Internal Stylesheets are created by placing the CSS rules inside a special HTML element: the **`<style>` tag**.
+
+### The Syntax
+
+The `<style>` tag must be placed within the **`<head>` section** of your HTML document.
+
+```html title="index.html"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Internal CSS Demo</title>
+
+  <style>
+    /* All your CSS rulesets go here! */
+    body {
+      background-color: #f0f8ff; /* Light blue background for the entire page */
+    }
+
+    .main-header {
+      color: #007bff;
+      text-align: center;
+    }
+  </style>
+
+</head>
+<body>
+  <h1 class="main-header">Welcome to Embedded CSS!</h1>
+  <p>This page uses internal styling defined in the head section.</p>
+</body>
+</html>
+```
+
+### Key Difference from Inline
+
+With internal styles, you use the standard CSS **ruleset** structure (`selector { property: value; }`). This means you can target **multiple elements** (like all `p` tags or all elements with the class `.main-header`) with a single rule, which inline styles cannot do.
+
+## Advantages and Disadvantages
+
+Internal stylesheets are a significant improvement over inline styles, but they still have limitations compared to external files.
+
+### Advantages (The Upside)
+
+  * **Reusability within the Page:** You can write a style once and apply it to many elements on that single HTML page. This is much more efficient than repeating inline styles.
+  * **Centralized Styling:** All visual rules for the page are located in one clean section (`<head>`), making them easy to find and modify.
+  * **Access to Full CSS:** Unlike inline styles, you can use advanced CSS features like **Media Queries**, **Animations**, and **Pseudo-classes**.
+
+### Disadvantages (The Downside)
+
+:::caution Scalability and Cache
+
+The biggest drawback is **lack of reusability across multiple documents**. If your website has five pages, you must copy and paste the `<style>` block into the `<head>` of all five HTML files. This is inefficient for caching and maintenance.
+
+:::
+
+  * **No Caching:** Because the CSS is embedded within the HTML file, the browser cannot cache the stylesheet separately. This means the styles have to be re-downloaded every time a user visits a new page.
+  * **Bloated HTML:** Adding a lot of CSS code directly into the `<head>` significantly increases the size of the HTML file, which can slightly slow down the initial load time.
+  * **Maintenance Overhead:** Updating a global style requires editing every single HTML file on your site.
+
+## When is Internal Styling Appropriate?
+
+While **External Stylesheets** (our next topic) are the default standard, internal styles are useful in a few specific scenarios:
+
+| Situation | Why Internal CSS Works |
+| :--- | :--- |
+| **Single-Page Proof of Concept** | For a small test, tutorial page, or simple demo that will never be part of a larger site. |
+| **Template Specific Styles** | Applying critical, unique styles needed for the page *before* the main external stylesheet loads (though often handled by inlining critical CSS today). |
+| **Dynamic Content** | When a server-side script is dynamically generating custom CSS rules unique to that page's content. |
+
+### Interactive Internal Styles Demo
+
+Use the live editor to change the styles and watch the change below. Notice how the single `h2` rule targets all `h2` elements.
+
+<CodePenEmbed 
+  title="Interactive Internal Styles Demo"
+  penId="NPNGMoJ"
+/>
