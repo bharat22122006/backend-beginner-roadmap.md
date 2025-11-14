@@ -29,8 +29,8 @@ jobs:
             const issueType = context.payload.issue ? 'issue' : 'pull request';
             
             // Define the message to post
-            const message = `👋 Thanks for adding the **documentation** label!
-            
+            const message = `Thanks for adding the **documentation** label!
+            <br />
             This ${issueType} is now marked as needing content updates for the CodeHarborHub site. Please ensure the description contains all necessary technical details.`;
             
             // Post the comment using the GitHub API
