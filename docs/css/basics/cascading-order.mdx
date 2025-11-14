@@ -1,0 +1,99 @@
+---
+title: "The Cascade, Specificity, and Inheritance"
+sidebar_label: "Cascade Order"
+description: "Understand the three core principles (C-S-I) that determine which CSS rule wins when conflicts occur, making it the most fundamental concept in CSS."
+keywords: [CSS Cascade, CSS Specificity, CSS Inheritance, Rule Conflict, Important rule, important, CodeHarborHub CSS]
+---
+
+You now know three different places to put your CSS: **Inline**, **Internal**, and **External**. But what happens when you set an element's color to blue in an external file and then try to set it to red using an internal style?
+
+The browser uses three fundamental principles, often called the **C-S-I** (Cascade, Specificity, Inheritance), to decide which rule wins and is actually applied. This is the **most crucial concept** in CSS.
+
+## 1. The Cascade: Where Does the Style Come From?
+
+The **Cascade** determines the order in which CSS rules are processed and how conflicts are resolved based on the **source and order** of the styles.
+
+In a conflict, the browser looks at the following sources, in order of increasing importance:
+
+### A. Origin and Importance (The !important Rule)
+
+| Order | Source | Description |
+| :--- | :--- | :--- |
+| **1 (Lowest)** | Browser Defaults | The default styling applied by the browser (e.g., links are blue and underlined). |
+| **2** | User Stylesheets | Styles set by the user (rare, used for accessibility purposes). |
+| **3** | Author Stylesheets | **Your code** (External, Internal, and most Inline styles). |
+| **4 (Highest)** | `!important` | Any rule followed by `!important` overrides almost everything else. **Avoid using this** unless absolutely necessary, as it breaks the natural flow of the cascade. |
+
+### B. Order of Appearance
+
+If two rules have the exact same **Origin** (e.g., both are in your external file) and the same **Specificity** (covered next), the rule that appears **later** in the stylesheet or the HTML document **wins**.
+
+```css title="styles.css"
+/* Rule 1 appears first */
+p { color: red; }
+
+/* Rule 2 appears later and has the same specificity, so it wins */
+p { color: blue; } 
+/* The paragraph will be blue. */
+````
+
+## 2. Specificity: Who is More Precise?
+
+When multiple rules target the same element, **Specificity** is the unique score assigned to a CSS selector that determines which rule is applied. The selector with the **higher score always wins**, regardless of the order it appears in the stylesheet.
+
+### Specificity Scoring
+
+Specificity is calculated using a four-digit number, often written as `(A, B, C, D)`.
+
+| Category | Score | Example | Notes |
+| :--- | :--- | :--- | :--- |
+| **A: Inline** | 1000 | `<p style="color: red;">` | Always wins over non-inline styles. |
+| **B: IDs** | 100 | `#main-header` | A unique identifier. |
+| **C: Classes, Attributes, Pseudo-classes** | 10 | `.card`, `[type="text"]`, `:hover` | Includes most common selectors. |
+| **D: Elements, Pseudo-elements** | 1 | `p`, `h1`, `::before` | The lowest score. |
+
+### Specificity Example
+
+Let's look at a common conflict:
+
+| Selector | Calculation | Specificity Score |
+| :--- | :--- | :--- |
+| `h1` | (0, 0, 0, 1) | **1** (Element) |
+| `.page-title` | (0, 0, 1, 0) | **10** (Class) |
+| `#header h1` | (0, 1, 0, 1) | **101** (ID + Element) |
+
+**Result:** The style from `#header h1` will win and be applied, even if `.page-title` appears after it in the CSS file, simply because **101 is greater than 10**.
+
+:::tip Analogy
+
+Specificity is like a bidding war. An **Inline Style** is a million dollars (1000). An **ID** is a thousand dollars (100). A **Class** is a hundred dollars (10). Whoever bids more wins!
+
+:::
+
+-----
+
+## 3. Inheritance: Passing Down the Genes
+
+**Inheritance** is the third principle, determining how styles flow down the document tree from parent elements to their children.
+
+Some properties are naturally **inherited** (passed down), while others are not.
+
+### Properties that Inherit
+
+  * **Text and Font properties** generally inherit: `color`, `font-family`, `font-size`, `line-height`, `text-align`.
+      * If you set the `font-family` on the `<body>` element, all paragraphs and headings inside the `<body>` will automatically use that font.
+
+### Properties that Do Not Inherit
+
+  * **Box Model properties** generally do not inherit: `margin`, `padding`, `border`, `width`, `height`.
+      * If you set a `border: 2px solid black;` on the `<div>`, its child elements will *not* automatically get that border. This makes sense, as you wouldn't want every nested element to inherit its parent's spacing\!
+
+### Controlling Inheritance
+
+You can force any property to inherit or not using these special keywords:
+
+| Keyword | Purpose |
+| :--- | :--- |
+| `inherit` | Forces a child element to take the computed value of the parent element (even if it normally wouldn't inherit). |
+| `initial` | Resets the property to its default browser value. |
+| `unset` | Resets the property to either the inherited value (if it's an inherited property) or the initial value (if it's not). |
