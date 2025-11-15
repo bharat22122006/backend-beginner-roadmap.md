@@ -9,6 +9,9 @@ You've explored **Inline** (least scalable) and **Internal** (single-page only) 
 
 External stylesheets are CSS rules saved in a **separate file** (usually named `style.css` or similar) and then connected to the HTML document using the `<link>` tag.
 
+<AdsComponent />
+<br />
+
 ## How to Implement External Styles
 
 This method achieves true **separation of concerns** by keeping your presentation code entirely separate from your structural HTML code.
@@ -107,13 +110,18 @@ Now that you know the three ways to add styles, let's briefly look at the order 
 
 The Cascade is more complex, involving **Specificity** (which we'll cover in a future lesson), but generally, a style defined closer to the HTML element (inline) overrides a style defined further away (external).
 
-## Summary of CSS Methods
+<AdsComponent />
+<br />
+
+:::note Summary of CSS Methods
 
 | Method | Where is the Style? | Multi-Page Reuse? | Best for? |
 | :--- | :--- | :--- | :--- |
 | **Inline** | Inside the element's `style` attribute. | No | Single element, quick debugs, HTML emails. |
 | **Internal** | Inside the `<style>` tag in the `<head>`. | No (Requires Copy/Paste) | Single, standalone demos or test pages. |
 | **External** | In a separate linked `.css` file. | Yes | **All modern, multi-page websites.** |
+
+:::
 
 ### Interactive External Styles Demo
 

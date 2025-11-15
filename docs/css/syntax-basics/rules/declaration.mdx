@@ -1,1 +1,113 @@
-<ComingSoon />
+---
+title: The CSS Declaration
+description: "Learn how the CSS Declaration is formed by combining a property and a value, and how semicolons are used to separate multiple declarations within a ruleset."
+keywords: [CSS Declaration, Ruleset Structure, CSS Syntax, Semicolon in CSS, CodeHarborHub]
+sidebar_label: Declaration
+---
+
+We've covered the **Selector** (who to target) and the **Property/Value** pair (what and how to change it). Now we bring them together to form the complete instruction block: the **CSS Declaration**.
+
+A declaration is the final, complete command that tells the browser exactly one thing to do.
+
+<AdsComponent />
+<br />
+
+## Anatomy of a Declaration
+
+A single CSS declaration is a complete statement that always consists of three parts, in this exact order:
+
+1.  The **Property**
+2.  The **Colon** separator (`:`)
+3.  The **Value**
+4.  The **Semicolon** terminator (`;`)
+
+### The Syntax
+
+```css title="Declaration Syntax"
+property: value;
+```
+
+### Example
+
+In the ruleset below, everything inside the curly braces is the **Declaration Block**, and each line ending with a semicolon is a separate **Declaration**:
+
+```css title="styles.css"
+p {
+  color: midnightblue; /* <-- DECLARATION 1 */
+  font-size: 18px;     /* <-- DECLARATION 2 */
+  line-height: 1.5;    /* <-- DECLARATION 3 */
+}
+```
+
+## The Critical Role of the Semicolon (`;`)
+
+The semicolon is perhaps the most overlooked, yet most essential, part of the declaration syntax.
+
+### Semicolon as a Separator
+
+The semicolon acts as a **separator** between individual declarations within the curly braces (`{...}`). It tells the browser: "The previous instruction is finished; now look for the next instruction."
+
+### Why You Need It
+
+If you forget the semicolon, the browser treats the end of the first value and the start of the next property as a single, invalid declaration, causing all subsequent styles in that ruleset to fail.
+
+<Tabs>
+<TabItem value="broken" label="Broken Code">
+
+```css
+.card {
+  /* No semicolon after 'white'! The browser fails here. */
+  background-color: white 
+  padding: 20px; 
+  border: 1px solid gray; /* All these styles are ignored! */
+}
+```
+
+</TabItem>
+<TabItem value="correct" label="Correct Code">
+
+```css
+.card {
+  /* Semicolon separates the declaration! */
+  background-color: white; 
+  padding: 20px; 
+  border: 1px solid gray; 
+}
+```
+
+</TabItem>
+</Tabs>
+
+<AdsComponent />
+<br />
+
+### The Last Semicolon
+
+The semicolon on the **very last declaration** (the one just before the closing curly brace `}`) is technically optional. However, it is considered **best practice** to always include it.
+
+:::tip Best Practice: Always Include the Semicolon
+Always include the semicolon on the last line. This prevents syntax errors when you later add a new declaration below it, or when your code is automatically processed and minified by tools.
+:::
+
+## Review: The Complete CSS Ruleset
+
+We can now put all three components together to form the fundamental unit of CSS: the **Ruleset**.
+
+| Ruleset Component | Example | Description |
+| :--- | :--- | :--- |
+| **Selector** | `h3` | Who is being styled? |
+| **Declaration Block** | `{...}` | Contains all the styles for the selector. |
+| **Declaration** | `color: red;` | The complete instruction. |
+| **Property** | `color` | The attribute being changed. |
+| **Value** | `red` | The new setting for the attribute. |
+| **Separator** | `:` | Separates Property and Value. |
+| **Terminator** | `;` | Separates Declarations. |
+
+## Interactive Declaration Demo
+
+Use the live editor to break the syntax by removing the semicolon or the colon. See how a tiny syntax mistake causes the entire ruleset to fail!
+
+<CodePenEmbed 
+  title="Interactive Declaration Demo"
+  penId="RNaRVWV"
+/>

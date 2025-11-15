@@ -13,6 +13,9 @@ The browser doesn't guess; it uses a strict set of rules known as the **Cascade*
 2.  **Specificity:** How detailed is the selector?
 3.  **Inheritance:** Does the element automatically get its parent's style?
 
+<AdsComponent />
+<br />
+
 ## 1. The Cascade: Order and Source
 
 The **Cascade** is the primary system for layering styles. It decides the initial winner based on the origin and order of the stylesheet.
@@ -69,6 +72,9 @@ Let's compare two conflicting selectors:
 :::tip Specificity Tip
 Never use Inline Styles and try to reserve **ID selectors** (`#`) for JavaScript targeting rather than styling, as their high specificity makes CSS harder to override and maintain.
 :::
+
+<AdsComponent />
+<br />
 
 ## The Power of `!important`
 
@@ -129,6 +135,9 @@ Properties related to the **Box Model** and **Layout** do **not** inherit:
 ```
 
 The browser applies the `font-family` to the `<p>` elements, but since `border` is not inherited, the `<p>` tags will not have a border unless one is specifically declared for them.
+
+<AdsComponent />
+<br />
 
 ## Interactive Cascade Order Demo
 
