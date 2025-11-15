@@ -9,6 +9,9 @@ In the previous lesson, we learned about **Inline Styles**, which put CSS direct
 
 The next step up is using an **Internal Stylesheet**, also known as **Embedded CSS**. This method keeps the style code in one central location within the same HTML document, offering better organization than inline styles.
 
+<AdsComponent />
+<br />
+
 ## How to Implement Internal Styles
 
 Internal Stylesheets are created by placing the CSS rules inside a special HTML element: the **`<style>` tag**.
@@ -66,9 +69,12 @@ The biggest drawback is **lack of reusability across multiple documents**. If yo
 
 :::
 
-  * **No Caching:** Because the CSS is embedded within the HTML file, the browser cannot cache the stylesheet separately. This means the styles have to be re-downloaded every time a user visits a new page.
-  * **Bloated HTML:** Adding a lot of CSS code directly into the `<head>` significantly increases the size of the HTML file, which can slightly slow down the initial load time.
-  * **Maintenance Overhead:** Updating a global style requires editing every single HTML file on your site.
+* **No Caching:** Because the CSS is embedded within the HTML file, the browser cannot cache the stylesheet separately. This means the styles have to be re-downloaded every time a user visits a new page.
+* **Bloated HTML:** Adding a lot of CSS code directly into the `<head>` significantly increases the size of the HTML file, which can slightly slow down the initial load time.
+* **Maintenance Overhead:** Updating a global style requires editing every single HTML file on your site.
+
+<AdsComponent />
+<br />
 
 ## When is Internal Styling Appropriate?
 
