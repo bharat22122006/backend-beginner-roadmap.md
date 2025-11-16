@@ -1,1 +1,71 @@
-<ComingSoon />
+---
+title: The ID Selector
+description: "Understand the ID Selector (#), its unique nature, and its extremely high specificity. Learn why it is generally reserved for JavaScript and structural targeting, not widespread styling."
+keywords: [CSS ID Selector, Hash Selector, Unique Element, High Specificity, CSS Simple Selectors, CodeHarborHub]
+sidebar_label: ID Selector
+---
+
+The **ID Selector** is the most powerful simple selector you can use for styling. It is designed to target **one, and only one, unique element** on an entire HTML page.
+
+Due to its high specificity, the ID Selector is often considered too powerful for general styling and is usually reserved for structural landmarks or elements that need specific manipulation by **JavaScript**.
+
+<AdsComponent />
+<br />
+
+## How to Use the ID Selector
+
+Using the ID selector also requires two steps, similar to the class selector, but with a strict limitation on usage.
+
+### 1. Assign the ID in HTML
+
+You add the `id` attribute to an HTML element. **Crucially, the value of the `id` attribute must be unique.** You cannot reuse the same ID on another element on the page.
+
+```html title="index.html"
+<header id="main-header">
+  <h1>CodeHarborHub</h1>
+</header>
+
+<p>This is standard content.</p> 
+```
+
+### 2. Select the ID in CSS
+
+In your stylesheet, you target that unique ID name by prefixing it with a **hash symbol (`#`)** (also known as a pound sign).
+
+```css title="styles.css"
+/* The hash (#) tells the browser: "Find the single element with this ID." */
+#main-header {
+  background-color: #3f51b5; /* Deep Indigo */
+  color: white; 
+  padding: 20px 0;
+  text-align: center;
+}
+```
+
+## Specificity Score: The Atomic Bomb of CSS
+
+The ID Selector has an extremely high Specificity score, which is why it should be used sparingly for styling.
+
+| Selector Type | Specificity Score |
+| :--- | :--- |
+| **ID** | **(0, 1, 0, 0)** |
+
+A score of **100** means an ID selector will override *ten* class selectors or *one hundred* element selectors trying to style the same property\!
+
+:::danger Use IDs with Caution
+Because the ID selector is so specific, using it for general styling can make your CSS fragile and difficult to maintain. It makes it very hard to override that style later without resorting to the forbidden power of `!important`.
+
+**General Rule:** Use **Classes** for styling and **IDs** primarily for structural landmarks or targets for **JavaScript functions** (e.g., scrolling to `#contact-form`).
+:::
+
+<AdsComponent />
+<br />
+
+## Interactive ID Selector Demo
+
+In this demo, observe how the ID selector (`#unique-style`) completely overrides the styles applied by the less specific Class selector (`.base-box`), even though the class rule is written *after* the ID rule in the code panel.
+
+<CodePenEmbed 
+  title="Interactive ID Selector Demo"
+  penId="vEGyNaa"
+/>

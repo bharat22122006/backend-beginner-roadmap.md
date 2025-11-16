@@ -1,1 +1,99 @@
-<ComingSoon />
+---
+title: Pseudo Classes
+description: "Learn how to use Pseudo-Classes (:) to style elements based on their state (e.g., hover, active, checked) or their position within the HTML structure (e.g., first-child, nth-child)."
+keywords: [CSS Pseudo-Classes, colon selector, element state, structural pseudo-classes, user interaction, CSS Selectors, CodeHarborHub]
+sidebar_label: Pseudo-Classes
+---
+
+**Pseudo-Classes** are special selectors used to define a specific **state** of an element or select elements based on their **position** in the HTML structure. They allow you to apply styles that don't depend on the explicit presence of a class or ID in the HTML.
+
+Pseudo-classes are indicated by a **single colon (`:`)** followed by the name of the pseudo-class.
+
+<AdsComponent />
+<br />
+
+## State Pseudo-Classes (User Interaction)
+
+These are the most common pseudo-classes. They allow you to change the appearance of an element based on user interaction or the element's current condition.
+
+| Pseudo-Class | Description | Example Use Case |
+| :--- | :--- | :--- |
+| `:hover` | The element is being hovered over by the cursor. | Change button background when the mouse is over it. |
+| `:active` | The element is clicked or pressed by the user. | Briefly change a link color while it's being clicked. |
+| `:focus` | The element has keyboard focus (e.g., inputs, links). | Add a visible outline to an input field when a user types in it. |
+| `:visited` | A link (`<a>`) that the user has already visited. | Change the color of already-visited links. |
+| `:link` | An unvisited link (`<a>`). | Set the initial color of links. |
+| `:checked` | A radio button or checkbox is selected. | Style a checkbox label when the box is checked. |
+
+### Example: Styling a Button State
+
+```css title="styles.css"
+/* Base style for the button */
+.my-button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  transition: background-color 0.3s; /* Smooth visual change */
+}
+
+/* Style when the user hovers over the button */
+.my-button:hover {
+  background-color: #2980b9; /* Slightly darker */
+}
+
+/* Style when the user is actively clicking the button */
+.my-button:active {
+  background-color: #e74c3c; /* Red color flash */
+}
+```
+
+<AdsComponent />
+<br />
+
+## Structural Pseudo-Classes (Position)
+
+These selectors target elements based on their placement or numerical order within a parent container.
+
+### Simple Position Selectors
+
+These are useful for targeting the beginning or end of a sequence of elements.
+
+| Selector | Description | Example Use Case |
+| :--- | :--- | :--- |
+| `:first-child` | Selects the element if it is the very first child of its parent. | Remove the top margin from the first paragraph in a container. |
+| `:last-child` | Selects the element if it is the very last child of its parent. | Remove the bottom border from the last item in a list. |
+| `:only-child` | Selects the element if it is the sole child of its parent. | Center a menu only if it has just one link. |
+
+### The `nth` Selectors
+
+The `nth-child()` and `nth-of-type()` pseudo-classes are extremely powerful as they accept an argument to create complex patterns.
+
+| Selector | Argument | Description |
+| :--- | :--- | :--- |
+| `:nth-child(n)` | `odd`, `even`, `2n`, `3n+1` | Selects elements based on their position among **all siblings**, regardless of tag type. |
+| `:nth-of-type(n)` | `odd`, `even`, `2n` | Selects elements based on their position among **siblings of the same type (tag)**. |
+
+:::tip `nth-child` vs. `nth-of-type`
+Use **`:nth-of-type()`** when you want to style every other element of the *same tag* (e.g., alternating colors for table rows, `tr:nth-of-type(odd)`).
+Use **`:nth-child()`** when the element must be in a specific numerical position relative to *all* children, even if they are different tags.
+:::
+
+## Specificity Score
+
+Pseudo-Classes have the same medium specificity as **Class and Attribute Selectors**.
+
+| Selector Type | Specificity Score |
+| :--- | :--- |
+| **Pseudo-Classes** | **(0, 0, 1, 0)** |
+
+A score of **10** means they can combine effectively with classes without creating specificity nightmares.
+
+
+## Interactive Pseudo-Class Demo
+
+In this demo, observe how `:hover` changes the button color and how `:nth-child` creates a zebra-stripe pattern on the list items.
+
+<CodePenEmbed 
+  title="Interactive Pseudo-Class Demo"
+  penId="yyOVrgV"
+/>
