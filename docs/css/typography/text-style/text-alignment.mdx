@@ -1,1 +1,74 @@
-<ComingSoon />
+---
+title: "The text-align Property"
+description: "Learn how to use the CSS text-align property to control the horizontal alignment of inline content (text, images, spans) within a block-level container."
+keywords: [CSS text-align, text alignment, center text, justify text, typography, horizontal alignment, CodeHarborHub]
+tags: [CSS text-align, text alignment, center text, justify text, typography, horizontal alignment]
+sidebar_label: "text-align"
+---
+
+The CSS **`text-align`** property is used to set the horizontal alignment of **inline-level content** (like text, images, and `<span>` elements) within its **block-level container** (like `<div>`, `p`, or `h1`).
+
+This property controls where the content sits horizontally within the box: left, right, center, or justified.
+
+<AdsComponent />
+<br />
+
+## Syntax and Values
+
+The `text-align` property accepts several keyword values. You apply the property to the **parent container**, and it affects the inline content inside it.
+
+| Value | Description | Typical Use Case |
+| :--- | :--- | :--- |
+| **`left`** | Aligns text to the **left** edge of the container. This is the default setting for Left-to-Right (LTR) languages. | Standard body text. |
+| **`right`** | Aligns text to the **right** edge of the container. | Prices, dates, or right-to-left (RTL) languages. |
+| **`center`** | Centers the text line by line within the container. | Headings, titles, and captions. |
+| **`justify`** | Stretches the lines of text so that both the left and right edges are flush with the container. | Magazine or newspaper columns. |
+
+### Example
+
+To center a heading, you apply `text-align: center;` to the heading itself:
+
+```css title="styles.css"
+/* Centers the text inside the h1 container */
+h1 {
+  text-align: center;
+}
+
+/* Justifies the body content for a more formal look */
+.article-body {
+  text-align: justify;
+}
+```
+
+## Important Distinctions
+
+### 1. Affects Inline Content Only
+
+`text-align` only affects **inline** content. It will **not** move a block-level element itself (like an entire `<div>`).
+
+  * **To move a block-level element horizontally:** Use `margin: 0 auto;` (for centering) or layout properties like `float` or Flexbox.
+
+### 2. The `justify` Caveat
+
+When using `text-align: justify;`, the browser adds space between words to make lines flush. This is generally great for large blocks of text, but if the last line of a paragraph is very short, it can be stretched awkwardly across the entire width.
+
+### 3. Start vs. End (Internationalization)
+
+In modern CSS, `start` and `end` are often preferred over `left` and `right` for better support of different writing systems:
+
+  * **`text-align: start;`**: Aligns content to the reading side (left for English, right for Arabic).
+  * **`text-align: end;`**: Aligns content to the non-reading side (right for English, left for Arabic).
+
+Unless you are explicitly building an RTL layout, using `left`, `right`, and `center` is sufficient.
+
+<AdsComponent />
+<br />
+
+### Interactive `text-align` Demo
+
+Use the live editor to change the `text-align` value in the CSS and see how the horizontal position of the text changes instantly.
+
+<CodePenEmbed 
+  title="Interactive text-align Demo"
+  penId="ogxejqK"
+/>

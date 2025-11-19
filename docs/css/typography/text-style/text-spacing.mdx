@@ -1,1 +1,96 @@
-<ComingSoon />
+---
+title: "Text Spacing Properties"
+description: "Learn how to use CSS properties like line-height, letter-spacing, and word-spacing to control the vertical and horizontal density of text for improved readability."
+keywords: [CSS line-height, letter-spacing, word-spacing, typography, leading, kerning, readability, CodeHarborHub]
+tags: [CSS line-height, letter-spacing, word-spacing, typography, leading, kerning, readability]
+sidebar_label: Text Spacing
+---
+
+Controlling the horizontal and vertical spacing of text is crucial for creating readable, aesthetically pleasing layouts. CSS provides three primary properties to manage this density: **`line-height`**, **`letter-spacing`**, and **`word-spacing`**.
+
+<AdsComponent />
+<br />
+
+## 1. `line-height`: Vertical Spacing (Leading)
+
+The `line-height` property sets the vertical distance between the baselines of successive lines of text. In typography, this is often referred to as **leading**. Proper line height is essential for long-form readability.
+
+### Values and Best Practice
+
+| Value | Description | Best Practice |
+| :--- | :--- | :--- |
+| **`number` (Recommended)** | A unitless number (e.g., `1.5`). The final line height is the font size multiplied by this number. | **Use unitless values.** This value scales proportionally to the font size of the element, ensuring good accessibility. |
+| **`length`** | A fixed value (e.g., `24px`). | **Avoid.** Does not scale well if the font size changes. |
+| **`%`** | A percentage of the current font size (e.g., `150%`). | Acceptable, but less clear than a unitless number. |
+
+### Example
+
+A ratio of **1.4 to 1.6** is generally considered optimal for body text readability.
+
+```css title="styles.css"
+/* If font-size is 16px, the line-height will be 16px * 1.5 = 24px */
+body {
+  font-size: 16px; 
+  line-height: 1.5; 
+}
+```
+
+## 2. `letter-spacing`: Spacing Between Characters (Kerning)
+
+The `letter-spacing` property controls the horizontal space between individual characters (or glyphs). This is sometimes referred to as **tracking** or **kerning** (though kerning is technically more specific to individual letter pairs).
+
+### Use Cases
+
+  * **Aesthetics:** Used to open up space on uppercase headings.
+  * **Accessibility:** Can be used to slightly increase space for users with reading disabilities.
+  * **Negative Spacing:** Can be used to tighten very large text, though caution is required.
+
+### Example
+
+```css title="styles.css"
+/* Adds 2 pixels of extra space between every character in the heading */
+h1 {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Reduces spacing on small-caps text */
+.caption {
+  letter-spacing: -0.5px;
+}
+```
+
+<AdsComponent />
+<br />
+
+## 3. `word-spacing`: Spacing Between Words
+
+The `word-spacing` property controls the horizontal space between words. It is applied in addition to the default word space defined by the font.
+
+### Use Cases
+
+  * **Adjustment:** Can be used to slightly adjust word spacing in justified text to improve visual flow.
+  * **Clarity:** Rarely used for drastic changes, as large modifications can severely impact readability.
+
+### Example
+
+```css title="styles.css"
+/* Adds 5 pixels of extra space between every word */
+.intro {
+  word-spacing: 5px;
+}
+
+/* Decreases space slightly (can be useful for justified blocks) */
+.article-body {
+  word-spacing: -1px;
+}
+```
+
+## Interactive Spacing Demo
+
+Use the live editor to adjust the three spacing properties and see how they instantly affect the visual density of the text.
+
+<CodePenEmbed 
+  title="Interactive Spacing Demo"
+  penId="dPMzMbV"
+/>

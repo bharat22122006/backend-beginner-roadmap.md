@@ -1,1 +1,76 @@
-<ComingSoon />
+---
+title: "The font-variant Property"
+description: "Learn how to use the CSS font-variant property, particularly for applying small-caps formatting, and understand its role as a shorthand for several advanced font features."
+keywords: [CSS font-variant, small-caps, typography, font features, CodeHarborHub]
+tags: [CSS font-variant, small-caps, typography, font features, CodeHarborHub]
+sidebar_label: font-variant
+---
+
+The CSS **`font-variant`** property controls how the browser displays the specialized glyphs (character shapes) defined within a font. While it can control many advanced typographical features, its most common use is to set text to **small-caps**.
+
+<AdsComponent />
+<br />
+
+## The Primary Use: Small-Caps
+
+The `small-caps` value is the classic application of `font-variant`. It renders text using capital letters, but the lowercase letters are converted to capital letters that are slightly smaller than the original uppercase letters.
+
+### The Syntax
+
+```css
+selector {
+  font-variant: small-caps;
+}
+```
+
+### True Small-Caps vs. Faux Small-Caps
+
+It is important to know the difference between the two types of small caps:
+
+1.  **True Small-Caps:** The font file itself contains special, custom-designed small capital letters that maintain the weight and clarity of the original font. This is the ideal rendering.
+2.  **Faux Small-Caps:** If the font doesn't have true small-caps, the browser will mechanically shrink the standard capital letters. These often look visually thin and inconsistent compared to true small-caps.
+
+:::tip Font Requirement
+To ensure the best visual quality, your chosen font must specifically contain the small-caps glyphs. If the font does not support true small-caps, the browser will create a faux version.
+:::
+
+## Advanced `font-variant` Shorthand
+
+The `font-variant` property is actually a **shorthand** for a group of more specific, advanced properties known as **`font-variant-*`** properties (e.g., `font-variant-caps`, `font-variant-numeric`).
+
+For standard web development, setting the property to **`normal`** or **`small-caps`** is usually sufficient.
+
+### `font-variant` Values
+
+| Value | Description | Notes |
+| :--- | :--- | :--- |
+| **`normal`** | The default. Disables any special font features (like small-caps). | Recommended when overriding a previous rule. |
+| **`small-caps`** | Enables the small-caps feature. | The most common and visible effect. |
+| **`inherit`** | Inherits the `font-variant` setting from its parent element. | |
+
+### Example using `normal`
+
+If a parent element sets `small-caps`, you can easily reset it for a child element:
+
+```css
+.caption {
+  font-variant: small-caps;
+}
+
+.caption a {
+  /* Resets the small-caps back to standard text for links inside the caption */
+  font-variant: normal; 
+}
+```
+
+<AdsComponent />
+<br />
+
+### Interactive `font-variant` Demo
+
+Use the live editor to switch the `font-variant` value between `normal` and `small-caps`.
+
+<CodePenEmbed 
+  title="Interactive font-variant Demo"
+  penId="emZRWZB"
+/>

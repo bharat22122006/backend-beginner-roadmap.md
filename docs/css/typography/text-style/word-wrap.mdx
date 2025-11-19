@@ -1,1 +1,67 @@
-<ComingSoon />
+---
+title: "The overflow-wrap Property"
+description: "Learn how to use the CSS overflow-wrap property to control whether the browser can break words to prevent content from overflowing its container."
+keywords: [CSS overflow-wrap, word-wrap, line breaking, overflow, wrapping long words, text style, CodeHarborHub]
+tags: [CSS overflow-wrap, word-wrap, line breaking, overflow, wrapping long words, text style]
+sidebar_label: "overflow-wrap"
+---
+
+The CSS **`overflow-wrap`** property controls how the browser handles a word that is too long to fit on a single line within its container. By default, the browser tries to keep a whole word on one line, which can sometimes cause the word to extend, or **overflow**, the container boundaries.
+
+This property tells the browser when it is acceptable to break a long, unbroken string of characters (like a long URL or a technical hash) to maintain the layout.
+
+<AdsComponent />
+<br />
+
+## Syntax and Values
+
+The `overflow-wrap` property accepts two main keyword values:
+
+| Value | Description | Behavior |
+| :--- | :--- | :--- |
+| **`normal`** | This is the default. Words will only break at normal breaking points (like spaces or hyphens). If a single word is too long, it will **overflow** the container. | **Overflows** |
+| **`break-word`** | If an unbroken word is too long to fit on its current line, the browser will force a line break, causing the word itself to **split** at an arbitrary point to fit within the container. | **Breaks to Fit** |
+
+### Example
+
+Let's assume a container is $100\text{px}$ wide, and a word is $150\text{px}$ long.
+
+```css title="styles.css
+/* Container CSS */
+.log-box {
+  width: 100px;
+  border: 1px solid red;
+}
+
+/* 1. Default behavior (overflows) */
+.log-box-1 {
+  overflow-wrap: normal; 
+}
+
+/* 2. Forces a break (stays within bounds) */
+.log-box-2 {
+  overflow-wrap: break-word; 
+}
+```
+
+## Historical Note: `word-wrap`
+
+The property was originally introduced in CSS with the name **`word-wrap`**. It was later standardized in CSS3 and renamed to **`overflow-wrap`** to better reflect its function (managing overflow).
+
+:::info Use the Standard Name
+While all modern browsers support the `word-wrap` property as a legacy alias, it is considered best practice to use the standardized name: **`overflow-wrap`**.
+:::
+
+<AdsComponent />
+<br />
+
+### Interactive `overflow-wrap` Demo
+
+Use the live editor to change the value of `overflow-wrap` in the CSS. Observe how the long, unbroken URL reacts when it can't fit in the narrow container.
+
+<CodePenEmbed 
+  title="Interactive overflow-wrap Demo"
+  penId="EaKvKpb"
+/>
+
+**Challenge:** Set `overflow-wrap: normal;` and notice the horizontal scrollbar appear or the text push outside the container. Then, change it to `break-word;` and see the text snap inside the container boundaries.

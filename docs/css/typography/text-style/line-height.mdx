@@ -1,1 +1,74 @@
-<ComingSoon />
+---
+title: "The line-height Property"
+description: "Master the CSS line-height property to control the vertical spacing between lines of text (leading), and learn why the unitless value is essential for readable and accessible typography."
+keywords: [CSS line-height, leading, vertical text spacing, unitless line height, typography readability, CodeHarborHub]
+tags: [CSS line-height, leading, vertical text spacing, unitless line height, typography readability]
+sidebar_label: "line-height"
+---
+
+The CSS **`line-height`** property controls the amount of vertical space between the baselines of successive lines of text. This spacing, known as **leading** in traditional typography, is critical for text **readability**. Too little space makes text dense and hard to follow; too much space breaks the visual flow.
+
+<AdsComponent />
+<br />
+
+## Syntax and Values
+
+The `line-height` property accepts several types of values, but one is strongly preferred for best practice.
+
+### 1. Unitless Number (Recommended)
+
+This is the **most flexible and recommended** approach. It is specified as a simple number (e.g., `1.5`).
+
+* **How it works:** The final line height is the element's `font-size` multiplied by this number.
+* **Advantage:** This value is **inherited** by child elements as a *multiplier*, not a fixed value, ensuring that line height always scales proportionally if the child element's font size changes.
+
+```css title="styles.css"
+/* If body font-size is 16px, line-height is 16px * 1.5 = 24px */
+body {
+  line-height: 1.5; 
+}
+
+/* If a child h1 has a font-size of 32px, its line-height is 32px * 1.5 = 48px */
+h1 {
+  font-size: 2rem; /* 32px */
+}
+```
+
+### 2. Length (Fixed)
+
+A fixed value using units like `px`, `em`, or `rem`.
+
+  * **How it works:** Sets the line height to that exact measurement.
+  * **Disadvantage:** **Avoid using fixed units on the `body` tag.** If you set `body { line-height: 24px; }` and later set an `h1` to a much larger font size (e.g., $40\text{px}$), the fixed $24\text{px}$ line height will cause the text to overlap.
+
+### 3. Percentage (%)
+
+A percentage of the element's own `font-size`.
+
+  * **How it works:** `150%` is the same as the unitless value `1.5`.
+  * **Disadvantage:** Similar to fixed units, a percentage value is **calculated once** and then inherited as a fixed length by children, which can lead to scaling issues.
+
+<AdsComponent />
+<br />
+
+## Best Practice: Why Unitless Wins Accessibility
+
+The unitless value (e.g., `1.5`) is the golden standard because it directly supports **accessibility and responsiveness**.
+
+When you use: `body { line-height: 1.5; }`, the browser understands: "The line height should always be 1.5 times the current font size."
+
+If a user zooms in or overrides the font size to make text larger, the line height scales with the text size automatically, maintaining comfortable reading space. Fixed units (`px`) break this behavior.
+
+### Recommended Ratios
+
+  * **Body Text:** `1.4` to `1.6`
+  * **Headings:** `1.0` to `1.3` (Headings generally require less vertical space because they are shorter).
+
+### Interactive `line-height` Demo
+
+Use the live editor to adjust the `line-height` value. Observe how a unitless number scales proportionally with the font size.
+
+<CodePenEmbed 
+  title="Interactive line-height Demo"
+  penId="VYazaaQ"
+/>
