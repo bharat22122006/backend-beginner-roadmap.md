@@ -1,1 +1,72 @@
-<ComingSoon />
+---
+title: "The text-transform Property"
+description: "Learn how to use the CSS text-transform property to visually change the capitalization of text (uppercase, lowercase, capitalize) without altering the original HTML content."
+keywords: [CSS text-transform, uppercase, lowercase, capitalize, text case, typography, CodeHarborHub]
+tags: [CSS text-transform, uppercase, lowercase, capitalize, text case, typography]
+sidebar_label: "text-transform"
+---
+
+The CSS **`text-transform`** property allows you to visually change the capitalization of text, overriding how it was originally typed in the HTML. This is a very useful tool for styling headings, captions, and links, ensuring consistency across your design without requiring content editors to manually change the case.
+
+<AdsComponent />
+<br />
+
+## Syntax and Values
+
+The `text-transform` property accepts several straightforward keyword values.
+
+| Value | Description | Example Output |
+| :--- | :--- | :--- |
+| **`none`** | Displays the text exactly as it was written in the HTML (the default). | `This Is Normal Text` |
+| **`uppercase`** | Converts all letters to capital letters. | `THIS IS UPPERCASE TEXT` |
+| **`lowercase`** | Converts all letters to small letters. | `this is lowercase text` |
+| **`capitalize`** | Converts the first letter of every word to a capital letter. | `This Is Capitalized Text` |
+| **`full-width`** | Converts all characters (primarily for Asian languages) into full-width characters. | `Ｔｈｉｓ ｉｓ ｆｕｌｌ－ｗｉｄｔｈ` |
+
+### Example
+
+To force all navigation links to be uppercase, regardless of how they are typed in the CMS:
+
+```css title="styles.css"
+/* All link text will be displayed in capital letters */
+.main-nav a {
+  text-transform: uppercase;
+  letter-spacing: 1px; /* Uppercase often needs extra spacing */
+}
+
+/* Titles are stylized with initial capitalization */
+h2 {
+  text-transform: capitalize;
+}
+```
+
+<AdsComponent />
+<br />
+
+## Best Practices and Considerations
+
+### Content vs. Presentation
+
+One of the great advantages of `text-transform` is that it maintains the **original case** in the HTML.
+
+  * **HTML (Content):** If the text is all lowercase, screen readers and search engines read it as lowercase.
+  * **CSS (Presentation):** The user **sees** it as uppercase.
+
+This separation is crucial: if a user copies and pastes text that is styled with `text-transform: uppercase;`, the text they paste will usually be the original, lowercase text from the HTML, which is often a better user experience.
+
+### Accessibility (Screen Readers)
+
+While `text-transform` visually changes the text, it generally does not interfere with how screen readers interpret the content, especially for `uppercase` and `lowercase`.
+
+### The `capitalize` Caveat
+
+The `capitalize` value only targets characters immediately following a non-letter character (like a space or hyphen). It does not automatically handle articles or prepositions (like "a," "the," "of") as a title case style might.
+
+### Interactive `text-transform` Demo
+
+Use the live editor to cycle through the main values: `none`, `uppercase`, `lowercase`, and `capitalize`. Observe how the appearance changes instantly.
+
+<CodePenEmbed 
+  title="Interactive text-transform Demo"
+  penId="JoXyGwb"
+/>

@@ -1,1 +1,101 @@
-<ComingSoon />
+---
+title: "The text-decoration Property"
+description: "Learn how to use the CSS text-decoration property to add or remove visual lines on text, controlling their style, color, and thickness, especially for links."
+keywords: [CSS text-decoration, underline, overline, line-through, text-decoration shorthand, link styling, CodeHarborHub]
+tags: [CSS text-decoration, underline, overline, line-through, text-decoration shorthand, link styling]
+sidebar_label: "text-decoration"
+---
+
+The CSS **`text-decoration`** property is a powerful shorthand that allows you to add or remove various visual lines on text, such as underlines, overlines, and strikethroughs.
+
+Its most common use is to **remove the default underline** from anchor tags (`<a>`) and links.
+
+<AdsComponent />
+<br />
+
+## The `text-decoration` Shorthand
+
+The `text-decoration` property can be used as a shorthand to define three aspects of the line: **line type**, **color**, and **style/thickness**.
+
+### The Syntax
+
+```css title="styles.css"
+/* Shorthand Order: [line] [color] [style] [thickness] */
+selector {
+  text-decoration: underline red wavy 2px;
+}
+```
+
+### 1. `text-decoration-line` (The Type)
+
+This is the most essential value and is often used alone.
+
+| Value | Description |
+| :--- | :--- |
+| **`none`** | **Removes all decoration.** Crucial for styling links (`a { text-decoration: none; }`). |
+| **`underline`** | Draws a line **under** the text. |
+| **`overline`** | Draws a line **over** the text. |
+| **`line-through`** | Draws a line **through** the text (strikethrough). |
+
+### 2. `text-decoration-color`
+
+Sets the color of the decoration line. By default, it inherits the text color set by the `color` property.
+
+```css title="styles.css"
+.danger-link {
+  color: red; /* Text color */
+  /* Line color is set explicitly to black, distinct from the red text */
+  text-decoration-color: black; 
+}
+```
+
+### 3. `text-decoration-style`
+
+Sets the pattern of the line.
+
+| Value | Description |
+| :--- | :--- |
+| **`solid`** | A straight, unbroken line (the default). |
+| **`double`** | Two parallel lines. |
+| **`dotted`** | A series of dots. |
+| **`dashed`** | A series of short dashes. |
+| **`wavy`** | A wavy or squiggly line. |
+
+### 4. `text-decoration-thickness`
+
+Sets the width (thickness) of the line, using any valid length unit (e.g., `px`, `em`, `rem`).
+
+<AdsComponent />
+<br />
+
+## Best Practice: Styling Links
+
+The default browser behavior is to render all anchor tags (`<a>`) with an underline. This is a long-standing web convention that tells users an element is clickable.
+
+A common design pattern is to **remove the default underline** and then add a subtle effect on hover.
+
+```css title="styles.css"
+/* 1. Remove the default underline */
+a {
+  text-decoration: none; 
+  color: #007bff; /* Set the text color */
+}
+
+/* 2. Add a visual cue on hover */
+a:hover {
+  /* Use the shorthand to add a subtle, colored line only on hover */
+  text-decoration: underline 2px solid #007bff; 
+  cursor: pointer;
+}
+```
+
+### Interactive `text-decoration` Demo
+
+Use the live editor to test different line types and styles using the shorthand property.
+
+<CodePenEmbed 
+  title="Interactive text-decoration Demo"
+  penId="RNaZrjZ"
+/>
+
+**Challenge:** In the CSS, change the decoration to `underline #1e90ff wavy 3px` and hover over the text to see the different style and thickness.
