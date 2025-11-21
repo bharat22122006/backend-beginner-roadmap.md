@@ -1,1 +1,200 @@
-<ComingSoon />
+---
+title: CSS Gradients
+description: "Learn how to use CSS gradients (linear and radial) to create smooth transitions between two or more colors without relying on image files."
+keywords: [CSS gradients, linear-gradient, radial-gradient, color-stop, background-image, web design effects, CodeHarborHub]
+tags: [CSS gradients, linear-gradient, radial-gradient, color-stop, background-image, web design effects]
+sidebar_label: Gradients
+---
+
+CSS **Gradients** allow you to create smooth transitions between two or more specified colors. Crucially, these gradients are treated as CSS **background images**, but they are generated entirely by the browser using code, not by downloading a file. This results in faster load times and perfectly scalable graphics.
+
+Gradients are defined using two main functions: `linear-gradient()` and `radial-gradient()`.
+
+<AdsComponent />
+<br />
+
+## 1. `linear-gradient()`: Straight-Line Transitions
+
+A linear gradient transitions colors along a straight line.
+
+### Basic Syntax
+
+The function requires a direction or angle, followed by at least two color stops.
+
+```css title="styles.css"
+selector {
+  background-image: linear-gradient(direction/angle, color-stop-1, color-stop-2, ...);
+}
+```
+
+### Defining Direction
+
+You can specify the direction using keywords or an angle:
+
+  * **Keywords:** `to top`, `to bottom` (default), `to left`, `to right`.
+  * **Diagonal Keywords:** `to top left`, `to bottom right`.
+  * **Angle:** Specified in degrees (`deg`). $0^{\circ}$ is up, $90^{\circ}$ is right, $180^{\circ}$ is down.
+
+### Example
+
+<Tabs>
+<TabItem value="css" label="styles.css">
+
+```css
+.box-gradient {
+  background-image: linear-gradient(to bottom, #1976d2, #d32f2f);
+  height: '100px',
+  borderRadius: '5px'
+}
+```
+
+</TabItem>
+<TabItem value="html" label="index.html">
+
+```html
+<div class="box-gradient"></div>
+```
+
+</TabItem>
+</Tabs>
+
+<BrowserWindow url="http://127.0.0.1:5500/index.html">
+<div style={{
+background: 'linear-gradient(to bottom, #1976d2, #d32f2f)',
+height: '100px',
+borderRadius: '5px'
+}}></div>
+</BrowserWindow>
+
+<AdsComponent />
+<br />
+
+## 2. `radial-gradient()`: Circular Transitions
+
+A radial gradient transitions colors outward from a central point.
+
+### Basic Syntax
+
+The function requires a shape (optional), a position (optional), and at least two color stops.
+
+```css title="styles.css"
+selector {
+  background-image: radial-gradient(shape size at position, color-stop-1, color-stop-2, ...);
+}
+```
+
+  * **Shape:** `circle` or `ellipse` (default).
+  * **Position:** Uses keywords like `at center` (default), `at top left`, or coordinates (`at 20% 80%`).
+
+### Example
+
+<Tabs>
+<TabItem value="css" label="styles.css">
+
+```css
+.box-gradient {
+  /* Starts at the center, circle shape, transitions from yellow to green */
+  background-image: radial-gradient(circle at center, #ffeb3b, #4caf50);
+}
+```
+
+</TabItem>
+<TabItem value="html" label="index.html">
+
+```html
+<div class="box-gradient"></div>
+```
+
+</TabItem>
+</Tabs>
+
+<BrowserWindow url="http://127.0.0.1:5500/index.html">
+<div style={{
+background: 'radial-gradient(circle at center, #ffeb3b, #4caf50)',
+height: '100px',
+borderRadius: '5px'
+}}></div>
+</BrowserWindow>
+
+## Color Stops and Transparency
+
+A **color stop** is the point where a gradient changes to a specific color. You can specify the transition point using length units (`px`, `em`) or percentages (`%`).
+
+### Example: Hard Stop
+
+To create a sharp, striped transition (not smooth), set two colors to stop at the same point.
+
+```css title="styles.css"
+/* Color stops at 50% for both red and blue, creating a sharp line */
+background-image: linear-gradient(to right, red 50%, blue 50%);
+```
+
+### Using Transparency (RGBA/HSLA)
+
+Gradients work perfectly with transparent color values, allowing the background underneath to show through.
+
+<Tabs>
+<TabItem value="css" label="styles.css">
+```css
+/* Fades from solid blue to a transparent blue */
+.box {
+    background-image: linear-gradient(to right, #2196f3, rgba(33, 150, 243, 0));
+}
+```
+</TabItem>
+<TabItem value="html" label="index.html">
+```html
+<div class="box"></div>
+```
+</TabItem>
+</Tabs>
+
+
+<BrowserWindow url="http://127.0.0.1:5500/index.html">
+<div style={{background: 'linear-gradient(to right, #2196f3, rgba(33, 150, 243, 0))',
+height: '100px', borderRadius: '5px', backgroundImage: 'linear-gradient(to right, #2196f3, rgba(33, 150, 243, 0))', backgroundColor: 'pink'}}></div>
+</BrowserWindow>
+
+
+
+<AdsComponent />
+<br />
+
+## Advanced Features and Tips
+
+:::tip Use Angle for Predictability
+When using `linear-gradient()`, using an **angle** (e.g., `45deg`) is often more reliable and predictable than using diagonal keywords (e.g., `to top right`).
+:::
+
+### Repeating Gradients
+
+CSS provides two specialized functions to create seamless patterns:
+
+  * `repeating-linear-gradient()`
+  * `repeating-radial-gradient()`
+
+These functions take the same arguments as their standard counterparts, but they repeat the color-stop pattern infinitely.
+
+```css title="styles.css"
+/* Creates a repeating stripe pattern */
+background-image: repeating-linear-gradient(
+  45deg,
+  #f06292, /* Pink */
+  #f06292 10px,
+  #ffcdd2 10px, /* Lighter Pink */
+  #ffcdd2 20px
+);
+```
+
+### Performance Note
+
+Using CSS gradients (`background-image`) is almost always better for performance than using actual image files for simple transitions. The browser renders the colors directly on the GPU, minimizing file requests and bandwidth usage.
+
+## Interactive Gradient Demo
+
+Experiment with different directions, angles, and color stops in the live editor.
+
+<CodePenEmbed 
+  title="Interactive Gradient Demo"
+  penId="emZGrXw"
+/>
