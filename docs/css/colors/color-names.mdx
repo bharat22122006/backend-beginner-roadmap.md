@@ -1,1 +1,85 @@
-<ComingSoon />
+---
+title: "CSS Color Keywords (Names)"
+description: "Learn how to use simple, named CSS Color Keywords to set colors for text and backgrounds, and understand their history and limitations compared to numerical color models."
+keywords: [CSS color names, color keywords, web safe colors, named colors, color values, CodeHarborHub]
+tags: [CSS color names, color keywords, web safe colors, named colors, color values]
+sidebar_label: Color Keywords
+---
+
+The simplest way to specify a color in CSS is by using a **Color Keyword** (or **Color Name**). These are plain English names that represent a specific, predefined numerical color value (like a HEX code).
+
+Using color keywords is convenient for quick styling, prototyping, and when you need basic, well-known colors.
+
+<AdsComponent />
+<br />
+
+## The Syntax
+
+To use a color keyword, you simply provide the name as the value for properties like `color` or `background-color`.
+
+```css title="styles.css"
+/* Sets the background to a light cyan color */
+.header-box {
+  background-color: aquamarine;
+}
+
+/* Sets the text color to dark blue */
+.title {
+  color: darkblue;
+}
+```
+
+## Standard and Extended Color Names
+
+CSS supports two main groups of color names:
+
+### 1. The 16 Basic VGA Colors
+
+Historically, CSS adopted the original 16 colors from the standard VGA palette. These are guaranteed to be recognized by every browser and system.
+
+| Color Name | HEX Code | Example |
+| :--- | :--- | :--- |
+| `black` | `#000000` | Black |
+| `white` | `#FFFFFF` | White |
+| `red` | `#FF0000` | Red |
+| `blue` | `#0000FF` | Blue |
+| `lime` | `#00FF00` | Lime |
+| `yellow` | `#FFFF00` | Yellow |
+| `gray` | `#808080` | Gray |
+| `fuchsia` | `#FF00FF` | Fuchsia |
+| ...and 8 others | | |
+
+### 2. Extended Color Keywords (Over 140 Names)
+
+The list of color names has been extended to over 140, covering a much wider range of hues and shades (e.g., `cornflowerblue`, `darkslategray`, `lightcoral`).
+
+| Example Name | HEX Code | Color Example |
+| :--- | :--- | :--- |
+| `skyblue` | `#87CEEB` | Sky Blue |
+| `gold` | `#FFD700` | Gold |
+| `rebeccapurple` | `#663399` | Rebecca Purple |
+| `peru` | `#CD853F` | Peru |
+
+:::info New Keyword: `rebeccapurple`
+The color `rebeccapurple` was officially added to CSS in 2014 to honor web developer and designer Rebecca Meyer, symbolizing the community's acknowledgment of its pioneers.
+:::
+
+<AdsComponent />
+<br />
+
+## Limitations of Color Keywords
+
+While convenient, color keywords are rarely used for full design systems due to these limitations:
+
+1.  **Limited Selection:** You are restricted to the 140+ predefined names. You cannot create a precise shade like "50% lighter than dark blue."
+2.  **No Opacity Control:** Color keywords cannot define transparency. To make a color 50% transparent, you must use the numerical equivalent (e.g., RGBA or HSLA).
+3.  **Ambiguity:** Naming conventions can be confusing (e.g., is `darkred` darker than `maroon`?).
+
+### Interactive Color Keyword Demo
+
+Use the live editor to test different color names and see their immediate effect. Try replacing the current keyword with `tomato`, `dodgerblue`, or `goldenrod`.
+
+<CodePenEmbed 
+  title="Interactive Color Keyword Demo"
+  penId="gbrGzwL"
+/>
