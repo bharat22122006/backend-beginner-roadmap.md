@@ -1,1 +1,88 @@
-<ComingSoon />
+---
+title: "The background-color Property"
+description: "Learn how to use the CSS background-color property to set the solid color behind an element's content, padding, and border."
+keywords: [CSS background-color, background color property, transparency, color values, background styling, CodeHarborHub]
+tags: [CSS background-color, background color property, transparency, color values, background styling]
+sidebar_label: "background-color"
+---
+
+The CSS **`background-color`** property is used to set the solid color filling the background of an element. This color extends under the element's **content**, **padding**, and **border** (by default).
+
+It is a fundamental property for defining the visual identity and hierarchy of elements on a page.
+
+<AdsComponent />
+<br />
+
+## Syntax and Values
+
+The `background-color` property accepts any valid CSS color value.
+
+### The Syntax
+
+```css title="styles.css"
+selector {
+  background-color: value; /* e.g., background-color: #f0f0f0; */
+}
+```
+
+### Supported Color Values
+
+You can use all the major color definition systems we've covered:
+
+1.  **Keywords:** `red`, `skyblue`, `transparent`.
+2.  **HEX Codes:** `#F0F8FF`, `#333`.
+3.  **RGB/RGBA:** `rgb(255, 0, 0)`, `rgba(0, 0, 0, 0.5)`.
+4.  **HSL/HSLA:** `hsl(120, 100%, 50%)`, `hsla(200, 50%, 75%, 0.8)`.
+
+## Transparency and Opacity
+
+The background color's transparency is controlled in two main ways:
+
+### 1. The `transparent` Keyword
+
+By default, elements are transparent. You can explicitly set an element's background to be fully clear using the `transparent` keyword.
+
+```css title="styles.css"
+.clear-box {
+  background-color: transparent; /* Allows content underneath to show through */
+}
+```
+
+### 2. RGBA or HSLA
+
+To create a background that is partially transparent (semi-opaque), you must use a color format that supports the **Alpha ($\alpha$) channel**, such as RGBA or HSLA.
+
+```css title="styles.css"
+/* Creates a light blue background that is 80% opaque (20% transparent) */
+.semi-opaque {
+  background-color: hsla(200, 80%, 80%, 0.8); 
+}
+```
+
+:::tip Transparency vs. Opacity
+Use **RGBA/HSLA** to make *only the background* transparent while keeping the text and other content solid. Using the separate `opacity` property on the element will make **everything** inside the element transparent, which usually ruins text readability.
+:::
+
+<AdsComponent />
+<br />
+
+## Inheritance and Overlap
+
+### Non-Inheritance
+
+The `background-color` property **is not inherited** by child elements.
+
+If you set `body { background-color: lightgray; }`, all child elements (`div`, `p`, etc.) will have their own default `background-color: transparent;`. Since they are transparent, the parent's light gray color is visible through them.
+
+### Overlap
+
+The background color is drawn **under** the border of the element. This means if you use a transparent or dashed border, the background color will be visible through the border.
+
+## Interactive `background-color` Demo
+
+Use the live editor to change the background color of the box using different color formats, and observe the effect of RGBA transparency.
+
+<CodePenEmbed 
+  title="Interactive background-color Demo"
+  penId="emZGxbz"
+/>
