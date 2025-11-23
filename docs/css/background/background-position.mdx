@@ -1,1 +1,78 @@
-<ComingSoon />
+---
+title: "The background-position Property"
+description: "Learn how to use the CSS background-position property to control the starting position of a background image within its container."
+keywords: [CSS background-position, background position values, image placement, background styling, background-position syntax, CodeHarborHub]
+tags: [CSS background-position, background position values, image placement, background styling, background-position syntax]
+sidebar_label: "background-position"
+---
+
+The CSS **`background-position`** property controls where a background image is initially placed within its container. By default, the top-left corner of the image aligns with the top-left corner of the element's padding edge.
+
+This property is crucial when you use `background-repeat: no-repeat` or when the background image is smaller than the element.
+
+<AdsComponent />
+<br />
+
+## Syntax and Values
+
+The `background-position` property typically takes **two values** separated by a space: the first defines the **horizontal position** (X-axis), and the second defines the **vertical position** (Y-axis).
+
+```css title="styles.css"
+selector {
+  background-position: <horizontal-value> <vertical-value>;
+}
+```
+
+### 1. Keyword Values (Easiest)
+
+You can use simple keywords to snap the image to the edges or center.
+
+| Horizontal (X) | Vertical (Y) | Example | Description |
+| :--- | :--- | :--- | :--- |
+| `left` | `top` | `background-position: left top;` | Top-left corner (the default). |
+| `right` | `bottom` | `background-position: right bottom;` | Bottom-right corner. |
+| `center` | `center` | `background-position: center center;` | Centers the image both horizontally and vertically. |
+
+### 2. Percentage Values (%)
+
+Percentage values are relative to the element's size.
+
+  * A value of **$0\%$** aligns the image edge with the container edge.
+  * A value of **$100\%$** aligns the opposite image edge with the opposite container edge.
+  * A value of **$50\%$** centers the image perfectly (equivalent to `center`).
+
+:::info Percentage Calculation
+$50\%$ means $50\%$ of the image's width/height is positioned past $50\%$ of the container's width/height.
+$$ \text{Position} = \frac{\text{Container Size} - \text{Image Size}}{100} \times \text{Percentage Value} $$
+This calculation ensures $50\% \ 50\%$ centers the image.
+:::
+
+### 3. Length Values (`px`, `rem`, etc.)
+
+Length units define the exact distance from the top-left corner of the container where the image should start.
+
+| Value | Example | Description |
+| :--- | :--- | :--- |
+| **Pixels** | `background-position: 20px 50px;` | Starts the image $20\text{px}$ from the left and $50\text{px}$ from the top. |
+| **REM** | `background-position: 2rem center;` | Starts the image $2\text{rem}$ from the left, centered vertically. |
+
+<AdsComponent />
+<br />
+
+## Single Value Shorthand
+
+If you provide only one value, the browser assumes it is the horizontal position, and the vertical position defaults to `center`.
+
+| Single Value | Full Equivalent |
+| :--- | :--- |
+| `background-position: top;` | `background-position: center top;` |
+| `background-position: 20px;` | `background-position: 20px center;` |
+
+## Interactive `background-position` Demo
+
+Use the live editor to change the positioning values. Pay attention to how the small, non-repeating image moves within the boundary of the larger container.
+
+<CodePenEmbed 
+  title="Interactive background-position Demo"
+  penId="LENOyqj"
+/>
