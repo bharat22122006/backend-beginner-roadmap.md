@@ -1,1 +1,89 @@
-<ComingSoon />
+---
+title: "The margin Property"
+description: "Learn how the CSS margin property controls the space outside an element's border, separating it from surrounding elements, and how margin collapse works."
+keywords: [CSS margin, margin property, margin collapse, margin auto, spacing, box model, CodeHarborHub]
+tags: [CSS margin, margin property, margin collapse, margin auto, spacing, box model]
+sidebar_label: margin
+---
+
+The **`margin`** property is the outermost layer of the CSS Box Model. It controls the transparent space surrounding an element, serving to separate the element from its neighbors.
+
+Unlike `padding`, margins do **not** extend the element's background color or image; the margin area is always transparent, revealing the parent's or page's background.
+
+<AdsComponent />
+<br />
+
+## Syntax and Shorthands
+
+The `margin` property is a shorthand that sets the margin on all four sides (top, right, bottom, left). You can define the margins using 1, 2, 3, or 4 values, or use the individual longhand properties.
+
+### 1. The `margin` Shorthand
+
+| Syntax | Description |
+| :--- | :--- |
+| `margin: 10px;` | Sets all four margins to $10\text{px}$. |
+| `margin: 10px 20px;` | Sets top/bottom to $10\text{px}$, and left/right to $20\text{px}$. |
+| `margin: 10px 20px 5px;` | Sets top to $10\text{px}$, left/right to $20\text{px}$, and bottom to $5\text{px}$. |
+| `margin: 10px 20px 5px 30px;` | Sets margins in **T**op, **R**ight, **B**ottom, **L**eft order (clockwise). |
+
+### 2. Longhand Properties
+
+For setting individual sides:
+
+* `margin-top`
+* `margin-right`
+* `margin-bottom`
+* `margin-left`
+
+```css title="styles.css"
+/* Example using longhand properties */
+.card {
+  margin-top: 2rem;
+  margin-left: auto; /* Used for centering (see below) */
+  margin-bottom: 0.5rem;
+}
+```
+
+## Key Concept: Margin Collapse
+
+Margin collapse is a unique behavior in CSS that affects **vertical margins** (top and bottom). When two vertical margins meet, they do not add up; instead, they "collapse," and the resulting space is the **larger** of the two margins.
+
+Margin collapse occurs in three main scenarios:
+
+1.  **Adjacent Siblings:** The bottom margin of one element collapses with the top margin of the next element.
+
+      * Example: If Element A has `margin-bottom: 20px;` and Element B has `margin-top: 30px;`, the space between them will be $30\text{px}$, not $50\text{px}$.
+
+2.  **Parent and First/Last Child:** If a parent element has no border or padding between its top/bottom edge and its first/last child's margin, the child's margin collapses with the parent's margin.
+
+3.  **Empty Block:** A block element with no content, padding, or border will have its own top and bottom margins collapse.
+
+:::tip Horizontal Margins Never Collapse
+Horizontal margins (left and right) **never** collapse. They are always added together.
+:::
+
+<AdsComponent />
+<br />
+
+## Centering Block Elements with `margin: auto`
+
+You can horizontally center a block-level element (like a `<div>`) that has a defined `width` using the `auto` value for the left and right margins.
+
+When you set `margin-left` and `margin-right` to `auto`, the browser divides the remaining horizontal space equally between them, pushing the element to the center.
+
+```css title="styles.css"
+.center-box {
+  width: 600px;
+  /* Top and Bottom margin set to 30px, Left and Right margin set to auto */
+  margin: 30px auto; 
+}
+```
+
+## Interactive `margin` Demo
+
+Use the live editor to adjust the margins on the blue box. Note that the total space it occupies expands outward, pushing the surrounding elements away.
+
+<CodePenEmbed 
+  title="Interactive Margin Demo"
+  penId="gbrXQOB"
+/>
