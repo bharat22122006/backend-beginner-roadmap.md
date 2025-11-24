@@ -1,1 +1,153 @@
-<ComingSoon />
+---
+title: "Units with CSS Functions (calc, min, max, clamp)"
+description: "Learn how to use CSS mathematical and comparison functions like calc(), min(), max(), and clamp() to create dynamic, highly flexible dimensions by combining different unit types."
+keywords: [CSS calc, CSS min, CSS max, CSS clamp, fluid sizing, hybrid units, responsive functions, CSS math]
+tags: [CSS calc, CSS min, CSS max, CSS clamp, fluid sizing, hybrid units, responsive functions, CSS math]
+sidebar_label: "Units with Functions"
+---
+
+While setting dimensions with a single unit (like `200px` or `2rem`) works for fixed layouts, modern responsive design often requires dimensions that are based on a calculation or a comparison between different units (e.g., "be $80\%$ of the screen, but never less than $300\text{px}$").
+
+CSS provides several powerful functions to achieve this fluid, hybrid sizing: `calc()`, `min()`, `max()`, and `clamp()`.
+
+<AdsComponent />
+<br />
+
+## 1. The `calc()` Function
+
+The `calc()` function allows you to perform basic mathematical operations (addition, subtraction, multiplication, and division) directly in CSS value declarations.
+
+The primary power of `calc()` is its ability to combine **different unit types** within a single property.
+
+### Syntax and Operators
+
+```css title="styles.css"
+selector {
+  property: calc( <expression> );
+}
+```
+
+  * **Operators:** `+`, `-`, `*`, `/`
+  * **Crucial Rule:** Always include **spaces** around the `+` and `-` operators. Failure to do so will cause the expression to be invalid. Spaces are optional for `*` and `/`.
+
+### Use Cases
+
+1. **Hybrid Layouts (Fixed + Percentage)**
+
+This is commonly used to create space for a fixed sidebar while the main content takes up the remaining width.
+
+```css title="styles.css"
+.main-content {
+  /* Take up the full width minus a 250px sidebar */
+  width: calc(100% - 250px);
+}
+```
+
+2. **Viewport-based Sizing with Offset**
+
+Creating a container that is $100\%$ of the viewport height minus the height of a fixed header.
+
+```css title="styles.css"
+.scrollable-area {
+  /* Full viewport height minus a 60px header */
+  height: calc(100vh - 60px);
+}
+```
+
+<AdsComponent />
+<br />
+
+## 2. The `min()` Function
+
+The `min()` function accepts two or more comma-separated values and uses the **smallest** (minimum) calculated value as the final dimension.
+
+### Syntax and Logic
+
+```css title="styles.css"
+selector {
+  property: min(<value1>, <value2>, ...);
+}
+```
+
+The browser evaluates all values and picks the one that results in the shortest dimension.
+
+### Use Cases
+
+1. **Maximum Fluidity**
+
+Use `min()` to make an element fluid up to a certain maximum size.
+
+```css title="styles.css"
+.heading {
+  /* The element will use 80% of the parent width, 
+     BUT will never exceed 1000px wide. */
+  width: min(80%, 1000px);
+}
+```
+
+## 3. The `max()` Function
+
+The `max()` function is the opposite of `min()`. It accepts two or more comma-separated values and uses the **largest** (maximum) calculated value as the final dimension.
+
+### Syntax and Logic
+
+```css title="styles.css"
+selector {
+  property: max(<value1>, <value2>, ...);
+}
+```
+
+<AdsComponent />
+<br />
+
+### Use Cases
+
+1. **Minimum Fluidity**
+
+Use `max()` to ensure an element is always large enough for readability, even if a parent container is tiny.
+
+```css title="styles.css"
+.card-title {
+  /* The font size will be 2.5rem, 
+     BUT will always be AT LEAST 1.5rem, even if the parent font size shrinks. */
+  font-size: max(1.5rem, 2.5vw);
+}
+```
+
+## 4. The `clamp()` Function (Best for Fluid Typography)
+
+The `clamp()` function is a combination of `min()` and `max()`, allowing you to set a flexible middle value constrained by a minimum and maximum limit. It is the perfect tool for **fluid typography**.
+
+### Syntax
+
+```css title="styles.css"
+property: clamp(<min>, <preferred>, <max>);
+```
+
+1.  **`<min>`:** The smallest size the property will ever be.
+2.  **`<preferred>`:** The ideal, fluid size (often a `vw` value).
+3.  **`<max>`:** The largest size the property will ever be.
+
+### Use Cases
+
+1. **Fluid Typography with Control**
+
+This ensures that the text size scales with the viewport width (`4vw`), but it will never shrink below $1\text{rem}$ (readable minimum) and never grow beyond $3\text{rem}$ (design maximum).
+
+```css title="styles.css"
+.fluid-header {
+  font-size: clamp(1rem, 4vw, 3rem);
+}
+```
+
+<AdsComponent />
+<br />
+
+## Interactive Functions Demo
+
+Try resizing the browser window to see how the width of the box changes based on the constraints and calculations.
+
+<CodePenEmbed 
+  title="Interactive Functions Demo"
+  penId="vEGpWZa"
+/>

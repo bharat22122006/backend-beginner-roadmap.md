@@ -1,1 +1,109 @@
-<ComingSoon />
+---
+title: "The outline Property"
+description: "Learn about the CSS outline property, which draws a line outside the border of an element, often used for accessibility and visual focus indication."
+keywords: [CSS outline, outline property, outline-style, outline-width, outline-color, accessibility, focus state, box model, CodeHarborHub]
+tags: [CSS outline, outline property, outline-style, outline-width, outline-color, accessibility, focus state, box model]
+sidebar_label: outline
+---
+
+The **`outline`** property is often confused with `border`, but it serves a fundamentally different purpose and behaves uniquely. An outline is a line drawn **outside** the element's border, designed primarily to help users identify the element that currently has keyboard focus.
+
+:::info Key Differences from `border`:
+
+1.  **Placement:** The outline is drawn *outside* the `border`, and it does **not** take up space in the document layout. It is drawn on top of other content if necessary.
+2.  **Layout Impact:** Because the outline does not occupy layout space, it **does not affect the position** of other elements or the size of the Box Model.
+3.  **Default Use:** Outlines are critical for **accessibility**, as browsers automatically display them on elements like links and form fields when they receive keyboard focus (`:focus` state).
+
+:::
+
+<AdsComponent />
+<br />
+
+## The `outline` Shorthand
+
+Like `border`, the `outline` property is a shorthand that defines the width, style, and color of the outline in a single declaration.
+
+```css title="styles.css"
+selector {
+  outline: <outline-width> <outline-style> <outline-color>;
+}
+```
+
+### Example
+
+```css title="styles.css"
+.focus-button:focus {
+  /* 4px wide, dashed line, blue color */
+  outline: 4px dashed #007bff; 
+  /* Add some space between border and outline */
+  outline-offset: 2px;
+}
+```
+
+## Longhand Properties
+
+For more specific control, you can use the individual properties:
+
+### 1. `outline-width`
+
+Sets the thickness of the outline. Values are the same as `border-width`.
+
+### 2. `outline-style` (Mandatory)
+
+Defines the style of the line. It uses the same values as `border-style` (`solid`, `dotted`, `dashed`, etc.). If this is not set, no outline will appear.
+
+### 3. `outline-color`
+
+Sets the color of the outline.
+
+### 4. `outline-offset` (Unique to Outline)
+
+This property controls the amount of space between the element's **border** and the start of the **outline**. This gap is transparent.
+
+```css title="styles.css"
+.input-field:focus {
+  outline-style: solid;
+  outline-width: 2px;
+  outline-color: #f44336; /* Red outline */
+  outline-offset: 3px; /* Gap of 3px between the border and the outline */
+}
+```
+
+<AdsComponent />
+<br />
+
+## The Accessibility Warning (`outline: none;`)
+
+While setting `outline: none;` might seem tempting to remove the default, sometimes ugly, focus ring from buttons and links, **this is generally a bad practice for accessibility.**
+
+Keyboard users (who cannot use a mouse or trackpad) rely entirely on the focus outline to know which element they are currently interacting with.
+
+:::warning **Best Practice**
+Never use `outline: none;` without providing an alternative visual focus indicator, such as styling the `:focus` state with a custom `border` or a better-styled `outline`.
+:::
+
+```css title="styles.css"
+/* BAD Practice - Removes focus indicator completely */
+a:focus {
+  outline: none; 
+}
+
+/* GOOD Practice - Replaces the default outline with a better-looking one */
+a.custom-link:focus {
+  outline: 2px solid #673ab7; /* Custom purple outline */
+  outline-offset: 2px;
+  border-radius: 4px; /* Optional: adds a nice touch */
+}
+```
+
+<AdsComponent />
+<br />
+
+## Interactive `outline` Demo
+
+Click inside the text input box below, then press the Tab key to shift focus to the button. Observe how the outline appears **outside** the border without changing the layout.
+
+<CodePenEmbed 
+  title="Interactive outline Demo"
+  penId="xbVPmzN"
+/>

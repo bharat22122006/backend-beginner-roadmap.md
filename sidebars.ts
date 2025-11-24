@@ -474,136 +474,6 @@ const sidebars: SidebarsConfig = {
     },
   ],
 
-  // css: [
-  //   {
-  //     type: "category",
-  //     label: "Introduction to CSS",
-  //     link: {
-  //       type: "doc",
-  //       id: "css/introduction/what-is-css",
-  //     },
-  //     items: [
-  //       "css/introduction/what-is-css",
-  //       "css/introduction/how-to-add-css-to-html",
-  //       "css/introduction/comments-in-css",
-  //     ],
-  //   },
-
-  //   {
-  //     type: "category",
-  //     label: "Selectors",
-  //     link: {
-  //       type: "doc",
-  //       id: "css/selectors/attribute-selectors",
-  //     },
-  //     items: [
-  //       {
-  //         type: "category",
-  //         label: "Simple Selectors",
-  //         items: [
-  //           "css/selectors/simple-selectors/element-selector",
-  //           "css/selectors/simple-selectors/class-selector",
-  //           "css/selectors/simple-selectors/id-selector",
-  //           "css/selectors/simple-selectors/grouping-selectors",
-  //           "css/selectors/simple-selectors/universal-selector",
-  //         ],
-  //       },
-  //       {
-  //         type: "category",
-  //         label: "Combinator Selectors",
-  //         items: [
-  //           "css/selectors/combinator-selectors/descendant-selector",
-  //           "css/selectors/combinator-selectors/child-selector",
-  //           "css/selectors/combinator-selectors/adjacent-sibling-selector",
-  //           "css/selectors/combinator-selectors/general-sibling-selector",
-  //         ],
-  //       },
-  //       "css/selectors/attribute-selectors",
-  //       "css/selectors/compound-selectors",
-  //       "css/selectors/pseudo-class-selectors",
-  //       "css/selectors/pseudo-elements-selectors",
-  //     ],
-  //   },
-
-  //   {
-  //     type: "category",
-  //     label: "Colors",
-  //     link: {
-  //       type: "doc",
-  //       id: "css/colors/color-names",
-  //     },
-  //     items: [
-  //       "css/colors/color-names",
-  //       "css/colors/rgb",
-  //       "css/colors/rgba",
-  //       "css/colors/hex",
-  //       "css/colors/hsl",
-  //       "css/colors/hsla",
-  //     ],
-  //   },
-
-  //   {
-  //     type: "category",
-  //     label: "Box Model",
-  //     link: {
-  //       type: "doc",
-  //       id: "css/box-model/intro",
-  //     },
-  //     items: [
-  //       "css/box-model/intro",
-  //       "css/box-model/width-height",
-  //       "css/box-model/min-width-height",
-  //       "css/box-model/max-width-height",
-  //       "css/box-model/margin",
-  //       "css/box-model/margin-callapse",
-  //       "css/box-model/padding",
-  //       "css/box-model/border",
-  //       "css/box-model/border-radius",
-  //       "css/box-model/box-sizing",
-  //     ],
-  //   },
-
-  //   {
-  //     type: "category",
-  //     label: "Backgrounds",
-  //     link: {
-  //       type: "doc",
-  //       id: "css/backgrounds/background-color",
-  //     },
-  //     items: [
-  //       "css/backgrounds/background-color",
-  //       {
-  //         type: "category",
-  //         label: "Background Image",
-  //         items: [
-  //           "css/backgrounds/background-image/background-attachment",
-  //           "css/backgrounds/background-image/background-position",
-  //           "css/backgrounds/background-image/background-repeat",
-  //           "css/backgrounds/background-image/background-size",
-  //         ],
-  //       },
-  //     ],
-  //   },
-
-  //   {
-  //     type: "category",
-  //     label: "Fonts and Text Properties",
-  //     link: {
-  //       type: "doc",
-  //       id: "css/fonts-and-text-properties/font-size",
-  //     },
-  //     items: [
-  //       "css/fonts-and-text-properties/font-size",
-  //       "css/fonts-and-text-properties/font-style",
-  //       "css/fonts-and-text-properties/font-weight",
-  //       "css/fonts-and-text-properties/font-align",
-  //       "css/fonts-and-text-properties/generic-vs-specific-font-families",
-  //     ],
-  //   },
-
-  //   "css/opacity",
-  // ],
-
   css: [
     "css/introduction",
     {
@@ -834,6 +704,7 @@ const sidebars: SidebarsConfig = {
         ],
       },
       items: [
+        "css/box-model/introduction",
         "css/box-model/margin",
         "css/box-model/padding",
         "css/box-model/border",
