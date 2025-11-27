@@ -1,1 +1,104 @@
-<ComingSoon />
+---
+title: "The Normal Document Flow"
+description: "A comprehensive summary of the Normal Document Flow (or Display Flow) in CSS, detailing how block and inline elements interact and set the foundation for all modern layouts."
+keywords: [CSS Normal Flow, Document Flow, Block Flow, Inline Flow, Layout, Box Model, Display property summary]
+tags: [CSS Normal Flow, Document Flow, Block Flow, Inline Flow, Layout, Box Model, Display property summary]
+sidebar_label: "Normal Flow Summary"
+---
+
+The **Normal Document Flow** (or just **Normal Flow**) is the default behavior of every element on a web page. It defines how the browser arranges HTML elements based on their type, content, and the order in which they appear in the source code.
+
+Every element you use—a `<div>`, a `<p>`, a `<span>`, or an `<a>`—is initially positioned according to these rules. All CSS layout properties (`position`, `float`, `flex`, `grid`) are essentially tools to manipulate or deviate from this default flow.
+
+<AdsComponent />
+<br />
+
+## 1. Block Flow vs. Inline Flow
+
+The Normal Flow is governed by the two primary display types:
+
+### A. Block-Level Flow (Vertical Stacking)
+
+Block elements define structure and content sections. They flow vertically, one after the other.
+
+* **Characteristics:**
+    1.  Always starts on a new line.
+    2.  Takes up the full width of the parent container by default.
+    3.  Respects all Box Model properties (`margin`, `padding`, `width`, `height`).
+
+* **Flow Example:** Imagine stacking building blocks one on top of the other.
+
+```html title="styles.css"
+<!-- The browser sees these and stacks them down the page -->
+<div>First Block</div>
+<div>Second Block</div>
+<p>Third Block (A paragraph)</p>
+```
+
+### B. Inline-Level Flow (Horizontal Wrapping)
+
+Inline elements flow horizontally alongside text and other inline elements. They are designed to stay within the line established by their parent block.
+
+  * **Characteristics:**
+
+    1.  Does **not** start on a new line; sits on the same line as surrounding content.
+    2.  Width and height are determined solely by the content (explicit `width` and `height` are ignored).
+    3.  Respects horizontal spacing (`padding-left`, `margin-right`) but ignores vertical margins (`margin-top`, `margin-bottom`).
+
+  * **Flow Example:** Imagine words and punctuation flowing across a line of text in a book.
+
+```html
+<p>
+  This text is <span style="font-weight: bold;">Inline</span> and 
+  <a href="#">This link is also Inline</a>. They flow together.
+</p>
+```
+
+<AdsComponent />
+<br />
+
+## 2. The Role of `display: inline-block`
+
+The `inline-block` value creates a hybrid element that follows the rules of both flows:
+
+  * **External Flow (Inline):** The element flows horizontally and sits next to other elements on the same line.
+  * **Internal Behavior (Block):** The element fully respects `width`, `height`, and all four margins/padding values, making it a predictable box.
+
+:::tip Use Case
+`inline-block` is typically used for simple horizontal alignment (like old-school navigation menus) where you need to control the size of the box while keeping them on the same line. However, for most modern layouts, **Flexbox** is the preferred tool for horizontal flow.
+:::
+
+## 3. Manipulating the Flow (The Transition to Layout)
+
+When you introduce CSS layout properties, you are actively telling the browser to take elements *out* of the Normal Flow or change the way the flow behaves.
+
+| Property/Value | How it Affects the Flow |
+| :--- | :--- |
+| **`position: absolute`** | **Removes** the element entirely from the flow. Surrounding content collapses. |
+| **`float: left / right`** | **Removes** the element from the flow, but allows surrounding content (text) to wrap around it. |
+| **`display: flex`** | **Changes** the flow rules for the children. They now follow **Flex Flow** (a one-dimensional directional flow). |
+| **`display: grid`** | **Changes** the flow rules for the children. They now follow **Grid Flow** (a two-dimensional cell-based flow). |
+
+<AdsComponent />
+<br />
+
+## 4. Why Does the Flow Matter?
+
+Understanding the Normal Flow helps you debug layout issues quickly.
+
+### Debugging Collapse
+
+If a background color or border on a parent element suddenly collapses, it's often because a child element was removed from the flow (using `position: absolute` or `float`), and the parent no longer recognizes its height.
+
+### Debugging Spacing
+
+If you try to set `margin-top` on a `<span>` and it doesn't move, it's because the element is *inline*, and inline elements ignore vertical margins in the Normal Flow. You would need to change it to `display: block` or `display: inline-block` to make those margins work.
+
+## Interactive Summary Demo
+
+This demo illustrates the behavior of the three main `display` types in one container.
+
+<CodePenEmbed 
+  title="Interactive flow Demo"
+  penId="bNpMgbY"
+/>

@@ -1,1 +1,73 @@
-<ComingSoon />
+---
+title: Position relative
+description: "Learn about position: relative, how it offsets an element from its normal position in the document flow, and why it is crucial for creating positioning contexts."
+keywords: [CSS position relative, relative positioning, offset properties, layout context, z-index]
+tags: [CSS position relative, relative positioning, offset properties, layout context, z-index]
+sidebar_label: relative
+---
+
+The `position: relative` value allows you to move an element from its original position without affecting the surrounding elements. This value is used in two main ways: as a slight adjustment tool, and more importantly, as a **positioning context** for absolutely positioned children.
+
+<AdsComponent />
+<br />
+
+## Key Characteristics of `position: relative`
+
+### 1. Element Stays in the Flow
+
+A relatively positioned element is laid out exactly like a static element initially. It takes up its normal space in the document flow.
+
+### 2. Accepts Offset Properties (`top`, `right`, `bottom`, `left`)
+
+Once `position: relative` is applied, the element can be moved (offset) using the `top`, `right`, `bottom`, and `left` properties.
+
+* `top: 20px;` moves the element **20 pixels down** from its original top edge.
+* `left: 30px;` moves the element **30 pixels right** from its original left edge.
+
+### 3. Does Not Affect Siblings (Ghosting)
+
+When a relative element is moved, the space it *originally* occupied remains reserved (often referred to as a "ghost"). The surrounding elements and the rest of the layout act as if the element is still in its starting spot.
+
+### 4. Creates a New Stacking Context (`z-index`)
+
+Relative positioning is one of the few properties that allows you to use the `z-index` property to control the element's stacking order.
+
+<AdsComponent />
+<br />
+
+## Primary Use Case: Positioning Context
+
+The single most important use of `position: relative` is to create a **positioning context** for its children.
+
+When a child element is set to `position: absolute`, it will look for the nearest ancestor element that has a `position` value other than `static`. If the parent has `position: relative`, the absolute child will position itself relative to that parent's edges.
+
+If no ancestor has a non-static position, the absolute child will position itself relative to the entire `<body>` tag (the viewport). By setting the parent to `position: relative`, you *contain* the absolute children within the parent's boundaries.
+
+```css title="styles.css"
+/* 1. Parent is relative (the context) */
+.parent-container {
+  position: relative; 
+  /* The parent stays in normal flow */
+}
+
+/* 2. Child is absolute (the object being positioned) */
+.child-icon {
+  position: absolute; 
+  /* Positions 10px from the top of the PARENT */
+  top: 10px; 
+  /* Positions 10px from the right of the PARENT */
+  right: 10px; 
+}
+```
+
+## Interactive `position: relative` Demo
+
+In the demo below, the red box is moved by `top: 30px` and `left: 50px`. Notice two key behaviors:
+
+1.  The red box visually overlaps the content below it.
+2.  The green box (the sibling) does not move and remains where it would be if the red box were in its original location.
+
+<CodePenEmbed 
+  title="Interactive position relative Demo"
+  penId="zxqWbQK"
+/>

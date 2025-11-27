@@ -1,1 +1,68 @@
-<ComingSoon />
+---
+title: "Display block"
+description: "Learn the behavior of block-level elements in CSS, including how they occupy full width, stack vertically, and fully respect all Box Model properties."
+keywords: [CSS display block, block element behavior, full width, stacking, box model, layout, CodeHarborHub]
+tags: [CSS display block, block element behavior, full width, stacking, box model, layout]
+sidebar_label: "block"
+---
+
+The `display: block` value is one of the three fundamental values of the CSS `display` property, defining how an element interacts with the rest of the layout.
+
+Elements that default to `display: block` are known as **block-level elements**. They are designed to structure the main content of a page, such as paragraphs, headers, lists, and sections.
+
+<AdsComponent />
+<br />
+
+## Key Characteristics of Block Elements
+
+Block elements follow three strict rules that govern their behavior in the document flow:
+
+### 1. Takes Full Available Width
+
+By default, a block element will automatically stretch horizontally to occupy $100\%$ of the width of its parent container, regardless of how much content is inside it.
+
+### 2. Starts on a New Line
+
+A block element always begins on a new line, effectively pushing any content or elements that came before it onto the previous line. They naturally stack vertically.
+
+### 3. Respects Box Model Properties
+
+Block elements fully respect all components of the Box Model:
+* **`width` and `height`:** Can be explicitly set (e.g., `width: 200px;`).
+* **`margin` and `padding`:** All four sides (`top`, `right`, `bottom`, `left`) are fully applied and affect the flow.
+
+## Common Block-Level Elements
+
+The following HTML elements default to `display: block`:
+
+* `<div>` (The generic container)
+* `<p>` (Paragraph)
+* `<h1>` through `<h6>` (Headings)
+* `<ul>`, `<ol>`, `<li>` (Lists and list items)
+* `<header>`, `<section>`, `<footer>`, `<nav>`, `<article>` (Semantic HTML5 elements)
+* `<form>`
+
+<AdsComponent />
+<br />
+
+## Changing an Element's Display
+
+You can force any element (even one that is inline by default, like a `<span>`) to behave like a block element using CSS:
+
+```css title="styles.css"
+span.full-width-text {
+  /* This turns the <span> from inline into a block element */
+  display: block; 
+  /* Now it starts a new line and takes full width */
+  margin-bottom: 10px;
+}
+```
+
+## Interactive `display: block` Demo
+
+In the demo below, you can see how the two elements stack vertically and how they automatically span the entire width of their parent container. If you reduce the `width` of the purple box, notice that it still begins on a new line and occupies its own vertical space.
+
+<CodePenEmbed 
+  title="Interactive display block Demo"
+  penId="EaKEPeL"
+/>
