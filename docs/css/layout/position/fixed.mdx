@@ -1,1 +1,78 @@
-<ComingSoon />
+---
+title: "Position fixed"
+description: "Learn about position: fixed, how it removes an element from the document flow and fixes its position relative to the browser viewport, making it ideal for persistent headers and navigation."
+keywords: [CSS position fixed, fixed header, sticky navigation, viewport position, document flow, persistent UI]
+tags: [CSS position fixed, fixed header, sticky navigation, viewport position, document flow, persistent UI]
+sidebar_label: fixed
+---
+
+The `position: fixed` value is used to position an element permanently in the same spot relative to the browser window (the viewport), regardless of scrolling.
+
+If you want a navigation bar, a persistent "Back to Top" button, or a social media sidebar to always remain visible, even when the user scrolls the page, `position: fixed` is the correct choice.
+
+<AdsComponent />
+<br />
+
+## Key Characteristics of `position: fixed`
+
+### 1. Removed from Normal Flow
+
+Like `position: absolute`, a fixed element is completely taken out of the normal document flow.
+* **Layout:** It consumes **no space** where it was originally placed. Surrounding content will collapse to fill the gap.
+
+### 2. Positioned Relative to the Viewport
+
+Fixed elements are positioned using the `top`, `right`, `bottom`, and `left` properties relative to the edges of the **viewport (the browser window)**.
+* **Scroll Independence:** Crucially, the element does not move when the user scrolls the page. It is "fixed" in place.
+
+### 3. Stacking Context (`z-index`)
+Fixed elements automatically create a stacking context and fully support `z-index`. This is important because you often need fixed elements (like a header) to appear on top of all other page content.
+
+## Common Use Cases
+
+### 1. Fixed Header
+
+The most common use is creating a header or navigation bar that is always accessible at the top of the screen.
+
+```css title="styles.css"
+.main-header {
+  position: fixed;
+  top: 0;       /* Pin to the very top edge of the viewport */
+  left: 0;      /* Pin to the very left edge */
+  width: 100%;  /* Ensure it spans the full width of the viewport */
+  z-index: 1000; /* Ensure it stays above everything else */
+  background-color: white; /* Important: prevents content below from showing through */
+}
+```
+
+<AdsComponent />
+<br />
+
+### 2. "Back to Top" Button
+
+A small, circular button often placed in the bottom-right corner.
+
+```css title="styles.css"
+.back-to-top {
+  position: fixed;
+  bottom: 20px; /* 20px up from the bottom edge */
+  right: 20px;  /* 20px left from the right edge */
+  /* Other styles for appearance... */
+}
+```
+
+### The Overlap Problem
+
+Since fixed elements are removed from the flow, they will often **overlap** content below them.
+
+  * **Solution:** To fix the overlap, you must add margin or padding to the **`<body>`** or the main content container to equal the height of the fixed element. If the header is $60\text{px}$ tall, you must add `margin-top: 60px;` to the content that follows it.
+
+
+### Interactive `position: fixed` Demo
+
+In this demo, the red header is set to `position: fixed` at the top. Scroll down the content area to see that the red box stays pinned to the top of the viewport, while the rest of the content scrolls underneath it.
+
+<CodePenEmbed 
+  title="Interactive position fixed Demo"
+  penId="RNayGzm"
+/>

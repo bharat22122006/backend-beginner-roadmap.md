@@ -1,1 +1,67 @@
-<ComingSoon />
+---
+title: "The visibility Property"
+description: "Learn about the CSS visibility property, specifically visibility: hidden, and how it hides an element visually while ensuring its space is reserved in the document layout."
+keywords: [CSS visibility, visibility hidden, reserve space, display none vs visibility hidden, layout stability]
+tags: [CSS visibility, visibility hidden, reserve space, display none vs visibility hidden, layout stability]
+sidebar_label: "visibility"
+---
+
+The **`visibility`** property controls whether an element is visible in the browser window. The most common value used for hiding is `visibility: hidden`.
+
+Unlike `display: none`, which removes an element entirely from the document flow, `visibility: hidden` hides the element visually while ensuring its space remains reserved in the layout.
+
+<AdsComponent />
+<br />
+
+## Key Characteristics of `visibility: hidden`
+
+### 1. Reserves Layout Space (Crucial Difference)
+
+When an element is set to `visibility: hidden`, its dimensions (width, height, padding, margin, border) are still calculated and respected by the browser. The element's box remains in the document flow, acting like an invisible placeholder.
+
+* **Result:** Surrounding elements do **not** shift or collapse into the hidden element's space.
+
+### 2. Not Interactive
+
+Although the element reserves space, it cannot be interacted with.
+* **Events:** It does not capture mouse clicks or touch events.
+* **Accessibility:** Most screen readers will **ignore** elements with `visibility: hidden`, similar to `display: none`.
+
+### 3. Animatable
+
+The `visibility` property can be animated (or transitioned) between `visible` and `hidden`. This is useful because it is a binary toggle, often used in conjunction with opacity animations.
+
+```css title="styles.css"
+/* You can transition opacity, but when it's done... */
+.element {
+  opacity: 0;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.element.visible {
+  opacity: 1;
+  visibility: visible; /* ...set visibility last */
+}
+```
+
+<AdsComponent />
+<br />
+
+## `visibility: hidden` vs. `display: none`
+
+The choice between these two properties is determined entirely by whether you need to maintain the element's layout space.
+
+| Feature | `visibility: hidden` | `display: none` |
+| :--- | :--- | :--- |
+| **Layout Space** | **Reserves space.** Layout remains stable. | **Removes space.** Layout collapses. |
+| **Animation** | Can be transitioned (from visible to hidden). | Cannot be animated (it is an instant toggle). |
+| **Best Use** | Tooltips, dropdowns, and items that need to be hidden/shown without causing layout shifts. | Modals, entire sidebars, or content blocks that are completely removed from the DOM flow. |
+
+## Interactive `visibility: hidden` Demo
+
+Click the "Toggle Visibility" button below. Observe how the box disappears, but the content below it **does not shift or move up**. The space occupied by the hidden element is maintained.
+
+<CodePenEmbed 
+  title="Interactive display none Demo"
+  penId="raedyOj"
+/>
