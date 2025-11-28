@@ -1,1 +1,104 @@
-<ComingSoon />
+---
+title: "Multi-Column Layout (Columns)"
+description: "Learn how to use the multi-column CSS properties to easily break block content into newspaper-style columns, managing column count, width, and separation rules."
+keywords: [CSS Multi-column, column-count, column-width, column-gap, column-rule, newspaper layout, content columns]
+tags: [CSS Multi-column, column-count, column-width, column-gap, column-rule, newspaper layout, content columns]
+sidebar_label: "Multi-Column"
+---
+
+The CSS Multi-column Layout module, often simply referred to as "Columns," is specifically designed for taking a single block of content (like a long article) and flowing it automatically into multiple columns, much like a newspaper or magazine.
+
+This is distinct from Flexbox and Grid, which are primarily for structuring independent elements. Columns is for structuring the **flow of continuous content**.
+
+<AdsComponent />
+<br />
+
+## 1. Core Properties: Count and Width
+
+You can control the column flow by defining either the exact number of columns you want (`column-count`) or the minimum width you want each column to be (`column-width`).
+
+### 1.1. `column-count`
+Sets the desired, fixed number of columns for the content. The browser calculates the required width of each column based on the container size.
+
+```css title="styles.css"
+.article-body {
+  column-count: 3; /* Divides the content into exactly three columns */
+}
+```
+
+### 1.2. `column-width`
+
+Sets the desired minimum width for each column. The browser then fits as many columns of at least that width as possible into the container.
+
+```css title="styles.css"
+.article-body {
+  column-width: 250px; /* Creates as many columns as possible, each at least 250px wide */
+}
+```
+
+:::info Recommended Shorthand
+For responsive design, it is highly recommended to use the `columns` shorthand, which combines both `column-width` and `column-count`. This tells the browser: "Create a maximum of three columns, but ensure each column is at least $300\text{px}$ wide."
+
+```css title="styles.css"
+.article-body {
+  columns: 300px 3; 
+}
+```
+
+:::
+
+<AdsComponent />
+<br />
+
+## 2. Spacing and Separation
+
+Once the content is flowing into columns, you can control the visual presentation using `column-gap` and `column-rule`.
+
+### 2.1. `column-gap`
+
+Sets the space (gutter) between the columns.
+
+```css title="styles.css"
+.article-body {
+  column-gap: 3rem; /* Provides 3rem of space between columns */
+}
+```
+
+### 2.2. `column-rule`
+
+Similar to the `border` shorthand, this draws a vertical line (rule) in the space between the columns. It does **not** take up space, meaning it draws exactly in the middle of the `column-gap`.
+
+```css title="styles.css"
+.article-body {
+  column-rule: 1px solid #999; /* Draws a thin gray line between columns */
+}
+```
+
+## 3. Spanning Columns (`column-span`)
+
+Sometimes, you have a heading or an image that you want to break the column flow and span across all columns.
+
+The `column-span` property is applied to a direct child element of the multi-column container.
+
+| Value | Description |
+| :--- | :--- |
+| `none` (Default) | The element flows normally within the columns. |
+| **`all`** | The element breaks out of the column flow and spans across the full width of the container. Subsequent content continues the column flow below the spanned element. |
+
+```css title="styles.css"
+.article-heading {
+  column-span: all; /* Forces this H2 to span all columns */
+}
+```
+
+<AdsComponent />
+<br />
+
+## Interactive Multi-Column Demo
+
+This demo sets the content to flow into three columns. Try adjusting the `column-gap` or the `column-count` property in the CSS panel to see the effect on the text flow.
+
+<CodePenEmbed 
+  title="Interactive Multi-Column Demo"
+  penId="azNGMLb"
+/>

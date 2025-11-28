@@ -1,1 +1,165 @@
-<ComingSoon />
+---
+title: "CSS Nesting (Streamlining Selectors)"
+description: "Learn about the native CSS Nesting feature, which allows style rules to be embedded inside related parent rules, improving readability and avoiding complex selectors."
+keywords: [CSS Nesting, native CSS, nested selectors, selector, BEM, component styling, modern CSS]
+tags: [CSS Nesting, native CSS, nested selectors, selector, BEM, component styling, modern CSS]
+sidebar_label: Nesting
+---
+
+CSS Nesting is a modern feature that allows developers to embed one style rule within another. This capability, long a hallmark of CSS preprocessors like Sass, is now natively supported in standard CSS.
+
+Nesting helps keep related styles grouped together, dramatically improving the readability, organization, and maintainability of your component-based CSS.
+
+<AdsComponent />
+<br />
+
+## 1. The Need for Nesting
+
+Without nesting, styling components and their variations requires long, repetitive selector chains:
+
+```css title="styles.css"
+/* Non-Nested (Repetitive) */
+.card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+}
+
+.card .card-title {
+  font-size: 1.5rem;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+```
+
+With native CSS Nesting, you can structure your CSS to visually match the HTML structure:
+
+```css title="styles.css"
+/* Nested (Organized) */
+.card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  
+  /* Nesting the child element */
+  .card-title {
+    font-size: 1.5rem;
+  }
+  
+  /* Nesting the state/pseudo-class */
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+```
+
+<AdsComponent />
+<br />
+
+## 2. The Ampersand Selector (`&`)
+
+The ampersand symbol (`&`) is the core mechanism of CSS Nesting. It represents the **parent selector** at the current nesting level.
+
+### A. Pseudo-classes and Pseudo-elements
+
+The `&` is mandatory when nesting pseudo-classes (`:hover`, `:focus`) or pseudo-elements (`::before`, `::after`) to join them directly to the parent selector.
+
+```css title="styles.css"
+button {
+  background-color: blue;
+  
+  /* Correct: &:hover becomes 'button:hover' */
+  &:hover { 
+    background-color: darkblue;
+  }
+  
+  /* Correct: &:after becomes 'button::after' */
+  &::after {
+    content: " >>";
+  }
+}
+```
+
+### B. Nesting Class Selectors
+
+When nesting other class selectors, the `&` is optional, but often used for clarity, especially in BEM-like patterns.
+
+```css title="styles.css"
+.block {
+  padding: 10px;
+  
+  /* Becomes '.block .element' (descendant selector) */
+  .element { 
+    font-weight: bold;
+  }
+  
+  /* Becomes '.block.modifier' (chained selector for variants) */
+  &.modifier { 
+    background-color: lightgray;
+  }
+}
+```
+
+<AdsComponent />
+<br />
+
+### C. Element Selectors (The Important Rule)
+
+When nesting a plain **HTML tag selector** (e.g., `h1`, `p`, `a`), **you MUST use the `&` prefix** for the selector to work as a descendant.
+
+:::danger Mandatory `&` Rule
+Nesting simple element selectors like `h1` or `p` without the `&` is currently parsed as a **descendant combinator** but can lead to confusion and parsing ambiguity. To ensure correct behavior as a descendant selector (`.parent p`), always prefix it with the `&` or use a space:
+
+```css title="styles.css"
+.header {
+  /* GOOD: Explicitly tells the browser to look for a nested 'h1' */
+  & h1 { 
+    font-size: 2rem;
+  }
+
+  /* GOOD: Same as above (space is implicit descendant) */
+  h1 {
+    font-size: 2rem;
+  }
+
+  /* BAD: Currently works, but is discouraged and confusing */
+  /* p { color: red; } */ 
+}
+```
+
+The safest practice is to use the `&` for pseudo-selectors and classes, and allow element selectors to function as implicit descendants.
+:::
+
+## 3. Nesting Media Queries
+
+You can also nest media queries inside a selector block. This is incredibly useful for ensuring that all responsiveness for a component is contained in one declaration block.
+
+```css title="styles.css"
+.post-card {
+  display: block; /* Default mobile layout */
+  width: 100%;
+  
+  /* The entire component's desktop layout change is contained here */
+  @media (min-width: 768px) {
+    display: flex; /* Switch to horizontal layout on desktop */
+    padding: 20px;
+    
+    /* Child element style change within the media query */
+    .post-image {
+      width: 40%;
+    }
+  }
+}
+```
+
+<AdsComponent />
+<br />
+
+## Interactive CSS Nesting Demo
+
+This demo uses native CSS Nesting to style a Card component, including a nested title and a hover effect, all within the main `.nested-card` block.
+
+<CodePenEmbed 
+  title="Interactive CSS Nesting Demo"
+  penId="RNaydBg"
+/>
