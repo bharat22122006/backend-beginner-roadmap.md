@@ -1,1 +1,117 @@
-<ComingSoon />
+---
+title: "Filters and Blend Modes"
+description: "Explore CSS Filters (grayscale, blur, sepia) for visual adjustments and Blend Modes (multiply, screen, overlay) for creative layering and composite effects on elements."
+keywords: [CSS Filters, CSS Blend Modes, backdrop-filter, mix-blend-mode, background-blend-mode, visual effects, image processing]
+tags: [CSS Filters, CSS Blend Modes, backdrop-filter, mix-blend-mode, background-blend-mode, visual effects, image processing]
+sidebar_label: "Filters & Blend Modes"
+---
+
+CSS provides two powerful sets of properties—Filters and Blend Modes—to manipulate the visual appearance of elements directly in the browser, offering effects previously only possible in graphic editing software.
+
+<AdsComponent />
+<br />
+
+## 1. CSS `filter` Property
+
+The `filter` property applies visual effects to an element (usually an image or video), changing its appearance. The element remains in the document flow, but its rendering is visually altered.
+
+### 1.1. Common Filter Functions
+
+Filters are applied as a space-separated list of functions.
+
+| Function | Parameter | Description |
+| :--- | :--- | :--- |
+| `grayscale()` | Percentage or `0-1` | Converts the element to shades of gray. |
+| `sepia()` | Percentage or `0-1` | Gives the element an old, brownish tone. |
+| `blur()` | Length (e.g., `5px`) | Blurs the image. Higher value means more blur. |
+| `brightness()` | Percentage or `0-1` | Adjusts the brightness. `1` is normal, `2` is double. |
+| `contrast()` | Percentage or `0-1` | Adjusts the contrast. `1` is normal. |
+| `hue-rotate()` | Angle (e.g., `90deg`) | Rotates the color wheel by the specified angle. |
+| `drop-shadow()` | Shadow values | Applies a blurred shadow to the shape of the content (unlike `box-shadow`). |
+
+### 1.2. Applying Multiple Filters
+
+You can chain multiple filters together to create complex effects:
+
+```css title="styles.css"
+/* Converts to 50% grayscale, increases contrast by 150%, and blurs the edges */
+.vintage-photo {
+  filter: grayscale(0.5) contrast(1.5) blur(2px);
+  transition: filter 0.5s;
+}
+
+/* On hover, remove all filters smoothly */
+.vintage-photo:hover {
+  filter: none;
+}
+```
+
+<AdsComponent />
+<br />
+
+## 2. CSS `backdrop-filter` Property (The Glass Effect)
+
+The `backdrop-filter` property applies a graphic effect to the area *behind* an element. This is famous for creating the "frosted glass" or "blur-behind" effect used in modern UIs.
+
+The element itself remains clear, but the content rendered behind it is filtered.
+
+:::tip Browser Support
+While `filter` is universally supported, `backdrop-filter` historically required vendor prefixes (`-webkit-backdrop-filter`) but is now widely supported in modern browsers.
+:::
+
+### Example: Frosted Glass Panel
+
+```css title="styles.css"
+.frosted-panel {
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white background */
+  
+  /* Blurs the content rendered underneath this element */
+  backdrop-filter: blur(10px) saturate(1.8); 
+  
+  border-radius: 10px;
+  padding: 20px;
+}
+```
+
+## 3. CSS Blend Modes
+
+Blend modes define how an element's color should combine with the color of the element directly underneath it. They are derived from concepts used in tools like Photoshop and GIMP.
+
+### 3.1. `mix-blend-mode` (Element Blending)
+
+`mix-blend-mode` defines how the entire element blends with the content behind it.
+
+| Value | Description | Use Case |
+| :--- | :--- | :--- |
+| `normal` (Default) | No blending. | |
+| **`multiply`** | Multiplies colors, resulting in a darker image. Excellent for shadows or darkening backgrounds. | Overlaying text on an image while maintaining texture. |
+| **`screen`** | Multiplies the inverse of the colors, resulting in a lighter image. Good for highlights. | Creating glow effects. |
+| **`overlay`** | Combines `multiply` and `screen` to preserve highlights and shadows. | Adjusting contrast or applying color gradients for stylistic tone. |
+| `difference` | Subtracts the darker pixel from the lighter pixel. | Inverting colors for dramatic effects. |
+
+### 3.2. `background-blend-mode` (Background Layer Blending)
+
+`background-blend-mode` is used when an element has both a `background-color` and a `background-image` (or multiple background images). It controls how those background layers blend with each other.
+
+```css title="styles.css"
+.blended-background {
+  /* Image and color layers */
+  background-image: url('noise.png'), linear-gradient(to right, red, blue);
+  background-color: yellow; 
+  
+  /* Blends the noise image with the gradient, and the result with the yellow color */
+  background-blend-mode: overlay, multiply; 
+}
+```
+
+<AdsComponent />
+<br />
+
+## Interactive Filters and Blend Modes Demo
+
+This demo shows an image card. On hover, we apply a complex filter chain (`grayscale` + `contrast`) and use `mix-blend-mode` to create a cool effect where the text interacts with the image behind it.
+
+<CodePenEmbed 
+  title="Interactive Filters and Blend Modes Demo"
+  penId="yyOEJeE"
+/>

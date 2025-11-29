@@ -1,1 +1,118 @@
-<ComingSoon />
+---
+title: "CSS Masking (mask, mask-image)"
+description: "Explore advanced CSS masking techniques, using images, gradients, or SVG shapes as masks to control the transparency and visibility of an element."
+keywords: [CSS mask, mask-image, masking, alpha mask, luminance mask, SVG mask, image transparency]
+tags: [CSS mask, mask-image, masking, alpha mask, luminance mask, SVG mask, image transparency]
+sidebar_label: mask
+---
+
+CSS Masking is a powerful technique that uses a graphic (like an image, gradient, or SVG shape) to precisely control which parts of an element are visible.
+
+Unlike `opacity` (which applies uniform transparency) or `clip-path` (which cuts to a fixed geometry), masking uses the pixels of the mask image itself—specifically, their luminance or alpha channel—to define the transparency level of the masked element.
+
+<AdsComponent />
+<br />
+
+## 1. Core Concept: How Masks Work
+
+A mask image defines a transparency map for the target element. There are two main ways a mask interprets the graphic:
+
+### A. Luminance Mask (Most Common)
+
+* **White** areas of the mask image result in the target element being **fully opaque** (visible).
+* **Black** areas of the mask image result in the target element being **fully transparent** (invisible).
+* **Gray** areas result in semi-transparency.
+
+### B. Alpha Mask
+
+* The mask uses the alpha (transparency) channel of the mask image.
+* Fully opaque areas of the mask image reveal the target element.
+* Fully transparent areas of the mask image hide the target element.
+
+## 2. The `mask-image` Property
+
+The `mask-image` property specifies the mask source, which can be an image file or a CSS gradient.
+
+### 2.1. Using a Gradient as a Mask
+Gradients are perfect for masking because they naturally create areas of black and white/transparent.
+
+```css title="styles.css"
+.fading-text {
+  /* The element we want to mask */
+  color: purple;
+  font-size: 3rem;
+  
+  /* Mask uses a linear gradient that goes from black (fully visible) 
+     to transparent (fully invisible) */
+  mask-image: linear-gradient(to right, black, transparent);
+}
+```
+
+In this example, the text would fade out smoothly from left to right.
+
+<AdsComponent />
+<br />
+
+### 2.2. Using an Image as a Mask
+
+You can use a PNG, JPG, or SVG file as the mask. For the luminance effect, black-and-white shapes work best.
+
+```css title="styles.css"
+.target-image {
+  /* The content that will be masked */
+  background: url('hero.jpg') no-repeat center / cover;
+  
+  /* Use an SVG shape (like a star or cloud) as the mask */
+  mask-image: url('star_mask.svg');
+  
+  /* Control how the mask image behaves (similar to background-repeat/size) */
+  mask-size: contain;
+  mask-repeat: no-repeat;
+}
+```
+
+## 3. The `mask` Shorthand
+
+The `mask` shorthand property combines multiple masking properties (like `mask-image`, `mask-size`, `mask-repeat`, and `mask-position`) into one declaration, similar to the `background` shorthand.
+
+### Example: Repeated Pattern Mask
+
+This example creates a repeated diagonal stripe pattern to hide parts of an element.
+
+```css title="styles.css"
+.striped-mask {
+  background-color: blue;
+  
+  mask: repeating-linear-gradient(
+    45deg, 
+    black 0px, black 10px,   /* Visible Stripe */
+    transparent 10px, transparent 20px /* Invisible Stripe */
+  );
+  
+  mask-size: 50px 50px; /* Size of the repeated unit */
+}
+```
+
+<AdsComponent />
+<br />
+
+## 4. `mask-mode` and Advanced Use
+
+The `mask-mode` property explicitly controls how the mask source is interpreted (as luminance or alpha).
+
+| Value | Description |
+| :--- | :--- |
+| **`alpha`** | Uses the transparency (alpha channel) of the mask image. |
+| **`luminance`** | Uses the brightness (grayscale value) of the mask image. |
+| `auto` (Default) | Browser decides based on the image type (e.g., usually luminance for gradients, alpha for external PNGs). |
+
+For most simple effects (gradients or simple black/white images), the default `auto` behavior works fine, usually resulting in a luminance mask.
+
+## Interactive Masking Demo
+
+This demo uses a radial gradient as a mask to create a spotlight effect on the text. The text fades out towards the edges of the box.
+
+<CodePenEmbed 
+  title="Interactive Masking Demo"
+  penId="NPNzrMM"
+/>
