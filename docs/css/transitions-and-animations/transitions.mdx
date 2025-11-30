@@ -1,1 +1,119 @@
-<ComingSoon />
+---
+title: "CSS Transitions (Smooth Changes)"
+description: "Learn how to use CSS transitions to create smooth, animated changes between property values. Understand the four core transition properties: transition-property, transition-duration, transition-timing-function, and transition-delay, along with practical examples for enhancing user experience."
+keywords: [CSS transitions, transition-property, transition-duration, transition-timing-function, transition-delay, smooth animation, performance]
+tags: [CSS transitions, transition-property, transition-duration, transition-timing-function, transition-delay, smooth animation, performance]
+sidebar_label: Transitions
+---
+
+CSS Transitions provide a simple way to create smooth changes in an element's style over a specified period of time. Instead of having a property instantly jump from one value to another (e.g., changing color from red to blue instantly), transitions allow the browser to gradually animate the change.
+
+Transitions are essential for enhancing user experience by providing visual feedback and creating polished, professional interactions.
+
+<AdsComponent />
+<br />
+
+## 1. The Four Core Properties
+
+A CSS transition requires defining at least two things: the property to change and the duration of the change.
+
+### 1.1. `transition-property`
+
+Specifies the CSS property name(s) that should be animated.
+
+| Value | Description |
+| :--- | :--- |
+| `none` | No property will transition. |
+| `all` | Every animatable property change will be transitioned (Default). |
+| `color`, `transform`, etc. | A specific property name (or comma-separated list). |
+
+### 1.2. `transition-duration`
+Specifies how long the transition should take. This value is mandatory.
+
+| Value | Description |
+| :--- | :--- |
+| `0.5s` | Half a second. |
+| `500ms` | 500 milliseconds (equivalent to 0.5s). |
+
+### 1.3. `transition-timing-function`
+
+Defines the speed curve of the transition (how the animation progresses over its duration).
+
+| Value | Description | Use |
+| :--- | :--- | :--- |
+| **`ease`** (Default) | Starts slowly, speeds up, and ends slowly (most natural). | General UI movement. |
+| **`linear`** | Stays at the same speed from start to finish. | Simple visual changes (like opacity). |
+| **`ease-in`** | Starts slowly, then speeds up quickly to the end. | Accelerating motion. |
+| **`ease-out`** | Starts quickly, then slows down toward the end. | Decelerating motion. |
+| `cubic-bezier(n,n,n,n)` | A custom curve for fine-grained control. | Complex, custom animations. |
+
+### 1.4. `transition-delay`
+
+Specifies a time to wait before the transition starts.
+
+| Value | Description |
+| :--- | :--- |
+| `1s` | Waits one second before starting the animation. |
+| `200ms` | Waits 200 milliseconds. |
+
+---
+
+## 2. The `transition` Shorthand
+
+It is common and recommended to use the `transition` shorthand property to combine all four values in a single line. The order is generally: `property duration timing-function delay`.
+
+```css title="styles.css"
+/* Full Shorthand Example */
+.card {
+  /* Animate the 'background-color' over 0.4 seconds, using an 'ease-out' curve, 
+     and starting immediately (0s delay). */
+  transition: background-color 0.4s ease-out 0s;
+}
+
+/* Example with multiple properties */
+.button {
+  transition: background-color 0.3s ease, 
+              transform 0.2s ease-out;
+}
+```
+
+<AdsComponent />
+<br />
+
+## 3. Implementation Example: Hover Effect
+
+Transitions are typically defined in the default state of an element and are triggered when the element changes state (e.g., via `:hover`, `:focus`, or a class being added via JavaScript).
+
+### CSS
+
+```css title="styles.css"
+.box {
+  background-color: blue;
+  width: 100px;
+  
+  /* 1. Define the transition here (in the default state) */
+  transition: background-color 0.5s ease-in-out, width 0.5s ease-in-out; 
+}
+
+/* 2. Define the target styles in the hover state */
+.box:hover {
+  background-color: red;
+  width: 150px;
+}
+```
+
+When the user hovers, the styles are applied, but the `transition` definition tells the browser to animate the change over half a second instead of applying it immediately. When the user moves the mouse away, the transition runs smoothly in reverse.
+
+<AdsComponent />
+<br />
+
+## Interactive Transitions Demo
+
+Hover over the button below to see a smooth transition applied to the `background-color`, `transform` (scaling), and `box-shadow` properties simultaneously.
+
+<CodePenEmbed 
+  title="Interactive Transitions Demo"
+  penId="vEGrZKL"
+/>
+
+In this example, hovering over the button smoothly changes its background color, increases its size slightly, and adjusts the shadow to create a dynamic, engaging effect. The transition makes these changes feel fluid and responsive, enhancing the overall user experience.
