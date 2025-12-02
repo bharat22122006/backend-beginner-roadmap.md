@@ -1,1 +1,127 @@
-<ComingSoon />
+---
+title: "Image Styling and Optimization"
+description: "Use utility classes to control image dimensions, responsiveness, aspect ratios, fit behavior, and decorative effects like rounded corners and shadows."
+keywords: [CSS images, Tailwind images, image responsiveness, aspect ratio, object-fit, image optimization, rounded corners, object-position]
+tags: [CSS images, Tailwind images, image responsiveness, aspect ratio, object-fit, image optimization, rounded corners, object-position]
+sidebar_label: Images
+---
+
+Images are critical components of any webpage, but they pose challenges related to responsiveness, performance, and layout. Utility classes simplify the process of making images look great and behave predictably across all devices.
+
+This guide focuses on controlling image size, shape, and behavior using utility-first CSS principles.
+
+<AdsComponent />
+<br />
+
+## 1. Controlling Image Size and Responsiveness
+
+The most important aspect of image styling is ensuring they adapt to their container without stretching the layout.
+
+### A. Fluid Width (`w-full`)
+
+To make an image fully responsive, always ensure its width is fluid and its height is auto-calculated to maintain the aspect ratio.
+
+```html title="index.html"
+<div class="max-w-md">
+  <!-- Image takes up 100% of its parent's width, but never its original size -->
+  <img src="..." alt="Responsive image" class="w-full h-auto rounded-lg shadow-xl">
+</div>
+```
+
+### B. Fixed Dimensions vs. Constraints
+
+While `w-full` is the standard, sometimes you need to enforce maximum or minimum sizes.
+
+| Utility | Description | Example |
+| :--- | :--- | :--- |
+| `max-w-xs` | Limits the maximum width (e.g., $20rem$) | `max-w-sm` |
+| `h-48` | Fixed height (e.g., $12rem$) | `w-48 h-48` |
+| `object-cover` | Essential for fixed-size containers (see Section 3). | `object-cover` |
+
+<AdsComponent />
+<br />
+
+## 2. Aspect Ratios
+
+Managing the space an image occupies *before* it loads is vital to prevent **Cumulative Layout Shift (CLS)**. The modern way to handle this is using `aspect-ratio` utilities.
+
+These utilities set the height relative to the width, guaranteeing the container's shape.
+
+| Utility | Ratio | Calculation |
+| :--- | :--- | :--- |
+| `aspect-square` | $1:1$ | `aspect-ratio: 1 / 1;` |
+| `aspect-video` | $16:9$ | `aspect-ratio: 16 / 9;` |
+| `aspect-4/3` | $4:3$ | `aspect-ratio: 4 / 3;` |
+
+```html title="index.html"
+<!-- The container size is fixed to a 4:3 ratio, preventing layout jumps -->
+<div class="w-full max-w-lg aspect-4/3 bg-gray-200 rounded-lg overflow-hidden">
+  <img src="..." alt="4:3 photo" class="w-full h-full object-cover">
+</div>
+```
+
+## 3. Controlling Image Fit (`object-fit`)
+
+When an image is placed in a container with a fixed aspect ratio or fixed dimensions, the `object-fit` property determines how the image content fills the space.
+
+### A. `object-cover` (Crop and Fill)
+
+The image fills the entire container, potentially cropping off parts of the image to maintain its aspect ratio. **This is the most common and generally desired behavior for thumbnails and banners.**
+
+### B. `object-contain` (Shrink and Show All)
+
+The image is scaled down to fit entirely inside the container without cropping. Empty space (letterboxing) may appear on the sides.
+
+### C. `object-fill` (Stretch)
+
+The image is stretched to completely fill the container, regardless of its original aspect ratio. This can lead to distorted images.
+
+### Example
+
+```html title="index.html"
+<div class="w-64 h-64 border-2 border-dashed border-gray-400 p-2">
+  <h4 class="text-sm font-semibold mb-1">Object Cover:</h4>
+  <!-- Fills the 64x64 box, cropping the top/bottom or sides -->
+  <img src="https://placehold.co/600x400/007AFF/ffffff?text=Image+Source" 
+       alt="Object cover example"
+       class="w-full h-full object-cover rounded-md">
+</div>
+
+<div class="w-64 h-64 border-2 border-dashed border-gray-400 p-2 mt-4">
+  <h4 class="text-sm font-semibold mb-1">Object Contain:</h4>
+  <!-- Fits entirely inside the box, showing white space on the sides -->
+  <img src="https://placehold.co/600x400/007AFF/ffffff?text=Image+Source" 
+       alt="Object contain example"
+       class="w-full h-full object-contain rounded-md">
+</div>
+```
+
+<AdsComponent />
+<br />
+
+## 4. Decorative Styling
+
+Utility classes make applying visual polish simple and consistent.
+
+| Utility | Property | Use Case |
+| :--- | :--- | :--- |
+| `rounded-full` | `border-radius: 9999px;` | Perfect circles for avatars/logos. |
+| `shadow-xl` | `box-shadow` | Adding depth and lifting the image off the page. |
+| `opacity-50` | `opacity` | Creating faded or watermark effects. |
+| `grayscale` | `filter: grayscale(100%);` | Converting to black and white. |
+
+```html title="index.html"
+<!-- Circular Avatar with Shadow -->
+<img src="https://placehold.co/150x150/007AFF/ffffff?text=Avatar" 
+     alt="User Avatar"
+     class="w-24 h-24 rounded-full object-cover shadow-lg hover:shadow-xl transition">
+```
+
+## 5. Full Example: Image Gallery
+
+This example shows a responsive grid of images using aspect ratios, object-fit, and decorative effects.
+
+<CodePenEmbed 
+  title="Interactive Image Gallery Demo"
+  penId="pvyOzjv"
+/>
