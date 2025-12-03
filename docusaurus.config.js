@@ -328,6 +328,7 @@ const config = {
           "http",
           "latex",
           "markdown",
+          "scss",
         ],
       },
       docs: {

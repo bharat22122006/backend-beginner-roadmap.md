@@ -1,1 +1,191 @@
-<ComingSoon />
+---
+title: "CSS Naming Conventions and Architecture"
+description: "Master essential CSS naming conventions like BEM and utility-first to create predictable, scalable, and maintainable styles in large-scale applications."
+keywords: [CSS naming conventions, BEM, Block Element Modifier, utility-first CSS, kebab-case, CSS best practices, OOCSS, SMACSS]
+tags: [CSS naming conventions, BEM, Block Element Modifier, utility-first CSS, kebab-case, CSS best practices, OOCSS, SMACSS]
+sidebar_label: Naming Conventions
+---
+
+The global nature of CSS means that styles written for one component can accidentally interfere with another. **CSS Naming Conventions** solve this problem by providing a systematic way to name classes, making them highly descriptive and ensuring their effects are predictable and localized.
+
+A good naming convention leads to:
+
+1.  **Low Specificity:** Classes are easy to override without needing `!important`.
+2.  **Modularity:** Classes are independent of the HTML structure.
+3.  **Readability:** Developers immediately understand a class's purpose and scope.
+
+<AdsComponent />
+<br />
+
+## 1. Block, Element, Modifier (BEM)
+
+BEM is the most widely adopted and influential naming convention. It enforces a strict, flat structure that clearly delineates the component, its internal parts, and its variations. This effectively controls the global cascade by ensuring selectors are only one class deep.
+
+### BEM Structure
+
+BEM names consist of three distinct parts, separated by specific delimiters:
+
+| Part | Notation | Example | Description |
+| :--- | :--- | :--- | :--- |
+| **Block** | `block` | `.card` | An independent, reusable component. |
+| **Element** | `block__element` | `.card__title` | A part of the Block that has no meaning outside of it. |
+| **Modifier** | `block--modifier` | `.card--dark` | A variation or flag that changes the Block or Element's appearance. |
+
+### BEM Example
+
+The BEM convention clearly communicates the relationship between the HTML elements.
+
+<Tabs>
+<TabItem value="html" label="HTML Markup">
+
+```html
+<!-- Block: .profile-card -->
+<div class="profile-card profile-card--active">
+  
+  <!-- Element: .profile-card__avatar -->
+  <img class="profile-card__avatar" src="..." alt="User Avatar">
+  
+  <!-- Element: .profile-card__name -->
+  <h3 class="profile-card__name">Jane Doe</h3>
+  
+  <!-- Modifier on Block: changes the Block's appearance -->
+  <button class="profile-card__button profile-card__button--small">Follow</button>
+</div>
+```
+
+</TabItem>
+<TabItem value="css" label="CSS Styles">
+
+```css
+/* Block: Low specificity, high reuse */
+.profile-card {
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+
+/* Element: Targets a specific part */
+.profile-card__avatar {
+  border-radius: 50%;
+  width: 60px;
+}
+
+/* Modifier: Specific variation of the block */
+.profile-card--active {
+  background-color: #e5f4ff;
+  border-color: #3b82f6;
+}
+
+/* Modifier: Specific variation of the element (the button) */
+.profile-card__button--small {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+}
+```
+
+</TabItem>
+</Tabs>
+
+:::tip BEM Specificity
+BEM selectors almost always result in a specificity of `0,1,0,0` (one class selector), ensuring that all classes are easily overridden by each other and preventing specificity wars.
+:::
+
+<AdsComponent />
+<br />
+
+## 2. Utility-First Naming (Atomic CSS)
+
+Frameworks like Tailwind CSS represent the ultimate form of naming predictability. Instead of naming an *object* (like `.card`), you name its *properties* (like `.p-4`, `.shadow-lg`).
+
+### Characteristics of Utility-First
+
+1.  **Single-Responsibility:** Each class does exactly one thing (e.g., `text-xl` only sets `font-size`).
+2.  **No Custom Naming:** The convention is predefined by the framework (e.g., `ml-4` for `margin-left: 1rem`).
+3.  **High Predictability:** You know exactly what styles are applied just by reading the HTML.
+
+```html title="index.html"
+<!-- The styles are fully contained within the class names -->
+<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+  Save
+</button>
+```
+
+:::info Scalability Impact
+Utility-first CSS solves scalability by eliminating the cascade between components. Since styles are localized to the HTML, there are no side effects when modifying the appearance of one component.
+:::
+
+## 3. General Naming Best Practices
+
+Regardless of the primary convention you choose, following these universal rules ensures readability and maintenance.
+
+### A. Use Kebab-Case
+
+Always use **kebab-case** (hyphens) for class names, file names, and directories in CSS.
+
+| Convention | Example | Use |
+| :--- | :--- | :--- |
+| **Kebab-case (Recommended)** | `modal-header`, `user-profile` | CSS class names, component folders. |
+| **CamelCase** | `modalHeader` | JavaScript variables, not CSS. |
+| **Snake_case** | `modal_header` | Rarely used in modern frontend development. |
+
+### B. Avoid Location-Dependent Naming
+
+Never name a class based on its position in the HTML document (`.left-sidebar-nav`, `.header-button`). If the element moves, the name becomes meaningless or misleading.
+
+| Avoid | Prefer | Rationale |
+| :--- | :--- | :--- |
+| `.sidebar-profile-box` | `.profile-card` | The card should work anywhere, not just the sidebar. |
+| `.last-item` | `.list-item--last` | Use a BEM modifier or pseudo-classes (`:last-child`). |
+
+### C. Use Scope Prefixes
+
+For very large projects or when integrating third-party code, use a custom prefix to namespace your own styles. This prevents conflicts with external libraries.
+
+```css title="styles.css"
+/* Custom prefix: 'ch' for CodeHarborHub */
+.ch-modal {}
+.ch-button--primary {}
+```
+
+<AdsComponent />
+<br />
+
+## 4. Other Architectural Naming Systems
+
+While BEM and Utility-First dominate, other systems offer valuable structure:
+
+### A. SMACSS (Scalable and Modular Architecture for CSS)
+
+SMACSS uses prefixes to denote the **category** of the style, enforcing separation between layers:
+
+| Prefix | Meaning | Example |
+| :--- | :--- | :--- |
+| `l-` | **Layout** (major structure) | `.l-sidebar` |
+| `is-` / `has-` | **State** (status flags) | `.is-active`, `.has-error` |
+| (None) | **Module/Component** | `.card` |
+
+### B. OOCSS (Object-Oriented CSS)
+
+OOCSS promotes naming reusable style "objects" that are not specific to content. Its principles are the foundation for BEM and Utility-First:
+
+1.  **Separate Structure and Skin:** Naming classes for structure (`.media-layout`) separately from classes for visuals (`.rounded-red`).
+2.  **Separate Container and Content:** Ensuring a module name like `.accordion` never uses a location-dependent selector (e.g., `.sidebar .accordion`).
+
+```css title="styles.css"
+/* Structure */
+.accordion {
+    border: 1px solid #ccc;
+}
+.accordion__item {
+    padding: 1rem;
+}
+
+/* Skin */
+.accordion--dark {
+    background-color: #333;
+    color: white;
+}
+```
+
+## Conclusion
+
+Choosing and consistently applying a CSS naming convention is crucial for building maintainable, scalable stylesheets. Whether you adopt BEM for its clarity and modularity, Utility-First for its predictability and isolation, or a hybrid approach incorporating SMACSS or OOCSS principles, the key is consistency. Clear, descriptive names empower developers to understand and modify styles confidently, reducing bugs and improving collaboration across teams.

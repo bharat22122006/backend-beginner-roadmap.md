@@ -1,1 +1,149 @@
-<ComingSoon />
+---
+title: "CSS Accessibility Best Practices"
+description: "Essential guidelines for using CSS to create accessible web interfaces, focusing on color contrast, focus indicators, responsive design, and motion control."
+keywords: [CSS accessibility, WCAG, color contrast, focus indicators, prefers-reduced-motion, responsive design, accessibility best practices]
+tags: ['css', 'accessibility', 'best-practices', 'a11y']
+sidebar_label: Accessibility
+---
+
+Accessibility in CSS is about ensuring that the presentation layer of your website—the styles, layout, and visual interactions—supports users with disabilities, including those using screen readers, keyboard navigation, or specialized input devices.
+
+Accessible design starts with semantic HTML, but CSS is responsible for ensuring the interface is usable for *everyone*.
+
+<AdsComponent />
+<br />
+
+## 1. Color Contrast and Readability
+
+Insufficient color contrast is the most common accessibility issue. Users with low vision, color blindness, or those viewing screens in bright sunlight need strong contrast to read text and distinguish interactive elements.
+
+### WCAG Standards
+
+The **Web Content Accessibility Guidelines (WCAG)** define minimum contrast ratios:
+
+  * **AA Standard (Minimum):**
+      * Normal Text: **4.5:1** contrast ratio.
+      * Large Text (18pt or 14pt bold): **3:1** contrast ratio.
+  * **AAA Standard (Enhanced):**
+      * Normal Text: **7:1** contrast ratio.
+
+:::warning Do Not Rely on Color Alone
+Do not use color as the *only* visual means of conveying information. For instance, in a form, don't just turn an invalid input red; add a text error message or an icon.
+:::
+
+### Utility Tips
+
+Use tools or built-in utilities (if available in your framework) that check contrast automatically. If styling manually, use a contrast checker tool for every text-background pairing.
+
+```css title="styles.css"
+/* Ensure strong contrast */
+.text-dark {
+  color: #333333; /* Contrast 12.8:1 against white */
+}
+
+/* Ensure accessible link colors against the background */
+.link {
+  color: #007bff; /* Must have 4.5:1 ratio against the background */
+}
+```
+
+## 2. Focus Indicators (`:focus`)
+
+Keyboard users (who often use the `Tab` key) rely entirely on a visible focus indicator to know which element they are currently interacting with. Removing the default browser outline is a critical accessibility failure.
+
+### A. Never Remove, Always Enhance
+
+It is bad practice to use `outline: none;` without immediately replacing it with a more visible indicator.
+
+```css title="styles.css"
+/* Bad Practice: Removes crucial visual feedback */
+button:focus {
+  outline: none; /* DO NOT DO THIS without replacement */
+}
+
+/* Good Practice: Replace the default outline with a clear, visible box-shadow or border */
+button:focus-visible {
+  outline: 3px solid transparent; /* Ensure default is gone first (if needed) */
+  box-shadow: 0 0 0 4px #4f46e5; /* Use a high-contrast color */
+  border-radius: 4px;
+}
+```
+
+<AdsComponent />
+<br />
+
+### B. `:focus-visible` (Modern Standard)
+
+The `:focus-visible` pseudo-class is highly recommended. It ensures the focus style is only displayed when the element is focused via the keyboard, *not* when clicked with a mouse. This satisfies accessibility requirements without annoying mouse users.
+
+## 3. Controlling Motion and Animation
+
+Users with vestibular disorders can experience dizziness, nausea, or motion sickness from excessive, sudden, or large-scale animations.
+
+### The `prefers-reduced-motion` Media Query
+
+Use the `prefers-reduced-motion` media query to respect a user's operating system setting that requests minimal animation.
+
+```css title="styles.css"
+/* Default animation */
+.hero-image {
+  transform: translateX(0);
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Override for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-image {
+    /* Disable all animation */
+    transition: none; 
+    /* Set final state immediately */
+    transform: translateX(0) !important; 
+    /* Or only use opacity changes */
+    /* transition: opacity 0.5s; */
+  }
+}
+```
+
+:::tip Animation Policy
+When designing interactions, your policy should be: **Animations are decorative, never mandatory.** If an animation is essential to understanding the content, provide an alternative, static presentation.
+:::
+
+## 4. Layout and Responsive Accessibility
+
+Responsive design is an accessibility requirement. Content must be easily viewable and usable regardless of screen size, zoom level, or orientation.
+
+### A. Zooming and Scaling
+
+The use of fixed pixel values (`px`) for font sizes and widths can break layouts when a user zooms in.
+
+  * **Font Size:** Use relative units like `rem` or `em` to ensure text scales with the user's browser settings.
+  * **Layout:** Use fluid units (`%`, `vw`, `fr`) or flexible layouts (Flexbox/Grid) to allow the page to adapt gracefully without horizontal scrolling.
+
+<AdsComponent />
+<br />
+
+### B. Hiding Content Accessible
+
+Sometimes, you need to visually hide content (e.g., a search label) while keeping it available for screen readers.
+
+  * **Do NOT use `display: none` or `visibility: hidden`:** These hide content from *all* users, including screen readers.
+  * **Use the Visually Hidden Technique:** Apply a set of styles that hides the element visually but keeps it in the accessibility tree.
+
+```css title="styles.css"
+/* Visually hides content but keeps it available for screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px; /* Avoid margin collapsing issues */
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0); /* Legacy hiding technique */
+  white-space: nowrap;
+  border-width: 0;
+}
+```
+
+## Conclusion
+
+By following these CSS accessibility best practices, you can create web interfaces that are inclusive and usable for all users. Always test your designs with real users and assistive technologies to ensure your accessibility efforts are effective. Remember, accessibility is not just a checklist, it's a commitment to providing equal access to information and functionality for everyone.
