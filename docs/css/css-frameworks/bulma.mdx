@@ -1,1 +1,168 @@
-<ComingSoon />
+---
+title: "Bulma (Flexbox-First Framework)"
+description: "Explore Bulma, a modern, lightweight, and responsive CSS framework based entirely on Flexbox, offering intuitive components and an easy-to-read utility class structure."
+keywords: [Bulma CSS, Flexbox framework, CSS components, responsive design, modular CSS, lightweight framework]
+tags: [Bulma CSS, Flexbox framework, CSS components, responsive design, modular CSS, lightweight framework]
+sidebar_label: Bulma
+---
+
+Bulma is a modern, open-source CSS framework that distinguishes itself by being built entirely on **Flexbox**. Unlike older frameworks, Bulma is purely CSS, it provides no built-in JavaScript components, making it lightweight and easy to integrate with any JavaScript framework (React, Vue, Angular, etc.).
+
+Bulma is known for its highly readable class names and its strong focus on a clean, modular component architecture, offering a refreshing alternative to larger, more traditional frameworks.
+
+<AdsComponent />
+<br />
+
+## 1. Core Philosophy: Pure CSS and Modularity
+
+Bulma's core design principles prioritize simplicity and separation of concerns:
+
+### A. Pure CSS
+
+Bulma consists only of CSS files. All interactive components (like dropdowns, modals, and tabs) require developers to supply their own JavaScript implementation to manage the necessary `is-active` or `is-hidden` state classes. This gives developers complete control over the front-end logic.
+
+### B. Modularity
+
+Bulma's source code is modular, broken down into 39 individual Sass files. This allows developers to easily import only the specific components they need (e.g., just the grid and buttons) to minimize the final stylesheet size.
+
+### C. Readable Class Names
+
+Bulma uses highly descriptive, hyphenated class names that are easy to remember and understand, such as `is-primary`, `is-fullwidth`, or `has-text-centered`.
+
+## 2. The Responsive Flexbox Grid
+
+Since Bulma is Flexbox-based from the ground up, its grid system is highly flexible and intuitive, relying on the `columns` and `column` classes.
+
+### A. Structure
+
+1.  **Container:** `.container` (fixed width, centered) or `.is-fluid` (full width).
+2.  **Columns Wrapper:** `.columns` initializes the Flexbox container, providing necessary negative margins and spacing.
+3.  **Columns:** `.column` acts as the flexible item inside the wrapper.
+
+### B. Size and Breakpoints
+
+Columns are defined by using the fraction of the 12-column grid system (e.g., `is-half` for 6/12, `is-one-third` for 4/12).
+
+Bulma uses four main breakpoints:
+
+| Prefix | Breakpoint (Min-Width) | Device Type | Purpose |
+| :--- | :--- | :--- | :--- |
+| `is-mobile` | Default | Mobile (Default Stack) | Mobile-only classes. |
+| `is-tablet` | $\ge 769px$ | Tablet | Defines behavior for tablets and up. |
+| `is-desktop` | $\ge 1024px$ | Desktop | Defines behavior for desktops and up. |
+| `is-widescreen` | $\ge 1216px$ | Large Desktop | Defines behavior for larger screens. |
+
+### Responsive Grid Example
+
+This layout uses three equal columns on tablet size and larger, and stacks vertically on mobile.
+
+```html title="index.html"
+<div class="container">
+  <div class="columns is-desktop">
+    
+    <!-- Each column takes 1/3 of the space on desktop and tablet -->
+    <div class="column is-one-third">
+      <p>Column 1 (4/12)</p>
+    </div>
+    <div class="column is-one-third">
+      <p>Column 2 (4/12)</p>
+    </div>
+    <div class="column is-one-third">
+      <p>Column 3 (4/12)</p>
+    </div>
+  </div>
+</div>
+```
+
+<AdsComponent />
+<br />
+
+## 3. Bulma Components
+
+Bulma provides clean, modern designs for common UI elements using semantic and state-based modifiers.
+
+### A. Button Modifiers
+
+Buttons use the base class `.button` and are styled using color and size modifiers.
+
+| Class Modifier | Description | Example |
+| :--- | :--- | :--- |
+| `is-primary` | Primary brand color. | `<button class="button is-primary">` |
+| `is-danger` | Red/Error color. | `<button class="button is-danger is-light">` |
+| `is-large` | Increases button size. | `<button class="button is-info is-large">` |
+| `is-loading` | Adds a loader/spinner visual. | `<button class="button is-loading">` |
+
+### B. Media Object
+
+A classic example of Bulma's modularity is the `media-object`, perfect for comments, tweets, or user listings.
+
+```html title="index.html"
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img src="https://placehold.co/128x128/ccc/fff?text=P" alt="Profile">
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong>John Doe</strong> <small>@jdoe</small> <small>31m</small>
+        <br>
+        Bulma makes clean, simple layouts incredibly fast to build.
+      </p>
+    </div>
+  </div>
+</article>
+```
+
+<AdsComponent />
+<br />
+
+## 4. Utility Helpers (Modifiers)
+
+Bulma relies heavily on helper classes to control state, color, and positioning. Many of these are prefixed with `is-` or `has-`.
+
+| Helper Category | Example Class | CSS Property / Use |
+| :--- | :--- | :--- |
+| **Color** | `has-text-success`, `has-background-info` | Sets text color or background color using the predefined color palette. |
+| **Text Alignment** | `has-text-centered`, `has-text-right-tablet` | Controls text alignment, including responsive variants. |
+| **Sizing** | `is-fullwidth`, `is-half` | Sets width properties (e.g., `width: 100%`). |
+| **State** | `is-active`, `is-hidden` | Used to toggle visibility or state, typically controlled by JavaScript. |
+
+### Example using Helpers
+
+```html title="index.html"
+<div class="notification is-danger is-light has-text-centered">
+  <button class="delete"></button>
+  This action failed. Please check your credentials.
+</div>
+```
+
+:::info Customization
+The most scalable way to customize Bulma is by using its provided Sass variables. By overriding the `$primary`, `$link`, and `$gap` variables in a custom SCSS file before importing the framework, you can apply your brand identity globally without touching Bulma's core files.
+:::
+
+## Try It Yourself
+
+Now that you've seen some of Bulma's core features, try building a simple layout with a navigation bar, a hero section, and a grid of cards using the framework's components and helpers.
+
+<CodePenEmbed 
+  title="CodeHarborHub Bulma Demo"
+  penId="EaKOKQy"
+/>
+
+## 5. Resources for Further Learning
+
+To dive deeper into Bulma and explore its full feature set, here are some helpful resources to assist you in building and navigating content.
+
+### Official Documentation
+
+The official documentation is the single most important resource, offering detailed explanations and live examples for every component and helper.
+
+* Main Documentation: https://bulma.io/documentation/
+* Getting Started Guide: https://bulma.io/documentation/overview/start/
+
+### Community and Source Code
+
+* Bulma GitHub Repository: View the source code, contribute, or report bugs on the official repository. https://github.com/jgthms/bulma
+* Bulma Expo: A collection of websites and projects built with Bulma, great for design inspiration. https://bulma.io/expo/
