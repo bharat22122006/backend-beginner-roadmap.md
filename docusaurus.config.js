@@ -329,6 +329,12 @@ const config = {
           "latex",
           "markdown",
           "scss",
+          "stylus",
+          "less",
+          "ruby",
+          "rust",
+          "java",
+          
         ],
       },
       docs: {
