@@ -1,1 +1,183 @@
-<ComingSoon />
+---
+title: "Stylus (Flexible Syntax Preprocessor)"
+description: "Learn Stylus, a powerful and expressive CSS preprocessor known for its highly flexible syntax, allowing developers to omit colons, semicolons, and even braces for faster, cleaner authoring."
+keywords: [Stylus CSS, CSS preprocessor, flexible syntax, variables, mixins, indentation, Node.js, mixins]
+tags: [Stylus CSS, CSS preprocessor, flexible syntax, variables, mixins, indentation, Node.js, mixins]
+sidebar_label: Stylus
+---
+
+**Stylus** is a dynamic, expressive, and robust CSS preprocessor written in Node.js. It gained popularity for its **highly flexible syntax**, allowing developers to write stylesheets with minimal punctuation.
+
+Stylus provides all the necessary features of a modern preprocessor—variables, mixins, functions, and conditional logic—but gives the developer complete freedom over how they want to write the code: using full CSS syntax (with braces and semicolons) or a clean, indentation-based syntax (like Python). This flexibility makes it one of the fastest languages to write CSS in.
+
+:::info
+
+You need to save Stylus files with the `.styl` extension. To compile Stylus into CSS, you can use the Stylus command-line tool or integrate it into your build process using task runners like Gulp or Webpack.
+
+:::
+
+<AdsComponent />
+<br />
+
+## 1. The Unique Syntax Flexibility
+
+The core differentiator of Stylus is its optional syntax. You can progressively drop punctuation until you are left with only the selectors and properties.
+
+| Syntax Feature | Standard CSS | SCSS/Less | Stylus (Default) |
+| :--- | :--- | :--- | :--- |
+| **Declaration Separation** | `;` (Semicolon) | `;` (Semicolon) | **Newline** (Optional Semicolon) |
+| **Property/Value** | `:` (Colon) | `:` (Colon) | **Space** (Optional Colon) |
+| **Scope Delimiters** | `{ }` (Braces) | `{ }` (Braces) | **Indentation** (Optional Braces) |
+| **Variables** | N/A | `$`, `@` | **None** (Assignment `=`) |
+
+### Example of Stylus Flexibility
+
+All three examples below compile to the exact same CSS output:
+
+```stylus title="styles.styl"
+// 1. Fully verbose (CSS-like)
+.card {
+    background: #fff;
+    padding: 10px;
+}
+
+// 2. Medium (Colons and braces removed)
+.card
+    background #fff
+    padding 10px
+
+// 3. Minimal (Best practice for speed)
+.card
+    background #fff
+    padding 10px
+```
+
+<AdsComponent />
+<br />
+
+## 2. Key Features of Stylus
+
+### A. Variables (Assignment `=`)
+
+In Stylus, variables are declared simply by assigning a value to an identifier using the equals sign (`=`), with no prefix required.
+
+```stylus title="styles.styl"
+// Define variables
+primary-color = #1e3a8a
+font-base = 16px
+padding-sm = 10px
+
+.container
+    max-width 1200px
+    padding padding-sm
+
+.btn
+    background primary-color
+    font-size font-base
+```
+
+### B. Interpolation
+
+To use a variable as part of a selector name or a property name, you use string interpolation with curly braces `{}`.
+
+```stylus title="styles.styl"
+media = tablet
+
+@media screen and (min-width: 768px)
+    .grid-{media}
+        display grid
+```
+
+**Compilation Result:** `.grid-tablet { display: grid; }`
+
+### C. Nesting and Parent Selector (`&`)
+
+Nesting in Stylus is achieved through indentation. It simplifies the definition of selectors and pseudo-classes.
+
+```stylus title="styles.styl"
+.modal
+    background-color white
+    box-shadow 0 4px 10px rgba(0, 0, 0, 0.1)
+
+    // Nested element
+    .modal-content
+        padding 20px
+        
+    // Parent selector for pseudo-class
+    &:hover
+        box-shadow 0 8px 15px rgba(0, 0, 0, 0.2)
+        
+    // Parent selector for modifier
+    &.is-active
+        display block
+```
+
+<AdsComponent />
+<br />
+
+### D. Mixins and Arguments
+
+Mixins in Stylus can be defined without any special directive. Any block of styles can be reused simply by calling it like a function.
+
+```stylus title="styles.styl"
+// Define a mixin (no special syntax needed)
+flex-center()
+    display flex
+    justify-content center
+    align-items center
+
+// Define a parametric mixin
+border-radius(radius = 5px)
+    -webkit-border-radius radius
+    -moz-border-radius radius
+    border-radius radius
+
+.footer
+    flex-center() // Include mixin
+
+.input-field
+    border-radius(12px) // Include parametric mixin with argument
+```
+
+### E. Functions and Operations
+
+Stylus includes built-in functions for color manipulation, math, and more. All standard mathematical operations are supported.
+
+```stylus title="styles.styl"
+// Calculate color using a built-in function
+btn-bg = #4CAF50
+btn-hover-bg = darken(btn-bg, 15%) // Makes color 15% darker
+
+// Calculate dimensions
+grid-cols = 4
+gutter-width = 20px
+
+.col
+    // Mathematical division
+    width (100% / grid-cols) - gutter-width
+    background-color btn-hover-bg
+```
+
+<AdsComponent />
+<br />
+
+## Try it Yourself!
+
+Now that you've seen the unique syntax and features of Stylus, try it out yourself! Use the embedded CodePen below to experiment with Stylus code and see how it compiles to CSS in real-time.
+
+<CodePenEmbed 
+  title="CodeHarborHub Stylus Demo"
+  penId="VYaVJVq"
+/>
+
+## 3. Resources for Further Learning
+
+To master the unique and expressive capabilities of Stylus, the official documentation is essential.
+
+### Official Documentation
+
+The official site provides comprehensive reference material and deep dives into the more advanced, often language-agnostic, features of Stylus.
+
+  * **Stylus Official Website:** [https://stylus-lang.com/](https://stylus-lang.com/)
+  * **Language Reference:** Review the full list of features and syntax rules. [https://stylus-lang.com/docs/](https://stylus-lang.com/docs/)
+  * **Installation Guide:** Learn how to install and compile Stylus using Node.js. [https://stylus-lang.com/docs/install.html](https://www.google.com/search?q=https://stylus-lang.com/docs/install.html)

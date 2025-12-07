@@ -1,1 +1,199 @@
-<ComingSoon />
+---
+title: "Less (Leaner Style Sheets)"
+description: "Explore Less, a dynamic stylesheet language that extends CSS with features like variables, nesting, mixins, and operations, offering an efficient way to manage large CSS projects."
+keywords: [Less CSS, CSS preprocessor, variables, mixins, nesting, functions, CSS language extension]
+tags: [Less CSS, CSS preprocessor, variables, mixins, nesting, functions, CSS language extension]
+sidebar_label: Less
+---
+
+**Less (Leaner Style Sheets)** is a powerful dynamic stylesheet language that serves as a robust **CSS preprocessor**. Developed earlier than Sass's widespread adoption of the SCSS syntax, Less is distinct because it is written in JavaScript and can be compiled in two ways:
+
+1.  **Client-side:** Via a JavaScript file included in the browser (convenient for development).
+2.  **Server-side/Build Tool:** Compiled into pure CSS using Node.js or task runners (standard for production).
+
+Less shares many core concepts with Sass (variables, mixins, nesting) but often uses slightly different syntax and features, making it a strong alternative, especially in environments where JavaScript integration is preferred.
+
+<AdsComponent />
+<br />
+
+## 1. Core Features of Less
+
+Less aims to improve CSS efficiency and maintainability by introducing programming features into the styling layer.
+
+### A. Variables (`@`)
+
+In Less, variables are declared using the **`@`** symbol. They allow you to define common values for colors, dimensions, and other properties, ensuring consistency across your stylesheet.
+
+```less title="styles.less"
+// Define variables using @
+@base-color: #3b82f6; // Blue
+@link-color: darken(@base-color, 10%);
+@spacing-large: 20px;
+
+.header {
+  background-color: @base-color;
+  padding: @spacing-large;
+}
+
+.nav-link {
+  color: @link-color;
+}
+```
+
+### B. Nesting and Parent Selector (`&`)
+
+Less supports nesting selectors to reflect the HTML structure, which helps organize CSS and reduces the repetition of parent selectors.
+
+The **`&`** parent selector is crucial for referring back to the parent selector, often used for pseudo-classes or modifying classes (similar to BEM modifiers).
+
+```less title="styles.less"
+.card-module {
+  background: white;
+  border-radius: 4px;
+  padding: 15px;
+
+  h3 { // Nested element
+    color: @base-color;
+    margin-bottom: 10px;
+  }
+  
+  // Using the parent selector for pseudo-class (hover)
+  &:hover { 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+```
+
+<AdsComponent />
+<br />
+
+### C. Mixins
+
+Mixins allow you to embed all the properties of one class into another. Unlike Sass's `@include`, Less allows you to use any defined class name as a mixin.
+
+Mixins can also accept parameters, making them highly flexible for reusing style logic.
+
+#### Basic Mixin Example
+
+```less title="styles.less"
+// Define a class that will act as a mixin
+.clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.container {
+  .clearfix(); // Include all properties from .clearfix
+  max-width: 1200px;
+}
+```
+
+#### Parametric Mixin Example
+
+```less title="styles.less"
+// Mixin with arguments and default values
+.border-radius(@radius: 5px) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+.button {
+  // Call the mixin, overriding the default 5px radius
+  .border-radius(10px); 
+  border: 1px solid gray;
+}
+```
+
+### D. Operations (Math)
+
+Less allows you to perform mathematical operations (`+`, `-`, `*`, `/`) directly on numerical values, including units. This is particularly useful for calculating responsive grid widths, spacing, or component dimensions based on a single variable.
+
+```less title="styles.less"
+@columns: 12;
+@gutter: 1.5%;
+@base-font-size: 16px;
+
+.col-4 {
+  // Calculate width dynamically
+  width: (4 / @columns * 100%) - @gutter; 
+}
+
+.text-small {
+  // Calculate font size relative to the base
+  font-size: @base-font-size * 0.85; 
+}
+```
+
+<AdsComponent />
+<br />
+
+## 2. Advanced Less Features
+
+### A. Functions
+
+Less includes a variety of built-in functions, especially for manipulating colors. These functions allow for dynamic adjustments to your palette, ensuring color harmony.
+
+| Function | Purpose | Example |
+| :--- | :--- | :--- |
+| `lighten()` | Makes a color lighter. | `lighten(@base-color, 10%)` |
+| `darken()` | Makes a color darker. | `darken(@base-color, 20%)` |
+| `saturate()` | Makes a color more vivid. | `saturate(@base-color, 15%)` |
+| `fade()` | Changes the opacity of a color. | `fade(@base-color, 50%)` |
+
+### B. Namespaces and Accessors
+
+Less provides a way to logically group styles or variables under a **namespace**, similar to a module. This prevents conflicts and makes code organized.
+
+```less title="styles.less"
+// 1. Define the namespace as a set of rules
+#themes {
+  .dark-mode() {
+    background: #333;
+    color: white;
+  }
+}
+
+.app-container {
+  // 2. Access the mixin inside the namespace
+  #themes > .dark-mode();
+}
+```
+
+### C. Importation (`@import`)
+
+Like Sass, Less supports the `@import` directive to break stylesheets into smaller, more manageable files. By default, Less treats imported files as Less files and merges them before compilation.
+
+```less title="styles.less"
+// Imports and processes the content of _variables.less
+@import "variables.less"; 
+// Imports and processes the content of _buttons.less
+@import "components/buttons"; 
+```
+
+<AdsComponent />
+<br />
+
+## Try It Yourself: CodePen Example
+
+Now that you've seen the core features of Less, try modifying and experimenting with the code in this CodePen example to see how Less can streamline your CSS development process.
+
+<CodePenEmbed 
+  title="CodeHarborHub Less Demo"
+  penId="PwNxaPO"
+/>
+
+## 3. Resources for Further Learning
+
+To effectively use Less in your projects, the official documentation is the primary resource.
+
+### Official Documentation
+
+The Less official site offers comprehensive guides, installation instructions (for Node.js), and detailed examples of all its features.
+
+  * **Less Official Website:** [http://lesscss.org/](http://lesscss.org/)
+  * **Functions Documentation:** Explore all the built-in color manipulation and mathematical functions. [http://lesscss.org/functions/](http://lesscss.org/functions/)
+  * **Mixins Documentation:** Essential guide for mastering parametric mixins. [http://lesscss.org/features/\#mixins-feature](https://www.google.com/search?q=http://lesscss.org/features/%23mixins-feature)
