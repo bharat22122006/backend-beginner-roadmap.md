@@ -1,1 +1,161 @@
-<ComingSoon />
+---
+title: "CSS Performance Optimization Practice"
+labal: "CSS Performance Optimization"
+description: "Practical exercises and techniques to optimize CSS, focusing on reducing rendering time, improving page load speed, and boosting overall performance."
+keywords: [CSS performance optimization, critical CSS, reducing repaint, minimizing reflow, efficient selectors, CSS project performance]
+tags: [CSS performance optimization, critical CSS, reducing repaint, minimizing reflow, efficient selectors, CSS project performance]
+---
+
+Writing performant CSS is essential for a fast, smooth user experience. Poorly structured or oversized CSS can lead to slow page loads, janky scrolling, and poor interaction responsiveness.
+
+This practical guide moves beyond theory, providing concrete steps and code examples to ensure your stylesheets are as lean and fast as possible, focusing on minimizing browser work.
+
+<AdsComponent />
+<br />
+
+## Project 1: Reducing Browser Reflow and Repaint
+
+**Reflow** (or Layout) is the browser recalculating the layout of elements. **Repaint** is the browser redrawing the pixels on the screen. Both are costly, and CSS is often the culprit.
+
+### The Goal
+
+Optimize a simple animation to prevent costly Reflows, using the most performant CSS properties.
+
+### The Problem Code (Reflow Trigger)
+
+Animating properties like `width`, `height`, `top`, `left`, `margin`, and `padding` triggers a Reflow.
+
+```css title="❌ AVOID: Triggers Reflow and Repaint on every frame" showLineNumbers
+.box-problem {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  transition: width 0.5s, height 0.5s;
+}
+
+.box-problem:hover {
+  width: 200px; /* Reflow trigger */
+  height: 200px; /* Reflow trigger */
+}
+````
+
+### The Solution Code (Performant)
+
+The properties `transform` and `opacity` are ideal for high-performance animations because they are handled by the browser's **compositor thread**, minimizing Reflow and Repaint. They often lead to **GPU acceleration**.
+
+```css title="✅ USE: Only triggers Repaint (and ideally, only Compositing)" {6-9,16} showLineNumbers
+.box-solution {
+  width: 100px;
+  height: 100px;
+  background-color: green;
+
+  /* Use scale() instead of changing width/height */
+  transform: scale(1); 
+  /* Hint the browser to prepare for animation */
+  will-change: transform; 
+
+  transition: transform 0.5s ease-out;
+}
+
+.box-solution:hover {
+  /* Only modifies the transform property */
+  transform: scale(1.5); 
+}
+```
+
+## Project 2: Writing Efficient Selectors
+
+The browser reads CSS selectors from **right to left** (the "key selector"). Inefficient selectors force the browser to check too many elements, slowing down styling.
+
+### The Goal
+
+Rewrite inefficient selectors to be faster and more targeted.
+
+### Inefficient Selectors (Right-to-Left Matching)
+
+The browser first finds **all** `div` elements, then checks if their parent is a `section`, and so on.
+
+```css showLineNumbers
+/* ❌ INEFFICIENT: The key selector is 'div' */
+section div.card > p:nth-child(2) {
+  /* ... */
+}
+
+/* ❌ INEFFICIENT: The universal selector '*' is the key selector */
+#main-content * {
+  /* ... */
+}
+```
+
+### Efficient Selectors
+
+Use the key selector to be as specific as possible. Class names are the fastest key selectors.
+
+```css
+/* ✅ EFFICIENT: The key selector is '.card__paragraph' */
+.card__paragraph {
+  /* ... */
+}
+
+/* ✅ EFFICIENT: Targets only the specific class within the section */
+section .card-item {
+  /* ... */
+}
+
+/* ✅ EFFICIENT: Simple ID selector */
+#footer {
+  /* ... */
+}
+```
+
+:::tip Best Practice
+Favor single class selectors over complex nested or attribute selectors, especially for your "key selector" (the rightmost part of the rule). Using methodologies like BEM (Block, Element, Modifier) inherently promotes fast, single-class selectors.
+:::
+
+## Project 3: Utilizing the `will-change` Property
+
+The `will-change` property is a CSS hint for the browser. It tells the browser which properties you intend to change on an element *before* the change happens, allowing it to apply expensive optimizations (like creating a new layer).
+
+### The Goal
+
+Apply `will-change` strategically to an element that will be animated on hover.
+
+<CodePenEmbed 
+  title="Utilizing the `will-change` Property"
+  penId="azNXVgL"
+/>
+
+:::warning
+Only apply `will-change` just before the animation/transition starts, and remove it afterward. Applying it permanently can waste the browser's resources. In the example above, we apply it permanently because it's only two minor properties, but for large, complex animations, manage it with JavaScript or a state-based class.
+:::
+
+## Project 4: Implementing Critical CSS (Theory & Setup)
+
+**Critical CSS** is the minimal, blocking CSS required to render the visible portion of the webpage ("above the fold") instantly. The rest of the CSS is loaded asynchronously (non-blocking). This dramatically improves the *Perceived Performance*.
+
+### The Goal
+
+Understand the principle and workflow for separating Critical CSS.
+
+### Workflow
+
+1.  **Identify Critical CSS:** Use a tool (like **Penthouse** or the **Critical** NPM package) to analyze your HTML/CSS and extract the essential styles needed for the initial viewport view.
+2.  **Inline Critical CSS:** Place this small block of CSS directly inside the `<style>` tags within your HTML's `<head>`.
+3.  **Asynchronously Load Remaining CSS:** Load the full, larger stylesheet using techniques that prevent blocking (e.g., using a `<link rel="preload">` followed by a JavaScript change to `<link rel="stylesheet">`).
+
+## Your Challenge
+
+1.  **Audit Your Code:** Use your browser's DevTools (**Performance** tab) to record a page load. Look for "Layout" and "Recalculate Style" events. Try to identify a performance bottleneck in your CSS.
+2.  **Optimize an Image Slider:** If you have an image slider that uses `left` or `margin-left` to transition between slides, refactor it to use `transform: translateX()` for smooth, performant sliding.
+
+<AdsComponent />
+<br />
+
+## Key Takeaways
+
+| Technique | Goal | Performance Impact |
+| :--- | :--- | :--- |
+| **`transform` / `opacity`** | Animation | High performance; GPU-accelerated (Compositing). |
+| **Efficient Selectors** | Initial Parsing | Faster browser style calculation time. |
+| **Critical CSS** | Perceived Performance | Fastest time to first paint (TTFP) and Largest Contentful Paint (LCP). |
+| **`will-change`** | Animation | Tells the browser to prepare for upcoming costly animations. |
