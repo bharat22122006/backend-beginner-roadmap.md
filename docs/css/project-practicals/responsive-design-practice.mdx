@@ -1,1 +1,81 @@
-<ComingSoon />
+---
+title: "Responsive Design Practice Projects"
+labal: "Responsive Design Practice"
+description: "Master CSS Responsive Design by implementing Media Queries, Fluid Layouts, and Mobile-First approaches in practical projects."
+keywords: [CSS responsive design practice, media queries project, mobile-first design tutorial, fluid layouts CSS, responsive image gallery]
+---
+
+Responsive Web Design (RWD) is a crucial skill in modern frontend development. It ensures your website looks and performs well across a wide range of devices—from small mobile phones to large desktop monitors.
+
+This practical session will guide you through implementing the core principles of RWD, focusing on **Media Queries**, **Fluid Layouts**, and the **Mobile-First** strategy.
+
+Before starting, ensure you are familiar with the concepts in the [Responsiveness](/tutorial/category/responsiveness) section.
+
+<AdsComponent />
+<br />
+
+## Project 1: Building a Responsive Navigation Bar (Mobile-First)
+
+The Mobile-First approach is the industry standard. We start by designing for the smallest screen and add complexity (and wider layouts) as the screen size increases.
+
+### The Goal
+
+Create a simple navigation bar that is stacked vertically on mobile and horizontally aligned on desktops.
+
+<CodePenEmbed 
+  title="Building a Responsive Navigation Bar (Mobile-First)"
+  penId="MYyLOWM"
+/>
+
+## Project 2: A Fluid and Responsive Image Gallery (Flexbox & Media Queries)
+
+Creating responsive grids is the most common use case for RWD. We'll use Flexbox for layout flexibility combined with Media Queries to control the number of columns.
+
+### The Goal
+
+Create an image gallery where images display:
+
+  * **1 column** on mobile.
+  * **2 columns** on tablets.
+  * **4 columns** on desktops.
+
+<CodePenEmbed 
+  title="A Fluid and Responsive Image Gallery (Flexbox & Media Queries)"
+  penId="gbrqXae"
+/>
+
+## Project 3: Responsive Typography and Images (Viewport Units & Fluidity)
+
+True fluidity means scaling elements based on the viewport size, not just fixed breakpoints.
+
+### The Goal
+
+1.  Make the main heading font size scale smoothly with the viewport width.
+2.  Ensure images never overflow their container and scale down gracefully.
+
+<CodePenEmbed 
+  title="Responsive Typography and Images (Viewport Units & Fluidity)"
+  penId="ByKMmzO"
+/>
+
+## Your Challenge
+
+Combine the techniques above to build a complete **responsive pricing card layout**:
+
+1.  **Mobile View:** Pricing cards should be stacked vertically (1-column).
+2.  **Tablet View:** Pricing cards should be arranged horizontally in a 2-column grid.
+3.  **Desktop View:** Pricing cards should be arranged horizontally in a 3-column grid.
+4.  **Fluidity:** Use viewport units for a subtle element (e.g., the price number) and ensure all content remains readable at all breakpoints.
+
+<AdsComponent />
+<br />
+
+## Key Takeaways
+
+  * **Mobile-First (`min-width`):** Write CSS for mobile first, then use `min-width` media queries to apply larger screen styles. This loads less CSS for mobile users.
+  * **The Viewport Meta Tag:** Always include this in your HTML `<head>` for proper scaling:
+    ```html
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    ```
+  * **Fluid Units:** Embrace relative units (`%`, `em`, `rem`) and modern units (`vw`, `vh`, `clamp()`) over fixed pixels where scaling is desired.
+  * **Image Fluidity:** The key responsive image CSS is `max-width: 100%; height: auto;`.
