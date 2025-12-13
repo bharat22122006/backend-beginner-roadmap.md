@@ -260,6 +260,14 @@ const sidebars: SidebarsConfig = {
       href: "/css/introduction",
     },
 
+    // Machine LearningTutorial Structure
+
+    {
+      type: "link",
+      label: "Machine Learning",
+      href: "/machine-learning/introduction",
+    },
+
     // JavaScript Tutorial Structure
 
     {
@@ -1641,6 +1649,257 @@ const sidebars: SidebarsConfig = {
     //   label: "Roadmap",
     //   link: { type: "doc", id: "technical-writer/roadmap" },
     //   items: [],
+    // },
+  ],
+
+  ml: [
+    "machine-learning/introduction",
+    "machine-learning/role-of-ml-engineer",
+    "machine-learning/ml-engineer-vs-ai-engineer",
+    "machine-learning/skills-and-responsibilities",
+    "machine-learning/ml-lifecycle",
+
+    {
+      type: "category",
+      label: "ML Fundamentals",
+      link: {
+        type: "generated-index",
+        title: "Machine Learning Fundamentals",
+        description:
+          "Understand the core concepts of Machine Learning including types of learning, real-world applications, and essential terminology.",
+        keywords: [
+          "machine learning basics",
+          "ai fundamentals",
+          "learning types",
+          "ml introduction",
+        ],
+      },
+      items: [
+        "machine-learning/fundamentals/what-is-ml",
+        "machine-learning/fundamentals/types-of-learning",
+        "machine-learning/fundamentals/ml-workflow",
+        "machine-learning/fundamentals/data-splitting",
+      ],
+    },
+
+    // {
+    //   type: "category",
+    //   label: "Math for ML",
+    //   link: {
+    //     type: "generated-index",
+    //     title: "Essential Math for Machine Learning",
+    //     description:
+    //       "Learn the math behind ML — linear algebra, calculus, statistics, and probability with simplified explanations.",
+    //     keywords: [
+    //       "math for ml",
+    //       "statistics",
+    //       "probability",
+    //       "linear algebra",
+    //       "calculus in ml",
+    //     ],
+    //   },
+    //   items: [
+    //     "machine-learning/math/linear-algebra",
+    //     "machine-learning/math/calculus",
+    //     "machine-learning/math/statistics",
+    //     "machine-learning/math/probability",
+    //   ],
+    // },
+
+    // {
+    //   type: "category",
+    //   label: "Data Preprocessing",
+    //   link: {
+    //     type: "generated-index",
+    //     title: "Data Cleaning & Preprocessing",
+    //     description:
+    //       "Master the data preparation pipeline — handling missing values, scaling, encoding, feature extraction, and more.",
+    //     keywords: [
+    //       "ml data preprocessing",
+    //       "data cleaning",
+    //       "feature engineering",
+    //       "ml pipeline",
+    //     ],
+    //   },
+    //   items: [
+    //     "machine-learning/data-preprocessing/handling-missing-data",
+    //     "machine-learning/data-preprocessing/feature-scaling",
+    //     "machine-learning/data-preprocessing/encoding",
+    //     "machine-learning/data-preprocessing/feature-engineering",
+    //   ],
+    // },
+
+    // {
+    //   type: "category",
+    //   label: "Supervised Learning",
+    //   link: {
+    //     type: "generated-index",
+    //     title: "Supervised Machine Learning",
+    //     description:
+    //       "Learn the full set of supervised ML algorithms — regression, classification, trees, SVMs, and ensembles.",
+    //     keywords: [
+    //       "supervised learning",
+    //       "regression",
+    //       "classification",
+    //       "svm",
+    //       "decision trees",
+    //       "ensemble models",
+    //     ],
+    //   },
+    //   items: [
+    //     {
+    //       type: "category",
+    //       label: "Regression",
+    //       items: [
+    //         "machine-learning/supervised/regression/linear-regression",
+    //         "machine-learning/supervised/regression/polynomial-regression",
+    //         "machine-learning/supervised/regression/ridge-lasso",
+    //       ],
+    //     },
+    //     {
+    //       type: "category",
+    //       label: "Classification",
+    //       items: [
+    //         "machine-learning/supervised/classification/logistic-regression",
+    //         "machine-learning/supervised/classification/knn",
+    //         "machine-learning/supervised/classification/svm",
+    //         "machine-learning/supervised/classification/naive-bayes",
+    //       ],
+    //     },
+    //     {
+    //       type: "category",
+    //       label: "Tree Models",
+    //       items: [
+    //         "machine-learning/supervised/tree-models/decision-tree",
+    //         "machine-learning/supervised/tree-models/random-forest",
+    //         "machine-learning/supervised/tree-models/gradient-boosting",
+    //         "machine-learning/supervised/tree-models/xgboost",
+    //       ],
+    //     },
+    //   ],
+    // },
+
+    // {
+    //   type: "category",
+    //   label: "Unsupervised Learning",
+    //   link: {
+    //     type: "generated-index",
+    //     title: "Unsupervised Machine Learning",
+    //     description:
+    //       "Explore clustering, dimensionality reduction, and anomaly detection techniques used to uncover hidden patterns.",
+    //     keywords: [
+    //       "unsupervised learning",
+    //       "clustering",
+    //       "k-means",
+    //       "pca",
+    //       "anomaly detection",
+    //     ],
+    //   },
+    //   items: [
+    //     "machine-learning/unsupervised/kmeans",
+    //     "machine-learning/unsupervised/hierarchical-clustering",
+    //     "machine-learning/unsupervised/dbscan",
+    //     "machine-learning/unsupervised/pca",
+    //     "machine-learning/unsupervised/anomaly-detection",
+    //   ],
+    // },
+
+    // {
+    //   type: "category",
+    //   label: "Model Evaluation",
+    //   link: {
+    //     type: "generated-index",
+    //     title: "Model Evaluation & Validation",
+    //     description:
+    //       "Learn how to evaluate ML models using metrics, cross-validation, ROC curves, confusion matrices, and more.",
+    //     keywords: [
+    //       "model evaluation",
+    //       "ml metrics",
+    //       "cross validation",
+    //       "confusion matrix",
+    //       "roc auc",
+    //     ],
+    //   },
+    //   items: [
+    //     "machine-learning/evaluation/metrics-regression",
+    //     "machine-learning/evaluation/metrics-classification",
+    //     "machine-learning/evaluation/cross-validation",
+    //     "machine-learning/evaluation/overfitting-underfitting",
+    //   ],
+    // },
+
+    // {
+    //   type: "category",
+    //   label: "Neural Networks",
+    //   link: {
+    //     type: "generated-index",
+    //     title: "Neural Networks & Deep Learning",
+    //     description:
+    //       "Understand the foundations of neural networks, activation functions, backpropagation, optimization, and training techniques.",
+    //     keywords: [
+    //       "neural networks",
+    //       "deep learning",
+    //       "activation functions",
+    //       "backpropagation",
+    //       "optimizers",
+    //     ],
+    //   },
+    //   items: [
+    //     "machine-learning/neural-networks/perceptron",
+    //     "machine-learning/neural-networks/activation-functions",
+    //     "machine-learning/neural-networks/loss-functions",
+    //     "machine-learning/neural-networks/backpropagation",
+    //     "machine-learning/neural-networks/optimizers",
+    //   ],
+    // },
+
+    // {
+    //   type: "category",
+    //   label: "ML Deployment",
+    //   link: {
+    //     type: "generated-index",
+    //     title: "Deploying Machine Learning Models",
+    //     description:
+    //       "Learn how to serve ML models using Flask, FastAPI, Docker, and cloud platforms. Includes versioning and CI/CD.",
+    //     keywords: [
+    //       "ml deployment",
+    //       "mlops",
+    //       "fastapi",
+    //       "docker",
+    //       "model serving",
+    //       "ci cd",
+    //     ],
+    //   },
+    //   items: [
+    //     "machine-learning/deployment/flask",
+    //     "machine-learning/deployment/fastapi",
+    //     "machine-learning/deployment/docker",
+    //     "machine-learning/deployment/mlflow",
+    //   ],
+    // },
+
+    // {
+    //   type: "category",
+    //   label: "Project Practicals",
+    //   link: {
+    //     type: "generated-index",
+    //     title: "Machine Learning Project Practicals",
+    //     description:
+    //       "Hands-on ML projects for real-world learning — from EDA to model training, tuning, and deployment.",
+    //     keywords: [
+    //       "ml projects",
+    //       "ml practicals",
+    //       "machine learning hands on",
+    //       "real world ml",
+    //     ],
+    //   },
+    //   items: [
+    //     "machine-learning/projects/eda-project",
+    //     "machine-learning/projects/regression-project",
+    //     "machine-learning/projects/classification-project",
+    //     "machine-learning/projects/clustering-project",
+    //     "machine-learning/projects/deployment-project",
+    //   ],
     // },
   ],
 };
