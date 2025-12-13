@@ -1,0 +1,86 @@
+---
+title: "The Machine Learning Lifecycle (MLLC)"
+sidebar_label: "ML Lifecycle"
+description: "A step-by-step guide to the Machine Learning Lifecycle, from problem definition and data collection to model deployment and monitoring."
+tags:
+  [
+    ml-lifecycle,
+    mllc,
+    mlops,
+    data-science-process,
+    deployment,
+    monitoring,
+    data-preparation,
+  ]
+---
+
+The Machine Learning Lifecycle (MLLC) is a structured, iterative process that guides an ML team from the initial business problem definition to the final deployment and ongoing maintenance of the predictive model. Unlike traditional software development, the MLLC is heavily reliant on data and model performance.
+
+
+## 1. Business Understanding and Problem Framing
+
+This initial stage determines the project's **feasibility and direction**. Without a clear goal, the entire project is set up for failure.
+
+* **Define the Goal:** What business metric are we trying to improve (e.g., increase customer click-through rate, reduce equipment failure)?
+* **Define the ML Task:** Translate the business goal into a specific ML task (e.g., Is it **Classification** to predict a yes/no outcome? Is it **Regression** to predict a continuous value?).
+* **Define Success:** What is the minimum acceptable performance metric ($P$) for the model to be considered useful? (e.g., 90% accuracy, AUC of 0.85).
+
+## 2. Data Acquisition and Preparation
+
+The most time-consuming stage, where data is gathered, cleaned, and prepared for modeling.
+
+* **Data Acquisition:** Identifying sources (databases, APIs, logs) and extracting the raw data.
+* **Data Cleaning:** Handling missing values, correcting errors, and dealing with outliers.
+* **Feature Engineering:** Creating new, informative variables from the raw data. This step is critical for model performance.
+* **Data Splitting:** Dividing the data into **Training, Validation, and Test** sets to ensure robust model evaluation.
+
+## 3. Model Development and Training
+
+This is where the algorithms come into play, and the model learns from the prepared data.
+
+* **Algorithm Selection:** Choosing an appropriate model based on the ML task (e.g., Linear Regression for simple predictions, Neural Networks for complex image data).
+* **Training:** Feeding the training data to the algorithm and optimizing the model's parameters (e.g., weights and biases) to minimize the **Loss Function**.
+* **Hyperparameter Tuning:** Fine-tuning parameters *outside* of the learning process (e.g., learning rate, number of layers) using the **Validation** set.
+
+## 4. Model Evaluation
+
+Assessing how well the trained model performs and whether it meets the success criteria defined in Step 1.
+
+* **Metric Calculation:** Calculating the defined performance metrics ($P$) using the unseen **Test** set (e.g., Precision, Recall, F1-Score, RMSE).
+* **Bias and Fairness:** Checking for unintended biases in predictions across different groups.
+* **Validation:** Ensuring the model generalizes well and is not **overfitting** (performing great on training data, poorly on new data) or **underfitting** (performing poorly overall).
+
+## 5. Deployment
+
+The process of integrating the model into a live application or business process, making its predictions accessible in real-time.
+
+* **Packaging:** Using **Docker** to containerize the model along with its required dependencies.
+* **Serving:** Deploying the model as an API endpoint (e.g., using Flask/FastAPI) via services like Kubernetes or cloud-native ML platforms.
+* **Testing:** Conducting live tests (e.g., **A/B Testing**) to compare the new model's performance against the old system or baseline.
+
+## 6. Monitoring and Maintenance
+
+The cycle does not end at deployment. Models degrade over time due to changes in real-world data.
+
+* **Performance Monitoring:** Continuously tracking the model's actual performance metrics against the baseline.
+* **Data Drift Detection:** Alerting the team when the characteristics of the *input data* change significantly from the training data, leading to performance decay.
+* **Retraining:** Establishing automated pipelines to retrain and update the model periodically or when performance drops below a critical threshold.
+
+---
+
+<Tabs>
+  <TabItem value="mlops" label="The MLOps Connection">
+    :::important
+    **MLOps** is the practice that makes the MLLC possible in a production environment. It's a set of processes and tools (CI/CD, Monitoring) that ensure the transition between all these stages is seamless, automated, and reliable.
+    :::
+  </TabItem>
+  <TabItem value="iteration" label="Iteration is Key">
+    :::tip
+    The MLLC is a **loop**. If the model fails evaluation (Step 4) or degrades in monitoring (Step 6), the team must iterate back to the Data Preparation (Step 2) or Modeling (Step 3) stages.
+    :::
+  </TabItem>
+</Tabs>
+
+---
+
+This concludes the **Introduction** section of the Machine Learning Tutorial! You now have a solid understanding of what ML is, who builds it, and the process they follow.

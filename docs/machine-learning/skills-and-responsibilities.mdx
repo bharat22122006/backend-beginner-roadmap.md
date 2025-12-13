@@ -1,0 +1,103 @@
+---
+title: "Skills and Responsibilities for ML Engineers"
+sidebar_label: "Essential ML Skills"
+description: "A detailed breakdown of the technical, mathematical, and soft skills required to succeed as a Machine Learning Engineer."
+tags:
+  [
+    ml-skills,
+    responsibilities,
+    career-roadmap,
+    programming,
+    math,
+    mlops,
+    data-skills,
+  ]
+---
+
+Success as a Machine Learning Engineer requires a "triple threat" combination: strong **mathematical/statistical foundations**, robust **programming/engineering skills**, and practical **ML application knowledge**.
+
+## 1. Technical Skills (The "How-to")
+
+These are the tools and languages you will use daily to build and deploy systems.
+
+### A. Programming Mastery: Python
+Python is the undisputed leader in ML. You must go beyond basic syntax and understand:
+
+* **Libraries:** Expert use of **NumPy** (for numerical operations), **Pandas** (for data manipulation), and **Scikit-learn** (for classical ML algorithms).
+* **Performance:** Writing vectorized code, understanding time and space complexity, and optimizing functions.
+* **Software Engineering:** Knowledge of Object-Oriented Programming (OOP), version control (Git), and writing clean, testable code.
+
+### B. Machine Learning Frameworks
+You need proficiency in at least one major Deep Learning framework:
+
+<Tabs>
+  <TabItem value="pytorch" label="PyTorch">
+    :::tip
+    Known for its dynamic computation graph, making it popular for research and flexibility.
+    :::
+    ```py
+    # Example: Defining a simple PyTorch model
+    import torch.nn as nn
+
+    class SimpleNet(nn.Module):
+        def __init__(self):
+            super(SimpleNet, self).__init__()
+            self.linear = nn.Linear(784, 10)
+
+        def forward(self, x):
+            return self.linear(x)
+    ```
+  </TabItem>
+  <TabItem value="tensorflow" label="TensorFlow / Keras">
+    :::tip
+    Known for its production readiness and scalable deployment tools (TFLite, TFServing).
+    :::
+    ```py
+    # Example: Defining a simple Keras model
+    from tensorflow import keras
+    from tensorflow.keras import layers
+
+    model = keras.Sequential([
+        layers.Dense(64, activation='relu', input_shape=(784,)),
+        layers.Dense(10, activation='softmax')
+    ])
+    ```
+  </TabItem>
+</Tabs>
+
+### C. MLOps and Deployment
+This separates a good **Data Scientist** from a functioning **ML Engineer**.
+
+* **Containerization:** Using **Docker** to package models and dependencies.
+* **Orchestration:** Basic understanding of **Kubernetes** for managing containerized applications at scale.
+* **Cloud Platforms:** Experience with ML services on AWS (SageMaker), Google Cloud (Vertex AI), or Azure (Azure ML).
+
+## 2. Foundational Skills (The "Why")
+
+These skills provide the intuition necessary to design, debug, and select the right algorithms.
+
+### A. Mathematics
+* **Linear Algebra:** Understanding vectors, matrices, and matrix operations is crucial for understanding how data is represented and processed in neural networks.
+* **Calculus:** Essential for **optimization**. Concepts like derivatives and gradients are the basis of **Gradient Descent**, the engine that trains nearly all ML models. 
+
+### B. Statistics and Probability
+* **Statistical Modeling:** Understanding hypothesis testing, sampling, and probability distributions.
+* **Model Evaluation:** Knowing when to use $R^2$ vs. F1-Score vs. AUC, and how to interpret confidence intervals.
+
+## 3. Data-Centric Responsibilities
+
+MLEs spend a significant portion of their time working with data.
+
+* **Data Cleaning & Preprocessing:** Handling missing values, transforming categorical variables, and dealing with outliers.
+* **Feature Engineering:** The creative process of transforming raw data into features that best represent the underlying problem. **This often has a bigger impact than changing the algorithm.**
+* **Pipeline Building:** Creating repeatable, efficient, and monitored data workflows using tools like Apache Airflow or cloud-native solutions.
+
+## 4. Soft Skills
+
+:::caution
+Do not underestimate soft skills! An ML project involves many different teams.
+:::
+
+* **Communication:** Translating complex technical results into clear, actionable business recommendations.
+* **Curiosity and Learning:** The ML field evolves rapidly. You must commit to continuous learning of new papers, frameworks, and techniques.
+* **A/B Testing and Experimentation:** Designing experiments to rigorously test the real-world impact of your deployed models.
