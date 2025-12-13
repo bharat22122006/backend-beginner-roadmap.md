@@ -1,0 +1,111 @@
+---
+title: "Scalars - The Foundation"
+sidebar_label: Scalars
+description: "Understanding scalars, the fundamental single-number quantities in linear algebra and machine learning."
+tags:
+  [
+    scalars,
+    linear-algebra,
+    mathematics-for-ml,
+    data-types,
+    magnitude,
+    foundation,
+  ]
+---
+
+Before diving into complex structures like vectors and matrices, we must start with the most fundamental concept in Linear Algebra: the **Scalar**.
+
+Understanding scalars is crucial because they are the building blocks of all mathematical objects used to represent data in Machine Learning.
+
+## 1. What is a Scalar?
+
+A **scalar** is simply a single numerical quantity. It is a value that has **magnitude** (size) but no **direction**.
+
+In the context of data science and machine learning, scalars are single numbers representing an attribute or a quantity.
+
+### Notation
+
+Scalars are typically denoted by standard, non-bold, lowercase letters (e.g., $a, x, y, \lambda$). They belong to a specific set of numbers, such as:
+
+* The set of **Real Numbers** ($\mathbb{R}$).
+* The set of **Integers** ($\mathbb{Z}$).
+
+<Tabs>
+  <TabItem value="definition" label="Formal Definition" default>
+    :::info
+    A scalar is an element of the number field used to define a vector space. For most of ML, this field is the set of **Real Numbers ($\mathbb{R}$)**.
+    :::
+  </TabItem>
+  <TabItem value="examples" label="Physical Examples">
+    * **Temperature:** $30^\circ C$
+    * **Mass:** $5.5\text{ kg}$
+    * **Speed:** $100\text{ km/h}$
+    * **Time:** $2.5\text{ hours}$
+  </TabItem>
+</Tabs>
+
+## 2. Scalars in Machine Learning
+
+In Machine Learning, almost every single point of data is derived from an initial set of scalars.
+
+### A. Feature Values
+In a dataset, individual feature values are scalars.
+
+| Feature Name | Example Value (Scalar) | Description |
+| :--- | :--- | :--- |
+| `House_Size` | $1500$ | The size of the house in square feet. |
+| `Bedrooms` | $3$ | The number of bedrooms. |
+| `Age` | $12$ | The age of the house in years. |
+
+### B. Parameters and Hyperparameters
+Scalars are used to represent the learned parameters within an ML model and the manually set hyperparameters.
+
+* **Learning Rate ($\alpha$)**: A scalar value, typically small (e.g., $\alpha = 0.01$), that controls how much the model's parameters are adjusted during training.
+* **Bias ($b$)**: A single, learned scalar value added to the output of a neuron.
+* **Kernel Size ($k$)**: A scalar defining the size of the kernel in a Convolutional Neural Network (e.g., $k=3$ for a $3\times3$ kernel).
+
+### C. The Cost/Loss Function Output
+The objective of training an ML model is often to minimize a **Cost Function** $J$. The output of this function is always a single scalar value.
+
+$$
+J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)})^2
+$$
+
+:::tip
+The result $J(\theta)$ (the mean squared error) is a single scalar that represents the total error of the model. The training process seeks to find the parameter vector $\theta$ that minimizes this single scalar value.
+:::
+
+## 3. Operations with Scalars
+
+Scalars follow basic arithmetic rules. They are used to scale (or modify the magnitude of) other mathematical objects, which is where the term **scalar multiplication** comes from.
+
+If $x$ is a scalar and $\mathbf{v}$ is a vector, then the operation $x\mathbf{v}$ results in a vector where every component of $\mathbf{v}$ is multiplied by the scalar $x$.
+
+* **Addition:** $a + b$
+* **Multiplication:** $a \cdot b$
+
+<Tabs>
+  <TabItem value="example_op" label="Scalar Operation Example" default>
+
+  Let the scalar $a = 5$ and the scalar $b = 10$.
+
+```
+
+a + b = 15
+a * b = 50
+
+```
+
+</TabItem>
+<TabItem value="scaling" label="Scaling in ML">
+In Feature Scaling (Normalization), you subtract the mean ($\mu$) and divide by the standard deviation ($\sigma$). Both $\mu$ and $\sigma$ are scalars calculated from the training data.
+
+$$
+x_{\text{scaled}} = \frac{x - \mu}{\sigma}
+$$
+</TabItem>
+</Tabs>
+
+---
+
+**Scalars are the fundamental "zero-dimensional" objects. The next step is to combine scalars into ordered lists, giving us direction the concept of a Vector.**
