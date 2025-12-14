@@ -1,0 +1,97 @@
+---
+title: Eigenvalues and Eigenvectors
+sidebar_label: "Eigenvalues & Eigenvectors"
+description: "A beginner-friendly explanation of Eigenvalues and Eigenvectors, their geometric meaning, and their critical role in dimensionality reduction (PCA) and data analysis."
+tags:
+  [
+    eigenvalues,
+    eigenvectors,
+    linear-algebra,
+    mathematics-for-ml,
+    pca,
+    dimensionality-reduction,
+    data-compression,
+  ]
+---
+
+The concepts of Eigenvalues and Eigenvectors are central to many advanced ML techniques, most notably **Principal Component Analysis (PCA)**. They help us understand the fundamental directions of variance and transformation within a dataset.
+
+## 1. The Core Idea: What Do They Represent?
+
+Imagine a matrix $\mathbf{A}$ as a machine that transforms or moves vectors in space (a linear transformation). When you apply this transformation to a random vector, the vector usually changes both its **magnitude** (length) and its **direction**.
+
+An **Eigenvector** is a special vector that, when multiplied by the matrix $\mathbf{A}$, only changes its **magnitude** (it gets scaled or stretched/compressed), but **its direction remains the same**.
+
+The **Eigenvalue** is the scalar value that represents this scaling factor.
+
+### The Eigen-Equation
+
+This relationship is formalized by the core Eigen-equation:
+
+$$
+\mathbf{A}\mathbf{v} = \lambda\mathbf{v}
+$$
+
+* $\mathbf{A}$: The square matrix (the transformation).
+* $\mathbf{v}$: The **Eigenvector** (the special vector that doesn't change direction).
+* $\lambda$: The **Eigenvalue** (the scalar factor by which $\mathbf{v}$ is stretched or compressed).
+
+
+
+## 2. Geometric Analogy: The Spinning Planet
+
+Imagine a spinning planet ($\mathbf{A}$ is the rotation matrix). If you stand on any random spot (a vector $\mathbf{x}$), you will move to a new spot (the direction changes).
+
+However, there are two **special spots** on the planet: the North Pole and the South Pole (the **Eigenvectors**). If you stand on one of those poles, the planet spins beneath you, but you remain at the same point in space. Your direction relative to the center of the planet doesn't change, only your magnitude (your position on the spin axis) is scaled by 1 (or 0, depending on how you define the axis).
+
+## 3. Calculation (Conceptual Overview)
+
+To find the eigenvalues ($\lambda$) and eigenvectors ($\mathbf{v}$), the core equation is rearranged:
+
+$$
+\mathbf{A}\mathbf{v} = \lambda\mathbf{v} \implies \mathbf{A}\mathbf{v} - \lambda\mathbf{v} = 0
+$$
+
+We can factor out $\mathbf{v}$ by substituting $\lambda\mathbf{I}\mathbf{v}$ for $\lambda\mathbf{v}$, where $\mathbf{I}$ is the Identity Matrix:
+
+$$
+(\mathbf{A} - \lambda\mathbf{I})\mathbf{v} = 0
+$$
+
+For a non-zero vector $\mathbf{v}$ to satisfy this equation, the matrix $(\mathbf{A} - \lambda\mathbf{I})$ must be singular, meaning its determinant must be zero:
+
+$$
+\det(\mathbf{A} - \lambda\mathbf{I}) = 0
+$$
+
+1.  **Find $\lambda$:** Solve this equation (the **characteristic equation**) to find the scalar eigenvalues $\lambda$.
+2.  **Find $\mathbf{v}$:** Substitute each found $\lambda$ back into the original equation $(\mathbf{A} - \lambda\mathbf{I})\mathbf{v} = 0$ and solve for the corresponding eigenvector $\mathbf{v}$.
+
+## 4. Eigenvalues and Eigenvectors in ML: PCA
+
+The primary application of this concept in Machine Learning is **Principal Component Analysis (PCA)**, a technique used for **dimensionality reduction**.
+
+### A. The Covariance Matrix
+
+In PCA, we first calculate the **Covariance Matrix** of the dataset, $\mathbf{C}$. This matrix describes how all the features in the dataset vary with respect to each other.
+
+### B. Eigen-Decomposition
+
+We then perform an **eigen-decomposition** on the covariance matrix $\mathbf{C}$:
+
+$$
+\mathbf{C}\mathbf{v} = \lambda\mathbf{v}
+$$
+
+* **The Eigenvectors ($\mathbf{v}$):** These special vectors are the **Principal Components (PCs)**. They represent the new axes or directions in the data space that capture the maximum variance.
+* **The Eigenvalues ($\lambda$):** The magnitude of each eigenvalue tells us **how much variance** is captured along its corresponding eigenvector (Principal Component).
+
+### C. Dimensionality Reduction
+
+To reduce the dimensionality (e.g., from 100 features to 10), we simply:
+
+1.  Calculate all Eigenvalues.
+2.  Select the $k$ eigenvectors (Principal Components) that correspond to the $k$ **largest eigenvalues**.
+3.  These $k$ eigenvectors capture most of the meaningful information (variance) in the dataset, effectively compressing the data while losing minimal information.
+
+Eigenvalues and Eigenvectors help us find the underlying structure of variance in our data. The final topic in Linear Algebra provides another powerful way to decompose and simplify complex matrices.

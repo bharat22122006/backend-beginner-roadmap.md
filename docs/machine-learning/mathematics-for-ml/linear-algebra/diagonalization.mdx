@@ -1,0 +1,90 @@
+---
+title: Diagonalization
+sidebar_label: Diagonalization
+description: "Understanding matrix diagonalization, its geometric meaning as a change of basis, and how it simplifies matrix computations, especially in complex systems and Markov chains."
+tags:
+  [
+    diagonalization,
+    linear-algebra,
+    mathematics-for-ml,
+    change-of-basis,
+    markov-chains,
+    eigen-decomposition,
+  ]
+---
+
+**Diagonalization** is the process of transforming a square matrix $\mathbf{A}$ into an equivalent diagonal matrix $\mathbf{D}$ by using its eigenvectors. This process is fundamentally a **change of basis** that simplifies many complex matrix operations, particularly when dealing with repetitive transformations.
+
+## 1. The Diagonalization Formula
+
+A square matrix $\mathbf{A}$ is diagonalizable if and only if it has a full set of linearly independent eigenvectors. If it is diagonalizable, it can be written as:
+
+$$
+\mathbf{A} = \mathbf{P} \mathbf{D} \mathbf{P}^{-1}
+$$
+
+Let's break down the components:
+
+| Component | Role | Description |
+| :--- | :--- | :--- |
+| $\mathbf{A}$ | Original Matrix | The linear transformation we want to analyze. |
+| $\mathbf{P}$ | Eigenvector Matrix | Columns are the linearly independent eigenvectors of $\mathbf{A}$. |
+| $\mathbf{D}$ | Diagonal Matrix | A diagonal matrix whose diagonal entries are the corresponding eigenvalues of $\mathbf{A}$. |
+| $\mathbf{P}^{-1}$ | Inverse Matrix | The inverse of the eigenvector matrix. |
+
+:::tip Connection to Eigen-Decomposition
+The diagonalization formula is simply a rearrangement of the Eigen-Decomposition formula we saw earlier: $\mathbf{A} = \mathbf{V} \mathbf{\Lambda} \mathbf{V}^{-1}$. Here, $\mathbf{P}$ is the matrix of eigenvectors ($\mathbf{V}$), and $\mathbf{D}$ is the diagonal matrix of eigenvalues ($\mathbf{\Lambda}$).
+:::
+
+## 2. The Geometric Meaning: Change of Basis
+
+The true power of diagonalization lies in its geometric interpretation: **it describes the transformation $\mathbf{A}$ from a simpler perspective.**
+
+* **Step 1: $\mathbf{P}^{-1}$ (Changing the Basis):** This transforms the coordinate system from the standard basis (x, y axes) into the **eigenbasis** (the axes defined by the eigenvectors).
+* **Step 2: $\mathbf{D}$ (The Simple Transformation):** In this new eigenbasis, the complex transformation $\mathbf{A}$ simply becomes a scaling operation $\mathbf{D}$. Diagonal matrices only scale vectors along the axes—the easiest transformation possible!
+* **Step 3: $\mathbf{P}$ (Changing Back):** This transforms the result back from the eigenbasis into the standard coordinate system.
+
+The complex transformation $\mathbf{A}$ can therefore be understood as: **Change to Eigenbasis $\rightarrow$ Scale $\rightarrow$ Change Back**.
+
+## 3. Application: Simplifying Powers of a Matrix
+
+Calculating high powers of a matrix, such as $\mathbf{A}^{100}$, is computationally intensive and tedious. Diagonalization makes this trivial.
+
+If $\mathbf{A} = \mathbf{P} \mathbf{D} \mathbf{P}^{-1}$, then:
+
+$$
+\mathbf{A}^2 = (\mathbf{P} \mathbf{D} \mathbf{P}^{-1})(\mathbf{P} \mathbf{D} \mathbf{P}^{-1})
+$$
+
+Since $\mathbf{P}^{-1}\mathbf{P} = \mathbf{I}$ (the Identity Matrix):
+
+$$
+\mathbf{A}^2 = \mathbf{P} \mathbf{D} (\mathbf{P}^{-1}\mathbf{P}) \mathbf{D} \mathbf{P}^{-1} = \mathbf{P} \mathbf{D} \mathbf{I} \mathbf{D} \mathbf{P}^{-1} = \mathbf{P} \mathbf{D}^2 \mathbf{P}^{-1}
+$$
+
+For any power $k$:
+
+$$
+\mathbf{A}^k = \mathbf{P} \mathbf{D}^k \mathbf{P}^{-1}
+$$
+
+### Why this is simple:
+The power of a diagonal matrix $\mathbf{D}^k$ is found simply by raising each diagonal element to the power $k$.
+
+If $\mathbf{D} = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}$, then $\mathbf{D}^3 = \begin{bmatrix} 2^3 & 0 \\ 0 & 3^3 \end{bmatrix} = \begin{bmatrix} 8 & 0 \\ 0 & 27 \end{bmatrix}$.
+
+## 4. Application in ML: Markov Chains
+
+Diagonalization is critical for analyzing **Markov Chains**, which model systems (like user behavior, or language transitions) that change state over time.
+
+* The system's transition probabilities are captured in a matrix $\mathbf{A}$.
+* The state of the system after many time steps ($k \to \infty$) is given by $\mathbf{A}^k$.
+* By diagonalizing $\mathbf{A}$, we can easily compute $\mathbf{A}^k$ to find the **long-term steady state** (equilibrium) of the system, which is crucial for modeling language, search engine rankings (PageRank), and customer journey analysis.
+
+## Conclusion of Linear Algebra
+
+You have successfully completed the foundational concepts of Linear Algebra! You now understand the basic data structures (scalars, vectors, matrices, tensors) and the core operations (multiplication, transpose, inverse) and decompositions (Eigen-Decomposition, SVD) that underpin all modern Machine Learning algorithms.
+
+---
+
+Your next module will delve into Calculus, the mathematics of change, which is the engine that drives the learning process in ML models.

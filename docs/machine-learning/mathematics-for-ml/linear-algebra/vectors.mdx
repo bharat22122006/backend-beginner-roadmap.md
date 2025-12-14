@@ -1,0 +1,138 @@
+---
+title: "Vectors - Data Representation"
+sidebar_label: Vectors
+description: "A comprehensive guide to vectors, their representation, key properties (magnitude, direction), and fundamental operations in Machine Learning."
+tags:
+  [
+    vectors,
+    linear-algebra,
+    mathematics-for-ml,
+    data-representation,
+    dot-product,
+    magnitude,
+    norm,
+    direction,
+  ]
+---
+
+If a scalar is a single number, a **Vector** is an ordered list of scalars. Vectors are arguably the most important data structure in Machine Learning, as they are how we mathematically represent individual data samples.
+
+## 1. What is a Vector?
+
+A vector is a quantity that has both **magnitude** (length) and **direction**.
+
+In Linear Algebra, a vector is typically represented as a column or row of numbers (scalars).
+
+### Notation and Representation
+
+Vectors are usually denoted by bold, lowercase letters (e.g., $\mathbf{v}, \mathbf{x}, \mathbf{a}$).
+
+A vector $\mathbf{x}$ in $n$-dimensional space ($\mathbb{R}^n$) is represented as:
+
+$$
+\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix}
+$$
+
+* **Components/Elements:** The individual numbers $x_1, x_2, \ldots, x_n$ are the scalar components.
+* **Dimensions:** The number of components, $n$, is the dimension of the vector. A vector in $\mathbb{R}^2$ is a point in a 2D plane; a vector in $\mathbb{R}^{100}$ is a point in 100D space.
+
+## 2. Vectors in Machine Learning
+
+In ML, every single **data sample** or **feature set** is treated as a vector.
+
+### A. Feature Vectors
+
+Consider a dataset for predicting house prices. Each house is a single data sample, which is converted into a vector of features:
+
+$$
+\mathbf{x}_{\text{house}} = \begin{bmatrix} \text{Area} \\ \text{Bedrooms} \\ \text{Age} \end{bmatrix}
+$$
+
+If a specific house has an area of $2000$ sq ft, $4$ bedrooms, and is $5$ years old, its vector representation is:
+
+$$
+\mathbf{x}_1 = \begin{bmatrix} 2000 \\ 4 \\ 5 \end{bmatrix}
+$$
+
+This vector $\mathbf{x}_1$ exists in $\mathbb{R}^3$ space.
+
+### B. Embeddings
+
+In Natural Language Processing (NLP), words or documents are represented as **word embeddings**, which are dense vectors (often in $\mathbb{R}^{300}$ or $\mathbb{R}^{768}$) capturing semantic meaning.
+
+## 3. Key Vector Properties
+
+### A. Magnitude (Length or $\ell_2$-Norm)
+
+The magnitude of a vector, often called the **$\ell_2$-norm** (or Euclidean norm), measures its length from the origin.
+
+For a vector $\mathbf{x} \in \mathbb{R}^n$, the magnitude is calculated as:
+
+$$
+\Vert \mathbf{x} \Vert_2 = \sqrt{\sum_{i=1}^{n} x_i^2} = \sqrt{x_1^2 + x_2^2 + \dots + x_n^2}
+$$
+
+:::tip $\ell_2$-Norm in ML
+The $\ell_2$-norm is used extensively:
+* **Distance:** It is the standard way to measure the distance between two vectors (data points).
+* **Regularization:** In techniques like Ridge Regression, the $\ell_2$-norm of the weight vector is minimized to prevent **overfitting**.
+:::
+
+### B. Direction
+
+The direction of a vector is defined by the components' ratios, independent of the vector's length. A **Unit Vector** ($\hat{\mathbf{x}}$) has a magnitude of 1 and points in the same direction as $\mathbf{x}$.
+
+## 4. Fundamental Vector Operations
+
+### A. Vector Addition
+
+Vectors can be added if they have the same dimension. Addition is done element-wise. Geometrically, vector addition follows the parallelogram rule.
+
+$$
+\mathbf{a} + \mathbf{b} = \begin{bmatrix} a_1 \\ a_2 \end{bmatrix} + \begin{bmatrix} b_1 \\ b_2 \end{bmatrix} = \begin{bmatrix} a_1 + b_1 \\ a_2 + b_2 \end{bmatrix}
+$$
+
+### B. Scalar Multiplication
+
+Multiplying a vector $\mathbf{v}$ by a scalar $c$ changes the vector's magnitude (length) but not its direction (unless $c$ is negative).
+
+$$
+c\mathbf{v} = c \begin{bmatrix} v_1 \\ v_2 \end{bmatrix} = \begin{bmatrix} c \cdot v_1 \\ c \cdot v_2 \end{bmatrix}
+$$
+
+### C. Dot Product (Scalar Product)
+
+The dot product of two vectors $\mathbf{a}$ and $\mathbf{b}$ (of the same dimension $n$) results in a **scalar**. It is calculated by multiplying corresponding elements and summing the results.
+
+$$
+\mathbf{a} \cdot \mathbf{b} = \sum_{i=1}^{n} a_i b_i = a_1 b_1 + a_2 b_2 + \dots + a_n b_n
+$$
+
+The dot product also relates to the angle $\theta$ between the vectors:
+
+$$
+\mathbf{a} \cdot \mathbf{b} = \Vert \mathbf{a} \Vert \Vert \mathbf{b} \Vert \cos(\theta)
+$$
+
+:::caution Dot Product in ML
+The dot product is the core calculation in almost every ML model:
+* **Similarity:** It is used to measure the **similarity** between two vectors (e.g., how similar two word embeddings are).
+* **Weighted Sum:** In a neural network, the input features vector $\mathbf{x}$ is multiplied by the weight vector $\mathbf{w}$ using a dot product: $\mathbf{w} \cdot \mathbf{x}$.
+:::
+
+<Tabs>
+  <TabItem value="dot_example" label="Dot Product Example" default>
+    Let $\mathbf{a} = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$ and $\mathbf{b} = \begin{bmatrix} -1 \\ 3 \end{bmatrix}$.
+
+    $
+    \mathbf{a} \cdot \mathbf{b} = (2)(-1) + (1)(3) = -2 + 3 = 1
+    $
+  </TabItem>
+  <TabItem value="orthogonality" label="Orthogonality (Perpendicular)">
+    If the dot product of two non-zero vectors is zero ($\mathbf{a} \cdot \mathbf{b} = 0$), the vectors are **orthogonal** (perpendicular) to each other, meaning the angle between them is $90^\circ$.
+  </TabItem>
+</Tabs>
+
+---
+
+**Vectors are single data samples. When we combine many data samples, we form a structured grid of numbers the Matrix.**

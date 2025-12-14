@@ -1,0 +1,97 @@
+---
+title: "Singular Value Decomposition (SVD)"
+sidebar_label: SVD
+description: "A detailed explanation of Singular Value Decomposition (SVD), why it is the most general matrix decomposition, its geometric meaning, and its critical applications in dimensionality reduction and recommender systems."
+tags:
+  [
+    svd,
+    singular-value-decomposition,
+    linear-algebra,
+    mathematics-for-ml,
+    pca,
+    recommender-systems,
+    dimensionality-reduction,
+  ]
+---
+
+The **Singular Value Decomposition (SVD)** is the most general and numerically stable way to decompose (factorize) any matrix, $\mathbf{A}$, into three component matrices. It works for square, rectangular, invertible, and non-invertible matrices—unlike Eigen-Decomposition, which requires square matrices.
+
+SVD is a workhorse in data science, used everywhere from image compression to building recommendation engines.
+
+## 1. The SVD Formula
+
+Any $m \times n$ matrix $\mathbf{A}$ can be decomposed into the product of three other matrices:
+
+$$
+\mathbf{A} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T
+$$
+
+Let's break down the components:
+
+| Component | Shape | Properties | Role |
+| :--- | :--- | :--- | :--- |
+| $\mathbf{U}$ | $m \times m$ | **Orthogonal** ($\mathbf{U}^T\mathbf{U} = \mathbf{I}$) | Columns are the **left singular vectors** (basis for the column space of $\mathbf{A}$). |
+| $\mathbf{\Sigma}$ (Sigma) | $m \times n$ | **Diagonal** (non-zero only on the main diagonal) | Diagonal elements are the **singular values** ($\sigma_i$). |
+| $\mathbf{V}^T$ | $n \times n$ | **Orthogonal** ($\mathbf{V}\mathbf{V}^T = \mathbf{I}$) | Rows are the **right singular vectors** (basis for the row space of $\mathbf{A}$). |
+
+### The Singular Values ($\sigma_i$)
+The singular values on the diagonal of $\mathbf{\Sigma}$ are always positive and ordered from largest to smallest ($\sigma_1 \ge \sigma_2 \ge \dots \ge 0$). They quantify the importance or energy along the corresponding singular vectors.
+
+## 2. Geometric Interpretation
+
+SVD reveals that any linear transformation defined by $\mathbf{A}$ can be viewed as a sequence of three simpler, geometric transformations:
+
+1.  A **rotation** or reflection (defined by $\mathbf{V}^T$).
+2.  A **scaling** along the new axes (defined by $\mathbf{\Sigma}$).
+3.  Another **rotation** or reflection (defined by $\mathbf{U}$).
+
+This perspective is crucial for understanding how the matrix transforms data.
+
+## 3. Applications in Machine Learning
+
+SVD's ability to expose the latent structure of a matrix makes it indispensable in ML.
+
+### A. Principal Component Analysis (PCA)
+
+SVD provides a direct and often more efficient way to perform PCA.
+
+* If the input data matrix is $\mathbf{X}$, we can compute the SVD of $\mathbf{X}$: $\mathbf{X} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T$.
+* The **right singular vectors ($\mathbf{V}$)** are the same as the eigenvectors of the covariance matrix ($\mathbf{X}^T\mathbf{X}$), which are the **Principal Components**.
+* The **singular values ($\mathbf{\Sigma}$)** are related to the eigenvalues and directly tell us the variance along each component.
+
+This approach is computationally preferable because it avoids the need to explicitly calculate the potentially large covariance matrix $\mathbf{X}^T\mathbf{X}$.
+
+### B. Low-Rank Approximation (Data Compression)
+
+The singular values tell us how much "information" is stored along each dimension. Since the singular values are ordered ($\sigma_1$ is most important), we can approximate the original matrix $\mathbf{A}$ by keeping only the top $k$ largest singular values and their corresponding vectors.
+
+$$
+\mathbf{A}_k \approx \mathbf{U}_k \mathbf{\Sigma}_k \mathbf{V}_k^T
+$$
+
+* $\mathbf{A}_k$ is a low-rank approximation of $\mathbf{A}$.
+* This is used for image and audio compression, and it's why PCA works well for dimensionality reduction: it throws away the dimensions with the least variance (smallest singular values).
+
+### C. Recommender Systems (Collaborative Filtering)
+
+SVD is used to model the **User-Item Interaction Matrix** in collaborative filtering.
+
+1.  $\mathbf{A}$ is the matrix where rows are users and columns are movies, and entries are ratings.
+2.  SVD decomposes $\mathbf{A}$ into factors that represent latent (hidden) user tastes and latent movie characteristics.
+3.  The middle singular value matrix $\mathbf{\Sigma}$ defines the strength of these latent factors.
+
+By decomposing the matrix, we can fill in the missing ratings and make accurate predictions for items a user has not yet seen.
+
+## 4. SVD vs. Eigen-Decomposition
+
+| Feature | Singular Value Decomposition (SVD) | Eigen-Decomposition |
+| :--- | :--- | :--- |
+| **Matrix Type** | Works for **ALL** $m \times n$ matrices. | Only works for **square** $n \times n$ matrices. |
+| **Component** | $\mathbf{A} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T$ | $\mathbf{A} = \mathbf{V} \mathbf{\Lambda} \mathbf{V}^{-1}$ |
+| **Generality** | More general, numerically stable, and foundational. | Special case of SVD (when $\mathbf{A}$ is symmetric, $\mathbf{U}=\mathbf{V}$). |
+
+:::tip
+In practice, if a matrix is non-square or if you need the most stable result, use SVD. SVD is the foundational method for many modern ML techniques.
+:::
+
+SVD provides a stable way to find the principal axes of a matrix. The final fundamental concept in Linear Algebra is Diagonalization, which links Eigen-Decomposition to simplified matrix algebra.

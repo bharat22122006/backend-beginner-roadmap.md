@@ -1,0 +1,114 @@
+---
+title: Inverse of a Matrix
+sidebar_label: Matrix Inverse
+description: "Defining the inverse of a matrix, its calculation, the condition for invertibility (non-singular), and its essential role in solving linear equations in ML."
+tags:
+  [
+    inverse-matrix,
+    linear-algebra,
+    mathematics-for-ml,
+    invertibility,
+    identity-matrix,
+    solving-linear-systems,
+  ]
+---
+
+The **Inverse of a Matrix** is one of the most powerful concepts in Linear Algebra, as it allows us to "undo" the effects of a matrix transformation and solve systems of linear equations.
+
+## 1. What is the Matrix Inverse?
+
+The inverse of a square matrix $\mathbf{A}$ is another square matrix, denoted $\mathbf{A}^{-1}$, such that when $\mathbf{A}$ is multiplied by $\mathbf{A}^{-1}$, the result is the **Identity Matrix** ($\mathbf{I}$).
+
+### The Definition
+
+For a square matrix $\mathbf{A}$, its inverse $\mathbf{A}^{-1}$ satisfies the condition:
+
+$$
+\mathbf{A}\mathbf{A}^{-1} = \mathbf{A}^{-1}\mathbf{A} = \mathbf{I}
+$$
+
+The Identity Matrix ($\mathbf{I}$) acts like the number '1' in scalar multiplication (i.e., $a \cdot 1 = a$). When multiplied by $\mathbf{I}$, a matrix remains unchanged.
+
+$$
+\mathbf{I} = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix} \quad (\text{For a } 3 \times 3 \text{ matrix})
+$$
+
+## 2. Condition for Invertibility
+
+As we learned in the section on determinants, a matrix $\mathbf{A}$ has an inverse $\mathbf{A}^{-1}$ **if and only if** $\mathbf{A}$ is **non-singular**.
+
+:::danger Invertibility Rule
+A matrix $\mathbf{A}$ is invertible if and only if its determinant is non-zero:
+$$
+\det(\mathbf{A}) \ne 0
+$$
+If $\det(\mathbf{A}) = 0$, the matrix is singular and $\mathbf{A}^{-1}$ does not exist.
+:::
+
+## 3. Calculating the Inverse
+
+Calculating the inverse for large matrices is computationally expensive and complex, but understanding the process for $2 \times 2$ matrices provides key intuition.
+
+### A. $2 \times 2$ Matrix Inverse
+
+For a $2 \times 2$ matrix $\mathbf{A} = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$, the inverse is calculated as:
+
+$$
+\mathbf{A}^{-1} = \frac{1}{\det(\mathbf{A})} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}
+$$
+
+Notice that the inverse calculation requires dividing by the determinant. If $\det(\mathbf{A}) = 0$, the fraction is undefined, proving the non-invertibility condition.
+
+**Example: Inverting a 2x2 Matrix**
+
+Let $\mathbf{A} = \begin{bmatrix} 4 & 1 \\ 2 & 3 \end{bmatrix}$.
+
+1.  **Calculate Determinant:** $\det(\mathbf{A}) = (4)(3) - (1)(2) = 12 - 2 = 10$.
+2.  **Calculate Inverse:**
+    
+    $$
+    \mathbf{A}^{-1} = \frac{1}{10} \begin{bmatrix} 3 & -1 \\ -2 & 4 \end{bmatrix} = \begin{bmatrix} 0.3 & -0.1 \\ -0.2 & 0.4 \end{bmatrix}
+    $$
+
+### B. General Case ($n \times n$)
+
+For $n \times n$ matrices, the inverse is typically calculated using techniques like the **Gauss-Jordan elimination method** or the formula involving the adjoint matrix. In practice, ML libraries like NumPy or PyTorch use highly optimized numerical algorithms to compute the inverse (or pseudo-inverse) efficiently.
+
+## 4. Inverse Matrix in Machine Learning
+
+The primary use of the matrix inverse is to solve systems of linear equations, which forms the basis for many models.
+
+### A. Solving Linear Systems
+
+Consider a system of linear equations represented by:
+
+$$
+\mathbf{A}\mathbf{x} = \mathbf{b}
+$$
+
+Where $\mathbf{A}$ is the matrix of coefficients, $\mathbf{x}$ is the vector of unknowns (the parameters we want to find), and $\mathbf{b}$ is the result vector.
+
+To solve for $\mathbf{x}$, we multiply both sides by $\mathbf{A}^{-1}$:
+
+$$
+\mathbf{A}^{-1} \mathbf{A}\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}
+$$
+Since $\mathbf{A}^{-1}\mathbf{A} = \mathbf{I}$, and $\mathbf{I}\mathbf{x} = \mathbf{x}$:
+
+$$
+\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}
+$$
+
+### B. The Normal Equation in Linear Regression
+
+As mentioned earlier, the closed-form solution for the optimal weight vector ($\mathbf{w}$) in Linear Regression is the Normal Equation:
+
+$$
+\mathbf{w} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}
+$$
+
+The calculation of the inverse of $(\mathbf{X}^T\mathbf{X})$ is the most computationally intensive part of this method. For large datasets, directly calculating the inverse is often avoided in favor of iterative optimization algorithms like **Gradient Descent**.
+
+---
+
+The inverse is crucial for understanding linear dependencies and closed-form solutions. We now move to the two concepts that unlock the power of dimensionality reduction and data compression: Eigenvalues and Eigenvectors.
