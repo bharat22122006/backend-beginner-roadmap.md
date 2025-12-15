@@ -1,0 +1,108 @@
+---
+title: "Matrices - The Dataset"
+sidebar_label: Matrices
+description: "An introduction to matrices, their definition, structure (rows and columns), and their essential role in representing entire datasets and system transformations in ML."
+tags:
+  [
+    matrices,
+    linear-algebra,
+    mathematics-for-ml,
+    data-structure,
+    dataset,
+    dimensions,
+    transformation,
+    weights,
+  ]
+---
+
+Building upon scalars (single numbers) and vectors (lists of numbers), a **Matrix** is a rectangular array of numbers arranged in rows and columns. In Machine Learning, matrices are the primary mathematical objects used to represent entire datasets and the parameters (weights) of a model.
+
+## 1. What is a Matrix?
+
+A matrix is an organized collection of scalars, where each scalar is precisely located by its row and column index.
+
+### Notation and Representation
+
+Matrices are typically denoted by bold, uppercase letters (e.g., $\mathbf{A}, \mathbf{W}, \mathbf{X}$).
+
+A matrix $\mathbf{A}$ with $m$ rows and $n$ columns is called an $m \times n$ matrix (read as "m by n").
+
+$$
+\mathbf{A} = \begin{bmatrix}
+a_{11} & a_{12} & \dots & a_{1n} \\
+a_{21} & a_{22} & \dots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \dots & a_{mn}
+\end{bmatrix}
+$$
+
+* **Elements:** $a_{ij}$ refers to the scalar element located in the $i$-th row and $j$-th column.
+* **Dimensions/Shape:** The shape of $\mathbf{A}$ is $(m, n)$.
+
+## 2. Matrices in Machine Learning
+
+### A. The Dataset Matrix ($\mathbf{X}$)
+
+The entire dataset used to train an ML model is commonly represented as a matrix $\mathbf{X}$.
+
+* **Rows ($m$):** Each row represents a single **data sample** (or vector, $\mathbf{x}^{(i)}$). If you have 1000 houses, $m=1000$.
+* **Columns ($n$):** Each column represents a single **feature** (or variable). If you track size, bedrooms, and age, $n=3$.
+
+For 1000 houses with 3 features: $\mathbf{X}$ is a $1000 \times 3$ matrix.
+
+$$
+\mathbf{X} = \begin{bmatrix}
+\text{Area}_1 & \text{Bedrooms}_1 & \text{Age}_1 \\
+\text{Area}_2 & \text{Bedrooms}_2 & \text{Age}_2 \\
+\vdots & \vdots & \vdots \\
+\text{Area}_{1000} & \text{Bedrooms}_{1000} & \text{Age}_{1000}
+\end{bmatrix}
+$$
+
+### B. Weight Matrices ($\mathbf{W}$)
+
+In Deep Learning, the connections between layers of a neural network are represented by weight matrices.
+
+* If a layer has $n_{in}$ inputs and $n_{out}$ outputs (neurons), the weight matrix $\mathbf{W}$ connecting them has the shape $(n_{out}, n_{in})$.
+* Matrix multiplication ($\mathbf{W}\mathbf{X}$) is the fundamental computation in all neural networks.
+
+## 3. Special Types of Matrices
+
+Certain matrices have unique properties that are vital in solving systems of equations, statistical modeling, and transformations.
+
+| Matrix Type | Description | Example ($3 \times 3$) | ML Application |
+| :--- | :--- | :--- | :--- |
+| **Square Matrix** | Number of rows equals number of columns ($m=n$). | $\begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix}$ | Used for calculating determinants, inverses, and eigenvalues. |
+| **Identity Matrix** ($\mathbf{I}$) | A square matrix with ones on the main diagonal and zeros everywhere else. | $\begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$ | Acts as the number '1' in matrix multiplication ($\mathbf{A}\mathbf{I} = \mathbf{A}$). |
+| **Symmetric Matrix** | $\mathbf{A}$ equals its own transpose ($\mathbf{A} = \mathbf{A}^T$). | $\begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 5 \\ 3 & 5 & 6 \end{bmatrix}$ | Covariance matrices (in statistics/PCA) are always symmetric. |
+
+## 4. Vector as a Matrix
+
+A vector can be considered a special case of a matrix:
+
+* **Column Vector:** An $m \times 1$ matrix.
+* **Row Vector:** A $1 \times n$ matrix.
+
+## 5. Matrix Operations (Preview)
+
+We will dedicate the next section to matrix operations, but here are the key concepts that define how matrices interact:
+
+### A. Matrix Transpose ($\mathbf{A}^T$)
+The transpose flips the matrix over its diagonal, turning rows into columns and columns into rows. If $\mathbf{A}$ is $m \times n$, $\mathbf{A}^T$ is $n \times m$.
+
+If $\mathbf{A} = \begin{bmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{bmatrix}$ (3x2), then $\mathbf{A}^T = \begin{bmatrix} 1 & 3 & 5 \\ 2 & 4 & 6 \end{bmatrix}$ (2x3).
+
+### B. Matrix Multiplication ($\mathbf{A}\mathbf{B}$)
+This is the single most important operation in ML. It is **not** element-wise. The product $\mathbf{A}\mathbf{B}$ is only defined if the number of columns in $\mathbf{A}$ equals the number of rows in $\mathbf{B}$.
+
+$$
+\text{Shape}(m \times k) \cdot \text{Shape}(k \times n) = \text{Shape}(m \times n)
+$$
+
+:::tip Matrix Multiplication in ML
+In a neural network, if $\mathbf{X}$ is the input data matrix and $\mathbf{W}$ is the weight matrix, the computation for the first layer is $\mathbf{Z} = \mathbf{X}\mathbf{W}$. This single operation efficiently calculates the weighted sum for *all* data samples at once.
+:::
+
+---
+
+**Matrices are the backbone for representing data and model parameters. The operations performed on these matrices are what allow ML algorithms to learn.**

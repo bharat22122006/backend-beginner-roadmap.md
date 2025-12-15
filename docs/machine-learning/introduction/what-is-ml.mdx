@@ -24,32 +24,30 @@ A widely accepted, formal definition of Machine Learning was provided by compute
 
 Let's break down this concept with a simple example: **Spam Filtering**.
 
-| Component | Description | Spam Filtering Example |
-| :--- | :--- | :--- |
-| **Task ($T$)** | The problem the ML system is trying to solve. | Classifying an email as "Spam" or "Not Spam (Ham)". |
-| **Experience ($E$)** | The data the ML system uses to train itself. | A large dataset of historical emails labeled as either spam or ham. |
-| **Performance ($P$)** | A metric used to evaluate the system's success. | **Accuracy:** The percentage of emails correctly classified. |
+| Component             | Description                                     | Spam Filtering Example                                              |
+| :-------------------- | :---------------------------------------------- | :------------------------------------------------------------------ |
+| **Task ($T$)**        | The problem the ML system is trying to solve.   | Classifying an email as "Spam" or "Not Spam (Ham)".                 |
+| **Experience ($E$)**  | The data the ML system uses to train itself.    | A large dataset of historical emails labeled as either spam or ham. |
+| **Performance ($P$)** | A metric used to evaluate the system's success. | **Accuracy:** The percentage of emails correctly classified.        |
 
 :::tip
-The core idea is that the program's ability to classify new, unseen emails gets better the more labeled examples it processes. The program *learns* the rules itself.
+The core idea is that the program's ability to classify new, unseen emails gets better the more labeled examples it processes. The program _learns_ the rules itself.
 :::
 
 ## ML vs. Traditional Programming
 
 This is the most crucial concept when starting out. Machine Learning fundamentally shifts the paradigm of software development.
 
-
-
 <Tabs>
   <TabItem value="traditional" label="Traditional Programming" default>
 
-  In traditional programming, you (the programmer) write explicit **Rules** (algorithms, logic, conditions) that process **Data** to produce an **Answer**.
+In traditional programming, you (the programmer) write explicit **Rules** (algorithms, logic, conditions) that process **Data** to produce an **Answer**.
 
-  ```mermaid
-  graph LR
-      A[Data] --> B(Rules/Program);
-      B --> C[Answer];
-  ```
+```mermaid
+graph LR
+    A[Data] --> B(Rules/Program);
+    B --> C[Answer];
+```
 
 **Example (Temperature Conversion):**
 You explicitly write the formula: `Fahrenheit = (Celsius * 9/5) + 32`. The computer executes this static rule.
@@ -67,26 +65,47 @@ graph LR
 ```
 
 **Example (Predicting House Price):**
-You feed it past house data (size, location) and the final sale price. The ML algorithm creates a complex mathematical model (the "Rule") that predicts the price of a *new* house based on its features.
+You feed it past house data (size, location) and the final sale price. The ML algorithm creates a complex mathematical model (the "Rule") that predicts the price of a _new_ house based on its features.
 
 </TabItem>
 </Tabs>
 
 ## Key Characteristics of Machine Learning
 
-  * **Data-Driven:** ML models require vast amounts of high-quality data to learn effectively.
-  * **Automatic Pattern Discovery:** The system discovers hidden patterns, correlations, and rules in the data without human intervention.
-  * **Generalization:** A good ML model can accurately predict or classify data it has never seen before (its performance improves with experience $E$).
-  * **Iterative Process:** Developing an ML model is a cyclical process of data collection, training, evaluation, and refinement.
+- **Data-Driven:** ML models require vast amounts of high-quality data to learn effectively.
+- **Automatic Pattern Discovery:** The system discovers hidden patterns, correlations, and rules in the data without human intervention.
+- **Generalization:** A good ML model can accurately predict or classify data it has never seen before (its performance improves with experience $E$).
+- **Iterative Process:** Developing an ML model is a cyclical process of data collection, training, evaluation, and refinement.
 
 ## Where is ML Used?
 
 Machine Learning is the engine behind many everyday technologies:
 
-| Domain | Application | ML Task |
-| :--- | :--- | :--- |
-| **E-commerce** | Recommendation Systems (e.g., "People who bought X also bought Y") | Classification / Ranking |
-| **Healthcare** | Tumor detection in X-rays or MRIs | Image Segmentation / Classification |
-| **Finance** | Fraud detection in credit card transactions | Anomaly Detection / Classification |
-| **Speech** | Voice assistants (Siri, Alexa) | Natural Language Processing (NLP) |
-| **Transportation**| Self-driving cars | Computer Vision / Reinforcement Learning |
+| Domain             | Application                                                        | ML Task                                  |
+| :----------------- | :----------------------------------------------------------------- | :--------------------------------------- |
+| **E-commerce**     | Recommendation Systems (e.g., "People who bought X also bought Y") | Classification / Ranking                 |
+| **Healthcare**     | Tumor detection in X-rays or MRIs                                  | Image Segmentation / Classification      |
+| **Finance**        | Fraud detection in credit card transactions                        | Anomaly Detection / Classification       |
+| **Speech**         | Voice assistants (Siri, Alexa)                                     | Natural Language Processing (NLP)        |
+| **Transportation** | Self-driving cars                                                  | Computer Vision / Reinforcement Learning |
+
+<Tabs>
+  <TabItem value="en" label="In English" default>
+    <LiteYouTubeEmbed
+      id="MAKw4DrYMWA"
+      params="autoplay=1&autohide=1&showinfo=0&rel=0"
+      title="What is Machine Learning (ML)?"
+      poster="maxresdefault"
+      webp
+    />
+  </TabItem>
+  <TabItem value="hi" label="In Hindi">
+    <LiteYouTubeEmbed
+      id="cE-Ej1ycXtk"
+      params="autoplay=1&autohide=1&showinfo=0&rel=0"
+      title="What is Machine Learning With Full Information?"
+      poster="maxresdefault"
+      webp
+    />
+  </TabItem>
+</Tabs>

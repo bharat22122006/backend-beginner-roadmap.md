@@ -1,0 +1,133 @@
+---
+title: "Matrix Operations"
+sidebar_label: Matrix Operations
+description: "Mastering the fundamental matrix operations: addition, subtraction, scalar multiplication, matrix transpose, and the crucial matrix multiplication used in all neural networks."
+tags:
+  [
+    matrix-operations,
+    linear-algebra,
+    mathematics-for-ml,
+    matrix-multiplication,
+    transpose,
+    hadamard-product,
+    dot-product,
+  ]
+---
+
+Matrices are the backbone of data representation in ML, and **matrix operations** are the algorithms that allow us to process, transform, and learn from that data. These operations are essential for implementing and understanding deep learning models.
+
+## 1. Matrix Addition and Subtraction
+
+Matrices can be added or subtracted only if they have the **exact same dimensions** (the same number of rows and columns).
+
+The operation is performed **element-wise**: the element at position $(i, j)$ in the resulting matrix is the sum (or difference) of the elements at $(i, j)$ in the original matrices.
+
+Let $\mathbf{A}$ and $\mathbf{B}$ be $m \times n$ matrices.
+
+$$
+(\mathbf{A} + \mathbf{B})_{ij} = a_{ij} + b_{ij}
+$$
+
+**Example:**
+
+If $\mathbf{A} = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$ and $\mathbf{B} = \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix}$:
+
+$$
+\mathbf{A} + \mathbf{B} = \begin{bmatrix} 1+5 & 2+6 \\ 3+7 & 4+8 \end{bmatrix} = \begin{bmatrix} 6 & 8 \\ 10 & 12 \end{bmatrix}
+$$
+
+## 2. Scalar-Matrix Multiplication
+
+This operation involves multiplying every element of the matrix $\mathbf{A}$ by a single scalar $c$.
+
+$$
+(c\mathbf{A})_{ij} = c \cdot a_{ij}
+$$
+
+**Example (Feature Scaling):**
+
+If you apply a scalar penalty $\lambda$ (from L2 Regularization) to a matrix of weights $\mathbf{W}$, you perform scalar multiplication $\lambda \mathbf{W}$.
+
+## 3. Matrix Transpose ($\mathbf{A}^T$)
+
+The transpose operation flips a matrix over its main diagonal, swapping the row and column indices.
+
+* If $\mathbf{A}$ is an $m \times n$ matrix, its transpose $\mathbf{A}^T$ is an $n \times m$ matrix.
+* The element $a_{ij}$ in $\mathbf{A}$ becomes the element $a_{ji}$ in $\mathbf{A}^T$.
+
+$$
+(\mathbf{A}^T)_{ji} = a_{ij}
+$$
+
+**Example:**
+
+If $\mathbf{A} = \begin{bmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{bmatrix}$ (3x2), then $\mathbf{A}^T = \begin{bmatrix} 1 & 3 & 5 \\ 2 & 4 & 6 \end{bmatrix}$ (2x3).
+
+:::tip Transpose in ML
+The transpose is essential in:
+1.  **Formulas:** Many linear algebra formulas, such as the Normal Equation in Linear Regression, rely on the transpose: $\theta = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}$.
+2.  **Compatibility:** It is often used to ensure matrices have compatible dimensions for multiplication (e.g., multiplying a row vector by a column vector).
+:::
+
+## 4. Matrix Multiplication ($\mathbf{A}\mathbf{B}$) - The Core Operation
+
+Matrix multiplication is the single most important operation in Machine Learning. It is the basis for all layer-to-layer computations in neural networks and linear models.
+
+### A. Dimensionality Requirement
+The product $\mathbf{A}\mathbf{B}$ is only defined if the number of **columns in $\mathbf{A}$ equals the number of rows in $\mathbf{B}$**.
+
+$$
+\text{Shape}(m \times \mathbf{k}) \cdot \text{Shape}(\mathbf{k} \times n) = \text{Shape}(m \times n)
+$$
+
+### B. The Calculation
+The element $(\mathbf{A}\mathbf{B})_{ij}$ is computed by taking the **dot product** of the $i$-th row of $\mathbf{A}$ and the $j$-th column of $\mathbf{B}$.
+
+$$
+(\mathbf{A}\mathbf{B})_{ij} = \sum_{l=1}^{k} a_{il} b_{lj}
+$$
+
+
+### C. Matrix Multiplication in Deep Learning
+
+Consider an input matrix $\mathbf{X}$ (data samples) and a weight matrix $\mathbf{W}$ for a neural network layer. The computation for that layer's output $\mathbf{Z}$ is:
+
+$$
+\mathbf{Z} = \mathbf{X}\mathbf{W}
+$$
+
+If $\mathbf{X}$ is $100 \times 10$ (100 samples, 10 features) and $\mathbf{W}$ is $10 \times 5$ (10 inputs, 5 neurons in the next layer), the output $\mathbf{Z}$ will be $100 \times 5$. This single operation computes the weighted sum for all 100 data points simultaneously.
+
+## 5. Element-Wise Product (Hadamard Product, $\mathbf{A} \odot \mathbf{B}$)
+
+The Hadamard product is a simple element-wise multiplication that requires matrices to have the **exact same dimensions**. It is *not* the same as standard matrix multiplication.
+
+$$
+(\mathbf{A} \odot \mathbf{B})_{ij} = a_{ij} \cdot b_{ij}
+$$
+
+**Example:**
+If $\mathbf{A} = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$ and $\mathbf{B} = \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix}$:
+
+$$
+\mathbf{A} \odot \mathbf{B} = \begin{bmatrix} 1 \cdot 5 & 2 \cdot 6 \\ 3 \cdot 7 & 4 \cdot 8 \end{bmatrix} = \begin{bmatrix} 5 & 12 \\ 21 & 32 \end{bmatrix}
+$$
+
+---
+
+## References and Resources
+
+To deepen your understanding of Linear Algebra for Machine Learning, consider these excellent resources:
+
+### Textbooks and Online Courses
+* **Deep Learning (Book by Ian Goodfellow, Yoshua Bengio, and Aaron Courville):** Chapter 2 provides a fantastic summary of Linear Algebra concepts specifically for DL. (Available free online).
+* **Linear Algebra and Its Applications** by Gilbert Strang: A highly-regarded and intuitive textbook for understanding the fundamentals.
+* **Khan Academy:** Offers free, comprehensive video lessons on Linear Algebra basics, covering all the operations discussed here.
+
+### Python Resources
+* **NumPy Documentation:** The library implements all these matrix operations efficiently. Reviewing their documentation is essential for practical ML work.
+* **Jupyter Notebooks:** Practice implementing these operations yourself using `numpy.dot()` for matrix multiplication and standard operators (`+`, `*`) for element-wise operations.
+
+---
+
+With the core operations understood, the next step in Linear Algebra is learning about special matrix properties that allow us to solve complex systems of equations.

@@ -1,0 +1,126 @@
+---
+title: "Tensors - The Multidimensional Data"
+sidebar_label: Tensors
+description: "Defining tensors as generalized matrices, their ranks (order), and their crucial role in representing complex data types like images and video in Deep Learning frameworks (PyTorch, TensorFlow)."
+tags:
+  [
+    tensors,
+    linear-algebra,
+    mathematics-for-ml,
+    deep-learning,
+    rank,
+    dimensionality,
+    pytorch,
+    tensorflow,
+  ]
+---
+
+While scalars, vectors, and matrices are sufficient for classical Machine Learning, **Deep Learning** requires structures that can handle data with multiple dimensions, such as color images, video sequences, and time series data. This is where the concept of a **Tensor** becomes essential.
+
+## 1. What is a Tensor?
+
+A tensor is a generalization of scalars, vectors, and matrices to an arbitrary number of dimensions, or **ranks**.
+
+In the context of Deep Learning frameworks like TensorFlow and PyTorch, a tensor is the fundamental data structure used to store all inputs, outputs, and parameters (weights/biases).
+
+## 2. Tensor Rank (Order)
+
+The **rank** (or **order**) of a tensor defines the number of dimensions it possesses.
+
+| Rank | Name | Description | Example Data | Shape |
+| :--- | :--- | :--- | :--- | :--- |
+| **0** | **Scalar** | A single number. | A single pixel's intensity (e.g., 255). | () or [1] |
+| **1** | **Vector** | A list of numbers. | A single word embedding. | [D] |
+| **2** | **Matrix** | A 2D array (rows/columns). | An entire tabular dataset, or a grayscale image. | [R, C] |
+| **3** | **3-Tensor** | A 3D array (cube). | A single color image (Height, Width, Color Channel). | [H, W, C] |
+| **4** | **4-Tensor** | A collection of 3-Tensors. | A batch of color images processed together. | [B, H, W, C] |
+
+## 3. Tensors in Deep Learning
+
+### A. Representing Images (3-Tensor)
+
+A single RGB color image is represented as a Rank 3 tensor.
+
+* **Dimension 1 (Height - H):** The number of vertical pixels.
+* **Dimension 2 (Width - W):** The number of horizontal pixels.
+* **Dimension 3 (Channels - C):** For RGB, this dimension has a size of 3 (one layer each for Red, Green, and Blue).
+
+$$
+\text{Image Tensor Shape} = [\text{H}, \text{W}, 3]
+$$
+
+### B. Batched Data (4-Tensor)
+
+In Deep Learning, we don't train on one sample at a time; we use **batches** to speed up computation on GPUs. Adding the batch size creates a Rank 4 tensor.
+
+$$
+\text{Batch of Images Tensor Shape} = [\text{Batch Size}, \text{H}, \text{W}, 3]
+$$
+
+### C. Sequences and Text (3- or 4-Tensor)
+
+Text, video, and time series data are also represented by high-rank tensors:
+
+| Data Type | Tensor Shape | Rank |
+| :--- | :--- | :--- |
+| **Text Sequence** | [Sequence Length, Embedding Dimension] | 2 |
+| **Video Clip** | [Frames, H, W, Channels] | 4 |
+
+## 4. Tensor Operations
+
+In Deep Learning frameworks, all mathematical operations—from matrix multiplication to calculating gradients—are performed on tensors. These operations are highly optimized for parallel processing on GPUs/TPUs.
+
+### A. Element-wise Operations
+Operations like addition, subtraction, and multiplication (Hadamard product) are performed by matching the corresponding elements in two tensors of the same shape.
+
+### B. Broadcasting
+This is a mechanism that allows arithmetic operations to be performed on tensors of different, but compatible, shapes.
+
+:::tip Example of Broadcasting
+If you want to add a vector $\mathbf{b}$ (e.g., a bias term) to every row of a matrix $\mathbf{A}$, the framework will automatically "stretch" or "copy" the vector $\mathbf{b}$ across the rows of $\mathbf{A}$ to match the dimensions, allowing the addition to occur.
+:::
+
+### C. Reduction Operations
+These operations reduce the rank of the tensor, typically by collapsing one or more dimensions.
+
+* **Summation:** Summing all elements across a specific dimension.
+* **Mean:** Calculating the average across a dimension.
+
+## 5. Implementation in Frameworks
+
+<Tabs>
+  <TabItem value="pytorch" label="PyTorch Implementation" default>
+    ```python
+    import torch
+
+    # Create a 3x4 matrix (Rank 2 Tensor)
+    matrix_a = torch.tensor([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
+    print(matrix_a.shape)
+    # Output: torch.Size([3, 4])
+
+    # Create a Rank 3 Tensor (e.g., a batch of 2, 3x3 images with 1 channel)
+    tensor_3d = torch.zeros(2, 3, 3, 1)
+    print(tensor_3d.ndim) # Number of dimensions (rank)
+    # Output: 4
+    ```
+  </TabItem>
+  <TabItem value="tensorflow" label="TensorFlow Implementation">
+    ```python
+    import tensorflow as tf
+
+    # Create a 3x4 matrix (Rank 2 Tensor)
+    matrix_a = tf.constant([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
+    print(matrix_a.shape)
+    # Output: (3, 4)
+
+    # Creating a tensor of Rank 4 (e.g., batch of images)
+    tensor_4d = tf.zeros(shape=(16, 224, 224, 3))
+    print(tensor_4d.ndim) # Number of dimensions (rank)
+    # Output: 4
+    ```
+  </TabItem>
+</Tabs>
+
+---
+
+Tensors are the generalized containers for all data in modern ML. Now that we understand the structures (scalars, vectors, matrices, tensors), we must learn the rules for combining and manipulating them.
