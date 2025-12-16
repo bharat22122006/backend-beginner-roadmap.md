@@ -1,0 +1,62 @@
+---
+title: "Graph Theory Basics"
+sidebar_label: Graph Theory
+description: "Exploring the fundamentals of graph theory, including nodes, edges, adjacency matrices, and their applications in neural networks and Knowledge Graphs."
+tags: [graph-theory, discrete-math, networks, adjacency-matrix, mathematics-for-ml, gnn]
+---
+
+In Machine Learning, we often need to model relationships between entities. **Graph Theory** provides the mathematical framework for representing and analyzing networks of interconnected data, from the structure of a Neural Network to the relationships in a social media dataset.
+
+## 1. What is a Graph?
+
+A graph $G = (V, E)$ consists of two sets:
+* **Vertices (Nodes) $V$:** The entities or points in the network (e.g., users, neurons, cities).
+* **Edges $E$:** The connections between the nodes (e.g., friendships, synaptic weights, roads).
+
+## 2. Types of Graphs
+
+The nature of the relationship determines the type of graph used:
+
+| Type | Description | ML Application |
+| :--- | :--- | :--- |
+| **Undirected** | Edges have no direction (A-B is same as B-A). | Collaborative Filtering (User-Item similarity). |
+| **Directed (Digraph)** | Edges point from one node to another ($A \to B$). | **Neural Networks** (Information flows forward). |
+| **Weighted** | Edges have numerical values assigned to them. | **Weights in a Neural Network** or distances. |
+| **Cyclic / Acyclic** | Whether you can follow edges to return to a start node. | **Directed Acyclic Graphs (DAGs)** are used in computation pipelines. |
+
+## 3. Representing Graphs Mathematically
+
+To process graphs with algorithms, we must represent them as numbers or matrices.
+
+### A. Adjacency Matrix
+A square matrix where the entry $A_{ij}$ is 1 if there is an edge between node $i$ and node $j$, and 0 otherwise.
+
+* **Symmetric:** For undirected graphs.
+* **Asymmetric:** For directed graphs.
+
+### B. Adjacency List
+A collection of lists where each node has a list of the other nodes it is connected to. This is more memory-efficient for **sparse graphs** (where most nodes aren't connected).
+
+## 4. Graph Theory in Machine Learning
+
+### A. Neural Network Architecture
+A Neural Network is a directed, weighted graph. The neurons are nodes, and the weights are the directed edges. Training the network is essentially updating the weights (edge values) of this graph.
+
+### B. Knowledge Graphs
+Companies like Google and Meta use Knowledge Graphs to store facts about the world. Entities (like "Albert Einstein") are nodes, and relationships (like "Born In") are edges. This allows for advanced reasoning and semantic search.
+
+### C. Graph Neural Networks (GNNs)
+GNNs are a class of deep learning models designed to perform inference on data described by graphs. They are used for:
+* **Molecular Discovery:** Atoms are nodes, bonds are edges.
+* **Fraud Detection:** Detecting suspicious patterns in transaction networks.
+* **Recommendation Systems:** Predicting new edges (purchases) between User nodes and Item nodes.
+
+## 5. Key Graph Algorithms
+
+* **Shortest Path (Dijkstra’s):** Used in routing and logistics.
+* **PageRank:** The original algorithm behind Google Search, which ranks nodes based on their "importance" in the network.
+* **Community Detection:** Finding clusters of nodes that are more densely connected to each other than to the rest of the network (Clustering).
+
+---
+
+This concludes our module on Discrete Mathematics. You now have the tools for logic, counting, and networking. Next, we enter the final and most critical pillar of ML mathematics: Probability and Statistics.

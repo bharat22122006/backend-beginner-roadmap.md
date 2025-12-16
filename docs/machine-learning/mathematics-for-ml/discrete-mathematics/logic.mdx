@@ -1,0 +1,71 @@
+---
+title: "Logic and Boolean Algebra"
+sidebar_label: Logic
+description: "Exploring propositional logic, logical operators, and Boolean algebra as the basis for decision-making algorithms and binary classification."
+tags: [logic, boolean-algebra, discrete-math, truth-tables, decision-trees, binary-logic]
+---
+
+At the most granular level, computers and Machine Learning algorithms operate on **Logic**. Whether it's a Decision Tree splitting data based on a condition or a Neural Network using a step function, **Propositional Logic** and **Boolean Algebra** are the tools used to formalize these decisions.
+
+## 1. Propositional Logic
+
+A **proposition** is a declarative statement that is either **True (T)** or **False (F)**. In ML, we often use propositions to evaluate features.
+
+* **Example Proposition ($P$):** "The house has more than 3 bedrooms."
+* **Example Proposition ($Q$):** "The price is less than $500,000."
+
+### Logical Operators
+We combine propositions using logical operators to create complex decision boundaries.
+
+| Operator | Symbol | Meaning | ML Context |
+| :--- | :--- | :--- | :--- |
+| **AND** | $\land$ | Both must be true. | Feature A > 10 **AND** Feature B < 5. |
+| **OR** | $\lor$ | At least one must be true. | If Category is "Dog" **OR** "Cat", then "Pet". |
+| **NOT** | $\neg$ | Reverses the value. | If **NOT** (Missing Value). |
+| **XOR** | $\oplus$ | Exactly one is true. | Binary features that are mutually exclusive. |
+
+## 2. Truth Tables
+
+A truth table lists all possible combinations of inputs and the resulting output. This is the simplest way to visualize a discrete function.
+
+**Example: The AND ($\land$) Operator**
+
+| $P$ | $Q$ | $P \land Q$ |
+| :--- | :--- | :--- |
+| T | T | **T** |
+| T | F | F |
+| F | T | F |
+| F | F | F |
+
+## 3. Boolean Algebra in Machine Learning
+
+Boolean Algebra is the branch of mathematics that deals with variables that have two values: $\{0, 1\}$.
+
+### A. Binary Classification
+In binary classification, our target variable $y$ is a Boolean. We use logic to determine the threshold:
+If $P(\text{Class}=1) > 0.5$, then **True**, else **False**.
+
+### B. Decision Trees
+Decision Trees are essentially a nested series of logical "IF-THEN-ELSE" statements. Each node in the tree evaluates a logical proposition to route the data down the correct branch.
+
+### C. Logic Gates in Neural Networks
+Early models of artificial neurons (the McCulloch-Pitts neuron) were designed to mimic logic gates. By adjusting weights and thresholds, a single neuron can be made to act as an AND gate or an OR gate.
+
+## 4. Conditional and Bi-conditional Logic
+
+* **Implication ($P \implies Q$):** "If $P$, then $Q$." This forms the basis of Rule-Based Systems and Expert Systems.
+* **Equivalence ($P \iff Q$):** "$P$ if and only if $Q$." This is used to define identical behaviors in different models.
+
+:::tip Logic and Regularization
+In some forms of logic-based learning, we use **Inductive Logic Programming (ILP)** to learn formal rules from data, rather than just adjusting numerical weights.
+:::
+
+## 5. Boolean Minimization
+In large-scale systems, we use Boolean Algebra laws (like De Morgan's Laws) to simplify complex logical expressions. This is similar to how we optimize code or simplify mathematical models to make them more efficient.
+
+* **De Morgan's Law 1:** $\neg(P \land Q) \iff (\neg P \lor \neg Q)$
+* **De Morgan's Law 2:** $\neg(P \lor Q) \iff (\neg P \land \neg Q)$
+
+---
+
+Now that we understand sets and the logic to navigate them, we can explore Graph Theory, which is how we model complex relationships and networks.
