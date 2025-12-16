@@ -1,0 +1,110 @@
+---
+title: "Chain Rule - The Engine of Backpropagation"
+sidebar_label: Chain Rule
+description: "Mastering the Chain Rule, the fundamental calculus tool for differentiating composite functions, and its direct application in the Backpropagation algorithm for training neural networks."
+tags:
+  [
+    chain-rule,
+    calculus,
+    mathematics-for-ml,
+    backpropagation,
+    composite-functions,
+    neural-networks,
+    gradient,
+  ]
+---
+
+The **Chain Rule** is a formula used to compute the derivative of a **composite function**, a function that is composed of one function inside another. If a function is built like a chain, the Chain Rule shows us how to differentiate it link by link.
+
+This is arguably the most important calculus concept for Deep Learning, as the entire structure of a neural network is one massive composite function.
+
+## 1. What is a Composite Function?
+
+A composite function is one where the output of an inner function becomes the input of an outer function.
+
+If $y$ is a function of $u$, and $u$ is a function of $x$, then $y$ is ultimately a function of $x$.
+
+$$
+y = f(u) \quad \text{where} \quad u = g(x)
+$$
+
+The overall composite function is $y = f(g(x))$.
+
+## 2. The Chain Rule Formula (Single Variable)
+
+The Chain Rule states that the rate of change of $y$ with respect to $x$ is the product of the rate of change of $y$ with respect to $u$, and the rate of change of $u$ with respect to $x$.
+
+$$
+\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}
+$$
+
+### Example
+
+Let $y = (x^2 + 1)^3$. This can be written as $y = u^3$ where $u = x^2 + 1$.
+
+1.  **Find $\frac{dy}{du}$ (Outer derivative):**
+    $$
+    \frac{dy}{du} = \frac{d}{du}(u^3) = 3u^2
+    $$
+2.  **Find $\frac{du}{dx}$ (Inner derivative):**
+    $$
+    \frac{du}{dx} = \frac{d}{dx}(x^2 + 1) = 2x
+    $$
+3.  **Apply the Chain Rule:**
+    $$
+    \frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx} = (3u^2) \cdot (2x)
+    $$
+4.  **Substitute $u$ back:**
+    $$
+    \frac{dy}{dx} = 3(x^2 + 1)^2 \cdot 2x = 6x(x^2 + 1)^2
+    $$
+
+## 3. The Chain Rule with Multiple Variables (Partial Derivatives)
+
+In neural networks, one variable can affect the final output through multiple different paths. This requires a slightly more complex version of the Chain Rule involving partial derivatives and summation.
+
+If $z$ is a function of $x$ and $y$, and both $x$ and $y$ are functions of $t$: $z = f(x, y)$, where $x=g(t)$ and $y=h(t)$.
+
+The total derivative of $z$ with respect to $t$ is:
+
+$$
+\frac{dz}{dt} = \frac{\partial z}{\partial x} \frac{dx}{dt} + \frac{\partial z}{\partial y} \frac{dy}{dt}
+$$
+
+## 4. The Chain Rule and Backpropagation
+
+Backpropagation (short for "backward propagation of errors") is the algorithm used to train neural networks. It is nothing more than the repeated application of the multivariate Chain Rule.
+
+### The Neural Network Chain
+
+A neural network is a sequence of composite functions:
+
+$$
+\text{Loss} \leftarrow \text{Output Layer} \leftarrow \text{Hidden Layer 2} \leftarrow \text{Hidden Layer 1} \leftarrow \text{Input}
+$$
+
+The goal is to calculate how a small change in a parameter (weight $w$) in an **early layer** affects the final **Loss** $J$.
+
+$$
+\frac{\partial J}{\partial w_{\text{early}}} = \left(\frac{\partial J}{\partial \text{Output}}\right) \cdot \left(\frac{\partial \text{Output}}{\partial \text{Layer } 2}\right) \cdot \left(\frac{\partial \text{Layer } 2}{\partial \text{Layer } 1}\right) \cdot \left(\frac{\partial \text{Layer } 1}{\partial w_{\text{early}}}\right)
+$$
+
+:::important Backpropagation Flow
+1.  **Forward Pass:** Calculate the prediction and the Loss $J$.
+2.  **Backward Pass (Backprop):** Start at the end of the chain (the Loss $J$) and calculate the partial derivatives (gradients) layer by layer, multiplying them backward toward the input.
+3.  **Update:** Use the final calculated gradient $\frac{\partial J}{\partial w}$ to update the weight $w$ via Gradient Descent.
+:::
+
+## 5. Summary of Calculus for ML
+
+You have now covered the three foundational concepts of Calculus required for Machine Learning:
+
+| Concept | Mathematical Tool | ML Application |
+| :--- | :--- | :--- |
+| **Derivatives** | $\frac{df}{dx}$ | Measures the slope of the loss function. |
+| **Partial Derivatives** | $\nabla J$ (The Gradient) | Identifies the direction of steepest ascent in the high-dimensional loss surface. |
+| **Chain Rule** | $\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}$ | Propagates the gradient backward through all layers of a neural network to calculate parameter updates. |
+
+---
+
+With the mathematical foundations of Linear Algebra and Calculus established, we are now ready to tackle the core optimization algorithm that brings these concepts together: Gradient Descent.

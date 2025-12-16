@@ -1,0 +1,114 @@
+---
+title: Partial Derivatives
+sidebar_label: Partial Derivatives
+description: "Defining partial derivatives, how they are calculated in multi-variable functions (like the Loss Function), and their role in creating the Gradient vector for optimization."
+tags:
+  [
+    partial-derivatives,
+    calculus,
+    mathematics-for-ml,
+    multi-variable,
+    gradient,
+    optimization,
+  ]
+---
+
+In the real world, and especially in Machine Learning, the functions we deal with rarely depend on just one variable. Our **Loss Function** depends on hundreds, even millions, of parameters (weights and biases). To navigate this high-dimensional space, we need the concept of a **Partial Derivative**.
+
+## 1. Multi-Variable Functions in ML
+
+Consider the simplest linear model. The predicted output $\hat{y}$ is a function of the input feature $x$, the weight $w$, and the bias $b$:
+
+$$
+\hat{y}(w, b) = w x + b
+$$
+
+The **Loss Function** $J$ (e.g., Mean Squared Error) depends on the parameters $w$ and $b$:
+
+$$
+J(w, b) = \frac{1}{2m} \sum_{i=1}^{m} (\hat{y}^{(i)} - y^{(i)})^2 = J(w, b)
+$$
+
+The goal is to adjust *both* $w$ and $b$ simultaneously to minimize $J$. This requires us to know the rate of change of $J$ with respect to each parameter individually.
+
+## 2. What is a Partial Derivative?
+
+A partial derivative of a multi-variable function is simply the derivative of that function with respect to **one** variable, while treating all other variables as **constants**.
+
+### Notation
+
+The partial derivative of a function $f(x, y)$ with respect to $x$ is denoted by the curly $\partial$ symbol:
+
+$$
+\frac{\partial f}{\partial x} \quad \text{or} \quad f_x
+$$
+
+## 3. Calculating the Partial Derivative
+
+The calculation uses all the standard derivative rules, but with the assumption that everything not being differentiated is a constant.
+
+### Example
+
+Let the function be $f(x, y) = 3x^2 + 5xy^3 + 2y$.
+
+#### A. Partial Derivative with respect to $x$: $\frac{\partial f}{\partial x}$
+
+We treat $y$ as a constant.
+
+$$
+\frac{\partial f}{\partial x} = \frac{\partial}{\partial x} (3x^2) + \frac{\partial}{\partial x} (5y^3 \cdot x) + \frac{\partial}{\partial x} (2y)
+$$
+
+1.  $\frac{\partial}{\partial x} (3x^2) = 6x$ (Power Rule)
+2.  $\frac{\partial}{\partial x} (5y^3 \cdot x) = 5y^3$ (Treat $5y^3$ as the constant coefficient of $x$)
+3.  $\frac{\partial}{\partial x} (2y) = 0$ (Treat $2y$ as a constant)
+
+$$
+\frac{\partial f}{\partial x} = 6x + 5y^3
+$$
+
+#### B. Partial Derivative with respect to $y$: $\frac{\partial f}{\partial y}$
+
+We treat $x$ as a constant.
+
+$$
+\frac{\partial f}{\partial y} = \frac{\partial}{\partial y} (3x^2) + \frac{\partial}{\partial y} (5x \cdot y^3) + \frac{\partial}{\partial y} (2y)
+$$
+
+1.  $\frac{\partial}{\partial y} (3x^2) = 0$ (Treat $3x^2$ as a constant)
+2.  $\frac{\partial}{\partial y} (5x \cdot y^3) = 5x \cdot (3y^2) = 15xy^2$ (Treat $5x$ as the constant coefficient of $y^3$)
+3.  $\frac{\partial}{\partial y} (2y) = 2$ (Constant Multiple Rule)
+
+$$
+\frac{\partial f}{\partial y} = 15xy^2 + 2
+$$
+
+## 4. The Gradient Vector
+
+When we collect all the partial derivatives of a multi-variable function $J(\theta_1, \theta_2, \ldots, \theta_n)$ into a single vector, we get the **Gradient** of $J$.
+
+The gradient, denoted $\nabla J$ (read as "nabla J" or "del J"), is the vector of all partial derivatives:
+
+$$
+\nabla J(\theta) = \begin{bmatrix}
+\frac{\partial J}{\partial \theta_1} \\
+\frac{\partial J}{\partial \theta_2} \\
+\vdots \\
+\frac{\partial J}{\partial \theta_n}
+\end{bmatrix}
+$$
+
+### Significance in ML
+
+1.  **Direction of Steepest Ascent:** The gradient vector $\nabla J$ points in the direction of the **steepest increase** (the "uphill" direction) of the Loss Function $J$.
+2.  **Gradient Descent:** Since we want to **minimize** the loss, the **Gradient Descent** update rule is to move the parameter vector $\mathbf{\theta}$ in the direction **opposite** to the gradient:
+
+$$
+\mathbf{\theta}_{\text{new}} = \mathbf{\theta}_{\text{old}} - \alpha \nabla J(\mathbf{\theta})
+$$
+
+This single vector operation updates *all* weights and biases simultaneously, making the gradient the most fundamental mathematical quantity in training neural networks.
+
+---
+
+Now that we can find the direction of steepest ascent (the Gradient), we must ensure that the update rule accurately propagates this signal through the entire multi-layered network, which is the role of the Chain Rule.

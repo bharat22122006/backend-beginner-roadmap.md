@@ -1,0 +1,85 @@
+---
+title: "The Jacobian Matrix"
+sidebar_label: Jacobian
+description: "Understanding the Jacobian matrix, its role in vector-valued functions, and its vital importance in backpropagation and modern deep learning frameworks."
+tags:
+  [
+    jacobian,
+    calculus,
+    mathematics-for-ml,
+    vector-calculus,
+    backpropagation,
+    neural-networks,
+  ]
+---
+
+While the **Gradient** is used for functions that take a vector and return a single scalar (like a Loss Function), the **Jacobian** is the generalization of the derivative for functions that take a vector and return *another vector*.
+
+In Deep Learning, almost every layer in a neural network is a vector-valued function. To pass gradients backward through these layers, we use the Jacobian.
+
+## 1. What is the Jacobian?
+
+The Jacobian is a matrix of all first-order partial derivatives of a vector-valued function.
+
+Suppose we have a function $\mathbf{f}$ that maps an input vector $\mathbf{x}$ of size $n$ to an output vector $\mathbf{y}$ of size $m$:
+
+$$
+\mathbf{y} = \mathbf{f}(\mathbf{x}) \quad \text{where} \quad \mathbf{x} \in \mathbb{R}^n, \mathbf{y} \in \mathbb{R}^m
+$$
+
+The Jacobian matrix $\mathbf{J}$ is an $m \times n$ matrix where each entry $(i, j)$ represents how much the $i$-th output changes with respect to the $j$-th input.
+
+$$
+\mathbf{J} = \frac{\partial \mathbf{y}}{\partial \mathbf{x}} = \begin{bmatrix}
+\frac{\partial y_1}{\partial x_1} & \dots & \frac{\partial y_1}{\partial x_n} \\
+\vdots & \ddots & \vdots \\
+\frac{\partial y_m}{\partial x_1} & \dots & \frac{\partial y_m}{\partial x_n}
+\end{bmatrix}
+$$
+
+
+## 2. Why does the Jacobian matter in ML?
+
+The Jacobian is the mathematical bridge that allows the **Chain Rule** to work across entire layers of a neural network.
+
+### A. Backpropagation across Layers
+Imagine a layer in a network that takes an input vector $\mathbf{h}_{in}$ and produces an output vector $\mathbf{h}_{out}$. During backpropagation, we receive the gradient of the loss $L$ with respect to the output: $\frac{\partial L}{\partial \mathbf{h}_{out}}$. 
+
+To continue the "chain" and find the gradient with respect to the input, we must multiply by the Jacobian of that layer:
+
+$$
+\frac{\partial L}{\partial \mathbf{h}_{in}} = \frac{\partial L}{\partial \mathbf{h}_{out}} \cdot \mathbf{J}
+$$
+
+### B. Activation Functions
+When you apply an activation function like **Sigmoid** or **ReLU** to a vector, you are essentially creating a vector-to-vector mapping. The derivative of this mapping is a Jacobian matrix. For element-wise activations, this Jacobian is a **diagonal matrix**, which makes computation very efficient.
+
+## 3. Example Calculation
+
+Let's say we have a function $\mathbf{f}(x_1, x_2)$ that outputs a 2D vector:
+1. $y_1 = x_1^2 + x_2$
+2. $y_2 = 5x_1 + 2x_2^3$
+
+To find the Jacobian $\mathbf{J}$:
+
+* **Row 1 (Derivatives of $y_1$):**
+  * $\frac{\partial y_1}{\partial x_1} = 2x_1$
+  * $\frac{\partial y_1}{\partial x_2} = 1$
+* **Row 2 (Derivatives of $y_2$):**
+  * $\frac{\partial y_2}{\partial x_1} = 5$
+  * $\frac{\partial y_2}{\partial x_2} = 6x_2^2$
+
+The resulting Jacobian matrix is:
+$$
+\mathbf{J} = \begin{bmatrix} 2x_1 & 1 \\ 5 & 6x_2^2 \end{bmatrix}
+$$
+
+## 4. Scaling the Chain Rule
+
+In modern frameworks like PyTorch or TensorFlow, we rarely compute the full Jacobian matrix explicitly because it can be massive (e.g., $1 \text{ million } \times 1 \text{ million}$ for a large layer). 
+
+Instead, these frameworks perform **Vector-Jacobian Products (VJP)**. They directly calculate the result of $\mathbf{v}^T \mathbf{J}$ (where $\mathbf{v}$ is the incoming gradient), which is much faster and uses less memory.
+
+---
+
+The Jacobian handles first-order changes. But to understand the "curvature" of our loss surface—whether we are in a narrow valley or a wide bowl—we need to look at second-order derivatives: The Hessian.
