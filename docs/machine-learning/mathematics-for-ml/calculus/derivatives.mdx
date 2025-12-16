@@ -1,0 +1,100 @@
+---
+title: "Derivatives - The Rate of Change"
+sidebar_label: Derivatives
+description: "An introduction to derivatives, their definition, rules, and their crucial role in calculating the slope of the loss function, essential for optimization algorithms like Gradient Descent."
+tags:
+  [
+    derivatives,
+    calculus,
+    mathematics-for-ml,
+    rate-of-change,
+    slope,
+    gradient-descent,
+    optimization,
+  ]
+---
+
+Calculus is the mathematical foundation for optimization in Machine Learning. Specifically, **Derivatives** are the primary tool used to train almost every ML model, from Linear Regression to complex Neural Networks, via algorithms like Gradient Descent.
+
+## 1. What is a Derivative?
+
+The derivative of a function measures the **instantaneous rate of change** of that function. Geometrically, the derivative at any point on a curve is the **slope of the tangent line** to the curve at that point.
+
+### Formal Definition
+
+The derivative of a function $f(x)$ with respect to $x$ is defined using limits:
+
+$$
+f'(x) = \frac{dy}{dx} = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
+$$
+
+* $\frac{dy}{dx}$ is the common notation, read as "the derivative of $y$ with respect to $x$."
+* The expression $\frac{f(x+h) - f(x)}{h}$ is the slope of the secant line between $x$ and $x+h$.
+* Taking the limit as $h$ approaches zero gives the exact slope of the tangent line at $x$.
+
+## 2. Derivatives in Machine Learning: Optimization
+
+In Machine Learning, we define a **Loss Function** (or Cost Function) $J(\theta)$ which measures the error of our model, where $\theta$ represents the model's parameters (weights and biases).
+
+The goal of training is to find the parameter values $\theta$ that **minimize** the loss function.
+
+### A. Finding the Minimum
+
+1.  A function's minimum (or maximum) occurs where the slope is zero.
+2.  The derivative tells us the slope.
+3.  Therefore, by setting the derivative $\frac{dJ}{d\theta}$ to zero, we can find the optimal parameters $\theta$.
+
+### B. Gradient Descent
+
+For most complex ML models, the loss function is too complex to solve by setting the derivative to zero directly. Instead, we use an iterative process called **Gradient Descent**.
+
+The derivative $\frac{dJ}{d\theta}$ tells us two things:
+
+* **Magnitude:** How steep the slope is (how quickly the loss is changing).
+* **Direction (Sign):** Whether moving parameter $\theta$ in a positive direction will increase or decrease the loss.
+
+In Gradient Descent, we update the parameter $\theta$ in the **opposite direction** of the derivative (down the slope) to find the minimum:
+
+$$
+\theta_{\text{new}} = \theta_{\text{old}} - \alpha \frac{dJ}{d\theta}
+$$
+
+* $\alpha$ (alpha) is the **learning rate** (a small scalar).
+* $\frac{dJ}{d\theta}$ is the derivative (the slope/gradient).
+
+## 3. Basic Differentiation Rules
+
+You must be familiar with the following rules to understand how derivatives are calculated for model training.
+
+| Rule Name | Function $f(x)$ | Derivative $\frac{d}{dx}f(x)$ | Example |
+| :--- | :--- | :--- | :--- |
+| **Constant Rule** | $c$ | $0$ | $\frac{d}{dx}(5) = 0$ |
+| **Power Rule** | $x^n$ | $nx^{n-1}$ | $\frac{d}{dx}(x^3) = 3x^2$ |
+| **Constant Multiple** | $c \cdot f(x)$ | $c \cdot f'(x)$ | $\frac{d}{dx}(4x^2) = 8x$ |
+| **Sum/Difference** | $f(x) \pm g(x)$ | $f'(x) \pm g'(x)$ | $\frac{d}{dx}(x^2 - 3x) = 2x - 3$ |
+| **Exponential** | $e^x$ | $e^x$ | |
+
+### Example: Quadratic Loss
+
+Linear Regression often uses Mean Squared Error (MSE), which is a quadratic function of the weights $w$.
+
+Let the simplified loss function be $J(w) = w^2 + 4w + 1$.
+We apply the Sum and Power Rules:
+
+$$
+\frac{dJ}{dw} = \frac{d}{dw}(w^2) + \frac{d}{dw}(4w) + \frac{d}{dw}(1) = 2w + 4 + 0 = 2w + 4
+$$
+
+If the current weight is $w=1$, the slope is $2(1) + 4 = 6$ (steep, positive).
+
+## References and Resources
+
+To solidify your understanding of differentiation, here are some excellent resources:
+
+* **[Khan Academy - Differential Calculus](https://www.khanacademy.org/math/differential-calculus):** Comprehensive video tutorials covering limits, derivatives, and rules. Excellent for visual learners.
+* **Calculus: Early Transcendentals** by James Stewart (or any similar major textbook): Provides rigorous definitions and practice problems.
+* **The Calculus of Computation** by Lars Kristensen: A good resource that connects calculus directly to computational methods.
+
+---
+
+Most functions in ML depend on more than one parameter (e.g., $w_1, w_2, \text{bias}$). To find the slope in these multi-variable spaces, we must use Partial Derivatives.
