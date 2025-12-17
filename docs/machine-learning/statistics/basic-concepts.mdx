@@ -1,0 +1,72 @@
+---
+title: "Basic Statistical Concepts"
+sidebar_label: Basic Concepts
+description: "Introduction to the fundamental pillars of statistics in ML: Populations vs. Samples, Descriptive vs. Inferential statistics, and Data Types."
+tags: [statistics, mathematics-for-ml, data-types, population, sample, descriptive-statistics]
+---
+
+Statistics is the science of collecting, analyzing, and interpreting data. In Machine Learning, statistics provides the tools to handle uncertainty, validate models, and understand whether the patterns we find are "real" or just random noise.
+
+## 1. Population vs. Sample
+
+The most fundamental distinction in statistics is between the group we want to know about and the group we actually observe.
+
+* **Population:** The entire group of individuals or instances about whom we want to draw conclusions. 
+    * *Example:* All people who use a specific social media app.
+* **Sample:** A subset of the population that we actually collect data from.
+    * *Example:* 1,000 users who responded to a survey.
+
+:::important The Goal of ML
+In Machine Learning, our training data is a **sample**. Our goal is to build a model that generalizes well to the entire **population** (unseen data).
+:::
+
+## 2. Descriptive vs. Inferential Statistics
+
+Statistics is generally divided into two main branches:
+
+### A. Descriptive Statistics
+This branch focuses on summarizing and describing the characteristics of a dataset. We use numbers and graphs to tell the story of the data we have in hand.
+* **Tools:** Mean, Median, Mode, Standard Deviation, Histograms.
+
+### B. Inferential Statistics
+This branch focuses on making predictions or generalizations about a population based on a sample.
+* **Tools:** Hypothesis testing, P-values, Confidence Intervals, Regression.
+
+## 3. Types of Data
+
+Not all data is created equal. The way we process features in ML depends entirely on their statistical type.
+
+| Data Type | Sub-type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| **Qualitative** (Categorical) | **Nominal** | Categories with no inherent order. | Eye color, Gender, Zip Code. |
+| | **Ordinal** | Categories with a meaningful order. | Education level (Bachelors, Masters, PhD). |
+| **Quantitative** (Numerical) | **Discrete** | Values that can be counted (integers). | Number of rooms in a house, number of clicks. |
+| | **Continuous** | Values that can be measured (real numbers). | Temperature, Weight, Stock price. |
+
+## 4. Parameters vs. Statistics
+
+* **Parameter:** A numerical value that describes a characteristic of the entire **population**. (Usually denoted by Greek letters like $\mu$ for mean).
+* **Statistic:** A numerical value that describes a characteristic of a **sample**. (Usually denoted by Roman letters like $\bar{x}$ for mean).
+
+In ML, we use **Sample Statistics** (like the error on our training set) to estimate the true **Population Parameters** (the true error the model would make on all possible data).
+
+## 5. Why Statistics Matters in the ML Pipeline
+
+1.  **Exploratory Data Analysis (EDA):** Before building a model, we use descriptive statistics to find outliers, understand distributions, and identify correlations.
+2.  **Feature Engineering:** Understanding data types helps us decide how to encode variables (e.g., One-Hot Encoding for Nominal data).
+3.  **Model Validation:** We use inferential statistics to determine if a model's performance improvement is statistically significant or just due to a lucky split of the data.
+
+---
+
+## References for More Details
+
+* **StatQuest with Josh Starmer - Statistics Fundamentals:**
+    * [YouTube Link](https://www.youtube.com/playlist?list=PLblh5JKOoLUK0FLuzwntyYI10UQFUhsY9)
+    * *Best for:* Highly visual and intuitive explanations of population vs. sample and other core concepts.
+* **Khan Academy - Summarizing Quantitative Data:**
+    * [Website Link](https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data)
+    * *Best for:* Interactive practice with mean, median, and variance.
+
+---
+
+Now that we have the vocabulary, let's look at the specific numerical tools we use to describe the center and spread of our data.
