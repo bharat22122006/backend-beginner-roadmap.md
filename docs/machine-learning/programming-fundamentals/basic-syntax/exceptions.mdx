@@ -1,0 +1,115 @@
+---
+title: Exception Handling
+sidebar_label: Exceptions
+description: "Learning to handle errors gracefully in Python to build robust and fault-tolerant Machine Learning pipelines."
+tags: [python, programming, exceptions, error-handling, debugging, mathematics-for-ml]
+---
+
+In Machine Learning, things often go wrong: a dataset file is missing, a GPU runs out of memory, or a feature contains a `NaN` (Not a Number) that crashes a calculation. **Exception Handling** allows your program to "fail gracefully" rather than crashing completely.
+
+## 1. The Try-Except Block
+
+The basic tool for handling errors is the `try...except` block. You "try" a piece of code, and if it raises an error, the "except" block catches it.
+
+```python
+try:
+    # Attempting to load a large dataset
+    data = load_dataset("huge_data.csv")
+except FileNotFoundError:
+    print("Error: The dataset file was not found. Please check the path.")
+
+```
+
+```mermaid
+flowchart TD
+    Start([Start Try Block]) --> Op[Execute Code]
+    Op --> Success{Error Occurred?}
+    Success -- No --> End([Continue Program])
+    Success -- Yes --> Catch[Match Exception Type]
+    Catch --> Handle[Execute Except Block]
+    Handle --> End
+    style Catch fill:#ffebee,stroke:#c62828,color:#333
+
+```
+
+## 2. Handling Multiple Exceptions
+
+Different operations can fail in different ways. You can catch specific errors to provide tailored solutions.
+
+* **`ValueError`**: Raised when a function receives an argument of the right type but inappropriate value (e.g., trying to take the square root of a negative number).
+* **`TypeError`**: Raised when an operation is applied to an object of inappropriate type.
+* **`ZeroDivisionError`**: Common in manual normalization logic.
+
+```python
+try:
+    result = total_loss / num_samples
+except ZeroDivisionError:
+    result = 0
+    print("Warning: num_samples was zero. Setting loss to 0.")
+except TypeError:
+    print("Error: Check if total_loss and num_samples are numbers.")
+
+```
+
+## 3. The Full Lifecycle: `else` and `finally`
+
+To build truly robust pipelines (like those that open and close database connections), we use the extended syntax:
+
+1. **`try`**: The code that might fail.
+2. **`except`**: Code that runs only if an error occurs.
+3. **`else`**: Code that runs only if **no** error occurs.
+4. **`finally`**: Code that runs **no matter what** (perfect for closing files or releasing GPU memory).
+
+```python
+try:
+    file = open("model_weights.bin", "rb")
+    weights = file.read()
+except IOError:
+    print("Could not read file.")
+else:
+    print("Weights loaded successfully.")
+finally:
+    file.close()
+    print("File resource released.")
+
+```
+
+## 4. Raising Exceptions
+
+Sometimes, you *want* to stop the program if a specific condition isn't met. For example, if a user provides a negative learning rate.
+
+```python
+def set_learning_rate(lr):
+    if lr <= 0:
+        raise ValueError(f"Learning rate must be positive. Received: {lr}")
+    return lr
+
+```
+
+## 5. Exceptions in ML Data Pipelines
+
+In production ML, we use exceptions to ensure data quality.
+
+```mermaid
+graph LR
+    Input[Data Source] --> Check{Check Data}
+    Check -->|Valid| Train[Start Training]
+    Check -->|Corrupted| Exc[Raise DataValidationError]
+    Exc --> Log[Log Error to Dashboard]
+    Exc --> Fallback[Use Last Known Good Data]
+    style Exc fill:#ffc107,stroke:#ff8f00,color:#333
+
+```
+
+## 6. Summary of Common ML Exceptions
+
+| Exception | When it happens in ML |
+| --- | --- |
+| **`IndexError`** | Trying to access a non-existent column or row index in an array. |
+| **`KeyError`** | Looking for a hyperparameter in a config dictionary that doesn't exist. |
+| **`AttributeError`** | Calling a method (like `.predict()`) on a model that hasn't been trained yet. |
+| **`MemoryError`** | Loading a dataset that is larger than the available RAM. |
+
+---
+ 
+Handling errors ensures your code doesn't crash, but how do we organize our code so it's easy to read and maintain? Let's explore the world of Classes and Objects.
