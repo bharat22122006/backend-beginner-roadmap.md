@@ -1,5 +1,9 @@
 name: PR Creation Workflow
 
+permissions:
+  contents: read
+  issues: read
+
 on:
   pull_request:
     types: [opened, edited]
