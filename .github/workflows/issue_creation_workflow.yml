@@ -53,4 +53,3 @@ jobs:
           if [[ "$issue_body" != *"security"* ]] || [[ "$issue_body" != *"trust"* ]]; then
             echo "Issue does not mention security or trust."
             exit 1
-          fi
