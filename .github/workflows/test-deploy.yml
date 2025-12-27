@@ -11,6 +11,8 @@ jobs:
   test-deploy:
     name: Test deployment
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v6
         with:
