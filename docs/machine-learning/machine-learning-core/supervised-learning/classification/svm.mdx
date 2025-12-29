@@ -1,0 +1,119 @@
+---
+title: "Support Vector Machines (SVM)"
+sidebar_label: Support Vector Machines
+description: "Mastering the geometry of classification: margins, hyperplanes, and the Kernel Trick."
+tags: [machine-learning, supervised-learning, classification, svm, kernels]
+---
+
+A **Support Vector Machine (SVM)** is a powerful and versatile supervised learning model capable of performing linear or non-linear classification and regression. It is particularly well-suited for the classification of complex but small- or medium-sized datasets.
+
+## 1. The Core Idea: Maximum Margin
+
+In SVM, we don't just want to find a line that separates two classes; we want to find the **Best** line. The best line is the one that has the largest distance to the nearest points of either class.
+
+* **Hyperplane:** The decision boundary that separates the classes.
+* **Margin:** The distance between the hyperplane and the nearest data points.
+* **Support Vectors:** The specific data points that "support" the hyperplane. If these points were moved, the hyperplane would move too.
+
+## 2. Linear vs. Soft Margin
+
+In the real world, data is rarely perfectly separable.
+* **Hard Margin:** Strictly requires all points to be outside the margin. This is sensitive to outliers.
+* **Soft Margin:** Allows some points to "violate" the margin or even be misclassified to achieve a better overall fit. This is controlled by the hyperparameter **$C$**.
+
+> **The C Parameter:** > * **Small C:** Wide margin, allows more violations (High bias, Low variance).
+> * **Large C:** Narrow margin, allows fewer violations (Low bias, High variance).
+
+## 3. The Kernel Trick
+
+What if the data cannot be separated by a straight line? Instead of manually adding complex features, SVM uses the **Kernel Trick**. It mathematically maps the data into a higher-dimensional space where a linear separator *can* be found.
+
+**Common Kernels:**
+1.  **Linear:** Best for text classification or when you have many features.
+2.  **Polynomial:** Good for curved boundaries.
+3.  **RBF (Radial Basis Function):** The default in most cases. It can handle very complex, circular boundaries.
+
+## 4. Implementation with Scikit-Learn
+
+```python
+from sklearn.svm import SVC
+from sklearn.preprocessing import StandardScaler
+
+# 1. SVM is highly sensitive to feature scales!
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+
+# 2. Initialize and Train
+# 'C' is regularization, 'kernel' is the transformation type
+model = SVC(kernel='rbf', C=1.0, gamma='scale')
+model.fit(X_train_scaled, y_train)
+
+# 3. Predict
+y_pred = model.predict(X_test_scaled)
+
+```
+
+## 5. Pros and Cons
+
+| Advantages | Disadvantages |
+| --- | --- |
+| Effective in high-dimensional spaces (even if features $>$ samples). | Not suitable for large datasets (training time is $O(n^2)$ or $O(n^3)$). |
+| Versatile through the use of different Kernel functions. | Does not provide probability estimates directly (requires `probability=True`). |
+| Memory efficient because it only uses support vectors. | Highly sensitive to noise and overlapping classes. |
+
+---
+
+## 6. Mathematical Intuition
+
+The goal is to solve a constrained optimization problem to minimize:
+
+$$
+\frac{1}{2} ||w||^2 + C \sum_{i=1}^{n} \zeta_i
+$$
+
+Subject to:
+
+$$
+y_i(w^T x_i + b) \geq 1 - \zeta_i
+$$
+
+**Where:**
+
+* $w$ is the weight vector defining the hyperplane.
+* $b$ is the bias term.
+* $\zeta_i$ are slack variables allowing for misclassification.
+* $C$ is the regularization parameter balancing margin maximization and classification error.
+* $y_i$ are the class labels (+1 or -1).
+* $x_i$ are the feature vectors.
+
+The dual form of this optimization problem introduces Lagrange multipliers $\alpha_i$ for each training point, leading to the decision function:
+
+$$
+f(x) = \sum_{i=1}^{n} \alpha_i y_i K(x_i, x) + b
+$$
+
+**Where:**
+
+* $K(x_i, x)$ is the Kernel function measuring similarity between data points.
+
+## References for More Details
+
+* **[Scikit-Learn SVM User Guide](https://scikit-learn.org/stable/modules/svm.html):** Understanding the difference between `SVC`, `NuSVC`, and `LinearSVC`.
+
+* In this video, StatQuest provides an excellent visual explanation of SVMs and the Kernel Trick:
+
+<div className="px-4">
+<LiteYouTubeEmbed
+  id="efR1C6CvhmE"
+  params="autoplay=1&autohide=1&showinfo=0&rel=0"
+  title="StatQuest: Support Vector Machines (SVMs)"
+  poster="maxresdefault"
+  webp
+/>
+</div>
+
+<br />
+
+---
+
+**SVMs are powerful for geometric boundaries. But what if you need a model that can explain its reasoning through a series of logical questions?**

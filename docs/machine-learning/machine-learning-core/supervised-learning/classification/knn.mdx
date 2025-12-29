@@ -1,0 +1,96 @@
+---
+title: "K-Nearest Neighbors (KNN)"
+sidebar_label: "K-Nearest Neighbors"
+description: "Understanding the proximity-based classification algorithm: distance metrics, choosing K, and the curse of dimensionality."
+tags: [machine-learning, supervised-learning, classification, knn, distance-metrics]
+---
+
+**K-Nearest Neighbors (KNN)** is one of the simplest and most intuitive supervised learning algorithms. It belongs to the family of **Lazy Learners** (or Instance-Based Learners) because it doesn't build a mathematical model during training. Instead, it stores the entire training dataset and performs a calculation only when a new prediction is requested.
+
+## 1. How KNN Works
+
+The core philosophy of KNN is: *"Show me your neighbors, and I'll tell you who you are."*
+
+When you want to classify a new data point:
+1.  **Calculate Distance:** Find the distance between the new point and all points in the training set.
+2.  **Find Neighbors:** Pick the $K$ closest points (the "neighbors").
+3.  **Vote:** The new point is assigned the class that is most common among its $K$ neighbors.
+
+## 2. Distance Metrics
+
+To find the "nearest" neighbor, we need a mathematical way to measure distance. 
+
+### Euclidean Distance
+The most common metric, representing the "straight-line" distance between two points.
+
+$$
+d(p, q) = \sqrt{\sum_{i=1}^{n} (q_i - p_i)^2}
+$$
+
+### Manhattan Distance
+
+Also known as "City Block" distance, it measures distance along axes at right angles.
+
+$$
+d(p, q) = \sum_{i=1}^{n} |q_i - p_i|
+$$
+
+## 3. Choosing the Right 'K'
+
+The choice of $K$ (the number of neighbors) is critical to the model's performance:
+
+* **Small K (e.g., $K=1$):** The model is extremely sensitive to noise and outliers. This leads to **Overfitting**.
+* **Large K (e.g., $K=100$):** The model becomes too "smooth" and might ignore local patterns. This leads to **Underfitting**.
+
+:::tip
+**Rule of Thumb:** A common practice is to set $K$ to the square root of the number of training samples:
+
+$$
+K \approx \sqrt{N}
+$$
+where $N$ is the number of training samples.
+However, always validate your choice of $K$ using techniques like Cross-Validation.
+:::
+
+## 4. Implementation with Scikit-Learn
+
+```python
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import StandardScaler
+
+# 1. IMPORTANT: KNN requires scaling!
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# 2. Initialize and Train
+# n_neighbors is the 'K' parameter
+knn = KNeighborsClassifier(n_neighbors=5, metric='euclidean')
+knn.fit(X_train_scaled, y_train)
+
+# 3. Predict
+y_pred = knn.predict(X_test_scaled)
+
+```
+
+## 5. Pros and Cons
+
+| Advantages | Disadvantages |
+| --- | --- |
+| Simple to understand and implement. | **Slow Prediction:** It must calculate distance to every point for every prediction. |
+| No assumptions about data distribution. | **Memory Intensive:** Must store the entire dataset in RAM. |
+| Naturally handles multi-class classification. | **Sensitive to Scale:** Features with larger units will dominate the distance. |
+
+## 6. The Curse of Dimensionality
+
+KNN suffers significantly from the "Curse of Dimensionality." As the number of features increases, the "volume" of the space grows so fast that even the "nearest" neighbors become very far away.
+
+**Solution:** Always perform [Dimensionality Reduction (PCA)](/tutorial/machine-learning/data-engineering-basics/data-cleaning-and-preprocessing/dimensionality-reduction) or [Feature Selection](/tutorial/machine-learning/data-engineering-basics/data-cleaning-and-preprocessing/feature-selection) before using KNN on high-dimensional data.
+
+## References for More Details
+
+* **[Scikit-Learn KNN Documentation](https://scikit-learn.org/stable/modules/neighbors.html):** Learning about advanced algorithms like BallTree and KDTree for faster searches.
+
+---
+
+**KNN is great for simple patterns, but what if you want a model that learns a "boundary" or a logic tree?**

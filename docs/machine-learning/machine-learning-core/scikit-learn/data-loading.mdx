@@ -1,0 +1,112 @@
+---
+title: "Loading Data in Scikit-Learn"
+sidebar_label: Data Loading
+description: "How to use Scikit-Learn's built-in datasets, fetchers, and external loaders to prepare data for modeling."
+tags: [scikit-learn, data-loading, python, machine-learning, datasets]
+---
+
+Before you can train a model, you need to get your data into a format that Scikit-Learn understands. Scikit-Learn works primarily with **NumPy arrays** or **Pandas DataFrames**, but it also provides built-in tools to help you get started quickly.
+
+## 1. The Scikit-Learn Data Format
+
+Regardless of how you load your data, Scikit-Learn expects two main components:
+
+1.  **The Feature Matrix ($X$):** A 2D array of shape `(n_samples, n_features)`.
+2.  **The Target Vector ($y$):** A 1D array of shape `(n_samples)` containing the labels or values you want to predict.
+
+## 2. Built-in "Toy" Datasets
+
+Scikit-Learn comes bundled with small datasets that require no internet connection. These are perfect for testing your code or learning new algorithms.
+
+* `load_iris()`: Classic classification dataset (flowers).
+* `load_diabetes()`: Regression dataset.
+* `load_digits()`: Classification dataset (handwritten digits).
+
+```python
+from sklearn.datasets import load_iris
+
+# Load the dataset
+iris = load_iris()
+
+# Access data and labels
+X = iris.data
+y = iris.target
+
+print(f"Features: {iris.feature_names}")
+print(f"Target Names: {iris.target_names}")
+
+```
+
+## 3. Fetching Large Real-World Datasets
+
+For larger datasets, Scikit-Learn provides "fetchers" that download data from the internet and cache it locally in your `~/scikit_learn_data` folder.
+
+* `fetch_california_housing()`: Predict median house values.
+* `fetch_20newsgroups()`: Text dataset for NLP.
+* `fetch_lfw_people()`: Labeled Faces in the Wild (for face recognition).
+
+```python
+from sklearn.datasets import fetch_california_housing
+
+housing = fetch_california_housing()
+print(f"Dataset shape: {housing.data.shape}")
+
+```
+
+## 4. Loading from External Sources
+
+In a professional environment, you will rarely use the built-in datasets. You will likely load data from **CSVs**, **SQL Databases**, or **Pandas DataFrames**.
+
+### From Pandas to Scikit-Learn
+
+Scikit-Learn is designed to be "Pandas-friendly." You can pass DataFrames directly into models.
+
+```python
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+
+# Load your own CSV
+df = pd.read_csv('my_data.csv')
+
+# Split into X and y
+X = df[['feature1', 'feature2']] # Select specific columns
+y = df['target_column']
+
+# Train model directly
+model = LinearRegression().fit(X, y)
+
+```
+
+## 5. Generating Synthetic Data
+
+Sometimes you need to create "fake" data to test how an algorithm handles specific scenarios (like high noise or non-linear patterns).
+
+```python
+from sklearn.datasets import make_blobs, make_moons
+
+# Create 3 distinct clusters for a classification task
+X, y = make_blobs(n_samples=100, centers=3, n_features=2, random_state=42)
+
+```
+
+## 6. Understanding the "Bunch" Object
+
+When you use `load_*` or `fetch_*`, Scikit-Learn returns a **`Bunch` object**. This is essentially a dictionary that contains:
+
+* `.data`: The feature matrix.
+* `.target`: The labels.
+* `.feature_names`: The names of the columns.
+* `.DESCR`: A full text description of where the data came from.
+
+:::tip
+Use `as_frame=True` in your loader to get the data returned as a Pandas DataFrame immediately: `data = load_iris(as_frame=True).frame`
+:::
+
+## References for More Details
+
+* **[Sklearn Dataset Loading Guide](https://scikit-learn.org/stable/datasets.html):** Exploring all 20+ available fetchers and loaders.
+* **[OpenML Integration](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_openml.html):** Accessing thousands of community-uploaded datasets via `fetch_openml`.
+
+---
+
+**Now that you can load data, the next step is to ensure it's in the right shape and split correctly for training and testing.**
