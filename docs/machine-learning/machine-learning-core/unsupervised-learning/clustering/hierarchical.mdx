@@ -1,0 +1,84 @@
+---
+title: Hierarchical Clustering
+sidebar_label: Hierarchical
+description: "Understanding Agglomerative clustering, Dendrograms, and linkage criteria."
+tags: [machine-learning, unsupervised-learning, clustering, hierarchical, dendrogram]
+---
+
+**Hierarchical Clustering** is an unsupervised learning algorithm that builds a hierarchy of clusters. Unlike [K-Means](./kmeans), which partitions data into a flat set of $K$ groups, Hierarchical clustering produces a tree-based representation of the data.
+
+## 1. Types of Hierarchical Clustering
+
+There are two main strategies for building the hierarchy:
+
+1.  **Agglomerative (Bottom-Up):** 
+    * Starts with each data point as its own single cluster.
+    * Successively merges the two closest clusters until only one cluster (containing all points) remains.
+    * **This is the most common approach used in Scikit-Learn.**
+
+2.  **Divisive (Top-Down):** 
+    * Starts with one giant cluster containing all points.
+    * Successively splits the cluster into smaller ones until each point is its own cluster.
+
+## 2. The Dendrogram: Visualizing the Tree
+
+A **Dendrogram** is a type of diagram that records the sequences of merges or splits. It is the most powerful tool in hierarchical clustering because it shows how every point is related.
+
+* **Vertical Axis:** Represents the distance (dissimilarity) between clusters.
+* **Horizontal Axis:** Represents individual data points.
+* **Choosing Clusters:** You can "cut" the dendrogram at a specific height. Any vertical line intersected by your horizontal cut represents a distinct cluster.
+
+## 3. Linkage Criteria
+
+In step 2 of the algorithm, we must decide what "closest" means when comparing two clusters (instead of just two points). This is called the **Linkage Criterion**.
+
+| Linkage Type | Description | Result |
+| :--- | :--- | :--- |
+| **Ward** | Minimizes the variance within clusters. | Creates clusters of relatively equal size (Default in Sklearn). |
+| **Complete** | Uses the maximum distance between points in two clusters. | Tends to create compact, tightly bound clusters. |
+| **Average** | Uses the average distance between all points in two clusters. | A balanced approach between Single and Complete. |
+| **Single** | Uses the minimum distance between points in two clusters. | Can create long, "chain-like" clusters. |
+
+## 4. Implementation with Scikit-Learn
+
+```python
+from sklearn.cluster import AgglomerativeClustering
+import scipy.cluster.hierarchy as sch
+import matplotlib.pyplot as plt
+
+# 1. Visualize the Dendrogram (using Scipy)
+plt.figure(figsize=(10, 7))
+dendrogram = sch.dendrogram(sch.linkage(X, method='ward'))
+plt.show()
+
+# 2. Fit the Model
+# n_clusters=None + distance_threshold=0 allows you to compute the full tree
+model = AgglomerativeClustering(n_clusters=3, metric='euclidean', linkage='ward')
+labels = model.fit_predict(X)
+
+```
+
+## 5. Pros and Cons
+
+| Advantages | Disadvantages |
+| --- | --- |
+| **No fixed K:** You don't need to know the number of clusters beforehand. | **Computational Cost:** Very slow on large datasets ($O(n^3)$ or $O(n^2)$). |
+| **Intuitive Visualization:** Dendrograms provide great insight into data relationships. | **Irreversible:** Once a merge is made, it cannot be undone in later steps. |
+| **Stable:** Produces the same results every time (no random initialization). | **Sensitive to Noise:** Outliers can cause branches to merge incorrectly. |
+
+## 6. Comparison with K-Means
+
+| Feature | K-Means | Hierarchical |
+| --- | --- | --- |
+| **Number of Clusters** | Must be specified (K) | Flexible (determined by cut) |
+| **Efficiency** | High (Good for big data) | Low (Good for small/medium data) |
+| **Shape** | Assumes spherical clusters | Can handle various shapes |
+| **Underlying Math** | Centroid-based | Connectivity-based |
+
+## References for More Details
+
+* **[Scikit-Learn Documentation](https://scikit-learn.org/stable/modules/clustering.html#hierarchical-clustering):** Understanding connectivity constraints to speed up the algorithm.
+
+---
+
+**Clustering helps us find groups, but sometimes we have too many variables to visualize effectively. How do we compress 100 features down to 2 without losing the "essence" of the data?**

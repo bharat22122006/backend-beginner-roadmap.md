@@ -1,0 +1,82 @@
+---
+title: "Gaussian Mixture Models (GMM)"
+sidebar_label: Gaussian Mixtures
+description: "Probabilistic clustering using Expectation-Maximization and the Normal distribution."
+tags: [machine-learning, unsupervised-learning, clustering, gmm, probability]
+---
+
+**Gaussian Mixture Models (GMM)** are a sophisticated type of clustering that assumes all data points are generated from a mixture of a finite number of **Gaussian (Normal) Distributions** with unknown parameters.
+
+Think of GMM as a "generalized" version of [K-Means](./kmeans). While K-Means creates circular clusters, GMM can handle **elliptical** shapes and provides the **probability** of a point belonging to a cluster.
+
+## 1. Hard vs. Soft Clustering
+
+Most clustering algorithms provide "Hard" assignments. GMM provides "Soft" assignments.
+
+* **Hard Clustering (K-Means):** "This point belongs to Cluster A. Period."
+* **Soft Clustering (GMM):** "There is a 70% chance this point is in Cluster A, and a 30% chance it is in Cluster B."
+
+## 2. How it Works: Expectation-Maximization (EM)
+
+GMM uses a clever two-step iterative process to find the best-fitting Gaussians:
+
+1.  **Expectation (E-step):** For each data point, calculate the probability that it belongs to each cluster based on current Gaussian parameters (mean, variance).
+2.  **Maximization (M-step):** Update the Gaussian parameters (moving the center and stretching the shape) to better fit the points assigned to them.
+
+
+## 3. The Power of Covariance Shapes
+
+The "shape" of a Gaussian distribution is determined by its **Covariance**. In Scikit-Learn, you can control the flexibility of these shapes:
+
+* **Spherical:** Clusters must be circular (like K-Means).
+* **Diag:** Clusters can be ellipses, but only aligned with the axes.
+* **Tied:** All clusters must share the same shape.
+* **Full:** Each cluster can be any oriented ellipse. **(Most Flexible)**
+
+## 4. Implementation with Scikit-Learn
+
+```python
+from sklearn.mixture import GaussianMixture
+
+# 1. Initialize the model
+# n_components is the number of clusters
+gmm = GaussianMixture(n_components=3, covariance_type='full', random_state=42)
+
+# 2. Fit the model
+gmm.fit(X)
+
+# 3. Predict 'Soft' probabilities
+# Returns an array of shape (n_samples, n_clusters)
+probs = gmm.predict_proba(X)
+
+# 4. Predict 'Hard' labels (picks the highest probability)
+labels = gmm.predict(X)
+
+```
+
+## 5. Choosing the number of clusters: BIC and AIC
+
+Since GMM is a probabilistic model, we don't use the "Elbow Method." Instead, we use information criteria:
+
+* **BIC (Bayesian Information Criterion)**
+* **AIC (Akaike Information Criterion)**
+
+We look for the number of clusters that **minimizes** these scores. They reward a good fit but penalize the model for becoming too complex (having too many clusters).
+
+## 6. GMM vs. K-Means
+
+| Feature | K-Means | GMM |
+| --- | --- | --- |
+| **Cluster Shape** | Strictly Circular (Spherical) | Flexible Ellipses |
+| **Assignment** | Hard (0 or 1) | Soft (Probabilities) |
+| **Math** | Distance-based | Density-based (Statistical) |
+| **Flexibility** | Low | High |
+
+
+## References for More Details
+
+* **[Scikit-Learn GMM Guide](https://scikit-learn.org/stable/modules/mixture.html):** Understanding advanced variants like Bayesian Gaussian Mixture Models.
+
+---
+
+**You have now covered all the major Clustering techniques! However, sometimes the problem isn't the groups, but the number of features. Let's learn how to simplify massive datasets.**

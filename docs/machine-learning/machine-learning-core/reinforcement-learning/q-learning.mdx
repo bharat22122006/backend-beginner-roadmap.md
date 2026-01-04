@@ -1,0 +1,162 @@
+---
+title: "Q-Learning: Learning Through Rewards and Penalties"
+sidebar_label: Q-Learning
+description: "Mastering the Bellman Equation, Temporal Difference learning, and the Exploration-Exploitation trade-off."
+tags: [machine-learning, reinforcement-learning, q-learning, bellman-equation]
+---
+
+**Q-Learning** is a model-free, off-policy reinforcement learning algorithm. It aims to learn a **Policy**, which tells an agent what action to take under what circumstances to maximize the total reward over time.
+
+Unlike Supervised Learning, there is no "correct label." The agent learns by interacting with an environment, receiving feedback (rewards or penalties), and updating its internal "knowledge" (the Q-Table).
+
+## 1. The RL Framework: Agent & Environment
+
+In any Q-Learning problem, we have:
+* **Agent:** The learner/decision-maker.
+* **State ($s$):** The current situation of the agent (e.g., coordinates on a grid).
+* **Action ($a$):** What the agent can do (e.g., move Up, Down, Left, Right).
+* **Reward ($r$):** The feedback received from the environment.
+
+## 2. The Q-Table
+
+The "Q" in Q-Learning stands for **Quality**. The Q-Table is a lookup table where rows represent **States** and columns represent **Actions**. Each cell $Q(s, a)$ contains a value representing the expected future reward for taking action $a$ in state $s$.
+
+```mermaid
+graph TD
+    subgraph Q-Table
+    T[States / Actions] --> A1[Action: Left]
+    T --> A2[Action: Right]
+    S1[State 1] --> V1[0.5]
+    S1 --> V2[1.2]
+    S2[State 2] --> V3[-0.1]
+    S2 --> V4[0.8]
+    end
+    
+    style V2 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#333
+
+```
+
+## 3. The Bellman Equation (The Heart of Q-Learning)
+
+The agent updates its Q-values using the **Bellman Equation**. This formula allows the agent to learn the value of a state based on the rewards it expects to get in the *future*.
+
+$$
+Q(s, a) \leftarrow Q(s, a) + \alpha [R + \gamma \max_{a'} Q(s', a') - Q(s, a)]
+$$
+
+**Breaking down the math:**
+
+* **$\alpha$ (Learning Rate):** How much new information overrides old information (0 to 1).
+* **$R$:** The immediate reward received.
+* **$\gamma$ (Discount Factor):** How much we care about future rewards vs. immediate ones (0 = short-sighted, 1 = long-term vision).
+* **$\max_{a'} Q(s', a')$:** The maximum predicted reward for the *next* state.
+* **$[ \dots ]$ (Temporal Difference):** The difference between the "Target" (what we found) and the "Estimate" (what we previously thought).
+
+## 4. Exploration vs. Exploitation ($\epsilon$-greedy)
+
+An agent faces a dilemma: should it try new things or stick to what it knows works?
+
+* **Exploration:** Choosing a random action to discover more about the environment.
+* **Exploitation:** Choosing the action with the highest Q-value.
+
+We use the **Epsilon-Greedy Strategy**:
+
+1. Generate a random number between 0 and 1.
+2. If number $< \epsilon$, **Explore**.
+3. Otherwise, **Exploit**. *(Usually, $\epsilon$ decays over time as the agent becomes more confident.)*
+
+## 5. Visualizing the Q-Learning Process
+
+```mermaid
+graph LR
+    ENV["$$\text{Environment}$$<br/>$$K\text{-Armed Bandit}$$"]
+
+    ENV --> A1["$$a_1$$"]
+    ENV --> A2["$$a_2$$"]
+    ENV --> A3["$$a_3$$"]
+
+    A1 --> R1["$$r \sim \mathcal{D}_1(\mu_1)$$"]
+    A2 --> R2["$$r \sim \mathcal{D}_2(\mu_2)$$"]
+    A3 --> R3["$$r \sim \mathcal{D}_3(\mu_3)$$"]
+
+    R1 --> EST["$$\hat{\mu}_a,\ N_a$$"]
+    R2 --> EST
+    R3 --> EST
+
+    EST --> POLICY["$$\pi(a)$$<br/>$$\text{Action Selection Policy}$$"]
+
+    POLICY -->|"$$1-\varepsilon$$"| EXPLOIT["$$\arg\max_a \hat{\mu}_a$$<br/>$$\text{Exploitation}$$"]
+    POLICY -->|"$$\varepsilon$$"| EXPLORE["$$\text{Sample Non-Greedy Arm}$$<br/>$$\text{Exploration}$$"]
+
+    EXPLOIT --> UPDATE["$$\hat{\mu}_a \leftarrow \hat{\mu}_a + \alpha(r-\hat{\mu}_a)$$"]
+    EXPLORE --> UPDATE
+
+    UPDATE --> UNC["$$\text{Uncertainty Shrinks as } N_a \uparrow$$"]
+    UNC --> REG["$$\text{Cumulative Regret}$$"]
+    REG --> POLICY
+
+    %% Advanced Note
+    POLICY -.->|"$$\text{UCB / Thompson Sampling}$$"| ADV["$$\hat{\mu}_a + c\sqrt{\frac{\ln t}{N_a}}$$<br/>$$\text{Optimism / Posterior Sampling}$$"]
+
+```
+
+**In this diagram:**
+
+* The agent interacts with a K-Armed Bandit environment.
+* It selects actions based on an $\epsilon$-greedy policy.
+* It updates its estimates of action values based on received rewards.
+
+## 6. Basic Implementation (Python)
+
+```python
+import numpy as np
+
+# 1. Initialize Q-Table with zeros
+q_table = np.zeros([state_space_size, action_space_size])
+
+# 2. Hyperparameters
+alpha = 0.1   # Learning rate
+gamma = 0.95  # Discount factor
+epsilon = 0.1 # Exploration rate
+
+# 3. Training Loop
+for episode in range(1000):
+    state = env.reset()
+    done = False
+    
+    while not done:
+        # Action Selection (Epsilon-Greedy)
+        if np.random.uniform(0, 1) < epsilon:
+            action = env.action_space.sample() # Explore
+        else:
+            action = np.argmax(q_table[state]) # Exploit
+            
+        # Perform action
+        next_state, reward, done, _ = env.step(action)
+        
+        # Update Q-Value (Bellman Equation)
+        old_value = q_table[state, action]
+        next_max = np.max(q_table[next_state])
+        
+        new_value = old_value + alpha * (reward + gamma * next_max - old_value)
+        q_table[state, action] = new_value
+        
+        state = next_state
+
+```
+
+## 7. Limitations of Tabular Q-Learning
+
+While powerful, standard Q-Learning fails when the **State Space** is too large.
+
+* **Example:** In Chess, there are  possible states. A Q-Table cannot fit in any computer's RAM.
+* **Solution:** Use a Neural Network to *approximate* the Q-values instead of storing them in a table. This is called **Deep Q-Learning (DQN)**.
+
+## References
+
+* **[Reinforcement Learning: An Introduction (Sutton & Barto)]:** The definitive textbook on the subject.
+* **DeepMind's Introduction to RL:** Great for understanding the transition to Deep Learning.
+
+---
+
+**You've seen how agents learn through trial and error. But how do we scale this to complex games like Atari or Go?**
