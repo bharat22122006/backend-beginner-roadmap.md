@@ -1,0 +1,143 @@
+---
+title: The Confusion Matrix
+sidebar_label: Confusion Matrix
+description: "The foundation of classification evaluation: True Positives, False Positives, True Negatives, and False Negatives."
+tags: [machine-learning, model-evaluation, metrics, classification, confusion-matrix]
+---
+
+A **Confusion Matrix** is a table used to describe the performance of a classification model. While "Accuracy" tells you how often the model is correct, the Confusion Matrix tells you exactly **how** it is failing and which classes are being swapped.
+
+## 1. The 2x2 Layout
+
+For a binary classification (Yes/No, Spam/Ham), the matrix consists of four quadrants:
+
+| | Predicted: **Negative** | Predicted: **Positive** |
+| :--- | :--- | :--- |
+| **Actual: Negative** | **True Negative (TN)** | **False Positive (FP)** |
+| **Actual: Positive** | **False Negative (FN)** | **True Positive (TP)** |
+
+### Breaking Down the Quadrants:
+* **True Positive (TP):** You predicted positive, and it was true. (e.g., You predicted a patient has cancer, and they do).
+* **True Negative (TN):** You predicted negative, and it was true. (e.g., You predicted a patient is healthy, and they are).
+* **False Positive (FP):** You predicted positive, but it was false. (Also known as a **Type I Error** or a "False Alarm").
+* **False Negative (FN):** You predicted negative, but it was positive. (Also known as a **Type II Error** or a "Miss").
+
+## 2. Type I vs. Type II Errors
+
+The "cost" of these errors depends entirely on your specific problem.
+
+```mermaid
+graph TB
+    TITLE["$$\text{Type I vs. Type II Errors}$$"]
+
+    %% Ground Truth
+    TITLE --> TRUTH["$$\text{Actual Condition}$$"]
+    TRUTH --> POS["$$\text{Positive (Condition Present)}$$"]
+    TRUTH --> NEG["$$\text{Negative (Condition Absent)}$$"]
+
+    %% Model Decisions
+    POS --> TP["$$\text{True Positive}$$"]
+    POS --> FN["$$\text{Type II Error}$$<br/>$$\text{False Negative}$$"]
+
+    NEG --> TN["$$\text{True Negative}$$"]
+    NEG --> FP["$$\text{Type I Error}$$<br/>$$\text{False Positive}$$"]
+
+    %% Costs
+    FP --> COST1["$$\text{Cost Depends on Context}$$"]
+    FN --> COST2["$$\text{Cost Depends on Context}$$"]
+
+    %% Examples
+    COST1 --> EX1["$$\text{Example: Spam Filter}$$<br/>$$\text{Important Email Blocked}$$"]
+    COST2 --> EX2["$$\text{Example: Medical Test}$$<br/>$$\text{Disease Missed}$$"]
+
+    %% Emphasis
+    EX1 -.->|"$$\text{Type I Cost High}$$"| FP
+    EX2 -.->|"$$\text{Type II Cost High}$$"| FN
+
+```
+
+* **In Cancer Detection:** A **Type II Error (FN)** is much worse because a sick patient goes untreated.
+* **In Spam Filtering:** A **Type I Error (FP)** is worse because an important work email is hidden in the trash.
+
+## 3. Implementation with Scikit-Learn
+
+```python
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+import matplotlib.pyplot as plt
+
+# Actual values and Model predictions
+y_true = [0, 1, 0, 1, 0, 1, 1, 0]
+y_pred = [0, 1, 1, 1, 0, 0, 1, 0]
+
+# 1. Generate the matrix
+cm = confusion_matrix(y_true, y_pred)
+
+# 2. Visualize it
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['Negative', 'Positive'])
+disp.plot(cmap=plt.cm.Blues)
+plt.show()
+
+```
+
+## 4. Multi-Class Confusion Matrices
+
+The matrix isn't just for binary problems. If you are classifying "Cat," "Dog," and "Bird," your matrix will be 3x3. The diagonal line from top-left to bottom-right represents correct predictions. Any numbers off that diagonal show you which animals the model is confusing.
+
+```mermaid
+graph TB
+    TITLE["$$\text{Multi-Class Confusion Matrix (3×3)}$$"]
+
+    %% Axes
+    TITLE --> ACT["$$\text{Actual Class}$$"]
+    TITLE --> PRED["$$\text{Predicted Class}$$"]
+
+    ACT --> CAT_A["$$\text{Cat}$$"]
+    ACT --> DOG_A["$$\text{Dog}$$"]
+    ACT --> BIRD_A["$$\text{Bird}$$"]
+
+    PRED --> CAT_P["$$\text{Cat}$$"]
+    PRED --> DOG_P["$$\text{Dog}$$"]
+    PRED --> BIRD_P["$$\text{Bird}$$"]
+
+    %% Diagonal (Correct Predictions)
+    CAT_A --> CAT_P["$$\text{Cat → Cat}$$<br/>$$\text{Correct}$$"]
+    DOG_A --> DOG_P["$$\text{Dog → Dog}$$<br/>$$\text{Correct}$$"]
+    BIRD_A --> BIRD_P["$$\text{Bird → Bird}$$<br/>$$\text{Correct}$$"]
+
+    %% Off-Diagonal (Confusions)
+    CAT_A --> DOG_P["$$\text{Cat → Dog}$$<br/>$$\text{Confusion}$$"]
+    CAT_A --> BIRD_P["$$\text{Cat → Bird}$$<br/>$$\text{Confusion}$$"]
+
+    DOG_A --> CAT_P["$$\text{Dog → Cat}$$<br/>$$\text{Confusion}$$"]
+    DOG_A --> BIRD_P["$$\text{Dog → Bird}$$<br/>$$\text{Confusion}$$"]
+
+    BIRD_A --> CAT_P["$$\text{Bird → Cat}$$<br/>$$\text{Confusion}$$"]
+    BIRD_A --> DOG_P["$$\text{Bird → Dog}$$<br/>$$\text{Confusion}$$"]
+
+    %% Emphasis
+    CAT_P -.->|"$$\text{Diagonal}$$"| GOOD["$$\text{Correct Predictions}$$"]
+    DOG_P -.->|"$$\text{Diagonal}$$"| GOOD
+    BIRD_P -.->|"$$\text{Diagonal}$$"| GOOD
+
+    DOG_P -.->|"$$\text{Off-Diagonal}$$"| BAD["$$\text{Model Confusion}$$"]
+    BIRD_P -.->|"$$\text{Off-Diagonal}$$"| BAD
+
+```
+
+## 5. Summary: What can we calculate from here?
+
+The Confusion Matrix is the "mother" of all classification metrics. From these four numbers, we derive:
+
+* **Accuracy:** 
+* **Precision:** 
+* **Recall:** 
+* **F1-Score:** The balance between Precision and Recall.
+
+## References
+
+* **StatQuest:** [Confusion Matrices Explained](https://www.youtube.com/watch?v=Kdsp6soqA7o)
+* **Scikit-Learn:** [Confusion Matrix API](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html)
+
+---
+
+**Now that you can see where the model is making mistakes, let's learn how to turn those mistakes into a single score.**
