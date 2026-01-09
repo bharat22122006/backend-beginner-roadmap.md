@@ -1,0 +1,98 @@
+---
+title: "Loss Functions: Measuring Error"
+sidebar_label: Loss Functions
+description: "Understanding how models quantify mistakes using MSE, Binary Cross-Entropy, and Categorical Cross-Entropy."
+tags: [deep-learning, neural-networks, loss-functions, optimization, mse, cross-entropy]
+---
+
+A **Loss Function** (also known as a Cost Function) is a method of evaluating how well your specific algorithm models your featured data. If your predictions are totally off, your loss function will output a higher number. If they’re pretty good, it’ll output a lower number.
+
+The goal of training a neural network is to use **Optimization** to find the weights that result in the **lowest possible loss**.
+
+## 1. Regression Loss Functions
+
+When you are predicting a continuous value (like a house price or temperature), you need to measure the distance between the predicted number and the actual number.
+
+### A. Mean Squared Error (MSE)
+MSE is the most common loss function for regression. It squares the difference between prediction and reality, which heavily penalizes large errors.
+
+$$
+MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+$$
+
+Where:
+
+* $n$ = number of samples
+* $y_i$ = actual value
+* $\hat{y}_i$ = predicted value
+
+### B. Mean Absolute Error (MAE)
+MAE takes the absolute difference. Unlike MSE, it treats all errors linearly. It is more "robust" to outliers because it doesn't square the large deviations.
+
+## 2. Classification Loss Functions
+
+When predicting categories, we don't look at "distance"; we look at **probability divergence**.
+
+### A. Binary Cross-Entropy (Log Loss)
+Used for binary classification (Yes/No). It measures the performance of a classification model whose output is a probability value between 0 and 1.
+
+$$
+L = -[y \log(p) + (1 - y) \log(1 - p)]
+$$
+
+Where:
+
+* $y$ = actual label (0 or 1)
+* $p$ = predicted probability of the positive class (1)
+* $\log$ = natural logarithm
+
+### B. Categorical Cross-Entropy
+Used for multi-class classification (e.g., Cat vs. Dog vs. Bird). It compares the predicted probability distribution across all classes with the actual one-hot encoded label.
+
+$$
+L = - \sum_{i=1}^{C} y_i \log(p_i)
+$$
+
+Where:
+
+* $C$ = number of classes
+* $y_i$ = actual label (1 for the correct class, 0 otherwise)
+* $p_i$ = predicted probability for class $i$
+
+## 3. Which Loss Function to Choose?
+
+Choosing the right loss function depends entirely on your output layer and the problem type:
+
+| Problem Type | Output Layer Activation | Recommended Loss |
+| :--- | :--- | :--- |
+| **Regression** | Linear (None) | Mean Squared Error (MSE) |
+| **Binary Classification** | Sigmoid | Binary Cross-Entropy |
+| **Multi-class Classification** | Softmax | Categorical Cross-Entropy |
+| **Multi-label Classification** | Sigmoid (per node) | Binary Cross-Entropy |
+
+## 4. Implementation with Keras
+
+```python
+# For Regression
+model.compile(optimizer='adam', loss='mean_squared_error')
+
+# For Binary Classification (0 or 1)
+model.compile(optimizer='adam', loss='binary_crossentropy')
+
+# For Multi-class Classification (One-hot labels)
+model.compile(optimizer='adam', loss='categorical_crossentropy')
+
+```
+
+## 5. The Loss Landscape
+
+If we visualize the loss function relative to two weights, it looks like a hilly terrain. Training a model is essentially the process of "walking down the hill" to find the lowest valley (The Global Minimum).
+
+## References
+
+* **PyTorch Docs:** [Loss Functions Gallery](https://docs.pytorch.org/docs/stable/nn.html#loss-functions)
+* **Machine Learning Mastery:** [Loss and Loss Functions for Training Deep Learning Neural Networks](https://machinelearningmastery.com/loss-and-loss-functions-for-training-deep-learning-neural-networks/)
+
+---
+
+**Now that we have a "Loss" score, how do we actually change the weights to make that score smaller?**
