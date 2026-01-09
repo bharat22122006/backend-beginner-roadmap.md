@@ -1,0 +1,84 @@
+---
+title: Activation Functions
+sidebar_label: Activation Functions
+description: "Why we need non-linearity and a deep dive into Sigmoid, Tanh, ReLU, and Softmax."
+tags: [deep-learning, neural-networks, activation-functions, relu, sigmoid]
+---
+
+An **Activation Function** is a mathematical formula applied to the output of a neuron. Its primary job is to introduce **non-linearity** into the network. Without them, no matter how many layers you add, your neural network would behave like a simple linear regression model.
+
+## 1. Why do we need Non-Linearity?
+
+Real-world data is rarely a straight line. If we only used linear transformations ($z = wx + b$), the composition of multiple layers would just be another linear transformation. 
+
+Non-linear activation functions allow the network to "bend" the decision boundary to fit complex patterns like images, sound, and human language.
+
+## 2. Common Activation Functions
+
+### A. Sigmoid
+The Sigmoid function squashes any input value into a range between **0 and 1**. 
+* **Formula:** $\sigma(z) = \frac{1}{1 + e^{-z}}$
+* **Best For:** The output layer of binary classification models.
+* **Downside:** It suffers from the **Vanishing Gradient** problem; for very high or low inputs, the gradient is almost zero, which kills learning.
+
+### B. ReLU (Rectified Linear Unit)
+
+ReLU is the default choice for hidden layers in modern deep learning.
+* **Formula:** $f(z) = \max(0, z)$
+* **Pros:** It is computationally very efficient and helps prevent vanishing gradients.
+* **Cons:** "Dying ReLU" — if a neuron's input is always negative, it stays at 0 and never updates its weights again.
+
+### C. Tanh (Hyperbolic Tangent)
+
+Similar to Sigmoid, but it squashes values between **-1 and 1**.
+* **Formula:** $\tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}$
+* **Pros:** It is "zero-centered," meaning the average output is closer to 0, which often makes training faster than Sigmoid.
+
+
+
+## 3. Comparison Table
+
+| Function | Range | Common Use Case | Main Issue |
+| :--- | :--- | :--- | :--- |
+| **Sigmoid** | (0, 1) | Binary Classification Output | Vanishing Gradient |
+| **Tanh** | (-1, 1) | Hidden Layers (legacy) | Vanishing Gradient |
+| **ReLU** | [0, $\infty$) | Hidden Layers (Standard) | Dying Neurons |
+| **Softmax** | (0, 1) | Multi-class Output | Only used in Output layer |
+
+## 4. The Softmax Function (Multi-class)
+
+When you have more than two categories (e.g., classifying an image as a Cat, Dog, or Bird), we use **Softmax** in the final layer. It turns the raw outputs (logits) into a probability distribution that sums up to **1.0**.
+
+$$
+\sigma(\mathbf{z})_i = \frac{e^{z_i}}{\sum_{j=1}^K e^{z_j}}
+$$
+
+Where:
+
+* $\mathbf{z}$ = vector of raw class scores (logits)
+* $K$ = total number of classes
+* $\sigma(\mathbf{z})_i$ = probability of class $i$
+
+## 5. Implementation with Keras
+
+```python
+from tensorflow.keras.layers import Dense
+
+# Using ReLU for hidden layers and Sigmoid for output
+model.add(Dense(64, activation='relu'))
+model.add(Dense(1, activation='sigmoid'))
+
+# Alternatively, using Softmax for multi-class (3 classes)
+model.add(Dense(3, activation='softmax'))
+
+```
+
+---
+
+## References
+
+* **CS231n:** [Linear Classifiers and Activations](https://cs231n.github.io/neural-networks-1/)
+
+---
+
+**Now that you know how neurons fire, how do we measure how "wrong" their firing pattern is compared to the ground truth?**
