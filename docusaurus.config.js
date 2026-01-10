@@ -128,46 +128,59 @@ const config = {
         },
         items: [
           {
-            to: "/tutorial/",
+            type: "dropdown",
             html: '<span class="nav-emoji">📚</span> Tutorials',
             position: "left",
+            items: [
+              {
+                type: "html",
+                value: `
+        <div class="dropdown_grid">
+          <a class="dropbtn" href="/tutorial/">Web Development</a>
+          <div class="dropdown-content">
+            <a href="/tutorial/category/html/" class="nav__icons"> <img src="/tutorial/icons/html-5.svg" title="HTML" alt="HTML" /> </a>
+            <a href="/tutorial/css/introduction" class="nav__icons"> <img src="/tutorial/icons/css.svg" title="CSS" alt="CSS" /> </a>
+            <a href="/tutorial/javascript/introduction-to-javascript/what-is-js" class="nav__icons"> <img src="/tutorial/icons/js.svg" title="JavaScript" alt="JS" /> </a>
+            <a href="/tutorial/react/react-intro" class="nav__icons"> <img src="/tutorial/icons/jsx.svg" title="React" alt="React" /> </a>
+          </div>
+        </div>`,
+              },
+              {
+                type: "html",
+                value:
+                  '<hr style="margin: 0.3rem 0; border: none; border-top: 1px solid var(--ifm-color-emphasis-200);">',
+              },
+              {
+                type: "html",
+                value: `
+                    <div class="dropdown_grid">
+                      <a class="dropbtn" href="#">Core Skills & Tech</a>
+                      <div class="dropdown-content">
+                        <a href="/tutorial/git/introduction" class="nav__icons"> <img src="/tutorial/icons/git.svg" title="Git" alt="Git" /> </a>
+                        <a href="/tutorial/github/introduction-to-github" class="nav__icons"> <img src="/tutorial/icons/github.svg" title="GitHub" alt="GitHub" /> </a>
+                        <a href="/tutorial/cybersecurity" class="nav__icons"> <img src="/tutorial/icons/cyber-security.png" title="Cyber Security" alt="Cyber" /> </a>
+                        <a href="/tutorial/machine-learning" class="nav__icons"> <img src="/tutorial/icons/ai-chat.svg" title="Machine Learning" alt="ML" /> </a>
+                        <a href="/tutorial/internet/introduction" class="nav__icons"> <img src="/tutorial/icons/internet.svg" title="Internet" alt="Internet" /> </a>
+                        <a href="/tutorial/technical-writer" class="nav__icons"> <img src="/tutorial/icons/writer.png" title="Technical Writing" alt="Writing" /> </a>
+                      </div>
+                    </div>`,
+              },
+              {
+                type: "html",
+                value:
+                  '<hr style="margin: 0.3rem 0; border: none; border-top: 1px solid var(--ifm-color-emphasis-200);">',
+              },
+              {
+                to: "/tutorial/",
+                label: "View All Tutorials",
+                style: {
+                  fontSize: "0.8rem",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                },
+              },
+            ],
           },
-          {
-            to: "/tutorial/category/html/",
-            html: '<span class="nav-emoji">🧱</span> HTML',
-            position: "left",
-          },
-          {
-            to: "/tutorial/css/introduction",
-            html: '<span class="nav-emoji">🎨</span> CSS',
-            position: "left",
-          },
-          {
-            to: "/tutorial/javascript/introduction-to-javascript/what-is-js",
-            html: '<span class="nav-emoji">⚡</span> JavaScript',
-            position: "left",
-          },
-          {
-            to: "/tutorial/git/introduction",
-            html: '<span class="nav-emoji">🌳</span> Git',
-            position: "left",
-          },
-          {
-            to: "/tutorial/github/introduction-to-github",
-            html: '<span class="nav-emoji">🐙</span> GitHub',
-            position: "left",
-          },
-          {
-            to: "/tutorial/react/react-intro",
-            html: '<span class="nav-emoji">⚛️</span> React',
-            position: "left",
-          },
-          {
-            to: "/tutorial/cybersecurity",
-            html: '<span class="nav-emoji">🛡️</span> Cyber Security',
-            position: "left",
-          },
-
           {
             to: "https://codeharborhub.github.io/blog",
             html: '<span class="nav-emoji">📝</span> Blog',
@@ -334,7 +347,6 @@ const config = {
           "ruby",
           "rust",
           "java",
-          
         ],
       },
       docs: {

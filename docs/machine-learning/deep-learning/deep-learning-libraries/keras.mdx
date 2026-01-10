@@ -1,0 +1,121 @@
+---
+title: "Keras: Deep Learning for Humans"
+sidebar_label: Keras
+description: "Understanding the high-level API that makes building neural networks as easy as stacking LEGO blocks."
+tags: [deep-learning, keras, tensorflow, neural-networks, api, python]
+---
+
+**Keras** is an open-source deep learning library written in Python. It was designed by François Chollet with a simple mission: **to enable fast experimentation.** Being able to go from idea to result with the least possible delay is key to doing good research.
+
+Since the release of TensorFlow 2.0, Keras has become the official high-level API for TensorFlow, providing a polished, user-friendly interface for the powerful engine beneath.
+
+## 1. The Design Philosophy
+
+Keras is built on four core principles:
+1.  **User Friendliness:** It provides consistent and simple APIs that minimize the number of user actions required for common use cases.
+2.  **Modularity:** A model is understood as a sequence or a graph of standalone, fully configurable modules (layers, loss functions, optimizers).
+3.  **Easy Extensibility:** New modules are easy to add as new classes and functions.
+4.  **Work with Python:** Keras models are defined in Python code, which is compact, easy to debug, and easy to extend.
+
+## 2. Three Ways to Build Models
+
+Keras offers three different APIs to balance ease of use with flexibility:
+
+### A. The Sequential API
+The simplest way to build a model. You literally "stack" layers one on top of the other. It is perfect for $90\%$ of use cases where you have one input and one output.
+
+```python title="Building a Sequential Model"
+from tensorflow.keras import Sequential
+from tensorflow.keras.layers import Dense
+
+model = Sequential([
+    Dense(64, activation='relu', input_shape=(20,)),
+    Dense(10, activation='softmax')
+])
+
+```
+
+### B. The Functional API
+
+Used for more complex models. It allows you to build graphs of layers with multiple inputs, multiple outputs, or shared layers. It treats layers as functions.
+
+```python title="Building a Functional Model"
+from tensorflow.keras import Input, Model
+from tensorflow.keras.layers import Dense
+inputs = Input(shape=(20,))
+x = Dense(64, activation='relu')(inputs)
+outputs = Dense(10, activation='softmax')(x)
+model = Model(inputs=inputs, outputs=outputs)
+```
+
+### C. Model Subclassing
+
+The "pro" way. You define everything from scratch by subclassing the `Model` class. This gives you total control over the forward pass, which is essential for custom research or complex dynamic networks.
+
+```python title="Building a Subclassed Model"
+from tensorflow.keras import Model
+from tensorflow.keras.layers import Dense
+class MyModel(Model):
+    def __init__(self):
+        super(MyModel, self).__init__()
+        self.dense1 = Dense(64, activation='relu')
+        self.dense2 = Dense(10, activation='softmax')
+
+    def call(self, inputs):
+        x = self.dense1(inputs)
+        return self.dense2(x)
+model = MyModel()
+```
+
+## 3. The Keras Workflow
+
+Building and training a model in Keras always follows this 5-step lifecycle:
+
+1. **Define:** Specify the layers and architecture.
+2. **Compile:** Choose an **Optimizer** (e.g., Adam), a **Loss Function** (e.g., MSE), and **Metrics** (e.g., Accuracy).
+3. **Fit:** Train the model on your data.
+4. **Evaluate:** Check how the model performs on unseen data.
+5. **Predict:** Use the model to generate outputs for new samples.
+
+```python title="Keras Workflow Example"
+# The 'Compile' step is where the math meets the code
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+# The 'Fit' step starts the training loop
+model.fit(X_train, y_train, epochs=10, batch_size=32)
+
+```
+
+## 4. Key Components: Layers & Callbacks
+
+### Common Layers:
+
+* `Dense`: Standard fully connected layer.
+* `Conv2D`: Used for image processing (Computer Vision).
+* `LSTM` / `GRU`: Used for sequence data (NLP).
+* `Dropout`: A regularization technique to prevent overfitting by randomly "killing" neurons during training.
+
+### Callbacks:
+
+Callbacks are tools that perform actions at various stages of training, such as:
+
+* **EarlyStopping:** Stop training when the model stops improving.
+* **ModelCheckpoint:** Save the "best" version of your model automatically.
+
+## 5. Pros and Cons
+
+| Advantages | Disadvantages |
+| --- | --- |
+| **Simplicity:** The most beginner-friendly library in the ecosystem. | **Lower-level Control:** It can be harder to implement highly experimental, custom logic compared to PyTorch. |
+| **Speed of Prototyping:** Build a working CNN in under 20 lines of code. | **Opaque Errors:** Because it is high-level, stack traces can sometimes be harder to interpret. |
+| **Large Community:** Thousands of tutorials and pre-trained models. | **Performance:** Occasionally slightly slower than raw TensorFlow code due to the abstraction layer. |
+
+## References
+
+* **Official Keras Site:** [keras.io](https://keras.io/)
+* **Book:** *Deep Learning with Python* by François Chollet.
+* **Guide:** [The Functional API vs Sequential API](https://www.tensorflow.org/guide/keras/functional)
+
+---
+
+**Keras makes building models easy. But what if you want more "Pythonic" control and dynamic computation graphs?** Check out our guide on [PyTorch](./pytorch)!
