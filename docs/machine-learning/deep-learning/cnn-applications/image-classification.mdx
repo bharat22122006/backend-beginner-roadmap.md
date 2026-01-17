@@ -1,0 +1,85 @@
+---
+title: Image Classification
+sidebar_label: Image Classification
+description: "How to train neural networks to categorize images into predefined classes using CNNs."
+tags: [deep-learning, cnn, image-classification, computer-vision, transfer-learning]
+---
+
+**Image Classification** is the task of assigning a label or a category to an entire input image. It is the most fundamental task in Computer Vision and serves as the building block for more complex tasks like Object Detection and Image Segmentation.
+
+## 1. The Workflow: From Pixels to Labels
+
+An image classification model follows a linear pipeline where spatial information is gradually transformed into a semantic category.
+
+1.  **Input Layer:** Raw pixel data (e.g., $224 \times 224 \times 3$ for an RGB image).
+2.  **Feature Extraction:** Multiple [Convolution](../cnn/convolution) and [Pooling](../cnn/pooling) layers identify edges, shapes, and complex patterns.
+3.  **Flattening:** The 2D feature maps are converted into a 1D vector.
+4.  **Classification:** [Fully Connected Layers](https://www.youtube.com/watch?v=rxSmwM7z0_4) act as a traditional MLP to interpret the features.
+5.  **Output Layer:** Uses a **Softmax** function to provide probabilities for each class.
+
+## 2. Binary vs. Multi-Class Classification
+
+| Type | Output Neurons | Activation | Loss Function |
+| :--- | :--- | :--- | :--- |
+| **Binary** (Cat or Not) | 1 | Sigmoid | Binary Cross-Entropy |
+| **Multi-Class** (Cat, Dog, Bird) | $N$ (Number of classes) | Softmax | Categorical Cross-Entropy |
+
+## 3. Transfer Learning: Standing on the Shoulders of Giants
+
+Training a CNN from scratch requires thousands of images and massive computing power. Instead, most developers use **Transfer Learning**.
+
+This involves taking a model pre-trained on a massive dataset (like **ImageNet**, which has 1.4 million images across 1,000 classes) and repurposing it for a specific task.
+
+* **Freezing:** We keep the "Feature Extractor" weights fixed because they already know how to "see" shapes.
+* **Fine-Tuning:** We only replace and train the final classification head for our specific labels.
+
+## 4. Implementation with Keras (Transfer Learning)
+
+This example shows how to use the **MobileNetV2** architecture to classify custom images.
+
+```python
+import tensorflow as tf
+from tensorflow.keras import layers, models
+
+# 1. Load a pre-trained model without the top (classification) layer
+base_model = tf.keras.applications.MobileNetV2(
+    input_shape=(160, 160, 3), include_top=False, weights='imagenet'
+)
+
+# 2. Freeze the base model
+base_model.trainable = False
+
+# 3. Add custom classification head
+model = models.Sequential([
+    base_model,
+    layers.GlobalAveragePooling2D(),
+    layers.Dense(1, activation='sigmoid') # Binary: e.g., 'Mask' or 'No Mask'
+])
+
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+
+```
+
+## 5. Challenges in Classification
+
+1. **Intra-class Variation:** A "Chair" can look very different depending on its design.
+2. **Scale Variation:** An object may occupy the entire frame or just a tiny corner.
+3. **Viewpoint Variation:** A model must recognize a car from the front, side, and top.
+4. **Occlusion:** Only part of the object might be visible (e.g., a dog behind a fence).
+
+## 6. Popular Architectures for Classification
+
+* **ResNet (Residual Networks):** Introduced "Skip Connections" to allow training of very deep networks (100+ layers).
+* **VGG-16:** A very deep but simple architecture using only  convolutions.
+* **Inception (GoogLeNet):** Uses different kernel sizes in the same layer to capture features at different scales.
+* **EfficientNet:** Optimized for the best balance between accuracy and computational cost.
+
+## References
+
+* **ImageNet:** [The Benchmark Dataset](https://www.image-net.org/)
+* **TensorFlow Tutorials:** [Image Classification for Beginners](https://www.tensorflow.org/tutorials/images/classification)
+* **PyTorch Tutorials:** [Transfer Learning for Computer Vision](https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html)
+
+---
+
+**Classifying an entire image is great, but what if you need to know *where* the object is or if there are multiple objects?**

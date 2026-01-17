@@ -1,0 +1,91 @@
+---
+title: Padding in CNNs
+sidebar_label: Padding
+description: "How padding prevents data loss at the edges and controls the output size of convolutional layers."
+tags: [deep-learning, cnn, computer-vision, padding, zero-padding]
+---
+
+When we slide a kernel over an image in a [Convolutional Layer](./convolution), two problems occur:
+1.  **Shrinking Output:** The image gets smaller with every layer.
+2.  **Loss of Border Info:** Pixels at the corners are only "touched" by the kernel once, whereas central pixels are processed many times.
+
+**Padding** solves both by adding a border of extra pixels (usually zeros) around the input image.
+
+## 1. The Border Problem
+
+Imagine a $3 \times 3$ kernel sliding over a $5 \times 5$ image. The center pixel is involved in 9 different multiplications, but the corner pixel is only involved in 1. This means the network effectively "ignores" information at the edges of your images.
+
+## 2. Types of Padding
+
+There are two primary ways to handle padding in deep learning frameworks:
+
+### A. Valid Padding (No Padding)
+In "Valid" padding, we add zero extra pixels. The kernel stays strictly within the boundaries of the original image.
+* **Result:** The output is always smaller than the input.
+* **Formula:** $O = (W - K + 1)$
+
+### B. Same Padding (Zero Padding)
+In "Same" padding, we add enough pixels (usually zeros) around the edges so that the output size is **exactly the same** as the input size (assuming a stride of 1).
+* **Result:** Spatial dimensions are preserved.
+* **Common use:** Deep architectures where we want to stack dozens of layers without the image disappearing.
+
+## 3. Mathematical Formula with Padding
+
+When we include padding ($P$), the formula for the output dimension becomes:
+
+$$
+O = \frac{W - K + 2P}{S} + 1
+$$
+
+* **$W$**: Input dimension
+* **$K$**: Kernel size
+* **$P$**: Padding amount (number of pixels added to one side)
+* **$S$**: Stride
+
+:::note
+For "Same" padding with a stride of 1, the required padding is usually $P = \frac{K-1}{2}$. This is why kernel sizes are almost always odd numbers ($3 \times 3, 5 \times 5$).
+:::
+
+## 4. Other Padding Techniques
+
+While **Zero Padding** is the standard, other methods exist for specific cases:
+* **Reflection Padding:** Mirrors the pixels from inside the image. This is often used in style transfer or image generation to prevent "border artifacts."
+* **Constant Padding:** Fills the border with a specific constant value (e.g., gray or white).
+
+## 5. Implementation
+
+### TensorFlow / Keras
+Keras simplifies this by using strings:
+
+```python
+from tensorflow.keras.layers import Conv2D
+
+# Output size will be smaller than input
+valid_conv = Conv2D(32, (3, 3), padding='valid')
+
+# Output size will be identical to input
+same_conv = Conv2D(32, (3, 3), padding='same')
+
+```
+
+### PyTorch
+
+In PyTorch, you specify the exact number of pixels:
+
+```python
+import torch.nn as nn
+
+# For a 3x3 kernel, padding=1 gives 'same' output
+# (3-1)/2 = 1
+conv = nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, padding=1)
+
+```
+
+## References
+
+* **CS231n:** [Spatial Arrangement of Layers](https://cs231n.github.io/convolutional-networks/#spatial)
+* **PyTorch Docs:** [Conv2d Layer Specifications](https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html)
+
+---
+
+**Padding keeps the image size consistent, but what if we want to move across the image faster or purposely reduce the size?**

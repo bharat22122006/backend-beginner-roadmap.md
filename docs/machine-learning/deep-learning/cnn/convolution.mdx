@@ -1,0 +1,88 @@
+---
+title: The Convolution Operation
+sidebar_label: Convolution
+description: "Understanding kernels, filters, and how feature maps are created in Convolutional Neural Networks."
+tags: [deep-learning, cnn, computer-vision, convolution, kernels]
+---
+
+The **Convolution** is the heart of Computer Vision. Unlike standard neural networks that treat every pixel as an independent feature, Convolution allows the network to preserve the **spatial relationship** between pixels, enabling it to recognize shapes, edges, and textures.
+
+## 1. What is a Convolution?
+
+At its simplest, a convolution is a mathematical operation where a small matrix (called a **Kernel** or **Filter**) slides across an input image and performs element-wise multiplication with the part of the input it is currently hovering over.
+
+The results are summed up to create a single value in a new matrix called a **Feature Map** (or Activation Map).
+
+## 2. The Anatomy of a Kernel
+
+A kernel is a grid of weights. Different weights allow the kernel to detect different types of features:
+
+* **Vertical Edge Detector:** A kernel with high values on the left and low values on the right.
+* **Horizontal Edge Detector:** A kernel with high values on the top and low values on the bottom.
+* **Sharpening Kernel:** A kernel that emphasizes the central pixel relative to its neighbors.
+
+## 3. Key Hyperparameters
+
+When performing a convolution, there are three main settings that determine the size and behavior of the output:
+
+### A. Stride
+Stride is the number of pixels the kernel moves at a time.
+* **Stride 1:** Moves one pixel at a time (larger output).
+* **Stride 2:** Jumps two pixels at a time (smaller, downsampled output).
+
+### B. Padding
+Since the kernel cannot "hang off" the edge of an image, the pixels on the borders are processed less than the pixels in the center. To fix this, we add a border of zeros around the image.
+* **Valid Padding:** No padding (output is smaller than input).
+* **Same Padding:** Zeros are added so the output is the same size as the input.
+
+### C. Depth (Channels)
+If you are processing a color image, your input has 3 channels (Red, Green, Blue). Your kernel will also have a depth of 3 to match.
+
+## 4. The Math of Output Size
+
+To calculate the dimensions of the resulting Feature Map, we use the following formula:
+
+$$
+O = \frac{W - K + 2P}{S} + 1
+$$
+
+* **$W$**: Input width/height
+* **$K$**: Kernel size
+* **$P$**: Padding
+* **$S$**: Stride
+
+## 5. Why Convolution?
+
+1.  **Sparse Connectivity:** Instead of every input pixel connecting to every output neuron, neurons only look at a small "receptive field." This massively reduces the number of parameters.
+2.  **Parameter Sharing:** The same kernel (weights) is used across the entire image. If a filter learns to detect a "circle," it can find that circle in the top-left corner or the bottom-right corner using the same weights.
+
+## 6. Implementation with PyTorch
+
+```python
+import torch
+import torch.nn as nn
+
+# Create a sample input: (Batch, Channels, Height, Width)
+input_image = torch.randn(1, 3, 32, 32)
+
+# Define a Convolutional Layer
+# 3 input channels (RGB), 16 output filters, 3x3 kernel size
+conv_layer = nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, stride=1, padding=1)
+
+# Apply convolution
+output = conv_layer(input_image)
+
+print(f"Input shape: {input_image.shape}")
+print(f"Output shape: {output.shape}") 
+# Output: [1, 16, 32, 32] because of 'Same' padding
+
+```
+
+## References
+
+* **Stanford CS231n:** [Convolutional Neural Networks for Visual Recognition](https://cs231n.github.io/convolutional-networks/)
+* **Setosa.io:** [Image Kernels Visualizer](http://setosa.io/ev/image-kernels/)
+
+---
+
+**Convolution extracts the features, but the resulting maps are often too large and computationally heavy. How do we shrink them down without losing the important information?**

@@ -1,0 +1,86 @@
+---
+title: Strides in CNNs
+sidebar_label: Strides
+description: "Understanding how the step size of a filter influences spatial dimensions and computational efficiency."
+tags: [deep-learning, cnn, computer-vision, strides, downsampling]
+---
+
+In a Convolutional Neural Network, the **Stride** is the number of pixels by which the filter (kernel) shifts over the input matrix. While [Padding](./padding) is used to maintain size, **Stride** is one of the primary ways we control the spatial dimensions of our feature maps.
+
+## 1. What is a Stride?
+
+When the stride is set to **1**, the filter moves one pixel at a time. This results in highly overlapping receptive fields and a larger output.
+
+When the stride is set to **2** (or more), the filter jumps two pixels at a time. This skips over pixels, resulting in a smaller output and less overlap.
+
+## 2. The Impact of Striding
+
+### A. Dimensionality Reduction
+Increasing the stride is an alternative to [Pooling](/tutorial/machine-learning/deep-learning/cnn/pooling). By jumping over pixels, the network effectively "downsamples" the image. For example, a stride of 2 will roughly halve the width and height of the output.
+
+### B. Receptive Field
+A larger stride allows the network to cover more area with fewer parameters, but it comes at a cost: **Information Loss**. Because the filter skips pixels, some fine-grained spatial details might be missed.
+
+### C. Computational Efficiency
+Larger strides mean fewer total operations (multiplications and additions), which can significantly speed up the training and inference time of a model.
+
+## 3. Mathematical Formula
+
+To determine the output size when using strides ($S$), we use the general convolution formula:
+
+$$
+O = \left\lfloor \frac{W - K + 2P}{S} \right\rfloor + 1
+$$
+
+* **$W$**: Input width/height
+* **$K$**: Kernel size
+* **$P$**: Padding
+* **$S$**: Stride
+
+:::note
+If the result of the division is not a whole number, most frameworks will "floor" the value (round down), meaning the last few pixels of the image might be ignored if the filter can't fit.
+:::
+
+## 4. Comparing Stride and Pooling
+
+Both techniques are used to reduce the size of the data, but they differ in how they do it:
+
+| Feature | Large Stride Convolution | Pooling Layer |
+| :--- | :--- | :--- |
+| **Learning** | The network *learns* which pixels to weight during the jump. | Uses a *fixed* rule (Max or Average). |
+| **Parameters** | Contains weights and biases. | No parameters. |
+| **Trend** | Modern architectures (like ResNet) often prefer strided convolutions. | Classic architectures (like VGG) rely heavily on Pooling. |
+
+## 5. Implementation
+
+### TensorFlow / Keras
+
+```python
+from tensorflow.keras.layers import Conv2D
+
+# A standard convolution (Stride 1)
+conv_std = Conv2D(filters=32, kernel_size=(3, 3), strides=(1, 1))
+
+# A downsampling convolution (Stride 2)
+conv_down = Conv2D(filters=32, kernel_size=(3, 3), strides=(2, 2))
+
+```
+
+### PyTorch
+
+```python
+import torch.nn as nn
+
+# Strides are defined as an integer or a tuple (height, width)
+# This will halve the input dimensions
+conv = nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, stride=2, padding=1)
+
+```
+
+## References
+
+* **CS231n:** [Convolutional Neural Networks - Strides](https://cs231n.github.io/convolutional-networks/#stride)
+
+---
+
+**We’ve covered how the filter moves, how it handles edges, and how it extracts features. Now, how do we combine all these pieces into a complete network?**
