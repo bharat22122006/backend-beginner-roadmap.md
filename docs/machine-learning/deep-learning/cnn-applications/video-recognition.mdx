@@ -1,0 +1,84 @@
+---
+title: Video Recognition and Action Analysis
+sidebar_label: Video Recognition
+description: "Exploring 3D CNNs, Optical Flow, and Temporal Modeling for analyzing moving images."
+tags: [deep-learning, cnn, video-analysis, temporal-features, 3d-cnn]
+---
+
+Video recognition takes Computer Vision to the next level by adding the **temporal dimension**. Unlike [Image Classification](./image-classification), which analyzes a single frame, video recognition must understand how objects move and interact over time to identify actions, events, or anomalies.
+
+## 1. What Makes Video Different?
+
+A video is essentially a sequence of images (frames) stacked over time. To recognize a "jump," the model can't just look at one frame; it must see the transition from the ground to the air and back.
+
+This introduces the concept of **Spatial-Temporal Features**:
+* **Spatial Features:** What objects are in the frame? (Detected by standard CNNs).
+* **Temporal Features:** How are these objects moving across frames? (Detected by specialized architectures).
+
+## 2. Core Architectures for Video
+
+Because video data is computationally "heavy," researchers have developed several distinct ways to process it:
+
+### A. 3D Convolutional Neural Networks (3D-CNNs)
+Instead of a 2D kernel ($3 \times 3$), we use a 3D kernel ($3 \times 3 \times 3$). The third dimension slides across the time axis (consecutive frames).
+* **Popular Model:** **C3D** or **I3D** (Inflated 3D ConvNet).
+* **Strength:** Naturally captures motion and appearance simultaneously.
+
+### B. Two-Stream Networks
+This architecture splits the task into two paths:
+1.  **Spatial Stream:** Takes a single RGB frame to identify objects.
+2.  **Temporal Stream:** Takes **Optical Flow** (the pattern of apparent motion of objects between frames) to identify movement.
+The two streams are fused at the end to make a final prediction.
+
+### C. CNN + RNN (LRCN)
+A CNN extracts features from individual frames, and these features are then fed into a **Long Short-Term Memory (LSTM)** network. The LSTM "remembers" previous frames to build a context of the action.
+
+## 3. Key Concepts: Optical Flow
+
+**Optical Flow** is the distribution of apparent velocities of movement of brightness patterns in an image. In video recognition, it helps the model ignore the static background and focus entirely on the "motion signature" of the subject.
+
+## 4. Common Tasks in Video Analysis
+
+| Task | Goal | Example |
+| :--- | :--- | :--- |
+| **Action Recognition** | Classify the activity in a video clip. | "Running," "Cooking," "Swimming." |
+| **Temporal Action Localization** | Find the start and end time of an action. | Finding the exact second a goal was scored in a match. |
+| **Video Summarization** | Create a short version of a long video. | Generating a "highlight reel" from a full game. |
+| **Anomaly Detection** | Identify unusual behavior. | Detecting a fall in elderly care or a fight in security footage. |
+
+## 5. Challenges in Video Recognition
+
+1.  **High Computational Cost:** Processing 30 frames per second requires significantly more memory and GPU power than a single image.
+2.  **Long-Term Dependencies:** Some actions (like "making a sandwich") take a long time and require the model to remember events from minutes ago.
+3.  **Viewpoint and Occlusion:** Movement looks different depending on the camera angle.
+
+## 6. Implementation Sketch (PyTorch Video)
+
+PyTorch provides a dedicated library called `PyTorchVideo` for these tasks.
+
+```python
+import torch
+from torchvision.models.video import r3d_18
+
+# Load a pre-trained 3D ResNet model
+# It expects input shape: (Batch, Channels, Time/Frames, Height, Width)
+model = r3d_18(pretrained=True).eval()
+
+# Create a dummy video clip: 1 clip, 3 channels (RGB), 16 frames, 112x112 resolution
+video_clip = torch.randn(1, 3, 16, 112, 112)
+
+with torch.no_grad():
+    prediction = model(video_clip)
+
+print(f"Prediction shape: {prediction.shape}") # [1, 400] for Kinetics-400 dataset classes
+
+```
+
+## References
+
+* **PyTorch Video:** [Official Documentation](https://pytorchvideo.org/)
+* **ArXiv:** [Quo Vadis, Action Recognition? A New Model and the Kinetics Dataset (I3D Paper)](https://arxiv.org/abs/1705.07750)
+
+---
+
+**Video recognition relies heavily on understanding sequences over time. To dive deeper into how models "remember" the past, we need to look at sequence-specific architectures.**
