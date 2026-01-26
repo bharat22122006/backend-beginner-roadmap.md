@@ -347,6 +347,7 @@ const config = {
           "ruby",
           "rust",
           "java",
+          "yaml",
         ],
       },
       docs: {
