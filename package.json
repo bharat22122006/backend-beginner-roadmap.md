@@ -83,7 +83,7 @@
     "@babel/plugin-syntax-jsx": "^7.24.7",
     "@babel/preset-react": "^7.28.5",
     "@docusaurus/module-type-aliases": "^3.3.2",
-    "@docusaurus/types": "^3.3.2",
+    "@docusaurus/types": "^3.9.2",
     "@types/node": "^24.6.2",
     "autoprefixer": "^10.4.22",
     "dotenv": "^17.2.3",
