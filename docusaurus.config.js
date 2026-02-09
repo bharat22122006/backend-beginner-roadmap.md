@@ -134,41 +134,55 @@ const config = {
             items: [
               {
                 type: "html",
-                value: `
-        <div class="dropdown_grid">
-          <a class="dropbtn" href="/tutorial/">Web Development</a>
-          <div class="dropdown-content">
-            <a href="/tutorial/category/html/" class="nav__icons"> <img src="/tutorial/icons/html-5.svg" title="HTML" alt="HTML" /> </a>
-            <a href="/tutorial/css/introduction" class="nav__icons"> <img src="/tutorial/icons/css.svg" title="CSS" alt="CSS" /> </a>
-            <a href="/tutorial/javascript/introduction-to-javascript/what-is-js" class="nav__icons"> <img src="/tutorial/icons/js.svg" title="JavaScript" alt="JS" /> </a>
-            <a href="/tutorial/react/react-intro" class="nav__icons"> <img src="/tutorial/icons/jsx.svg" title="React" alt="React" /> </a>
-          </div>
-        </div>`,
+                value: `<div class="dropdown_grid">
+                <a class="dropbtn" href="/tutorial/">Docs</a>
+                <div class="dropdown-content">
+                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/html-5.svg" title="HTML5" alt="HTML" /> </a>
+                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/css.svg" title="CSS" alt="CSS" /> </a>
+                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/js.svg" title="JavaScript" alt="JavaScript" /> </a>
+                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/jsx.svg" title="React.Js" alt="React" /> </a>
+                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/ts.svg" title="TypeScript" alt="TypeScript" /> </a>
+                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/py.svg" title="Python" alt="Python" /> </a>
+                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/tailwind-css.svg" title="Tailwind CSS" alt="Tailwind" /> </a>
+                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/next-js.svg" title="NextJs" alt="Next" /> </a>
+                </div>
+              </div>`,
+              },
+
+              {
+                type: "html",
+                value: '<hr style="margin: 0.3rem 0;">',
+              },
+
+              {
+                type: "html",
+                value: `<div class="dropdown_grid">
+                <a class="dropbtn" href="#"> Courses </a>
+                <div class="dropdown-content">
+                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/html-5.svg" alt="HTML" /> </a>
+                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/jsx.svg" alt="React" /> </a>
+                </div>
+              </div>`,
+              },
+
+              {
+                type: "html",
+                value: '<hr style="margin: 0.3rem 0;">',
+              },
+
+              {
+                type: "html",
+                value: `<div class="dropdown_grid">
+                <a class="dropbtn" href="#" target="_self"> DSA </a>
+                <div class="dropdown-content dsa-content ">
+                  <a href="#" target="_self" class="nav__icons"> 🧩Problems </a> <br />
+                  <a href="#" target="_self" class="nav__icons  "> 💡Solutions </a>
+                </div>
+              </div>`,
               },
               {
                 type: "html",
-                value:
-                  '<hr style="margin: 0.3rem 0; border: none; border-top: 1px solid var(--ifm-color-emphasis-200);">',
-              },
-              {
-                type: "html",
-                value: `
-                    <div class="dropdown_grid">
-                      <a class="dropbtn" href="#">Core Skills & Tech</a>
-                      <div class="dropdown-content">
-                        <a href="/tutorial/git/introduction" class="nav__icons"> <img src="/tutorial/icons/git.svg" title="Git" alt="Git" /> </a>
-                        <a href="/tutorial/github/introduction-to-github" class="nav__icons"> <img src="/tutorial/icons/github.svg" title="GitHub" alt="GitHub" /> </a>
-                        <a href="/tutorial/cybersecurity" class="nav__icons"> <img src="/tutorial/icons/cyber-security.png" title="Cyber Security" alt="Cyber" /> </a>
-                        <a href="/tutorial/machine-learning" class="nav__icons"> <img src="/tutorial/icons/ai-chat.svg" title="Machine Learning" alt="ML" /> </a>
-                        <a href="/tutorial/internet/introduction" class="nav__icons"> <img src="/tutorial/icons/internet.svg" title="Internet" alt="Internet" /> </a>
-                        <a href="/tutorial/technical-writer" class="nav__icons"> <img src="/tutorial/icons/writer.png" title="Technical Writing" alt="Writing" /> </a>
-                      </div>
-                    </div>`,
-              },
-              {
-                type: "html",
-                value:
-                  '<hr style="margin: 0.3rem 0; border: none; border-top: 1px solid var(--ifm-color-emphasis-200);">',
+                value: '<hr style="margin: 0.3rem 0;">',
               },
               {
                 to: "/tutorial/",
