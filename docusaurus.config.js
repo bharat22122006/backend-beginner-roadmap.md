@@ -135,7 +135,7 @@ const config = {
               {
                 type: "html",
                 value: `<div class="dropdown_grid">
-                <a class="dropbtn" href="/tutorial/">Docs</a>
+                <a class="dropbtn" href="/tutorial/">Absolute Beginner</a>
                 <div class="dropdown-content">
                   <a href="#" class="nav__icons"> <img src="/tutorial/icons/html-5.svg" title="HTML5" alt="HTML" /> </a>
                   <a href="#" class="nav__icons"> <img src="/tutorial/icons/css.svg" title="CSS" alt="CSS" /> </a>
@@ -157,7 +157,7 @@ const config = {
               {
                 type: "html",
                 value: `<div class="dropdown_grid">
-                <a class="dropbtn" href="#"> Courses </a>
+                <a class="dropbtn" href="#">Web Development</a>
                 <div class="dropdown-content">
                   <a href="#" class="nav__icons"> <img src="/tutorial/icons/html-5.svg" alt="HTML" /> </a>
                   <a href="#" class="nav__icons"> <img src="/tutorial/icons/jsx.svg" alt="React" /> </a>
@@ -173,7 +173,7 @@ const config = {
               {
                 type: "html",
                 value: `<div class="dropdown_grid">
-                <a class="dropbtn" href="#" target="_self"> DSA </a>
+                <a class="dropbtn" href="#" target="_self">Frameworks</a>
                 <div class="dropdown-content dsa-content ">
                   <a href="#" target="_self" class="nav__icons"> 🧩Problems </a> <br />
                   <a href="#" target="_self" class="nav__icons  "> 💡Solutions </a>
@@ -188,6 +188,9 @@ const config = {
                 to: "/tutorial/",
                 label: "View All Tutorials",
                 style: {
+                  margin: "0.5rem 0",
+                  padding: "0.5rem 1rem",
+                  borderRadius: "4px",
                   fontSize: "0.8rem",
                   textAlign: "center",
                   fontWeight: "bold",
