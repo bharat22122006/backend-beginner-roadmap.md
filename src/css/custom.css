@@ -240,22 +240,22 @@ mark {
   -webkit-text-fill-color: transparent;
 }
 
-.dropbtn {
-  width: 110px;
-  background-color: transparent;
-  color: var(--ifm-color-primary);
-  padding: 14px;
-  font-size: 18px;
-  border: none;
-  cursor: pointer;
-  border-right: 1px solid #4e8da0db;
-  margin: 2px;
-}
-
 .dropdown_grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+}
+
+.dropbtn {
+  width: 130px;
+  background-color: transparent;
+  color: var(--ifm-color-primary);
+  padding: 14px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-right: 1px solid #4e8da0db;
+  margin: 2px;
 }
 
 .dropdown-content {
