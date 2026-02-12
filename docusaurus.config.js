@@ -36,7 +36,7 @@ const config = {
       ({
         // debug: true,
         docs: {
-          routeBasePath: "/",
+          routeBasePath: "docs",
           sidebarPath: "./sidebars.ts",
           editUrl: "https://github.com/codeharborhub/tutorial/edit/main/",
           remarkPlugins: [remarkMath],
@@ -465,6 +465,22 @@ const config = {
         min: 640,
         steps: 2,
         disableInDev: false,
+      },
+    ],
+
+    [
+      "@docusaurus/plugin-content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      {
+        id: "absolute-beginners",
+        path: "absolute-beginners",
+        routeBasePath: "absolute-beginners",
+        // breadcrumbs: true,
+        // editUrl: "#",
+        sidebarPath: require.resolve("./sidebars.js"),
+        remarkPlugins: [remarkMath, rehypeKatex],
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
       },
     ],
 
