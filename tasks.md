@@ -101,3 +101,20 @@
 - [ ] devrel  
 - [ ] technical-writer  
 - [ ] prompt-engineering  
+
+
+Links:
+
+- frameworks
+- languages-platforms
+- ai-and-machine-learning
+- devops
+- mobile-development
+- databases
+- computer-science
+- management
+- game-development
+- design
+- blockchain
+- cyber-security
+- best-practices

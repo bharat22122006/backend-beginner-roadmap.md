@@ -15,7 +15,7 @@
   --ifm-task-complete-color: #2e9e32e1;
   --ifm-task-incomplete-color: #3d78cbe1;
   --ifm-bg-color: #f8f9fa;
-  --image-filter:invert(0);
+  --image-filter: invert(0);
   --site-color-svg-icon-favorite: #ff1100cb;
   --ifm-text-color: #000;
 
@@ -59,9 +59,22 @@
   --ifm-task-complete-color: #25c2a0;
   --ifm-task-incomplete-color: #3d78cbe1;
   --ifm-bg-color: #1a202c;
-  --image-filter:invert(1);
+  --image-filter: invert(1);
   --site-color-svg-icon-favorite: #ff9100e5;
   --ifm-text-color: #fff;
+  --token-secondary-bg-c: var(--c-gray-90);
+}
+
+.bg-grid-slate-200\/50 {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(226 232 240 / 0.3)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+}
+
+.bg-grid-slate-800\/50 {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(30 41 59 / 0.5)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+}
+
+.text-balance {
+  text-wrap: balance;
 }
 
 .header-github-link::before {
@@ -278,7 +291,6 @@ mark {
   border-radius: 50% 40%;
 }
 
-
 .nav__icons img {
   width: 35px;
   height: 35px;
@@ -292,7 +304,7 @@ mark {
 /* [data-theme='dark'] #__docusaurus_skipToContent_fallback {
   background: linear-gradient(rgba(15, 23, 42, 0.796), rgba(15, 23, 42, 0.23));
 } */
-[data-theme='dark'] .navbar {
+[data-theme="dark"] .navbar {
   background: rgba(15, 23, 42, 0.862);
   border-bottom: 1px solid #4e8da0db;
 }
