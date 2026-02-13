@@ -16,7 +16,7 @@ When the stride is set to **2** (or more), the filter jumps two pixels at a time
 ## 2. The Impact of Striding
 
 ### A. Dimensionality Reduction
-Increasing the stride is an alternative to [Pooling](/tutorial/machine-learning/deep-learning/cnn/pooling). By jumping over pixels, the network effectively "downsamples" the image. For example, a stride of 2 will roughly halve the width and height of the output.
+Increasing the stride is an alternative to [Pooling](/tutorial/docs/machine-learning/deep-learning/cnn/pooling). By jumping over pixels, the network effectively "downsamples" the image. For example, a stride of 2 will roughly halve the width and height of the output.
 
 ### B. Receptive Field
 A larger stride allows the network to cover more area with fewer parameters, but it comes at a cost: **Information Loss**. Because the filter skips pixels, some fine-grained spatial details might be missed.
