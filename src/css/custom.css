@@ -253,54 +253,6 @@ mark {
   -webkit-text-fill-color: transparent;
 }
 
-.dropdown_grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-.dropbtn {
-  width: 130px;
-  background-color: transparent;
-  color: var(--ifm-color-primary);
-  padding: 14px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  border-right: 1px solid #4e8da0db;
-  margin: 2px;
-}
-
-.dropdown-content {
-  position: relative;
-  min-width: 180px;
-}
-@media (max-width: 400px) {
-  .dsa-content {
-    flex-direction: column;
-  }
-}
-.dropdown-content a:hover {
-  text-decoration: none;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(252, 176, 69, 0.285) 50%,
-    rgba(253, 29, 29, 0.33) 100%
-  );
-  border-radius: 50% 40%;
-}
-
-.nav__icons img {
-  width: 35px;
-  height: 35px;
-  object-fit: contain;
-}
-
-.nav__icons img:hover {
-  transform: scale(1.2);
-}
-
 /* [data-theme='dark'] #__docusaurus_skipToContent_fallback {
   background: linear-gradient(rgba(15, 23, 42, 0.796), rgba(15, 23, 42, 0.23));
 } */
@@ -314,3 +266,51 @@ mark {
     width: 70%;
   }
 }
+/* Container for the 4-column layout */
+.mega-menu-container {
+  display: grid;
+  grid-template-columns: repeat(4, 170px);
+  gap: 10px;
+  padding: 1rem 0.5rem;
+  background: var(--ifm-background-surface-color);
+}
+
+.mega-menu-column h3 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+  /* margin-bottom: 0.8rem; */
+  /* border-bottom: 1px solid var(--ifm-color-emphasis-200); */
+  /* padding-bottom: 4px; */
+}
+
+.mega-menu-column a {
+  display: block;
+  padding: 6px 0;
+  font-size: 0.85rem;
+  color: var(--ifm-menu-color);
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.mega-menu-column a:hover {
+  color: var(--ifm-color-primary);
+  transform: translateX(2px);
+  text-decoration: none;
+}
+
+/* Style for the 'View All' footer link */
+.view-all-link {
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: var(--ifm-color-primary) !important;
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 996px) {
+  .mega-menu-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
