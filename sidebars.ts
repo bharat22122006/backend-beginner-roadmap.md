@@ -257,7 +257,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "link",
       label: "CSS",
-      href: "/docs/css/introduction",
+      href: "/css/introduction",
     },
 
     // Machine LearningTutorial Structure
@@ -265,7 +265,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "link",
       label: "Machine Learning",
-      href: "/docs/machine-learning/",
+      href: "/machine-learning/",
     },
 
     // JavaScript Tutorial Structure
@@ -273,7 +273,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "link",
       label: "JavaScript",
-      href: "/docs/javascript/introduction-to-javascript/what-is-js",
+      href: "/javascript/introduction-to-javascript/what-is-js",
     },
 
     // Git Tutorial Structure
@@ -281,7 +281,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "link",
       label: "Git",
-      href: "/docs/git/introduction",
+      href: "/git/introduction",
     },
 
     // GitHub Tutorial Structure
@@ -289,7 +289,7 @@ const sidebars: SidebarsConfig = {
     {
       type: "link",
       label: "GitHub",
-      href: "/docs/github/introduction-to-github",
+      href: "/github/introduction-to-github",
     },
 
     //  React Tutorial Structure
@@ -464,21 +464,21 @@ const sidebars: SidebarsConfig = {
     {
       type: "link",
       label: "Cybersecurity",
-      href: "/docs/cybersecurity/",
+      href: "/cybersecurity/",
     },
 
     // Internet
     {
       type: "link",
       label: "Internet",
-      href: "/docs/internet/introduction/",
+      href: "/internet/introduction/",
     },
     // Technical Writer
 
     {
       type: "link",
       label: "Technical Writer",
-      href: "/docs/technical-writer/",
+      href: "/technical-writer/",
     },
   ],
 
