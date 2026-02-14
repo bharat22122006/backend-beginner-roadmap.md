@@ -36,7 +36,7 @@ const config = {
       ({
         // debug: true,
         docs: {
-          routeBasePath: "docs",
+          routeBasePath: "/",
           sidebarPath: "./sidebars.ts",
           editUrl: "https://github.com/codeharborhub/tutorial/edit/main/",
           remarkPlugins: [remarkMath],
@@ -140,10 +140,10 @@ const config = {
               <div class="mega-menu-column">
                 <h3>🚀 Foundations</h3>
                 <hr style="margin: 0.5rem 0; opacity: 0.4;">
-                <a href="#">🐣 Absolute Beginner</a>
+                <a href="/tutorial/absolute-beginners/">🐣 Absolute Beginner</a>
                 <a href="#">🏛️ Computer Science</a>
                 <a href="#">💻 Languages & Platforms</a>
-                <a href="/tutorial/docs/git/introduction">🌿 Git & GitHub</a>
+                <a href="/tutorial/git/introduction">🌿 Git & GitHub</a>
               </div>
               
               <div class="mega-menu-column">
@@ -191,12 +191,12 @@ const config = {
           //   html: '<span class="nav-emoji">📝</span> Blog',
           //   position: "right",
           // },
-          // {
-          //   href: "https://github.com/codeharborhub",
-          //   position: "right",
-          //   className: "header-github-link",
-          //   "aria-label": "GitHub repository",
-          // },
+          {
+            href: "https://github.com/codeharborhub",
+            position: "right",
+            className: "header-github-link",
+            "aria-label": "GitHub repository",
+          },
         ],
       },
       footer: {
