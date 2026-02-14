@@ -129,88 +129,75 @@ const config = {
         items: [
           {
             type: "dropdown",
-            html: '<span class="nav-emoji">📚</span> Tutorials',
+            html: '<span class="nav-emoji">🗺️</span> Tutorials',
             position: "left",
+            className: "mega-menu", // Add a custom class for CSS styling
             items: [
               {
                 type: "html",
-                value: `<div class="dropdown_grid">
-                <a class="dropbtn" href="/tutorial/">Absolute Beginner</a>
-                <div class="dropdown-content">
-                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/html-5.svg" title="HTML5" alt="HTML" /> </a>
-                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/css.svg" title="CSS" alt="CSS" /> </a>
-                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/js.svg" title="JavaScript" alt="JavaScript" /> </a>
-                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/jsx.svg" title="React.Js" alt="React" /> </a>
-                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/ts.svg" title="TypeScript" alt="TypeScript" /> </a>
-                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/py.svg" title="Python" alt="Python" /> </a>
-                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/tailwind-css.svg" title="Tailwind CSS" alt="Tailwind" /> </a>
-                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/next-js.svg" title="NextJs" alt="Next" /> </a>
-                </div>
-              </div>`,
-              },
+                value: `
+            <div class="mega-menu-container">
+              <div class="mega-menu-column">
+                <h3>🚀 Foundations</h3>
+                <hr style="margin: 0.5rem 0; opacity: 0.4;">
+                <a href="#">🐣 Absolute Beginner</a>
+                <a href="#">🏛️ Computer Science</a>
+                <a href="#">💻 Languages & Platforms</a>
+                <a href="/tutorial/docs/git/introduction">🌿 Git & GitHub</a>
+              </div>
+              
+              <div class="mega-menu-column">
+                <h3>🌐 Development</h3>
+                <hr style="margin: 0.5rem 0; opacity: 0.4;">
+                <a href="#">🌍 Web Development</a>
+                <a href="#">🧩 Frameworks</a>
+                <a href="#">📱 Mobile Development</a>
+                <a href="#">🎮 Game Development</a>
+              </div>
 
-              {
-                type: "html",
-                value: '<hr style="margin: 0.3rem 0;">',
-              },
+              <div class="mega-menu-column">
+                <h3>⚙️ Data & Ops</h3>
+                <hr style="margin: 0.5rem 0; opacity: 0.4;">
+                <a href="#">🤖 AI & Machine Learning</a>
+                <a href="#">🗄️ Databases</a>
+                <a href="#">♾️ DevOps & Cloud</a>
+                <a href="#">🛡️ Cyber Security</a>
+              </div>
 
-              {
-                type: "html",
-                value: `<div class="dropdown_grid">
-                <a class="dropbtn" href="#">Web Development</a>
-                <div class="dropdown-content">
-                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/html-5.svg" alt="HTML" /> </a>
-                  <a href="#" class="nav__icons"> <img src="/tutorial/icons/jsx.svg" alt="React" /> </a>
-                </div>
-              </div>`,
-              },
-
-              {
-                type: "html",
-                value: '<hr style="margin: 0.3rem 0;">',
-              },
-
-              {
-                type: "html",
-                value: `<div class="dropdown_grid">
-                <a class="dropbtn" href="#" target="_self">Frameworks</a>
-                <div class="dropdown-content dsa-content ">
-                  <a href="#" target="_self" class="nav__icons"> 🧩Problems </a> <br />
-                  <a href="#" target="_self" class="nav__icons  "> 💡Solutions </a>
-                </div>
-              </div>`,
+              <div class="mega-menu-column">
+                <h3>💼 Career & Quality</h3>
+                <hr style="margin: 0.5rem 0; opacity: 0.4;">
+                <a href="#">👔 Management</a>
+                <a href="#">🎨 Design & UX</a>
+                <a href="#">⛓️ Blockchain</a>
+                <a href="#">✅ Best Practices</a>
+              </div>
+            </div>
+          `,
               },
               {
                 type: "html",
-                value: '<hr style="margin: 0.3rem 0;">',
+                value: '<hr style="margin: 0.5rem 0; opacity: 0.2;">',
               },
               {
-                to: "/tutorial/",
-                label: "View All Tutorials",
-                style: {
-                  margin: "0.5rem 0",
-                  padding: "0.5rem 1rem",
-                  borderRadius: "4px",
-                  fontSize: "0.8rem",
-                  textAlign: "center",
-                  fontWeight: "bold",
-                },
+                to: "/",
+                label: "Explore All Tutorials",
+                className: "view-all-link",
               },
             ],
           },
-          {
-            to: "https://codeharborhub.github.io/blog",
-            html: '<span class="nav-emoji">📝</span> Blog',
-            position: "right",
-          },
-          {
-            href: "https://github.com/codeharborhub",
-            position: "right",
-            className: "header-github-link",
-            "aria-label": "GitHub repository",
-          },
+          // {
+          //   to: "https://codeharborhub.github.io/blog",
+          //   html: '<span class="nav-emoji">📝</span> Blog',
+          //   position: "right",
+          // },
+          // {
+          //   href: "https://github.com/codeharborhub",
+          //   position: "right",
+          //   className: "header-github-link",
+          //   "aria-label": "GitHub repository",
+          // },
         ],
-        // hideOnScroll: true,
       },
       footer: {
         style: "dark",
