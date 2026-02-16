@@ -548,7 +548,7 @@ const config = {
         routeBasePath: "cyber-security",
         // breadcrumbs: true,
         // editUrl: "#",
-        sidebarPath: require.resolve("./cybersecuritysidebars.ts"),
+        sidebarPath: require.resolve("./cybersecuritySidebars.ts"),
         remarkPlugins: [remarkMath, rehypeKatex],
         showLastUpdateAuthor: true,
         showLastUpdateTime: true,
