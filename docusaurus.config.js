@@ -140,7 +140,7 @@ const config = {
               <div class="mega-menu-column">
                 <h3>🚀 Foundations</h3>
                 <hr style="margin: 0.5rem 0; opacity: 0.4;">
-                <a href="/tutorial/absolute-beginners/">🐣 Absolute Beginner</a>
+                <a href="/tutorial/absolute-beginners">🐣 Absolute Beginner</a>
                 <a href="#">🏛️ Computer Science</a>
                 <a href="#">💻 Languages & Platforms</a>
                 <a href="/tutorial/git/introduction">🌿 Git & GitHub</a>
@@ -161,7 +161,7 @@ const config = {
                 <a href="#">🤖 AI & Machine Learning</a>
                 <a href="#">🗄️ Databases</a>
                 <a href="#">♾️ DevOps & Cloud</a>
-                <a href="/tutorial/cyber-security/">🛡️ Cyber Security</a>
+                <a href="/tutorial/cyber-security">🛡️ Cyber Security</a>
               </div>
 
               <div class="mega-menu-column">
