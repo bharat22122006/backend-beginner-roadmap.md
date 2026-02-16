@@ -161,13 +161,13 @@ const config = {
                 <a href="#">🤖 AI & Machine Learning</a>
                 <a href="#">🗄️ Databases</a>
                 <a href="#">♾️ DevOps & Cloud</a>
-                <a href="#">🛡️ Cyber Security</a>
+                <a href="/tutorial/cyber-security/">🛡️ Cyber Security</a>
               </div>
 
               <div class="mega-menu-column">
                 <h3>💼 Career & Quality</h3>
                 <hr style="margin: 0.5rem 0; opacity: 0.4;">
-                <a href="#">👔 Management</a>
+                <a href="/tutorial/management">👔 Management</a>
                 <a href="#">🎨 Design & UX</a>
                 <a href="#">⛓️ Blockchain</a>
                 <a href="#">✅ Best Practices</a>
@@ -455,6 +455,8 @@ const config = {
       },
     ],
 
+    // absolute-beginners
+
     [
       "@docusaurus/plugin-content-docs",
       /** @type {import('@docusaurus/plugin-content-docs').Options} */
@@ -462,6 +464,232 @@ const config = {
         id: "absolute-beginners",
         path: "absolute-beginners",
         routeBasePath: "absolute-beginners",
+        // breadcrumbs: true,
+        // editUrl: "#",
+        sidebarPath: require.resolve("./sidebars.js"),
+        remarkPlugins: [remarkMath, rehypeKatex],
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+      },
+    ],
+
+    // ai-ml
+
+    [
+      "@docusaurus/plugin-content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      {
+        id: "ai-ml",
+        path: "ai-ml",
+        routeBasePath: "ai-ml",
+        // breadcrumbs: true,
+        // editUrl: "#",
+        sidebarPath: require.resolve("./sidebars.js"),
+        remarkPlugins: [remarkMath, rehypeKatex],
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+      },
+    ],
+    // best-practices
+    [
+      "@docusaurus/plugin-content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      {
+        id: "best-practices",
+        path: "best-practices",
+        routeBasePath: "best-practices",
+        // breadcrumbs: true,
+        // editUrl: "#",
+        sidebarPath: require.resolve("./sidebars.js"),
+        remarkPlugins: [remarkMath, rehypeKatex],
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+      },
+    ],
+    // blockchain
+    [
+      "@docusaurus/plugin-content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      {
+        id: "blockchain",
+        path: "blockchain",
+        routeBasePath: "blockchain",
+        // breadcrumbs: true,
+        // editUrl: "#",
+        sidebarPath: require.resolve("./sidebars.js"),
+        remarkPlugins: [remarkMath, rehypeKatex],
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+      },
+    ],
+    // computer-science
+    [
+      "@docusaurus/plugin-content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      {
+        id: "computer-science",
+        path: "computer-science",
+        routeBasePath: "computer-science",
+        // breadcrumbs: true,
+        // editUrl: "#",
+        sidebarPath: require.resolve("./sidebars.js"),
+        remarkPlugins: [remarkMath, rehypeKatex],
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+      },
+    ],
+    // cyber-security
+    [
+      "@docusaurus/plugin-content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      {
+        id: "cyber-security",
+        path: "cyber-security",
+        routeBasePath: "cyber-security",
+        // breadcrumbs: true,
+        // editUrl: "#",
+        sidebarPath: require.resolve("./cybersecuritysidebars.ts"),
+        remarkPlugins: [remarkMath, rehypeKatex],
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+      },
+    ],
+    // databases
+    [
+      "@docusaurus/plugin-content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      {
+        id: "databases",
+        path: "databases",
+        routeBasePath: "databases",
+        // breadcrumbs: true,
+        // editUrl: "#",
+        sidebarPath: require.resolve("./sidebars.js"),
+        remarkPlugins: [remarkMath, rehypeKatex],
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+      },
+    ],
+    // design
+    [
+      "@docusaurus/plugin-content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      {
+        id: "design",
+        path: "design",
+        routeBasePath: "design",
+        // breadcrumbs: true,
+        // editUrl: "#",
+        sidebarPath: require.resolve("./sidebars.js"),
+        remarkPlugins: [remarkMath, rehypeKatex],
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+      },
+    ],
+    // devops
+    [
+      "@docusaurus/plugin-content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      {
+        id: "devops",
+        path: "devops",
+        routeBasePath: "devops",
+        // breadcrumbs: true,
+        // editUrl: "#",
+        sidebarPath: require.resolve("./sidebars.js"),
+        remarkPlugins: [remarkMath, rehypeKatex],
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+      },
+    ],
+    // frameworks
+    [
+      "@docusaurus/plugin-content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      {
+        id: "frameworks",
+        path: "frameworks",
+        routeBasePath: "frameworks",
+        // breadcrumbs: true,
+        // editUrl: "#",
+        sidebarPath: require.resolve("./sidebars.js"),
+        remarkPlugins: [remarkMath, rehypeKatex],
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+      },
+    ],
+    // game-development
+    [
+      "@docusaurus/plugin-content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      {
+        id: "game-development",
+        path: "game-development",
+        routeBasePath: "game-development",
+        // breadcrumbs: true,
+        // editUrl: "#",
+        sidebarPath: require.resolve("./sidebars.js"),
+        remarkPlugins: [remarkMath, rehypeKatex],
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+      },
+    ],
+    // languages-platforms
+    [
+      "@docusaurus/plugin-content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      {
+        id: "languages-platforms",
+        path: "languages-platforms",
+        routeBasePath: "languages-platforms",
+        // breadcrumbs: true,
+        // editUrl: "#",
+        sidebarPath: require.resolve("./sidebars.js"),
+        remarkPlugins: [remarkMath, rehypeKatex],
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+      },
+    ],
+    // management
+    [
+      "@docusaurus/plugin-content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      {
+        id: "management",
+        path: "management",
+        routeBasePath: "management",
+        // breadcrumbs: true,
+        // editUrl: "#",
+        sidebarPath: require.resolve("./managementSidebars.ts"),
+        remarkPlugins: [remarkMath, rehypeKatex],
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+      },
+    ],
+    // mobile-development
+    [
+      "@docusaurus/plugin-content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      {
+        id: "mobile-development",
+        path: "mobile-development",
+        routeBasePath: "mobile-development",
+        // breadcrumbs: true,
+        // editUrl: "#",
+        sidebarPath: require.resolve("./sidebars.js"),
+        remarkPlugins: [remarkMath, rehypeKatex],
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+      },
+    ],
+    // web-development
+    [
+      "@docusaurus/plugin-content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      {
+        id: "web-development",
+        path: "web-development",
+        routeBasePath: "web-development",
         // breadcrumbs: true,
         // editUrl: "#",
         sidebarPath: require.resolve("./sidebars.js"),
