@@ -1,0 +1,15 @@
+{
+  "position": 2.5,
+  "label": "Linux",
+  "key": "unique-sidebar-item-key",
+  "collapsible": true,
+  "collapsed": false,
+  "className": "red",
+  "link": {
+    "type": "generated-index",
+    "title": "Linux overview"
+  },
+  "customProps": {
+    "description": "This description can be used in the swizzled DocCard"
+  }
+}
