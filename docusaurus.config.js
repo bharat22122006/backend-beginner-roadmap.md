@@ -141,26 +141,26 @@ const config = {
                 <h3>🚀 Foundations</h3>
                 <hr style="margin: 0.5rem 0; opacity: 0.4;">
                 <a href="/tutorial/absolute-beginners">🐣 Absolute Beginner</a>
-                <a href="#">🏛️ Computer Science</a>
-                <a href="#">💻 Languages & Platforms</a>
+                <a href="/tutorial/computer-science">🏛️ Computer Science</a>
+                <a href="/tutorial/languages-platforms">💻 Languages & Platforms</a>
                 <a href="/tutorial/git/introduction">🌿 Git & GitHub</a>
               </div>
               
               <div class="mega-menu-column">
                 <h3>🌐 Development</h3>
                 <hr style="margin: 0.5rem 0; opacity: 0.4;">
-                <a href="#">🌍 Web Development</a>
-                <a href="#">🧩 Frameworks</a>
-                <a href="#">📱 Mobile Development</a>
-                <a href="#">🎮 Game Development</a>
+                <a href="/tutorial/web-development">🌍 Web Development</a>
+                <a href="/tutorial/frameworks">🧩 Frameworks</a>
+                <a href="/tutorial/mobile-development">📱 Mobile Development</a>
+                <a href="/tutorial/game-development">🎮 Game Development</a>
               </div>
 
               <div class="mega-menu-column">
                 <h3>⚙️ Data & Ops</h3>
                 <hr style="margin: 0.5rem 0; opacity: 0.4;">
-                <a href="#">🤖 AI & Machine Learning</a>
-                <a href="#">🗄️ Databases</a>
-                <a href="#">♾️ DevOps & Cloud</a>
+                <a href="/tutorial/ai-ml">🤖 AI & Machine Learning</a>
+                <a href="/tutorial/databases">🗄️ Databases</a>
+                <a href="/tutorial/devops">♾️ DevOps & Cloud</a>
                 <a href="/tutorial/cyber-security">🛡️ Cyber Security</a>
               </div>
 
@@ -168,9 +168,9 @@ const config = {
                 <h3>💼 Career & Quality</h3>
                 <hr style="margin: 0.5rem 0; opacity: 0.4;">
                 <a href="/tutorial/management">👔 Management</a>
-                <a href="#">🎨 Design & UX</a>
-                <a href="#">⛓️ Blockchain</a>
-                <a href="#">✅ Best Practices</a>
+                <a href="/tutorial/design">🎨 Design & UX</a>
+                <a href="/tutorial/blockchain">⛓️ Blockchain</a>
+                <a href="/tutorial/best-practices">✅ Best Practices</a>
               </div>
             </div>
           `,
@@ -655,7 +655,7 @@ const config = {
         routeBasePath: "languages-platforms",
         // breadcrumbs: true,
         // editUrl: "#",
-        sidebarPath: require.resolve("./sidebars.js"),
+        sidebarPath: require.resolve("./LangSidebars.ts"),
         remarkPlugins: [remarkMath],
         rehypePlugins: [rehypeKatex],
         showLastUpdateAuthor: true,
