@@ -1,0 +1,90 @@
+---
+title: The Adjacent Sibling Combinator
+description: "Learn how to use the Adjacent Sibling Combinator (+) to select an element that immediately follows another element at the same level in the HTML structure."
+keywords: [CSS Adjacent Sibling Combinator, Plus Selector, Immediate Follow, Sequential Styling, CSS Combinators, CodeHarborHub]
+tags: [CSS Adjacent Sibling Combinator, Plus Selector, Immediate Follow, Sequential Styling, CSS Combinators]
+sidebar_label: Adjacent Sibling Combinator
+---
+
+We've explored selectors based on hierarchy (parent/child). Now we look at selectors based on **sequence**—elements that appear one after the other.
+
+The **Adjacent Sibling Combinator** selects an element that is the **immediate successor** of a preceding element, and both must be at the same level in the HTML structure (siblings).
+
+It is represented by the **plus sign (`+`)**.
+
+<AdsComponent />
+<br />
+
+## How to Use the Adjacent Sibling Combinator
+
+The rule is very strict: the second element must directly and immediately follow the first element in the HTML source code.
+
+### The Syntax
+
+```css title="Adjacent Sibling Combinator Syntax"
+preceding_selector + target_selector {
+  /* styles applied ONLY to the target_selector */
+}
+```
+
+  * **`preceding_selector`**: The element that comes first (e.g., `h2`, `.callout`).
+  * **`target_selector`**: The element that immediately follows the preceding element.
+
+### Example: Spacing After a Heading
+
+A very common use case is applying specific top margin or spacing to a paragraph *only* when it immediately follows a main heading.
+
+<Tabs>
+<TabItem value="html" label="HTML Structure">
+
+```html
+<div class="content">
+  <h2>Main Section Title</h2>  <p>First paragraph after the title.</p> <div>
+    <p>Second paragraph (UNSTYLED)</p>
+  </div>
+</div>
+```
+
+</TabItem>
+<TabItem value="css" label="CSS Rule">
+
+```css
+/* Targets ONLY a <p> that IMMEDIATELY follows an <h2> */
+h2 + p {
+  margin-top: 30px; /* Extra space above the first paragraph */
+  font-weight: bold;
+}
+```
+
+</TabItem>
+</Tabs>
+
+In this example, the **first** paragraph gets the `margin-top: 30px;` because it is the adjacent sibling of `<h2>`. The second paragraph is **ignored** because it is contained within a `<div>`, meaning its immediate preceding sibling is the `<div>`, not the `<h2>`.
+
+<AdsComponent />
+<br />
+
+## How it Relates to Flow
+
+The Adjacent Sibling Combinator is a powerful tool for controlling the **vertical flow** of a document without relying on classes.
+
+### Strict Sequential Requirement
+
+Remember this rule: **there can be no other element or even a comment node between the two siblings.**
+
+| HTML Sequence | CSS Rule: `h2 + p` | Result |
+| :--- | :--- | :--- |
+| `<h2>...</h2> <p>...</p>` | ✅ Match | The paragraph is styled. |
+| `<h2>...</h2> <div>...</div> <p>...</p>` | No Match | The `<div>` breaks the adjacency. |
+| `<h2>...</h2> <p>...</p>` | No Match | The comment node technically breaks the adjacency. |
+
+## Interactive Adjacent Sibling Demo
+
+In this demo, the CSS rule targets a list item (`<li>`) that immediately follows an element with the class `.header-item`.
+
+<CodePenEmbed 
+  title="Interactive Adjacent Sibling Demo"
+  penId="azNBPYK"
+/>
+
+**Challenge:** Try adding a new empty `<li></li>` between "Item A" and "Item B" in the HTML panel. What happens to the styling of "Item B"?

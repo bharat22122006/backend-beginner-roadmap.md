@@ -1,0 +1,90 @@
+---
+title: "The overflow Property"
+description: "Master the CSS overflow property (visible, hidden, scroll, auto) to control what happens when content exceeds the boundaries of its container element."
+keywords: [CSS overflow, overflow hidden, overflow scroll, content clipping, container boundaries, layout control]
+tags: [CSS overflow, overflow hidden, overflow scroll, content clipping, container boundaries, layout control]
+sidebar_label: "overflow"
+---
+
+The `overflow` property is essential for controlling what happens when an element's content is too large to fit within the element's set height or width.
+
+It dictates how content that "spills" or "overflows" the boundary of its container box should be handled.
+
+<AdsComponent />
+<br />
+
+## 1. Prerequisites for `overflow`
+
+The `overflow` property only works correctly if the container has a defined, restrictive size. For content to overflow, the container must have:
+
+* **A fixed `height`** (e.g., `height: 200px;`) or `max-height`.
+* **Or, a fixed `width`** (e.g., `width: 300px;`) or `max-width` that is smaller than the intrinsic content width (often applies to inline content like images or long words).
+
+If the container's height is set to `auto` (the default for block elements), it will simply grow to fit the content, and no overflow will occur.
+
+## 2. Key `overflow` Values
+
+The `overflow` property can be set using one of four main values, which are applied to both the horizontal (x-axis) and vertical (y-axis) overflow directions simultaneously.
+
+| Value | Description |
+| :--- | :--- |
+| **`visible` (Default)** | Content is **not clipped** and simply renders outside the element's box. The element's size is ignored by the overflowing content. |
+| **`hidden`** | Content that exceeds the container's size is **clipped** (cut off) and becomes invisible. No scrollbars are provided. |
+| **`scroll`** | Content that exceeds the container's size is displayed with scrollbars, **regardless of whether the content overflows or not**. |
+| **`auto`** | Scrollbars are only displayed **if the content actually overflows** the container's boundaries. (This is the most common and recommended choice). |
+
+### The `scroll` vs. `auto` Difference
+
+:::tip Choosing between `scroll` and `auto`
+Always prefer **`overflow: auto;`** over `overflow: scroll;`. Using `scroll` forces unnecessary scrollbars to appear, which can look awkward if the container is not full. `auto` only displays them when needed, providing a cleaner UI.
+:::
+
+<AdsComponent />
+<br />
+
+## 3. Directional Control (`overflow-x` and `overflow-y`)
+
+You can control the horizontal and vertical directions independently using the following properties:
+
+* **`overflow-x`:** Controls horizontal overflow (x-axis).
+* **`overflow-y`:** Controls vertical overflow (y-axis).
+
+### Example: Vertical Scrolling Only
+
+To create a box that only scrolls vertically, but hides horizontal overflow:
+
+```css title="styles.css"
+.vertical-scroller {
+  height: 300px;
+  overflow-y: scroll; /* Scroll vertically */
+  overflow-x: hidden;  /* Hide horizontal overflow */
+}
+```
+
+## 4. `overflow` and Layout Containment
+
+Using `overflow: hidden;` is a powerful trick for managing certain layout issues:
+
+### 1. Stopping Margins from Collapsing
+
+`overflow: hidden;` on a parent container can sometimes prevent the parent's top or bottom margins from collapsing with the margins of its children.
+
+<AdsComponent />
+<br />
+
+### 2. Clearing Floats (The Old Method)
+
+Historically, setting `overflow: hidden;` on a parent container was a simple, though imperfect, alternative to the Clearfix Hack to ensure a parent contains its floated children. It works because it forces the parent to contain the content (floats) to handle the resulting overflow context.
+
+:::caution Caveat with `overflow: hidden`
+While `overflow: hidden` is great for clipping, remember that it will cut off anything designed to intentionally spill outside the box, such as drop-shadows, tooltips, or absolutely positioned elements that extend past the parent's boundary.
+:::
+
+## Interactive `overflow` Demo
+
+Experiment by changing the `overflow` value on the container (`visible`, `hidden`, `scroll`, `auto`) to see how the content is handled when it exceeds the $150\text{px}$ height.
+
+<CodePenEmbed 
+  title="Interactive overflow Demo"
+  penId="qEZYqwW"
+/>

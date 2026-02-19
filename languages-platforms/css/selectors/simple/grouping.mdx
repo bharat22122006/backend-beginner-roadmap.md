@@ -1,0 +1,104 @@
+---
+title: The Grouping Selector
+description: "Learn how to use the Grouping Selector (comma-separated list) to apply the exact same styles to multiple, different selectors in a single, efficient CSS ruleset."
+keywords: [CSS Grouping Selector, Comma Selector, CSS Efficiency, Code Duplication, Simple Selectors, CodeHarborHub]
+tags: [CSS Grouping Selector, Comma Selector, CSS Efficiency, Code Duplication, Simple Selectors]
+sidebar_label: Grouping Selector
+---
+
+So far, we've focused on styling one element or one type of element at a time. But what if you have ten different elements that all need the **exact same style**?
+
+The **Grouping Selector** provides the perfect solution. It allows you to combine multiple selectors into a single ruleset, drastically reducing code duplication and making your CSS much cleaner.
+
+<AdsComponent />
+<br />
+
+## How to Use the Grouping Selector
+
+To group selectors, you simply list them one after another, separated by a **comma (`,`)**.
+
+### The Syntax
+
+```css title="Grouping Selector Syntax"
+selector-1, selector-2, selector-3, ... {
+  /* declarations go here */
+}
+```
+
+### Examples
+
+You can group any combination of simple selectors:
+
+| Grouping Example | Targets |
+| :--- | :--- |
+| `h1, h2, h3` | All level 1, 2, and 3 headings. |
+| `.card, .modal, .toast` | All elements with the classes `card`, `modal`, or `toast`. |
+| `p, #footer, .note` | All paragraphs, the unique element with `id="footer"`, and all elements with the class `note`. |
+
+### Grouping in Action
+
+Instead of writing this verbose, repetitive code:
+
+<Tabs>
+<TabItem value="verbose" label="Repetitive Code">
+
+```css
+h1 {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+h2 {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+.sidebar-title {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+```
+
+</TabItem>
+<TabItem value="clean" label="Grouped Code">
+
+```css
+/* Grouping all three selectors together */
+h1, h2, .sidebar-title {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+```
+
+</TabItem>
+</Tabs>
+
+The grouped code achieves the exact same result using just one ruleset\!
+
+<AdsComponent />
+<br />
+
+## Why Grouping is a Best Practice
+
+1.  **Reduced Code Size (Efficiency):** It minimizes the total number of lines in your stylesheet, which makes the file size smaller and faster to download.
+2.  **Maintainability:** If you need to update the shared styles (e.g., change the font-family), you only have one place to make the edit.
+3.  **Readability:** It makes the intent of your CSS clear—you are explicitly stating that these distinct elements are meant to look alike.
+
+### Note on Specificity
+
+When selectors are grouped, the browser calculates the **Specificity Score** for **each individual selector** separately.
+
+**Example:**
+If you have the rule: `.box, #unique-title { color: purple; }`
+
+  * When styling the element with the class `.box`, the specificity is **10**.
+  * When styling the element with the ID `#unique-title`, the specificity is **100**.
+
+The Grouping Selector does **not** change the individual power of the selectors it contains.
+
+### Interactive Grouping Selector Demo
+
+In the live editor, the CSS uses the grouping selector to target a Class, an Element, and a unique ID all at once. If you remove any selector from the comma-separated list, the corresponding element will lose the styling.
+
+<CodePenEmbed 
+  title="Interactive Grouping Selector Demo"
+  penId="MYybKmv"
+/>

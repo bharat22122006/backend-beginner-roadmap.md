@@ -1,0 +1,135 @@
+---
+title: "ZURB Foundation (Enterprise Framework)"
+description: "An in-depth guide to ZURB Foundation, a powerful, enterprise-grade framework focused on flexible, modular, and mobile-first development, particularly known for its extensive JavaScript components."
+keywords: [Foundation CSS, ZURB Foundation, responsive framework, enterprise CSS, Sass, component-based, JavaScript components, Motion UI]
+tags: [Foundation CSS, ZURB Foundation, responsive framework, enterprise CSS, Sass, component-based, JavaScript components, Motion UI]
+sidebar_label: Foundation
+---
+
+Foundation, developed by ZURB, is a highly advanced and flexible front-end framework that is often the preferred choice for large-scale enterprise applications, complex user interfaces, and custom digital products.
+
+Unlike lightweight alternatives, Foundation provides a comprehensive ecosystem, including an advanced Sass architecture, a robust set of responsive JavaScript components, and tools for rapid prototyping and production-ready code. It follows a highly customizable, mobile-first, and component-based approach.
+
+<AdsComponent />
+<br />
+
+## 1. Core Principles and Architecture
+
+Foundation's design emphasizes flexibility and professionalism, giving developers the tools to build unique interfaces rather than cookie-cutter websites.
+
+### A. Mobile-First and Flexibility
+
+Foundation is strictly mobile-first, meaning all styles are written for small screens first and then scaled up using media queries. This ensures optimal performance and a clean responsive structure.
+
+### B. Enterprise Focus
+
+It is often used in professional environments due to its clean separation of concerns, strong accessibility focus, and compatibility with custom build tools (like Webpack or Gulp) right out of the box.
+
+### C. Sass Customization
+
+Foundation is heavily reliant on Sass. Developers are encouraged to use the Sass version to easily configure global settings, remove unused components, and maintain a lightweight final stylesheet that only contains the features they need.
+
+## 2. The Semantic Grid System
+
+Foundation's grid system is one of its most powerful features, offering both a standard Float Grid and a modern Flex Grid (recommended). It uses a 12-column structure with semantic classes that are easy to understand.
+
+### Grid Structure
+
+* **Container:** `.grid-container` (fixed or fluid width).
+* **Rows:** `.grid-x` (initializes the row using Flexbox).
+* **Columns:** `.cell` defines a column.
+
+### Responsive Sizing
+
+Foundation uses the standard medium, large, and xlarge breakpoints to define column spans.
+
+|Prefix | Breakpoint (Min-Width) | Purpose | Example |
+|:---|:---|:---|:---|
+|(None) | Default (Mobile) | All screens | `.small-12` |
+| `medium-` | $\ge 640px$ | Tablets and up | `.medium-6` |
+| `large-` | $\ge 1024px$ | Desktops and up | `.large-4` |
+| `xlarge-` | $\ge 1200px$ | Large Desktops | `.xlarge-3` |
+
+<AdsComponent />
+<br />
+
+### Responsive Grid Example
+
+This layout stacks on small screens (small-12), splits into two columns on tablets (medium-6), and three columns on desktops (large-4).
+
+```html title="index.html"
+<div class="grid-container">
+  <div class="grid-x grid-padding-x">
+    <!-- The cell class is the base column -->
+    <div class="cell small-12 medium-6 large-4">
+      <div class="card">Feature 1</div>
+    </div>
+    <div class="cell small-12 medium-6 large-4">
+      <div class="card">Feature 2</div>
+    </div>
+    <div class="cell small-12 medium-12 large-4">
+      <div class="card">Feature 3</div>
+    </div>
+  </div>
+</div>
+```
+
+## 3. Advanced Components and Plugins
+
+A key distinction of Foundation is its extensive collection of highly functional JavaScript components, often simplifying complex UI patterns.
+
+### A. Components with JS Behavior
+
+Accordion: Collapsible content sections, managed by built-in JS.
+
+Drilldown Menu: Complex multi-level navigation for mobile and desktop.
+
+Reveal: Powerful modal component with options for full-screen or timed visibility.
+
+TABS: Tabbed content management.
+
+### B. Example: Visibility and Alignment
+
+Foundation provides clear utility classes to control visibility and alignment across breakpoints.
+
+| Class | Function |
+|:---|:---|
+|`.show-for-large`| Only visible on large screens and above.|
+|`.hide-for-medium-only`| Hidden only on medium screens.|
+|`.text-center` | Centers text (always responsive).|
+|`.align-middle` |Vertically centers items in a row.|
+
+```html title="index.html"
+<p class="show-for-large">
+  This notice is only shown to desktop users.
+</p>
+```
+
+<AdsComponent />
+<br />
+
+## Try It Out
+
+Now that you've seen the basics of ZURB Foundation's component-based framework, responsive grid system, and customization options, it's time to try it yourself!
+
+<CodePenEmbed 
+  title="CodeHarborHub Foundation Demo"
+  penId="ogxQzqg"
+/>
+
+## 4. Resources for Further Learning
+
+To dive deeper into ZURB Foundation and leverage its powerful ecosystem, here are the essential resources:
+
+### Official Documentation
+
+The official site offers comprehensive guides, tutorials, and examples for every component and utility.
+
+* **Foundation Official Site:** https://foundation.zurb.com/
+* **Getting Started Guide:** https://foundation.zurb.com/sites/docs/kitchen-sink.html
+* **Flex Grid Documentation:** Essential for understanding the modern grid layout. https://foundation.zurb.com/sites/docs/flex-grid.html
+
+### Advanced Tools
+
+* **Motion UI:** Foundation often integrates with ZURB's Motion UI library, providing CSS transition and animation classes. This is great for adding smooth, professional transitions.
+* **Sass Settings:** For serious customization, review the Sass settings file to see how easily you can change default colors, spacing, and font stacks.

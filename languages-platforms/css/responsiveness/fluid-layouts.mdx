@@ -1,0 +1,130 @@
+---
+title: "Fluid Layouts (Relative Units and Flex/Grid)"
+description: "Master the use of relative units, Flexbox, and CSS Grid to create layouts that are inherently flexible and adapt their dimensions based on the viewport and container size."
+keywords: [fluid layout, relative units, vw, vh, percentage, flexbox, CSS Grid, intrinsic design, responsive web design]
+tags: [fluid layout, relative units, vw, vh, percentage, flexbox, CSS Grid, intrinsic design, responsive web design]
+sidebar_label: Fluid Layouts
+---
+
+A **fluid layout** (also known as a liquid layout) is one where the widths of the elements are set using relative units (like percentages or viewport units) rather than fixed pixel values. This makes the layout inherently flexible, expanding and contracting smoothly as the browser window resizes, ensuring space is always maximized.
+
+Fluid layouts are a key component of modern responsive design, working hand-in-hand with Media Queries and Container Queries.
+
+<AdsComponent />
+<br />
+
+## 1. Core Principle: Avoiding Fixed Units
+
+The goal of a fluid layout is to ensure that no part of the design can cause horizontal scrollbars unless absolutely necessary.
+
+| Unit Type | Behavior | Fluid Use |
+| :--- | :--- | :--- |
+| **Fixed** (`px`, `pt`) | Stays the same regardless of screen size. | Used only for properties that should *not* change (e.g., border thickness, max-width limits). |
+| **Relative** (`%`, `vw`, `em`) | Changes based on the parent, root, or viewport size. | Used for widths, heights, margins, and padding. |
+
+### Using Percentages (`%`)
+
+Percentages are relative to the parent element. This is the oldest and most fundamental fluid unit.
+
+```css title="styles.css"
+.parent {
+  width: 900px; /* The maximum size */
+}
+
+.child {
+  /* This child will always take up 50% of the parent's current width */
+  width: 50%;
+  padding: 2%; /* Padding is also relative to the parent's width */
+}
+```
+
+### Using Viewport Units (`vw`, `vh`)
+
+Viewport units are relative to the size of the browser window itself.
+
+  * **`vw` (Viewport Width):** $1\%$ of the viewport width.
+  * **`vh` (Viewport Height):** $1\%$ of the viewport height.
+
+```css title="styles.css"
+.hero-section {
+  /* Sets the height of the hero section to 60% of the viewport height */
+  height: 60vh;
+}
+```
+
+<AdsComponent />
+<br />
+
+## 2. Flexbox for Fluid Distribution
+
+Flexbox is ideal for creating one-dimensional (row or column) fluid layouts where content needs to distribute space evenly or according to defined ratios.
+
+### Example: Fluid Navigation Bar
+
+Using `flex-grow` ensures that unused space is distributed evenly among the items.
+
+```css title="styles.css"
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-item {
+  /* Allows the item to grow and shrink as needed */
+  flex-grow: 1; 
+  text-align: center;
+  padding: 1rem 0;
+  
+  /* Setting a base width allows the item to grow proportionally */
+  flex-basis: 0; 
+}
+```
+
+## 3. CSS Grid for Two-Dimensional Fluidity
+
+CSS Grid is the ultimate tool for two-dimensional fluid layouts, especially when dealing with major page sections (header, sidebar, main content).
+
+### The `fr` Unit
+
+The `fr` (fractional unit) is the most powerful tool for fluid Grid design. It represents a fraction of the available space in the grid container.
+
+### Example: Fluid Sidebar Layout
+
+```css title="styles.css"
+.page-layout {
+  display: grid;
+  padding: 20px;
+  /* Define two columns: one takes 1 fraction, the main content takes 3 fractions */
+  grid-template-columns: 1fr 3fr; 
+  gap: 20px;
+}
+```
+
+In this example, the sidebar will always be one-quarter ($1/4$) of the total available width, and the main content will be three-quarters ($3/4$), ensuring the layout is always perfectly proportional, regardless of the screen size.
+
+<AdsComponent />
+<br />
+
+### `minmax()` Function
+
+The `minmax()` function prevents columns from becoming too narrow or too wide. This combines fluid width with fixed limits, creating a highly resilient design.
+
+```css title="styles.css"
+.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+```
+
+  * **Explanation:** This creates columns that are *at least* 300px wide (`minmax(300px, 1fr)`). If the remaining space allows for more than one column, they are created. The `1fr` ensures they all share the available space equally, but they will never shrink below 300px.
+
+## Interactive Fluid Layout Demo
+
+This demo shows a two-column layout using the `fr` unit. Resize the pane to see the columns maintain their 1:2 ratio.
+
+<CodePenEmbed 
+  title="Interactive Fluid Layout Demo"
+  penId="wBGXpPN"
+/>
+
+In this example, the sidebar and main content areas adjust their widths fluidly based on the viewport size, maintaining their proportional relationship while ensuring usability across devices.

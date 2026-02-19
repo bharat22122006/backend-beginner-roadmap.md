@@ -1,0 +1,115 @@
+---
+title: Attribute Selectors
+description: "Learn how to use Attribute Selectors to target elements based on the presence, exact value, or partial match of their HTML attributes, such as type, href, or target."
+keywords: [CSS Attribute Selectors, Attribute presence, Attribute value, Substring matching, CSS Selectors, CodeHarborHub]
+tags: [CSS Attribute Selectors, Attribute presence, Attribute value, Substring matching, CSS Selectors]
+sidebar_label: Attribute Selectors
+---
+
+So far, we've targeted elements by their tag name, class, ID, or position. **Attribute Selectors** give us a powerful new way to target elements based on the attributes they possess in the HTML (like `type`, `href`, `title`, or `disabled`).
+
+This is incredibly useful for styling elements that share the same tag but have different functions (e.g., different input types).
+
+<AdsComponent />
+<br />
+
+## The Basic Syntax
+
+Attribute selectors are always enclosed in **square brackets (`[]`)**.
+
+### 1. Attribute Presence Selector `[attr]`
+
+This is the simplest form. It selects any element that simply **has the specified attribute**, regardless of its value.
+
+| Syntax | Example | Targets |
+| :--- | :--- | :--- |
+| **`[attr]`** | `[disabled]` | All elements that possess the **`disabled`** attribute, regardless of its value. |
+| **`a[title]`** | `a[title]` | All `<a>` tags that have a **`title`** attribute present. |
+| **`[attr="value"]`** | `[type="submit"]` | All elements where the `type` attribute value is **exactly `"submit"`**. |
+| **`a[target="_blank"]`** | `a[target="_blank"]` | All links that have the `target` attribute set **exactly to `"_blank"`**. |
+
+```css title="Styles any input that is disabled, regardless of its type"
+input[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+```
+
+### 2. Exact Attribute Value Selector `[attr="value"]`
+
+This selects any element that has the specified attribute **and** its value exactly matches the one provided.
+
+| Syntax | Example | Targets |
+| :--- | :--- | :--- |
+| `[attr="value"]` | `[type="submit"]` | All elements whose `type` attribute is **exactly** `"submit"`. |
+| `a[target="_blank"]` | `a[target="_blank"]` | All anchor tags (`<a>`) whose `target` attribute is **exactly** `"_blank"` (opens in a new tab). |
+
+```css title="Targets only submit buttons"
+input[type="submit"] {
+  background-color: #28a745; /* Green */
+  color: white;
+}
+```
+
+<AdsComponent />
+<br />
+
+## Substring Matching (Advanced Selectors)
+
+CSS offers several specialized operators for matching only a *part* of the attribute's value.
+
+| Operator | Syntax | Description | Specificity Score |
+| :--- | :--- | :--- | :--- |
+| **`~=`** | `[attr~="value"]` | Contains the whole **word** (`value`), separated by spaces. (e.g., `class="nav link"`, targets `link`) | (0, 0, 1, 0) |
+| **<code>&#124;=</code>** | <code>[attr&#124;="value"]</code> | Starts with the whole **word** (`value`), followed by a **hyphen** (`-`). (e.g., `lang="en-US"`) | (0, 0, 1, 0) |
+| **`^=`** | `[attr^="value"]` | **Starts with** the exact string (`value`). | (0, 0, 1, 0) |
+| **`$=`** | `[attr$="value"]` | **Ends with** the exact string (`value`). (e.g., targeting `.pdf` links) | (0, 0, 1, 0) |
+| **`*=`** | `[attr*="value"]` | **Contains** the exact string (`value`) **anywhere** in the attribute. | (0, 0, 1, 0) |
+
+### Example: Targeting File Extensions
+
+You can use the `$=` selector to target links that end with a specific file extension, like `.pdf`.
+
+```css title="styles.css"
+/* Targets any link whose 'href' ends with '.pdf' */
+a[href$=".pdf"] {
+  padding-right: 20px;
+  background: url('/icons/pdf.png') no-repeat right center;
+}
+```
+
+### Example: Targeting Partial Class Names
+
+You can use `*=` to style elements whose class names contain a specific component, which is useful in utility frameworks.
+
+```css
+/* Targets any element whose class contains the word 'btn-' */
+[class*="btn-"] {
+  cursor: pointer;
+  border-radius: 4px;
+}
+```
+
+## Specificity Score
+
+Attribute Selectors have the same medium specificity as **Class Selectors**.
+
+| Selector Type | Specificity Score |
+| :--- | :--- |
+| **Attribute Selector** | **(0, 0, 1, 0)** |
+
+A score of **10** means they easily override Element Selectors but can be overridden by ID Selectors.
+
+<AdsComponent />
+<br />
+
+## Interactive Attribute Selector Demo
+
+In this demo, the CSS targets inputs based on their `type` attribute. Notice how different selectors are needed for the text field and the password field.
+
+<CodePenEmbed 
+  title="Interactive Attribute Selector Demo"
+  penId="OPNbqRE"
+/>
+
+**Challenge:** Remove the `required` attribute from the text input in the HTML. The red border will instantly disappear, showing the power of the presence selector `[required]`.

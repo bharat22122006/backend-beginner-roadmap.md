@@ -1,0 +1,148 @@
+---
+title: "Bootstrap (Component-Based Framework)"
+description: "A detailed tutorial on Bootstrap, the most popular component-based CSS framework, covering its grid system, pre-built components, and customization options."
+keywords: [Bootstrap, CSS framework, component-based, responsive grid, Sass, JavaScript components, utility classes]
+tags: [Bootstrap, CSS framework, component-based, responsive grid, Sass, JavaScript components, utility classes]
+sidebar_label: Bootstrap
+---
+
+Bootstrap is a free, open-source CSS framework directed at responsive, mobile-first frontend web development. It is the most well-known and widely used CSS framework, providing a collection of ready-made HTML, CSS, and JavaScript templates for common interface components.
+
+While modern trends often favor utility-first systems like Tailwind CSS, Bootstrap remains an excellent choice for rapid prototyping, developing standard enterprise applications, and ensuring a consistent, accessible baseline design with minimal effort.
+
+<AdsComponent />
+<br />
+
+## 1. Core Concept: Component-Based Design
+
+Bootstrap operates on a **component-based** philosophy. Instead of applying individual styling utilities, you apply a single semantic class that bundles all the necessary styles, states, and responsive behavior for a common UI element.
+
+### Component Example
+
+To create a primary-style button, you simply use the predefined classes:
+
+```html title="index.html"
+<!-- The .btn class provides common button styling (padding, font, border). -->
+<!-- The .btn-primary class provides the specific color scheme (skin). -->
+<button type="button" class="btn btn-primary">
+  Get Started
+</button>
+```
+
+### Key Advantages
+
+  * **Rapid Prototyping:** Components look good out of the box, requiring minimal custom CSS.
+  * **Consistency:** Provides a standard, cohesive look across the entire application.
+  * **Ease of Use:** Low barrier to entry; developers only need to learn the class names, not the underlying CSS properties.
+
+## 2. The Responsive Grid System
+
+Bootstrap's most enduring and crucial feature is its Flexbox-based 12-column responsive grid system. It allows developers to define complex layouts that adapt seamlessly across various screen sizes using predefined classes.
+
+### Grid Structure
+
+The grid is built on three core concepts:
+
+1.  **Containers:** `.container` (fixed width based on breakpoint) or `.container-fluid` (full width).
+2.  **Rows:** `.row` creates a horizontal group for columns, ensuring correct negative margin and Flexbox behavior.
+3.  **Columns:** `.col-*` classes define the number of columns (out of 12) a section should span.
+
+### Column Breakpoints
+
+Bootstrap uses five default breakpoints to control column stacking and size:
+
+| Prefix | Breakpoint | Device Type | Purpose |
+| :--- | :--- | :--- | :--- |
+| `col-` | $\lt 576px$ | Extra Small (Mobile) | Stacks vertically by default. |
+| `col-sm-` | $\ge 576px$ | Small (Landscape Mobile) | Defines behavior for small screens and up. |
+| `col-md-` | $\ge 768px$ | Medium (Tablet) | Defines behavior for tablets and up. |
+| `col-lg-` | $\ge 992px$ | Large (Desktop) | Defines behavior for desktops and up. |
+| `col-xl-` | $\ge 1200px$ | Extra Large | Defines behavior for large desktops. |
+
+<AdsComponent />
+<br />
+
+### Responsive Grid Example
+
+This layout stacks on mobile, shows two equal columns on tablets, and three equal columns on desktops.
+
+```html title="index.html"
+<div class="container">
+  <div class="row">
+    <!-- Full width on mobile, 6 columns on tablet, 4 columns on desktop -->
+    <div class="col-12 col-md-6 col-lg-4">Item 1</div>
+    <div class="col-12 col-md-6 col-lg-4">Item 2</div>
+    <div class="col-12 col-md-12 col-lg-4">Item 3</div>
+  </div>
+</div>
+```
+
+## 3. Pre-built Components
+
+Bootstrap provides dozens of pre-styled, functional components, often including necessary JavaScript behaviors (like toggling visibility or managing state).
+
+| Component Category | Purpose | Example Component |
+| :--- | :--- | :--- |
+| **Navigation** | Site structure and menus. | Navbars, Tabs, Breadcrumbs |
+| **Content** | Displaying structured information. | Cards, Carousels, Collapse |
+| **Forms** | User input and validation feedback. | Input groups, Selects, Validation styles |
+| **Feedback** | Alerts and notifications. | Modals, Toasts, Alerts, Spinners |
+
+### Component Example: Card
+
+```html title="index.html"
+<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="Card image">
+  <div class="card-body">
+    <h5 class="card-title">Project Title</h5>
+    <p class="card-text">A brief summary of the project.</p>
+    <a href="#" class="btn btn-primary">Read More</a>
+  </div>
+</div>
+```
+
+## 4. Customization and Styling
+
+Modern Bootstrap is highly customizable, moving away from the rigid themes of its early versions.
+
+### A. Sass Variables
+
+Bootstrap's source code is built with **Sass (SCSS)**. The most scalable way to customize Bootstrap is to override its default variables *before* the Sass files are compiled. This allows you to change global defaults like primary colors, font stacks, and spacing increments.
+
+```scss title="custom/_variables.scss"
+// 1. Override Primary Color
+$primary: #007bff; // Default blue
+$primary: #4CAF50; // Custom green
+
+// 2. Override Border Radius
+$border-radius: 0.5rem;
+$border-radius-lg: 0.75rem;
+
+// Must import Bootstrap after defining variables
+@import "bootstrap/scss/bootstrap";
+```
+
+<AdsComponent />
+<br />
+
+### B. Utility API
+
+Since Bootstrap 4, the framework has incorporated an increasing number of reusable utility classes (similar to Tailwind, but less comprehensive). These are primarily used for small adjustments like margin, padding, and display properties.
+
+| Utility Class | Description |
+| :--- | :--- |
+| `m-3` | Sets `margin` on all sides to 1rem. |
+| `pt-4` | Sets `padding-top` to 1.5rem. |
+| `d-flex` | Sets `display: flex;`. |
+| `text-center` | Sets `text-align: center;`. |
+
+These utilities are essential for fine-tuning the spacing and alignment of pre-built components without needing to write custom CSS.
+
+## Try It Out
+
+Now that you've seen the basics of Bootstrap's component-based framework, responsive grid system, and customization options, it's time to try it yourself!
+
+<CodePenEmbed 
+  title="CodeHarborHub Bootstrap Demo"
+  penId="XJdyKge"
+/>

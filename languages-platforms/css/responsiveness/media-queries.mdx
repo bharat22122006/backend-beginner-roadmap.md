@@ -1,0 +1,174 @@
+---
+title: "CSS Media Queries"
+description: "Master CSS Media Queries to create truly responsive designs, adapting layouts, styles, and content based on screen size, orientation, and device capabilities."
+keywords: [CSS Media Queries, responsive design, breakpoints, min-width, max-width, mobile-first, desktop-first, prefers-color-scheme, orientation]
+tags: [CSS Media Queries, responsive design, breakpoints, min-width, max-width, mobile-first, desktop-first, prefers-color-scheme, orientation]
+sidebar_label: Media Queries
+---
+
+CSS Media Queries are a fundamental feature of modern web development, allowing you to apply specific sets of CSS rules only when certain conditions are met by the user's device or environment.
+
+This is the technology that makes it possible to build **responsive websites**—layouts that adapt fluidly to screen size, orientation, and device capabilities (like touch vs. mouse).
+
+<AdsComponent />
+<br />
+
+## 1. Media Query Syntax
+
+A media query starts with the `@media` rule, followed by an optional **Media Type** and one or more **Media Features** (conditions).
+
+```css title="styles.css"
+@media [media type] and ([media feature]) {
+  /* CSS rules to apply when the conditions are met */
+}
+```
+
+In the example above:
+* **Media Type** specifies the category of device (e.g., `screen`, `print`).
+* **Media Feature** is a condition that must be true (e.g., `min-width: 768px`).
+
+### 1.1. Media Types
+
+The media type defines the broad category of device the styles apply to.
+
+| Type | Description |
+| :--- | :--- |
+| **`screen`** | For color screens (desktops, tablets, phones, smartwatches). (Most common) |
+| **`print`** | For paginated materials (e.g., printed documents). |
+| **`all`** | For all media types (Default if type is omitted). |
+
+### 1.2. Media Features (The Conditions)
+
+Media features are the conditions, enclosed in parentheses, that must be met. The most common feature is `width`.
+
+```css title="styles.css"
+@media screen and (min-width: 768px) {
+  /* CSS rules inside this block only apply when the screen is 768px wide OR WIDER. */
+}
+```
+
+<AdsComponent />
+<br />
+
+### 1.3. Logical Operators
+
+You can combine features using logical operators:
+
+| Operator | Description | Example |
+| :--- | :--- | :--- |
+| **`and`** | Combines multiple features; all must be true. | `(min-width: 600px) and (orientation: landscape)` |
+| **`not`** | Negates an entire query or type. | `@media not screen and (max-width: 800px)` |
+| **`,` (comma)** | Equivalent to `or`; if *any* query is true, the styles apply. | `@media (max-width: 600px), print` |
+
+## 2. Defining Layout Breakpoints (`width`)
+
+The most common use of media queries is to define breakpoints—specific screen widths where the layout needs to change dramatically.
+
+### Mobile-First vs. Desktop-First
+
+You can structure your responsive CSS using two primary approaches based on the `min-width` or `max-width` feature:
+
+#### A. Mobile-First (Recommended)
+
+Start with your default, unqueried CSS styles for the smallest screens (mobile). Then, use `min-width` to layer on changes for progressively larger screens.
+
+  * **Logic:** **If the screen size is *at least* this wide, apply these changes.**
+  * **Advantage:** Forces lean, performant base CSS, prioritizing mobile usability.
+
+```css title="styles.css"
+/* Base styles (Default for ALL, designed for mobile) */
+.container {
+  padding: 10px;
+  display: block; /* Stacks vertically */
+}
+
+/* Tablet and larger (at least 768px wide) */
+@media (min-width: 768px) {
+  .container {
+    padding: 20px;
+    display: grid; /* Switch to grid layout */
+    grid-template-columns: 1fr 1fr;
+  }
+}
+```
+
+<AdsComponent />
+<br />
+
+#### B. Desktop-First
+
+Start with your default, unqueried CSS for the largest screens (desktop). Then, use `max-width` to apply changes for smaller screens.
+
+  * **Logic:** **If the screen size is *at most* this wide, apply these changes.**
+
+```css title="styles.css"
+/* Base styles (Default for desktop, applies to ALL) */
+.container {
+  display: flex; /* Horizontal layout */
+}
+
+/* Tablet and smaller (maximum 1024px wide) */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column; /* Switch to vertical stack */
+  }
+}
+```
+
+## 3. Other Useful Media Features
+
+Media Queries can respond to more than just screen size, allowing you to adapt the design based on device capabilities or user preferences.
+
+### 3.1. `orientation`
+
+Used to check if the device is in portrait (taller than wide) or landscape (wider than tall) mode.
+
+```css title="styles.css"
+/* Styles applied when the device is held sideways */
+@media (orientation: landscape) {
+  .header-menu {
+    max-width: 800px;
+  }
+}
+```
+
+### 3.2. `prefers-color-scheme`
+
+Used to detect if the user has requested a light or dark color scheme from their operating system settings. Essential for implementing a proper Dark Mode.
+
+```css
+/* Styles applied when the user prefers a Dark Mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #f0f0f0;
+  }
+}
+```
+
+<AdsComponent />
+<br />
+
+### 3.3. `prefers-reduced-motion`
+
+Used to respect users who prefer minimal animation or motion due to vestibular disorders or preference.
+
+```css title="styles.css"
+/* If user prefers less motion, remove animations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+```
+
+## Interactive Media Query Demo
+
+To see media queries in action, resize the browser window below. The layout and background color will change based on the screen width.
+
+<CodePenEmbed 
+  title="Interactive Media Query Demo"
+  penId="gbrKGVr"
+/>

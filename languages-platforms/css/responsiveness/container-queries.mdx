@@ -1,0 +1,135 @@
+---
+title: "CSS Container Queries"
+description: "Learn how to use CSS Container Queries to style components based on the size of their parent container, enabling true component-level responsiveness."
+keywords: [CSS Container Queries, '@container', container-type, container-name, component responsiveness, local scoping]
+tags: [css, responsiveness, container-queries, '@container', component-design, local-scoping, modern-css, container-type, container-name]
+sidebar_label: "Container Queries"
+---
+
+Container Queries are a modern, powerful feature in CSS that allows you to apply styles to an element based on the dimensions (size or style) of its nearest ancestor with containment set, rather than the global viewport size.
+
+This is a paradigm shift in responsive design, moving from a page-centric approach to a **component-centric** approach.
+
+<AdsComponent />
+<br />
+
+## 1. The Problem Solved
+
+### Media Queries vs. Container Queries
+
+Historically, we relied on **Media Queries** (`@media`).
+
+  * **Media Queries:** Apply styles based on the size of the **viewport** (the browser window). If a small card component is placed in a narrow sidebar on a large screen, a media query for a large screen would make the card look bad because it only checks the global size.
+
+**Container Queries** (`@container`) solve this:
+
+  * **Container Queries:** Apply styles based on the size of the **parent element** (the container). The card component can now adjust its layout (e.g., stack its elements) when its container is narrow, regardless of whether the user is on a mobile phone or a large desktop monitor.
+
+## 2. Setting Up the Container
+
+Before you can query a container, you must establish it using the `container` or `container-type` property on the parent element.
+
+### 2.1. `container-type` (Required)
+
+This property defines what kind of dimension is being queried.
+
+| Value | Description | Use Case |
+| :--- | :--- | :--- |
+| **`size`** | Queries both the **width and height**. | Rarely used, as it can cause infinite layout loops. |
+| **`inline-size`** | Queries the size in the direction of text flow (usually **width**). | Most common and safest choice for block elements. |
+| **`normal`** | The default, no containment established. | |
+
+### 2.2. `container-name` (Optional but Recommended)
+
+For clarity and to prevent ambiguity when containers are nested, you can give your container a name.
+
+<AdsComponent />
+<br />
+
+### Setup Shorthand
+
+The `container` shorthand combines both properties:
+
+```css title="styles.css"
+/* Applied to the PARENT element */
+.sidebar-module {
+  /* Establishes containment and gives it a name for targeting */
+  container: card-container / inline-size; 
+  /* Equivalent to:
+     container-name: card-container;
+     container-type: inline-size; */
+}
+```
+
+## 3. The `@container` Rule
+
+Once the parent is defined, you can use the `@container` rule on its children to apply responsive styles.
+
+### 3.1. Syntax
+
+The syntax is similar to a media query, but it uses the container's size instead of the viewport's size.
+
+```css title="styles.css"
+@container [container-name] ([query-feature]) {
+  /* Styles for the child element */
+}
+```
+
+In the example above:
+* **Container Name** (optional) specifies which container to query. If omitted, it queries the nearest ancestor with containment.
+* **Query Feature** is the condition based on the container's dimensions (e.g., `min-width: 400px`).
+
+### 3.2. Query Features
+
+The features are size-based and mirror those used in media queries:
+
+  * `min-width` / `max-width` (based on container width)
+  * `min-height` / `max-height` (based on container height)
+  * `min-inline-size` / `max-inline-size` (most common)
+
+### Example: Component Responsiveness
+
+```css title="styles.css"
+/* Styles applied to a child element inside .sidebar-module */
+.card-content {
+  display: flex; /* Default horizontal layout */
+  gap: 1rem;
+}
+
+/* Query the parent named 'card-container' */
+@container card-container (max-width: 400px) {
+  .card-content {
+    /* When the parent container is narrow, stack the children */
+    flex-direction: column; 
+    gap: 0.5rem;
+  }
+
+  .card-content img {
+    /* Shrink the image when the container is small */
+    width: 100%;
+    height: auto;
+  }
+}
+```
+
+<AdsComponent />
+<br />
+
+## 4. Logical Operators
+
+Like media queries, you can combine queries using `and`, `not`, and the comma for `or`.
+
+```css title="styles.css"
+@container (min-width: 300px) and (max-width: 500px) {
+  /* Styles apply only if the container width is between 300px and 500px */
+}
+```
+
+## Interactive Container Query Demo
+
+Observe how the internal structure of the `Card` component changes when you resize the outer container, regardless of the overall viewport size.
+
+<CodePenEmbed 
+  title="Interactive Container Query Demo"
+  penId="emZKepL"
+/>

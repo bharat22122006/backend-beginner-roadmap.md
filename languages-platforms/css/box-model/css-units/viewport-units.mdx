@@ -1,0 +1,69 @@
+---
+title: "Viewport Units (vw, vh, vmin, vmax)"
+description: "Explore CSS viewport units (vw, vh, vmin, vmax) and how they enable elements to scale dynamically with the size of the browser window, forming the basis of fluid layouts."
+keywords: [CSS viewport units, vw, vh, vmin, vmax, fluid layout, responsive design, typography scaling]
+tags: [CSS viewport units, vw, vh, vmin, vmax, fluid layout, responsive design, typography scaling]
+sidebar_label: "Viewport Units"
+---
+
+**Viewport Units** are a set of relative units that base their measurement on the dimensions of the browser window (the viewport). These units are essential for creating truly **fluid layouts** where elements scale dynamically as the user resizes their screen.
+
+There are four primary viewport units: `vw`, `vh`, `vmin`, and `vmax`.
+
+<AdsComponent />
+<br />
+
+## 1. `vw` (Viewport Width)
+
+The `vw` unit is $1\%$ of the width of the viewport.
+
+* `1vw` = $1\%$ of the browser window's width.
+* `100vw` = $100\%$ of the browser window's width.
+
+### Use Cases:
+* **Full-width Sections:** Ensuring a banner spans the entire width: `width: 100vw;`.
+* **Fluid Typography:** Creating font sizes that scale with the browser window, common in hero sections: `font-size: 5vw;`.
+
+:::warning Horizontal Scroll Alert
+Be careful when combining `width: 100vw;` with fixed horizontal padding or margin, as this can cause the total width to exceed $100\%$ of the viewport, leading to unwanted horizontal scrolling.
+:::
+
+## 2. `vh` (Viewport Height)
+
+The `vh` unit is $1\%$ of the height of the viewport.
+
+* `1vh` = $1\%$ of the browser window's height.
+* `100vh` = $100\%$ of the browser window's height.
+
+### Use Cases:
+
+* **Full-height Sections:** Making a hero section or landing page cover the entire screen vertically: `height: 100vh;`.
+* **Fixed Scroll Areas:** Creating a sidebar or log area that always uses a specific percentage of the screen height: `max-height: 80vh;`.
+
+### Note on Mobile Devices:
+
+On modern mobile browsers, the `100vh` unit sometimes includes the dynamic toolbars (like the address bar). When these toolbars retract, the visible area increases, which can cause layout shifts. To combat this, CSS introduced `svh` (small viewport height) and `lvh` (large viewport height) units for more predictable mobile sizing, though `vh` remains the most widely used unit.
+
+<AdsComponent />
+<br />
+
+## 3. `vmin` and `vmax`
+
+These units are based on the smaller or larger dimension of the viewport, respectively.
+
+| Unit | Description | Calculation | Use Case |
+| :--- | :--- | :--- | :--- |
+| **`vmin`** | $1\%$ of the **smaller** dimension (width or height). | If width is $1000\text{px}$ and height is $800\text{px}$, $1\text{vmin} = 8\text{px}$. | Ensures an element (like a logo) is always visible, regardless of screen orientation. |
+| **`vmax`** | $1\%$ of the **larger** dimension (width or height). | If width is $1000\text{px}$ and height is $800\text{px}$, $1\text{vmax} = 10\text{px}$. | Ensures an element is always large enough to fill the entire screen on either axis. |
+
+## Interactive Viewport Units Demo
+
+Resize your browser window (both horizontally and vertically) to observe how the two boxes scale.
+
+* The **`vw` Box** scales only with the horizontal width.
+* The **`vh` Box** scales only with the vertical height.
+
+<CodePenEmbed 
+  title="Interactive Viewport Units Demo"
+  penId="NPNXwGm"
+/>

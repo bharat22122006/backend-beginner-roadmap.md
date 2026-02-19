@@ -1,0 +1,98 @@
+---
+title: "Container Queries (Container Style)"
+description: "Master CSS Container Queries, which allow components to adapt their layout based on the size of their parent container, not just the viewport, solving the 'component portability' problem."
+keywords: [CSS Container Queries, container, component-driven design, container-type, responsive design, component portability]
+tags: [CSS Container Queries, container, component-driven design, container-type, responsive design, component portability]
+sidebar_label: Container Queries
+---
+
+Container Queries are one of the most significant modern advancements in CSS layout. They allow you to make elements responsive based on the size of their **parent container**, rather than the entire browser viewport (which is what traditional media queries do).
+
+This solves the long-standing "component portability" problem: How should a component look if it's placed in a narrow sidebar versus a wide main content area?
+
+<AdsComponent />
+<br />
+
+## 1. The Problem: Viewport Dependency
+
+In traditional responsive design, you use `@media` queries:
+
+```css title="styles.css"
+/* Media Query: If the entire browser viewport is wider than 600px... */
+@media (min-width: 600px) {
+  .card {
+    display: flex; /* Display cards horizontally */
+  }
+}
+```
+
+This works fine for page-level layouts, but it breaks down for components:
+
+1.  If the viewport is wide, the Card is horizontal.
+2.  If you move that Card component into a narrow sidebar (e.g., $200\text{px}$ wide), the Card will still try to be horizontal because the *viewport* is wide, causing layout chaos and overflow.
+
+**Container Queries fix this by making components self-aware of their local space.**
+
+## 2. Defining the Container (`container-type`)
+
+To use a container query, you must first define which ancestor element will be the "queryable container." This is done using the `container-type` property on the parent.
+
+| Value | Description | Use Case |
+| :--- | :--- | :--- |
+| **`size`** | Queries can be based on both the container's **width** and **height**. (Requires caution due to potential infinite loops). | Components where both dimensions matter. |
+| **`inline-size`** | Queries can only be based on the container's **width** (the most common and safest option, as it avoids infinite width/height loops). | Responsive cards, article components. |
+| `normal` (Default) | Not a container. | Standard elements. |
+
+```css title="styles.css"
+/* The element we will query against */
+.sidebar, .main-content-area {
+  container-type: inline-size;
+  container-name: primary-context; /* Optional, but recommended for clarity */
+}
+```
+
+<AdsComponent />
+<br />
+
+## 3. Writing the Query (`@container`)
+
+The `@container` syntax is very similar to `@media`, but it queries the containing element defined in step 1.
+
+The query is written directly within the styles of the **child component** that needs to adapt.
+
+```css title="styles.css"
+/* This is the component style, placed INSIDE the .sidebar or .main-content-area */
+.card {
+  display: block; /* Default state: stacked (vertical) */
+}
+
+/* Query: If my container is wider than 400px, change my layout */
+@container primary-context (min-width: 400px) {
+  .card {
+    display: flex; /* Adaptive state: horizontal */
+  }
+  .card-image {
+    width: 30%;
+  }
+}
+```
+
+Now, that `.card` will only switch to `display: flex` when it is placed inside an ancestor with `container-type: inline-size` that is at least $400\text{px}$ wide, regardless of the overall viewport size.
+
+## 4. The Benefits: True Component Isolation
+
+1.  **Portability:** Components become truly reusable. You can drop the same component into a $300\text{px}$ sidebar, a $1000\text{px}$ main column, or a $500\text{px}$ footer, and it will adjust its internal layout intelligently.
+2.  **Maintainability:** Styling is logically grouped. All rules governing a component's appearance are found in one place, relative to the component itself, not to the global viewport.
+3.  **Future-Proofing:** Simplifies nested layouts and complex grid systems, as components don't rely on global context.
+
+<AdsComponent />
+<br />
+
+## Interactive Container Query Demo
+
+In this demo, we define two parent containers of different widths. Both parents have `container-type: inline-size;`. The child component (`.responsive-box`) only switches its layout (from vertical stacking to horizontal flex) when its **immediate parent** hits the $300\text{px}$ breakpoint.
+
+<CodePenEmbed 
+  title="Interactive Container Query Demo"
+  penId="pvyVYpq"
+/>

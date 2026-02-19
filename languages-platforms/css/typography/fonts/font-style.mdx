@@ -1,0 +1,85 @@
+---
+title: "The font-style Property"
+description: "Learn how to use the CSS font-style property to control the slant and style of text, primarily setting it to normal, italic, or oblique."
+keywords: [CSS font-style, italic text, oblique font, typography, font styling, CodeHarborHub]
+tags: [CSS font-style, italic text, oblique font, typography, font styling, CodeHarborHub]
+sidebar_label: "font-style"
+---
+
+The CSS **`font-style`** property is used to control the visual slant of the text. It determines whether the text is displayed in a **normal** (upright) style, or in an **italic** or **oblique** style.
+
+<AdsComponent />
+<br />
+
+## `font-style` Values
+
+The property accepts three main keywords, which cover virtually all use cases.
+
+### 1. `normal`
+
+This is the **default value** for almost all HTML elements. It displays the font face upright, without any slant.
+
+```css
+p {
+  font-style: normal; /* Ensures paragraphs are not italic, overriding any inherited style. */
+}
+```
+
+### 2. `italic`
+
+The `italic` value is used to select the font's true **italic typeface**.
+
+  * True italic fonts are designed specifically with different letter shapes (e.g., the lowercase 'a' often changes to a single-story form).
+  * If the font family you chose does **not** have an actual italic typeface file available, the browser will often synthesize it by slanting the normal face, but this is less visually appealing than the true italic version.
+
+```css title="styles.css"
+/* Makes text inside elements with the class 'emphasis' use the italic font face */
+.emphasis {
+  font-style: italic;
+}
+```
+
+:::info HTML Default
+Note that the HTML tags `<em>` (emphasis) and `<i>` (idiomatic text) automatically have the browser's default style of `font-style: italic;`.
+:::
+
+### 3. `oblique`
+
+The `oblique` value is primarily used to tell the browser to simply **slant the normal font face** programmatically.
+
+  * `oblique` does not look for a separate, designed italic typeface; it just artificially skews the upright letters.
+  * In most modern browsers, if the font family has a true italic face, the browser will often use it even if you specify `oblique`. If no italic face is available, `oblique` is the best instruction for a synthesized slant.
+
+
+```css title="styles.css"
+.note {
+  font-style: oblique; /* Applies a programmatic slant */
+}
+```
+
+<AdsComponent />
+<br />
+
+## Italic vs. Oblique (The Design Difference)
+
+While the visual difference can be subtle, the distinction is based on design intent:
+
+| Style | Design Intent | Implementation | Result |
+| :--- | :--- | :--- | :--- |
+| **`italic`** | A **separate typeface** created by the font designer. | The browser looks for a font file named something like `MyFont-Italic.woff`. | Superior, authentic typography. |
+| **`oblique`** | The **same upright typeface** is digitally skewed by the browser. | The browser calculates a slant (e.g., 10-14 degrees) and applies it to the `MyFont-Regular.woff` file. | Functional, but often less polished. |
+
+**Best Practice:** Always use **`italic`** unless you specifically know your desired font does not offer a true italic face, or if you need to specify an angle (e.g., `oblique 14deg;` is supported by some browsers).
+
+:::tip Browser Behavior
+In most cases, if you specify `italic` and the font doesn't have a true italic file, the browser will automatically substitute it with the **oblique** version (a simple slant). For practical web design, specifying `italic` is generally the best choice, as it defaults to the best available slanted version.
+:::
+
+### Interactive `font-style` Demo
+
+In the live editor, try setting the `font-style` property to `normal`, `italic`, and `oblique` for the `.text-box` element to observe the slight variations.
+
+<CodePenEmbed 
+  title="Interactive font-style Demo"
+  penId="VYaWpXM"
+/>

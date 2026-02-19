@@ -1,0 +1,147 @@
+---
+title: The color Property
+description: "Learn how to use the CSS color property to set the foreground color of text, and explore the four primary ways to define color values in CSS: keywords, HEX codes, RGB/RGBA, and HSL/HSLA."
+keywords: [CSS color property, color values, HEX code, RGB, RGBA, HSL, HSLA, web design colors, CodeHarborHub]
+tags: [CSS color property, color values, HEX code, RGB, RGBA, HSL, HSLA, web design colors, CodeHarborHub]
+sidebar_label: color
+---
+
+The CSS **`color`** property is one of the most fundamental properties in web design. It specifies the **foreground color** of an element's content, primarily the color of the text and text decorations (like underlines).
+
+It is important to remember that `color` controls the **text color**, while `background-color` controls the color of the element's box area.
+
+<AdsComponent />
+<br />
+
+## The Syntax
+
+The `color` property can accept a wide variety of color values.
+
+```css title="styles.css"
+selector {
+  color: value; /* e.g., color: blue; */
+}
+```
+
+## Four Ways to Define Color Values
+
+CSS supports four primary methods for defining a color, giving you flexibility from simple keywords to precise numerical definitions.
+
+### 1. Color Keywords (Easiest)
+
+Color keywords are plain English words that represent a specific color value. They are the simplest to use but offer limited choice.
+
+| Type | Example | Usage |
+| :--- | :--- | :--- |
+| **Basic** | `red`, `blue`, `black`, `white` | Quick and easy, but limited to about 140 named colors. |
+| **Special** | `transparent` | Makes the element completely see-through. |
+| **New (Modern)** | `rebeccapurple`, `aquamarine` | Includes more modern named colors. |
+
+```css title="styles.css"
+p {
+  color: darkslategrey;
+}
+```
+
+### 2. HEX Codes (Most Common)
+
+**HEXadecimal** codes are the most widely used format for defining colors. They are six-digit codes preceded by a hash symbol (`#`), representing the amount of Red, Green, and Blue light.
+
+The code structure is `#RRGGBB`, where each pair of characters ranges from `00` (zero intensity) to `FF` (maximum intensity).
+
+:::info Understanding HEX Digits (0 1 2 3 4 5 6 7 8 9 A B C D E F)
+
+HEX uses **base-16**, meaning:
+
+- `0` is the lowest value  
+- `F` is the highest  
+- Each step increases brightness  
+
+**Mapping HEX $\rightarrow$ Decimal $\rightarrow$ Intensity**
+
+- `0` $\rightarrow$ 0 $\rightarrow$ no light  
+- `3` $\rightarrow$ 51 $\rightarrow$ low light  
+- `7` $\rightarrow$ 119 $\rightarrow$ mid-range  
+- `B` $\rightarrow$ 187 $\rightarrow$ bright  
+- `F` $\rightarrow$ 255 $\rightarrow$ full brightness  
+
+This is why `#F00` looks bright red (maximum red, no green/blue).
+:::
+
+| HEX Code | RRGGBB Breakdown | Color |
+| :--- | :--- | :--- |
+| `#FF0000` | Red max, Green zero, Blue zero | Pure Red |
+| `#3366CC` | Common color for web use | Medium Blue/Purple |
+| `#000000` | All zero | Black |
+| `#FFFFFF` | All max | White |
+
+:::tip Shorthand HEX
+If the pairs of digits are identical (e.g., `#FFCC99` becomes `#FC9`), you can shorten the code to three digits (e.g., `#333` is shorthand for `#333333`).
+:::
+
+```css title="style.css"
+h1 {
+  color: #007bff; /* A standard blue */
+}
+```
+
+<AdsComponent />
+<br />
+
+### 3. RGB and RGBA (Red, Green, Blue, Alpha)
+
+**RGB** functions define color using three numerical values from 0 to 255 for Red, Green, and Blue.
+
+The **RGBA** format adds a fourth value: **Alpha ($\alpha$)**, which controls the color's **opacity** (transparency).
+
+| Format | Syntax | Description |
+| :--- | :--- | :--- |
+| **`rgb()`** | `rgb(R, G, B)` | Defines color using 0-255 values for each channel. |
+| **`rgba()`** | `rgba(R, G, B, $\alpha$)` | Defines color + opacity (Alpha) from 0.0 (fully transparent) to 1.0 (fully opaque). |
+
+```css title="style.css"
+.card-title {
+  color: rgb(255, 165, 0); /* Orange */
+}
+
+.subtext {
+  /* 50% opacity, allowing the background to show through */
+  color: rgba(0, 0, 0, 0.5); 
+}
+```
+
+### 4. HSL and HSLA (Hue, Saturation, Lightness, Alpha)
+
+**HSL** is often preferred by designers because it is more intuitive than RGB. It defines a color based on the color wheel.
+
+| Component | Range | Description |
+| :--- | :--- | :--- |
+| **Hue (H)** | 0 to 360 | The position on the color wheel (0=red, 120=green, 240=blue). |
+| **Saturation (S)** | 0% to 100% | The intensity or purity of the color (100% is vibrant). |
+| **Lightness (L)** | 0% to 100% | How light or dark the color is (0% is black, 100% is white). |
+
+Like RGBA, **HSLA** adds an Alpha channel for opacity.
+
+```css title="style.css"
+.highlight {
+  /* HSL: Blue with 100% saturation and 50% lightness */
+  color: hsl(240, 100%, 50%); 
+}
+
+.lowlight {
+  /* HSLA: The same blue but 75% transparent */
+  color: hsla(240, 100%, 50%, 0.25);
+}
+```
+
+<AdsComponent />
+<br />
+
+## Interactive `color` Demo
+
+Use the live editor to change the text color using different formats: keyword, HEX, RGB, and HSLA.
+
+<CodePenEmbed 
+  title="Interactive color Demo"
+  penId="wBGexGz"
+/>

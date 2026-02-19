@@ -1,0 +1,157 @@
+---
+title: "CSS Transforms (2D and 3D)"
+description: "Learn how to use the CSS transform property with functions like translate, scale, rotate, and skew to visually manipulate elements without affecting the document flow. Explore 2D and 3D transforms, GPU acceleration, and performance tips for smooth animations."
+keywords: [CSS transform, translate, scale, rotate, skew, matrix, 3D transform, GPU acceleration, performance]
+tags: [CSS transform, translate, scale, rotate, skew, matrix, 3D transform, GPU acceleration, performance]
+sidebar_label: Transforms
+---
+
+The `transform` property allows you to visually manipulate an element in 2D or 3D space. Crucially, these transformations are applied *after* the element has been laid out in the document flow, meaning they do **not** affect the position of surrounding elements.
+
+This non-disruptive nature, combined with their ability to be **GPU-accelerated**, makes transforms the preferred way to create smooth, high-performance animations and transitions in modern web development.
+
+<AdsComponent />
+<br />
+
+## 1. The `transform` Property and Performance
+
+All transform functions are applied via the single `transform` property.
+
+```css title="styles.css"
+.box {
+  /* Apply multiple transformations in sequence */
+  transform: translateX(10px) rotate(45deg) scale(1.2);
+}
+```
+
+### GPU Acceleration (`translate3d` and `translateZ`)
+
+Transforms are highly performant because they can often be handled directly by the graphics processing unit (GPU). When transforming an element, it is promoted to its own **composited layer**.
+
+To explicitly ensure GPU acceleration, you can use the 3D translation functions, even if you only need 2D movement:
+
+```css title="styles.css"
+/* Triggers hardware acceleration for smoother animation */
+transform: translate3d(50px, 0, 0); 
+```
+
+## 2. 2D Transform Functions
+
+These are the most common functions used to manipulate elements on the X and Y axes.
+
+### 2.1. `translate()` (Moving)
+
+Shifts the position of an element along the X and Y axes.
+
+| Function | Parameter | Description |
+| :--- | :--- | :--- |
+| `translateX(n)` | Length or `%` | Moves the element horizontally. |
+| `translateY(n)` | Length or `%` | Moves the element vertically. |
+| `translate(x, y)` | Length or `%` | Moves the element both horizontally and vertically. |
+
+```css title="styles.css"
+/* Moves the element 100px to the right and 50px down */
+transform: translate(100px, 50px); 
+```
+
+<AdsComponent />
+<br />
+
+### 2.2. `scale()` (Resizing)
+
+Resizes the element by a given factor. A factor of `1` is the original size.
+
+| Function | Parameter | Description |
+| :--- | :--- | :--- |
+| `scaleX(n)` | Number | Stretches or compresses horizontally. |
+| `scaleY(n)` | Number | Stretches or compresses vertically. |
+| `scale(n)` | Number | Scales uniformly (affects both X and Y). |
+
+```css title="styles.css"
+/* Shrinks the element to half its original size */
+transform: scale(0.5);
+/* Makes the element 1.5 times its original size */
+transform: scale(1.5);
+```
+
+### 2.3. `rotate()` (Turning)
+
+Rotates the element around its central origin point.
+
+```css title="styles.css"
+/* Rotates the element 45 degrees clockwise */
+transform: rotate(45deg); 
+
+/* Rotates counter-clockwise */
+transform: rotate(-15deg); 
+```
+
+### 2.4. `skew()` (Distorting)
+
+Distorts the element along the X and Y axes, giving it a slanted appearance.
+
+| Function | Parameter | Description |
+| :--- | :--- | :--- |
+| `skewX(n)` | Angle | Skews the element horizontally. |
+| `skewY(n)` | Angle | Skews the element vertically. |
+| `skew(x-angle, y-angle)` | Angles | Skews both horizontally and vertically. |
+
+```css title="styles.css"
+/* Skews the element by 15 degrees horizontally */
+transform: skewX(15deg); 
+```
+
+<AdsComponent />
+<br />
+
+## 3. Controlling the Origin (`transform-origin`)
+
+By default, all transformations (especially `rotate` and `scale`) occur around the exact center of the element (50% 50%).
+
+The `transform-origin` property allows you to change this pivot point. It accepts X and Y coordinates (lengths, percentages, or keywords like `top`, `bottom`, `left`, `right`).
+
+```css title="styles.css"
+.pinwheel {
+  /* Sets the pivot point to the top-left corner */
+  transform-origin: 0 0; 
+  /* Now, the rotation will appear to spin from the top-left */
+  transform: rotate(90deg);
+}
+```
+
+## 4. 3D Transforms (Introduction)
+
+3D transforms extend these concepts into the Z-axis (depth). To properly perceive 3D effects, you must apply the `perspective` property to the **parent container** of the 3D element.
+
+### Key 3D Functions
+
+  * `translateZ(n)`: Moves the element closer or further away from the viewer.
+  * `rotateX(n)`: Rotates the element around its horizontal axis (flips top/bottom).
+  * `rotateY(n)`: Rotates the element around its vertical axis (flips left/right).
+
+```css title="styles.css"
+/* Applied to the PARENT container */
+.stage {
+  perspective: 800px; /* How far away the viewer is */
+}
+
+/* Applied to the CHILD element */
+.cube-face {
+  /* Rotates 45 degrees, giving the appearance of depth */
+  transform: rotateY(45deg); 
+}
+```
+
+<AdsComponent />
+<br />
+
+## Interactive Transforms Demo
+
+Hover over the box to see a combination of translation, scaling, and rotation applied simultaneously via a smooth CSS transition.
+
+<CodePenEmbed 
+  title="Interactive Transforms Demo"
+  penId="ByKVZKR"
+/>
+
+In this demo, hovering over the blue box triggers a smooth transformation that moves, rotates, and scales the element, all while maintaining high performance through GPU acceleration. The skewed box below demonstrates the `skewX` function in action.

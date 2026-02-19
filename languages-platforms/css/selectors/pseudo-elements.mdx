@@ -1,0 +1,79 @@
+---
+title: Pseudo Elements
+description: "Learn how to use Pseudo-Elements (::) to style specific parts of an element, or insert decorative content before or after an element's main content."
+keywords: [CSS Pseudo-Elements, ::before, ::after, ::first-line, ::first-letter, Content Generation, CSS Selectors, CodeHarborHub]
+tags: [CSS Pseudo-Elements, ::before, ::after, ::first-line, ::first-letter, Content Generation, CSS Selectors]
+sidebar_label: Pseudo-Elements
+---
+
+**Pseudo-elements** allow you to style a specific, defined part of an element without needing to add extra HTML tags. They are essentially **fake elements** that exist purely in the CSS and are crucial for subtle styling and generating decorative content.
+
+Unlike **Pseudo-classes** (which we'll cover next) that style an element based on its *state* (`:hover`), Pseudo-elements style a *part* of an element (`::first-line`) or *insert* content (`::before`).
+
+<AdsComponent />
+<br />
+
+## The Syntax: Double Colon (`::`)
+
+Pseudo-elements are written using a **double colon (`::`)** prefix. While older browsers accepted a single colon (`:`) for historical compatibility, the double colon is the **standard syntax** today, ensuring a clear distinction from pseudo-classes.
+
+### The Standard Syntax
+
+```css title="Pseudo-Element Syntax"
+selector::pseudo-element {
+  property: value;
+}
+```
+
+## The Four Main Pseudo-Elements
+
+The most common and useful pseudo-elements fall into two groups: **Structural** and **Content-Generating**.
+
+### 1. Content-Generating Pseudo-Elements (`::before` and `::after`)
+
+These are the most powerful pseudo-elements. They insert decorative content **before** or **after** the actual content of the selected element.
+
+  * **Crucial Rule:** They must always contain the `content` property, even if the value is empty (`content: "";`).
+
+| Pseudo-Element | Purpose | Example |
+| :--- | :--- | :--- |
+| `::before` | Inserts content or decoration **before** the element's main content. | `p::before { content: "💬 "; }` |
+| `::after` | Inserts content or decoration **after** the element's main content. | `.note::after { content: " *"; }` |
+
+**Common Uses:**
+
+  * Adding quotation marks or decorative icons to list items.
+  * Creating clean visual effects (like borders or triangles) using empty content.
+
+### 2. Structural Pseudo-Elements
+
+These target specific text portions of the element to apply unique typographical styling.
+
+| Pseudo-Element | Purpose | Example |
+| :--- | :--- | :--- |
+| `::first-letter` | Styles the **first letter** of the first line of a block-level element. | `h1::first-letter { font-size: 3em; }` |
+| `::first-line` | Styles the **first line** of a block-level element's text. (Note: The line length adjusts with the browser window size.) | `p::first-line { font-style: italic; }` |
+
+<AdsComponent />
+<br />
+
+## Specificity Score
+
+Pseudo-elements have the same medium specificity as **Class Selectors** and **Attribute Selectors**.
+
+| Selector Type | Specificity Score |
+| :--- | :--- |
+| **Pseudo-Element** | **(0, 0, 1, 0)** |
+
+A score of **10** means they easily override Element Selectors but are overruled by ID Selectors.
+
+## Interactive Pseudo-Elements Demo
+
+This demo shows `::first-letter` styling the initial letter and `::before` adding a decorative icon.
+
+<CodePenEmbed 
+  title="Interactive Pseudo-Elements Demo"
+  penId="PwNbgXq"
+/>
+
+**Challenge:** In the CSS panel, change `p::before` to `p::after` and observe where the "»" symbol moves.

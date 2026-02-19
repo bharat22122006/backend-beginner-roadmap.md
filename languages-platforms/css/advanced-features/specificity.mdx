@@ -1,0 +1,104 @@
+---
+title: "CSS Specificity and the Cascade"
+description: "Master the rules of CSS Specificity how the browser determines which styles to apply when multiple selectors target the same element, and how it interacts with the overall Cascade."
+keywords: [CSS Specificity, Cascade, CSS Hierarchy, '!important', inline styles, selector weight, A B C D score]
+tags: [CSS Specificity, Cascade, CSS Hierarchy, '!important', inline styles, selector weight, A B C D score]
+sidebar_label: Specificity
+---
+
+**Specificity** is the algorithm the browser uses to determine which CSS declaration is most relevant to an element and, therefore, which style property value should be applied.
+
+When multiple CSS rules conflict meaning they target the same element and try to set the same property (e.g., `color`) Specificity is the mathematical system that decides the winner.
+
+<AdsComponent />
+<br />
+
+## 1. The Specificity Hierarchy
+
+Specificity is calculated by counting the different types of selectors used in a rule. These types are ranked in a strict hierarchy, often represented by the four categories: **A, B, C, D**.
+
+| Category | Selector Type | Example | Weight Score |
+| :--- | :--- | :--- | :--- |
+| **A** | **Inline Styles** | `style="color: red;"` | $1,0,0,0$ |
+| **B** | **IDs** | `#main-header` | $0,1,0,0$ |
+| **C** | **Classes, Attributes, Pseudo-classes** | `.card`, `[type="text"]`, `:hover`, `:not()`, `::after` | $0,0,1,0$ |
+| **D** | **Elements and Pseudo-elements** | `p`, `h1`, `::before`, `::first-letter` | $0,0,0,1$ |
+
+### Exclusions (Zero Specificity)
+
+  * **Universal Selector (`*`)**: Has zero specificity ($0,0,0,0$).
+  * **Combinators** (`+`, `>`, `~`, `     `): Do not add to the score.
+  * **`:where()`**: Always results in zero specificity for the selectors it contains.
+
+## 2. Calculating the Specificity Score
+
+Specificity is not a single number but a score based on the A-B-C-D columns. Think of it like a four-digit number where the digits are counted in base-10, but a higher digit in the left column always overrides any combination of digits in the columns to the right.
+
+### Calculation Examples
+
+| Selector | A | B (ID) | C (Class/Attr/Pseudo) | D (Element/Pseudo) | Final Score | Winner |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `p` | 0 | 0 | 0 | 1 | $0,0,0,1$ | |
+| `.article p` | 0 | 0 | 1 | 1 | $0,0,1,1$ | |
+| `p.warning` | 0 | 0 | 1 | 1 | $0,0,1,1$ | |
+| `a.button:hover` | 0 | 0 | 2 | 1 | $0,0,2,1$ | |
+| `#main-nav a.link` | 0 | 1 | 1 | 1 | $0,1,1,1$ | **Winner** |
+| Inline `style="..."` | 1 | 0 | 0 | 0 | $1,0,0,0$ | **Absolute Winner** |
+
+:::tip Specificity Comparison
+$0,0,1,1$ (one class, one element) is *always* less specific than $0,1,0,0$ (one ID), even though the first rule has two non-zero counts. An ID is 256 times stronger than a class\!
+:::
+
+<AdsComponent />
+<br />
+
+## 3. The Tie-Breaking Rule (Source Order)
+
+If two competing selectors have the **exact same specificity score**, the tie is broken by their **source order** in the stylesheet (or the way they are loaded).
+
+**The Rule:** The last rule declared in the CSS source will win the conflict.
+
+```css title="styles.css"
+/* Both selectors have a score of 0,1,0,1 (One ID, One Element) */
+
+#header h1 {
+  color: blue; /* Loser */
+}
+
+#header h1 {
+  color: red; /* Winner (defined later) */
+}
+```
+
+## 4. The `!important` Exception
+
+The `!important` declaration is the ultimate way to override any specificity rule. It is an optional flag placed at the end of a property value.
+
+When `!important` is used, it elevates the style's priority above all normal specificity and source order rules, essentially breaking the natural cascade.
+
+:::warning Avoid `!important`
+Using `!important` makes your CSS extremely difficult to maintain and debug, as it bypasses the predictable rules of the cascade. It should be reserved almost exclusively for:
+
+1.  Overriding styles in third-party code you cannot modify.
+2.  Creating utility classes that **must** always win (e.g., a hidden class).
+
+:::
+
+### `!important` Precedence (Highest to Lowest)
+
+1.  User `!important` styles.
+2.  **Author `!important` styles (Your code).**
+3.  Author normal styles (Specificity rules apply here).
+4.  User agent (Browser default) styles.
+
+<AdsComponent />
+<br />
+
+### Interactive Specificity Demo
+
+The following demo shows how specificity determines the winning style, even when the source order suggests otherwise.
+
+<CodePenEmbed 
+  title="Interactive CSS Specificity Demo"
+  penId="GgZBgwX"
+/>

@@ -1,0 +1,67 @@
+---
+title: "The box-sizing Property"
+description: "Understand the fundamental box-sizing property, which controls how an element's width and height are calculated in relation to its padding and border."
+keywords: [CSS box-sizing, content-box, border-box, box model calculation, responsive design, CodeHarborHub]
+tags: [CSS box-sizing, content-box, border-box, box model calculation, responsive design]
+sidebar_label: "box-sizing"
+---
+
+The **`box-sizing`** property is the single most important tool for modern CSS layout. It fundamentally changes the way the browser calculates an element's total width and height based on the values you set.
+
+Without `box-sizing`, layout can be frustratingly unpredictable because adding padding or a border changes the total size of the element. `box-sizing` provides a solution to this.
+
+It accepts two main values: `content-box` (the default) and `border-box` (the recommended value).
+
+<AdsComponent />
+<br />
+
+## 1. `box-sizing: content-box;` (The Default)
+
+This is the standard, original CSS Box Model behavior.
+
+* **Calculation:** `width` and `height` properties apply **only** to the **Content Area**.
+* **Result:** The element's total size on the page is the sum of its Content size, plus any Padding, plus any Border.
+
+$
+\text{Total Width} = \text{Content Width} + \text{Padding}_L + \text{Padding}_R + \text{Border}_L + \text{Border}_R
+$
+
+### Drawbacks
+
+If you set a container to `width: 50%;` and then add `padding: 10px;`, the element will actually be wider than $50\%$ of its parent, often causing layout breakage or horizontal scrolling.
+
+## 2. `box-sizing: border-box;` (The Modern Standard)
+
+This behavior is far more intuitive for layout work.
+
+* **Calculation:** `width` and `height` properties apply to the **Content Area + Padding + Border**.
+* **Result:** Padding and Border are absorbed *into* the declared `width` and `height`. The Content Area shrinks to accommodate them. The element's final size remains exactly the size you declared.
+
+$$
+\text{Total Width} = \text{Declared Width}
+$$
+
+### Recommendation
+
+For virtually all modern web development, it is recommended to set `box-sizing: border-box;` globally using the universal selector:
+
+```css title="styles.css"
+/* This is often the first CSS rule in a modern stylesheet */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+```
+
+This ensures that $100\text{px}$ is always $100\text{px}$—including the padding and border—making responsive grid systems much easier to manage.
+
+<AdsComponent />
+<br />
+
+## Interactive `box-sizing` Demo
+
+In the demo below, both boxes have the same CSS dimensions (`width: 300px`, `padding: 20px`, `border: 10px`). Observe how the final visual size differs based on the `box-sizing` value.
+
+<CodePenEmbed 
+  title="Interactive box-sizing Demo"
+  penId="EaKovRG"
+/>

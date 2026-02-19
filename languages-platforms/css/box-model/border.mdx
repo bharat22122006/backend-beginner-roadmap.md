@@ -1,0 +1,119 @@
+---
+title: "The border Property"
+description: "Learn how the CSS border property defines the style, width, and color of the line separating an element's padding and margin."
+keywords: [CSS border, border property, border-style, border-width, border-color, box model, CodeHarborHub]
+tags: [CSS border, border property, border-style, border-width, border-color, box model]
+sidebar_label: border
+---
+
+The **`border`** property is the structural line that surrounds an element, situated between the `padding` and the `margin`. It is the visual frame of the element.
+
+A border requires three components to be visible: a **width**, a **style**, and a **color**.
+
+<AdsComponent />
+<br />
+
+## The `border` Shorthand
+
+The most common and efficient way to define a border is using the `border` shorthand property, which accepts the width, style, and color in any order.
+
+```css title="styles.css"
+selector {
+  border: <border-width> <border-style> <border-color>;
+}
+```
+
+### Example
+
+```css title="styles.css"
+.highlight-box {
+  /* 2px wide, solid line, indigo color */
+  border: 2px solid #5C6BC0; 
+}
+```
+
+## Longhand Properties
+
+For more granular control, especially when dealing with different styles or colors on specific sides, you can use the longhand properties.
+
+### 1. `border-width`
+
+Sets the thickness of the border. Values can be length units (`px`, `em`, `rem`) or keywords (`thin`, `medium`, `thick`).
+
+| Syntax | Description |
+| :--- | :--- |
+| `border-width: 5px;` | All four sides are $5\text{px}$. |
+| `border-width: 1px 3px;` | Top/Bottom $1\text{px}$, Left/Right $3\text{px}$. |
+| `border-top-width: 10px;` | Only the top border is $10\text{px}$. |
+
+### 2. `border-style` (Mandatory)
+
+This is the most critical property—if the style is omitted or set to `none`, the border will not be displayed, regardless of its width or color.
+
+| Style | Description |
+| :--- | :--- |
+| **`solid`** | A single, continuous line (most common). |
+| **`dotted`** | A series of dots. |
+| **`dashed`** | A series of short lines. |
+| **`double`** | Two parallel solid lines. |
+| **`groove`** | Creates a 3D grooved effect. |
+| **`ridge`** | Creates a 3D raised effect (opposite of groove). |
+| **`none`** | No border (default). |
+
+<AdsComponent />
+<br />
+
+### 3. `border-color`
+
+Sets the color of the border, using color names, hex codes, or RGB/HSL values.
+
+```css title="styles.css"
+.special-border {
+  border-style: double;
+  border-width: 4px;
+  border-color: #FFB300; /* Amber */
+}
+```
+
+## Side-Specific Borders
+
+You can define all three properties (width, style, and color) for a single side:
+
+| Property | Description |
+| :--- | :--- |
+| `border-top` | Shorthand for top width, style, and color. |
+| `border-right` | Shorthand for right width, style, and color. |
+| `border-bottom` | Shorthand for bottom width, style, and color. |
+| `border-left` | Shorthand for left width, style, and color. |
+
+```css tiutle="styles.css"
+/* Example: Border only on the left side */
+.sidebar-note {
+  border-left: 6px solid #4CAF50; /* Thick green line */
+}
+```
+
+## Shaping Corners with `border-radius`
+
+While technically not part of the Box Model layers (width, padding, margin), the **`border-radius`** property is essential for styling the border and corner shapes. It allows you to round the corners of the element's border.
+
+| Syntax | Description |
+| :--- | :--- |
+| `border-radius: 10px;` | Rounds all four corners equally. |
+| `border-radius: 10px 0;` | Top-Left/Bottom-Right $10\text{px}$, Top-Right/Bottom-Left $0\text{px}$. |
+
+```css title="styles.css"
+.rounded-button {
+  border: 1px solid #7986CB;
+  border-radius: 8px; /* Smooth corners */
+}
+```
+
+## Interactive `border` Demo
+
+Use the live editor to experiment with different border styles and colors. Note how the border sits between the inner content/padding and the outer margin.
+
+<CodePenEmbed 
+  title="Interactive border Demo"
+  penId="raeYoyr"
+/>

@@ -1,0 +1,70 @@
+---
+title: "Position absolute"
+description: "Learn about position: absolute, how it removes an element from the normal document flow, and the critical importance of setting a positioning context via a relative parent."
+keywords: [CSS position absolute, absolute positioning, removing from flow, positioning context, overlay, floating elements]
+tags: [CSS position absolute, absolute positioning, removing from flow, positioning context, overlay, floating elements]
+sidebar_label: absolute
+---
+
+The `position: absolute` value is one of the most powerful and, initially, confusing positioning methods. It is primarily used to place elements precisely in relation to a specific ancestor or the viewport, often for overlays, badges, or small icons.
+
+<AdsComponent />
+<br />
+
+## Key Characteristics of `position: absolute`
+
+### 1. Removed from Normal Flow (Crucial)
+
+When an element is set to `position: absolute`, it is **completely taken out of the normal document flow**.
+
+* **Layout:** The space the element originally occupied collapses. Surrounding elements behave as if the absolute element never existed.
+* **Dimensions:** The element’s size shrinks to fit its content by default, unless explicit `width` and `height` properties are applied.
+
+### 2. Positioning Relative to Context
+An absolute element determines its position based on its offset properties (`top`, `right`, `bottom`, `left`) relative to its **nearest positioned ancestor**.
+
+* **Positioned Ancestor:** This means the nearest parent, grandparent, etc., that has a `position` value set to anything other than the default (`static`). Usually, this is a parent with `position: relative`.
+* **No Positioned Ancestor:** If no ancestor is positioned, the element will position itself relative to the initial containing block (the entire `<body>` tag, making it relative to the viewport).
+
+### 3. Stacking Context (`z-index`)
+
+Like relative elements, absolute elements create a stacking context and fully respond to the `z-index` property, allowing you to control whether they appear above or below sibling and parent elements.
+
+## The Positioning Partnership: Relative Parent
+
+To ensure predictable absolute positioning, you must establish a partnership between the parent and the child:
+
+1.  **Parent:** Set the container element to `position: relative;`. This keeps the parent in the normal flow while designating it as the fixed anchor point for its absolute children.
+2.  **Child:** Set the element you want to move to `position: absolute;`. You can then use `top`/`bottom`/`left`/`right` to position it accurately within the parent's boundaries.
+
+```css title="styles.css"
+/* 1. PARENT: Stays in flow, provides anchor points */
+.card {
+  position: relative; 
+  width: 300px;
+}
+
+/* 2. CHILD: Removed from flow, positioned relative to the parent's edges */
+.badge {
+  position: absolute; 
+  top: -10px;    /* 10px outside the parent's top edge */
+  right: -10px;  /* 10px outside the parent's right edge */
+  padding: 5px;
+  background: red;
+}
+```
+
+<AdsComponent />
+<br />
+
+### Interactive `position: absolute` Demo
+
+In this demo, the red box is set to `position: absolute`.
+
+1.  **Observe the Collapse:** Notice how the space the red box *should* occupy is ignored, and the green box shifts up to the top left corner of the parent.
+2.  **Observe the Positioning:** The red box is positioned $10\text{px}$ from the top and $10\text{px}$ from the right edge of the **container** because the container is set to `position: relative`.
+
+<CodePenEmbed 
+  title="Interactive position absolute Demo"
+  penId="GgZxLoY"
+/>

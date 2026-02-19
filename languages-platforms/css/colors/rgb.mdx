@@ -1,0 +1,96 @@
+---
+title: "RGB and RGBA Colors"
+description: "Learn how to use the RGB (Red, Green, Blue) and RGBA color models in CSS to define colors using numerical intensity values, and how the Alpha channel controls transparency."
+keywords: [CSS RGB, CSS RGBA, Red Green Blue, Alpha channel, color intensity, opacity, color values, CodeHarborHub]
+tags: [CSS RGB, CSS RGBA, Red Green Blue, Alpha channel, color intensity, opacity, color values]
+sidebar_label: RGB and RGBA
+---
+
+The **RGB** (Red, Green, Blue) color model is based on the way electronic screens (like your monitor or phone) display color. It works by mixing varying intensities of three primary light colors: **Red**, **Green**, and **Blue**.
+
+The **RGBA** model extends this by adding an **Alpha ($\alpha$)** value, which controls the color's transparency or opacity.
+
+<AdsComponent />
+<br />
+
+## The RGB Model: `rgb(R, G, B)`
+
+In the RGB model, the intensity of each color channel is defined using an integer from **0 to 255**.
+
+* **0** means zero light (no color).
+* **255** means maximum light intensity (full color).
+
+### RGB Values
+
+| Color | Red Value | Green Value | Blue Value | Result |
+| :--- | :--- | :--- | :--- | :--- |
+| **Black** | 0 | 0 | 0 | `rgb(0, 0, 0)` |
+| **White** | 255 | 255 | 255 | `rgb(255, 255, 255)` |
+| **Red** | 255 | 0 | 0 | `rgb(255, 0, 0)` |
+| **Purple** | 128 | 0 | 128 | `rgb(128, 0, 128)` |
+
+### Example
+
+```css title="styles.css"
+/* Sets the background to a bright orange */
+.btn-primary {
+  background-color: rgb(255, 165, 0); 
+}
+
+/* Sets the text to a standard gray */
+.caption {
+  color: rgb(102, 102, 102); 
+}
+```
+
+## The RGBA Model: <code>rgba(R, G, B, $\alpha$)</code>
+
+The **RGBA** (Red, Green, Blue, Alpha) model adds a fourth parameter, **Alpha ($\alpha$)**, which is used to define the opacity of the color.
+
+The Alpha value is a decimal number between **0.0** and **1.0**:
+
+  * **1.0** = Fully opaque (100% visible, no transparency).
+  * **0.5** = 50% transparency.
+  * **0.0** = Fully transparent (invisible).
+
+:::tip RGBA vs. Opacity
+Using **RGBA** on a color is generally preferred over using the separate CSS `opacity` property on an element. The `opacity` property makes the *entire element* (text, background, borders, and children) transparent, whereas RGBA only makes the *specified color* transparent.
+:::
+
+<AdsComponent />
+<br />
+
+### Example: Transparent Overlay
+
+```css title="styles.css"
+/* Creates a black overlay that is 40% transparent */
+.overlay {
+  background-color: rgba(0, 0, 0, 0.4); 
+}
+
+/* Creates a semi-transparent white text */
+.hint-text {
+  color: rgba(255, 255, 255, 0.75); 
+}
+```
+
+## RGB/RGBA vs. HEX
+
+RGB/RGBA and HEX codes are essentially two different notations for the exact same color values.
+
+| Feature | HEX Code | RGB/RGBA |
+| :--- | :--- | :--- |
+| **Basic Color** | `#FF0000` | `rgb(255, 0, 0)` |
+| **Opacity ($\alpha$)** | Requires 8 digits (e.g., `#FF000080`) | **Directly supported** in `rgba()` |
+| **Intuition** | Less intuitive; requires memorization of hexadecimal pairs. | More intuitive; uses decimal numbers 0–255. |
+
+The main reason to use **RGBA** is to define a color with transparency directly, a task not natively supported by the six-digit HEX format.
+
+### Interactive RGB/RGBA Demo
+
+Use the live editor to adjust the RGB values (0-255) and the Alpha value (0.0-1.0) to see how the color and transparency change.
+
+<CodePenEmbed 
+  title="Interactive RGB/RGBA Demo"
+  penId="MYyEGbB"
+/>

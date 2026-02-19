@@ -1,0 +1,60 @@
+---
+title: "The background-attachment Property"
+description: "Learn how to use the CSS background-attachment property to control whether a background image scrolls with the content or remains fixed in the viewport (parallax effect)."
+keywords: [CSS background-attachment, fixed background, scroll background, local scrolling, parallax effect, background styling, CodeHarborHub]
+tags: [CSS background-attachment, fixed background, scroll background, local scrolling, parallax effect, background styling]
+sidebar_label: "background-attachment"
+---
+
+The CSS **`background-attachment`** property determines whether a background image scrolls with the content of the element or remains **fixed** in its position relative to the viewport or the element itself.
+
+This property is most famous for creating the **parallax scrolling effect**, where the foreground content moves while the background image stays still.
+
+<AdsComponent />
+<br />
+
+## Syntax and Values
+
+The `background-attachment` property accepts three main keyword values:
+
+| Value | Description | Behavior |
+| :--- | :--- | :--- |
+| **`scroll`** | The default value. The background image scrolls with the element's content. If the element itself is scrolled (e.g., if it has `overflow: scroll`), the background *stays fixed* to the element's content area. | Scrolls with the page, but fixed within the element's local content area. |
+| **`fixed`** | The background image is **fixed relative to the viewport**. It does not move even when the page is scrolled. This creates the classic **parallax effect**. | Fixed to the viewport; does not scroll. |
+| **`local`** | The background image scrolls with the element's **content** and its **local scroll area**. If the element has `overflow: scroll`, the background scrolls inside the element. | Scrolls with the content and any inner scrollbar. |
+
+### Example
+
+To create a striking parallax banner:
+
+```css title="styles.css"
+.parallax-banner {
+  background-image: url('stars.jpg');
+  background-attachment: fixed; /* Holds the image still */
+  background-position: center;
+  background-size: cover;
+  height: 500px; /* Needs height to see the effect */
+}
+```
+
+## Understanding `scroll` vs. `local`
+
+The difference between `scroll` and `local` only matters when the element itself has its own scrollbar (e.g., using `overflow: auto;`).
+
+1.  **`scroll` (Default):** If the content inside the box scrolls, the background image stays fixed relative to the box's padding edge. The image does *not* scroll with the inner content.
+2.  **`local`:** If the content inside the box scrolls, the background image scrolls along with the content. This is useful for placing watermarks or textures that follow a locally scrolled text area.
+
+<AdsComponent />
+<br />
+
+## Interactive `background-attachment` Demo
+
+This demo focuses on the key difference between **`scroll`** and **`local`** when an element has its own internal scrollbar (`overflow-y: scroll`).
+
+* **`scroll` (Default):** The background image is **fixed** relative to the **element's border**; it does not move with the text content.
+* **`local`:** The background image scrolls **with the text content**, moving out of view as you scroll down inside the box.
+
+<CodePenEmbed 
+  title="Interactive background-attachment Demo"
+  penId="dPMZmLa"
+/>

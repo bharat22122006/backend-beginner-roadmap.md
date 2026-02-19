@@ -1,0 +1,131 @@
+---
+title: "CSS Inheritance and the Cascade"
+description: "Understand how CSS properties are inherited from parent elements to children, how to control inheritance with specific property values, and its role within the CSS Cascade."
+keywords: [CSS Inheritance, Cascade, inherit value, initial value, unset value, all property, text properties, box model properties]
+tags: [CSS Inheritance, Cascade, inherit value, initial value, unset value, all property, text properties, box model properties]
+sidebar_label: Inheritance
+---
+
+**Inheritance** is a fundamental mechanism in CSS where certain property values applied to a parent element are automatically passed down and applied to its descendant elements.
+
+This mechanism ensures that styles related to text and typography—like font, color, and line height—are applied consistently across an entire section of content without needing to explicitly target every single element.
+
+<AdsComponent />
+<br />
+
+## 1. Inherited vs. Non-Inherited Properties
+
+CSS properties are categorized into two groups regarding inheritance:
+
+### 1.1. Inherited Properties
+
+These properties relate primarily to text, color, and lists. When applied to a parent, they cascade down to all children.
+
+| Common Inherited Properties |
+| :--- |
+| `color` |
+| `font-family`, `font-size`, `font-weight` |
+| `line-height`, `text-align`, `text-indent` |
+| `list-style` |
+| `visibility`, `cursor` |
+
+### 1.2. Non-Inherited Properties
+
+These properties typically relate to the Box Model, layout, and visual display, and are intended to define the element's container or position. Applying them to a parent does **not** affect the children.
+
+| Common Non-Inherited Properties |
+| :--- |
+| `margin`, `padding` |
+| `border` |
+| `width`, `height` |
+| `background-color`, `background-image` |
+| `display`, `position` |
+| `overflow` |
+
+<AdsComponent />
+<br />
+
+## 2. The Role of Inheritance in the Cascade
+
+Inheritance is the final stage in the browser's process of determining an element's style, known as the **Cascade**.
+
+The browser determines the final value of a property for an element using this priority order (simplified):
+
+1.  **Origin:** Browser defaults, user styles, and author styles (your CSS).
+2.  **Specificity:** The winning rule from your CSS.
+3.  **Source Order:** The last rule wins if specificity ties.
+4.  **Inheritance:** If the property has *not* been set by any previous step, and the property is inheritable, the element receives the computed value from its direct parent.
+5.  **Default Value:** If none of the above apply, the browser uses the property's initial value (the browser's default for that specific property).
+
+## 3. Controlling Inheritance Explicitly
+
+You can manually control how inheritance works for any property using three special keyword values.
+
+### 3.1. `inherit` (Force Inheritance)
+
+The `inherit` keyword forces a property to take on the computed value of its immediate parent, even if the property is normally non-inherited.
+
+```css title="styles.css"
+/* Example: Force a non-inherited border to be inherited */
+.child-box {
+  border: inherit; 
+}
+
+/* If the parent has `border: 2px solid black`, the child will get it. */
+.parent-box {
+  border: 2px solid black;
+}
+```
+
+### 3.2. `initial` (Reset to Browser Default)
+
+The `initial` keyword sets a property to its default value as defined in the CSS specification (often the same as the user agent/browser style).
+
+```css title="styles.css"
+/* Reset a child's color to the browser's default black, ignoring the parent's color */
+.special-link {
+  color: initial; 
+}
+```
+
+### 3.3. `unset` (Smart Reset)
+
+The `unset` keyword provides a smart way to reset a property based on whether it is naturally inherited or not:
+
+  * **If the property is naturally inherited** (e.g., `color`), `unset` acts like `inherit`.
+  * **If the property is non-inherited** (e.g., `margin`), `unset` acts like `initial`.
+
+| Property | `unset` Result |
+| :--- | :--- |
+| `color` (Inherited) | `inherit` (Takes parent's color) |
+| `background-color` (Non-inherited) | `initial` (Transparent) |
+
+<AdsComponent />
+<br />
+
+## 4. The `all` Property (Mass Reset)
+
+The `all` property is a shorthand that resets all CSS properties on an element to a single keyword value (`initial`, `inherit`, or `unset`).
+
+It is typically used to completely isolate a component from external styles.
+
+```css title="styles.css"
+/* Resets ALL properties on the element to their initial (default) values.
+   This effectively makes the element look like it has no styles applied to it. */
+.isolated-component {
+  all: initial; 
+}
+```
+
+:::tip Using `all: unset`
+`all: unset` is usually the most practical choice for mass resets. It allows naturally inherited properties (like `font-family`) to continue inheriting from the parent, while forcing non-inherited properties (like `margin`) back to their default `initial` values. This preserves readability while resetting layout.
+:::
+
+## Interactive Inheritance Demo
+
+This demo illustrates which properties are inherited (color, font) and which are not (background, border).
+
+<CodePenEmbed 
+  title="Interactive CSS Inheritance Demo"
+  penId="emZjmXz"
+/>

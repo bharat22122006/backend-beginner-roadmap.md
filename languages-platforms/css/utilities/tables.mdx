@@ -1,0 +1,127 @@
+---
+title: "Tables and Data Display"
+description: "Use utility classes to create responsive, visually appealing, and well-structured data tables, including striped rows, hover effects, and responsive scrolling."
+keywords: [CSS tables, Tailwind tables, responsive tables, table styling, striped rows, data display]
+tags: [CSS tables, Tailwind tables, responsive tables, table styling, striped rows, data display]
+sidebar_label: Tables
+---
+
+Tables are essential for displaying structured, tabular data. While basic HTML tables are functional, they often require extensive styling to be readable, accessible, and responsive.
+
+By using utility classes, we can quickly build professional-grade tables that adapt gracefully to different screen sizes.
+
+<AdsComponent />
+<br />
+
+## 1. Basic Table Structure
+
+A well-styled table starts with a clear structure, using `<thead>`, `<tbody>`, `<tr>`, `<th>`, and `<td>` elements correctly.
+
+### Utility Classes for Structure
+
+| Class | Description |
+| :--- | :--- |
+| `w-full` | Ensures the table takes up the full width of its container. |
+| `text-left` | Aligns text in header and data cells for better readability. |
+| `table-auto` / `table-fixed` | Controls how the browser sets column widths. `table-auto` is the default. |
+
+```html title="index.html"
+<table class="w-full text-left table-auto">
+  <thead>
+    <!-- Table Header (Top row) -->
+    <tr>
+      <th class="py-3 px-4 text-sm font-semibold text-gray-600">Product</th>
+      <!-- ... other header cells -->
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Table Body (Data rows) -->
+    <tr class="border-b">
+      <td class="py-3 px-4 text-sm text-gray-800">Laptop X</td>
+      <!-- ... other data cells -->
+    </tr>
+  </tbody>
+</table>
+```
+
+<AdsComponent />
+<br />
+
+## 2. Styling Rows and Cells
+
+Good table design involves consistent padding, clear dividers, and legible text styles.
+
+### A. Cell Padding and Text
+
+Use padding utilities (`p-`, `px-`, `py-`) and font utilities (`text-`, `font-`) on the `<th>` and `<td>` tags.
+
+```html title="index.html"
+<th class="py-3 px-4 text-xs font-medium uppercase tracking-wider text-gray-500">
+  Sales
+</th>
+<td class="py-3 px-4 text-sm font-medium text-green-600">
+  $12,500
+</td>
+```
+
+### B. Striped Rows (Zebra Stripes)
+
+Alternating row colors dramatically improves readability, especially for wide tables. Use the pseudo-class utility `odd:` or `even:` on the `<tr>` element.
+
+```html title="index.html"
+<tbody class="divide-y divide-gray-200">
+  <!-- Even rows get a light gray background -->
+  <tr class="even:bg-gray-50">
+    <td class="py-3 px-4 text-sm">Data A</td>
+  </tr>
+  <!-- Odd rows are left white by default -->
+  <tr class="odd:bg-white">
+    <td class="py-3 px-4 text-sm">Data B</td>
+  </tr>
+</tbody>
+```
+
+### C. Hover Effects
+
+Adding a hover effect provides visual feedback, which is crucial for interactive tables.
+
+```html title="index.html"
+<tbody class="divide-y divide-gray-200">
+  <tr class="hover:bg-blue-50 transition duration-150 ease-in-out">
+    <td class="py-3 px-4 text-sm">Hover over me!</td>
+  </tr>
+</tbody>
+```
+
+<AdsComponent />
+<br />
+
+## 3. Responsive Tables
+
+The biggest challenge with tables is displaying them on small screens. The best technique for wide tables is to allow them to scroll horizontally while keeping the rest of the page layout fixed.
+
+### The `overflow-x-auto` Wrapper
+
+Wrap the entire table in a container with the `overflow-x-auto` utility. This tells the browser to create a horizontal scrollbar only for the table area if its content is too wide.
+
+```html title="index.html"
+<div class="overflow-x-auto">
+  <table class="w-full text-left whitespace-nowrap">
+    <!-- The table content will scroll if the screen is too small -->
+    <!-- ... table content ... -->
+  </table>
+</div>
+```
+
+:::tip Keep Text Together
+For tables that are allowed to scroll, it's often useful to prevent text inside the cells from wrapping to a new line by adding the `whitespace-nowrap` utility to the `<table>` element. This ensures each row stays on a single line, preserving the table's structure.
+:::
+
+## 4. Full Example: Responsive Styled Table
+
+This complete example combines styling and responsiveness using utility classes.
+
+<CodePenEmbed 
+  title="Interactive Responsive Styled Table Demo"
+  penId="NPNBvOJ"
+/>

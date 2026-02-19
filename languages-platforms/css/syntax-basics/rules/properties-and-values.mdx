@@ -1,0 +1,118 @@
+---
+title: CSS Properties and Values
+description: "Learn the relationship between CSS properties and their assigned values, forming the style declarations within a ruleset."
+keywords: [CSS Property, CSS Value, Style Declaration, CSS Syntax, CodeHarborHub]
+tags: [CSS Property, CSS Value, Style Declaration, CSS Syntax]
+sidebar_label: Properties and Values
+---
+
+Once the **Selector** has chosen the target HTML element, the **CSS Declaration Block** defines *how* that element should look. This block is composed entirely of one or more **Declarations**, and every declaration is a simple pair: a **Property** and a **Value**.
+
+<AdsComponent />
+<br />
+
+## The Declaration Structure
+
+A **Declaration** is the core instruction in CSS. It always follows this format:
+
+```css title="This is a single CSS Declaration"
+property: value;
+```
+
+  * The **Property** is separated from the **Value** by a **colon (`:`)**.
+  * The declaration is always terminated by a **semicolon (`;`)**.
+
+In a full ruleset, multiple declarations are wrapped in curly braces (`{ }`):
+
+```css title="style.css"
+selector {
+  property-1: value-1; /* Declaration 1 */
+  property-2: value-2; /* Declaration 2 */
+  property-3: value-3; /* Declaration 3 - Semicolon is optional on the last one, but recommended! */
+}
+```
+
+## 1. The CSS Property
+
+The **Property** is the **what** you want to change about the selected element. It's a key name that identifies a specific styling feature.
+
+| Property Category | Examples | Purpose |
+| :--- | :--- | :--- |
+| **Color** | `color`, `background-color`, `border-color` | Changes the color of text, backgrounds, or borders. |
+| **Layout** | `display`, `position`, `width`, `height` | Controls how elements are placed on the page and their dimensions. |
+| **Typography** | `font-family`, `font-size`, `line-height` | Defines text appearance. |
+| **Box Model** | `margin`, `padding`, `border` | Controls the space around and inside an element. |
+
+:::info Naming Convention
+CSS properties are always written in **kebab-case** (lowercase words separated by hyphens), such as `background-color` and `font-size`. This is a strict convention you must follow.
+:::
+
+## 2. The CSS Value
+
+The **Value** is the **how** the property should be changed. It’s the specific setting or configuration you are assigning to the property.
+
+Values can take many forms, often requiring specific units, keywords, or functions:
+
+### Common Value Types
+
+| Value Type | Description | Example Property & Value |
+| :--- | :--- | :--- |
+| **Keyword** | A predefined English word. | `color: red;`, `display: block;`, `font-style: italic;` |
+| **Length Unit** | A number followed by a unit of measurement. | `font-size: 16px;`, `margin: 2em;`, `width: 50%;` |
+| **Color Model** | Codes for defining colors. | `background-color: #3498db;`, `color: rgb(255, 0, 0);` |
+| **Function** | A rule that calculates or generates a value. | `transform: rotate(45deg);`, `width: calc(100% - 20px);` |
+| **URL** | A path to an external resource, like an image. | `background-image: url('image.jpg');` |
+
+## Interactive Property and Value Demo
+
+In the live editor, try changing the property names or values for the selected `.example-box`.
+
+<CodePenEmbed 
+  title="Interactive Property and Value Demo"
+  penId="jEqqvgQ"
+/>
+
+**Try making these changes in the CSS panel and see the result:**
+
+  * Change `background-color` to `lightgreen`.
+  * Change `padding` to `50px`.
+  * Change `color` to `darkslategrey`.
+
+<AdsComponent />
+<br />
+
+
+## 3. Shorthand Properties
+
+Some CSS properties are actually **shorthand** for multiple, related properties. Using shorthand is efficient, reduces code, and can make your stylesheets much cleaner.
+
+For example, styling a border requires four properties: `border-width`, `border-style`, `border-color`, and `border-radius`.
+
+<Tabs>
+<TabItem value="longhand" label="Longhand (Verbose)">
+
+```css
+/* Four separate declarations needed */
+.box {
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 10px;
+}
+```
+
+</TabItem>
+<TabItem value="shorthand" label="Shorthand (Efficient)">
+
+```css
+/* One declaration handles width, style, and color */
+.box {
+  border: 2px solid black; 
+  border-radius: 10px;
+}
+```
+
+</TabItem>
+</Tabs>
+
+Other important shorthand properties include: `font`, `background`, `margin`, and `padding`. We will explore these in detail in their respective sections.

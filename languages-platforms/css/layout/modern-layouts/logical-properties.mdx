@@ -1,0 +1,118 @@
+---
+title: "Logical Properties (Flow Relative Layout)"
+description: "Understand CSS Logical Properties (margin-inline, padding-block, etc.), which allow layout to adapt automatically based on the text direction (left-to-right or right-to-left) and writing mode."
+keywords: [CSS Logical Properties, writing mode, flow relative, physical properties, margin-inline-start, padding-block-end, internationalization]
+tags: [CSS Logical Properties, writing mode, flow relative, physical properties, margin-inline-start, padding-block-end, internationalization]
+sidebar_label: Logical Properties
+---
+
+CSS Logical Properties are a modern replacement for traditional **Physical Properties** (like `top`, `left`, `margin-right`, etc.).
+
+Instead of relying on fixed physical dimensions, logical properties relate to the **flow of the content**. This makes them essential for building layouts that automatically adapt for internationalization, supporting different writing modes (like languages read right-to-left, or vertically).
+
+<AdsComponent />
+<br />
+
+## 1. The Problem with Physical Properties
+
+In most western languages (like English, French, Spanish), text flows **inline** from Left-to-Right (L-R) and **block** from Top-to-Bottom (T-B).
+
+A traditional physical property sets a fixed location regardless of language direction:
+* `margin-left: 20px;` always adds space on the left side.
+
+If the content is translated to a language like Arabic or Hebrew (which flows Right-to-Left, R-L), the `margin-left` is now on the wrong side. The margin should logically be on the *start* of the line (the right side).
+
+## 2. The Solution: Logical Properties
+
+Logical properties replace physical directions (`left`, `right`, `top`, `bottom`) with **flow-relative** directions (`start`, `end`, `block`, `inline`).
+
+| Physical Property | Block Axis (Vertical) | Inline Axis (Horizontal) |
+| :--- | :--- | :--- |
+| **Start** | `top` (in LTR) | `left` (in LTR) |
+| **End** | `bottom` (in LTR) | `right` (in LTR) |
+| **Shorthand** | `margin-block` / `padding-block` | `margin-inline` / `padding-inline` |
+
+### The Two Axes of Flow
+
+1.  **Inline Axis (Horizontal):** The direction text flows *across* a line (e.g., L-R or R-L).
+    * `inline-start` replaces `left` (in L-R).
+    * `inline-end` replaces `right` (in L-R).
+2.  **Block Axis (Vertical):** The direction content blocks flow *down* the page (e.g., T-B or B-T).
+    * `block-start` replaces `top`.
+    * `block-end` replaces `bottom`.
+
+<AdsComponent />
+<br />
+
+## 3. Logical Property Mapping Examples
+
+Here's how physical properties map to their logical counterparts for standard layout properties:
+
+| Physical Property | Logical Equivalent | Shorthand |
+| :--- | :--- | :--- |
+| `margin-top` | `margin-block-start` | \ |
+| `margin-bottom` | `margin-block-end` | \ |
+| `margin-left` | `margin-inline-start` | `margin-inline: 20px;` |
+| `margin-right` | `margin-inline-end` | `margin-inline: 20px;` |
+| `padding-top` | `padding-block-start` | `padding-block: 10px;` |
+| `border-right` | `border-inline-end` | \ |
+| `width` | `inline-size` | \ |
+| `height` | `block-size` | \ |
+
+### Example: Responsive Margins
+
+**Traditional (Physical):**
+```css title="styles.css"
+.card {
+  margin-left: 20px; /* Always 20px on the left */
+}
+```
+
+**Modern (Logical):**
+
+```css title="styles.css"
+.card {
+  margin-inline-start: 20px; /* Will be 20px on the left (LTR) or 20px on the right (RTL) */
+}
+```
+
+This single line of CSS handles both LTR and RTL layouts correctly based on the ancestor's `direction` or `writing-mode` property.
+
+## 4. Controlling Text Direction (`direction` and `writing-mode`)
+
+The mapping of logical properties is determined by the `direction` and `writing-mode` set on the element (or its ancestors, often the `<html>` or `<body>`).
+
+### `direction` (Inline Axis)
+
+This is used to switch the text flow between Left-to-Right (LTR) and Right-to-Left (RTL).
+
+| Value | Behavior |
+| :--- | :--- |
+| `ltr` (Default) | Inline-start = Left, Inline-end = Right. |
+| `rtl` | Inline-start = Right, Inline-end = Left. |
+
+### `writing-mode` (Block Axis)
+
+This changes the overall orientation of the text flow, primarily for Asian languages that read vertically.
+
+| Value | Behavior |
+| :--- | :--- |
+| `horizontal-tb` (Default) | Block-start = Top, Block-end = Bottom. |
+| `vertical-rl` | Block-start = Right, Block-end = Left (Text is rotated 90 degrees). |
+| `vertical-lr` | Block-start = Left, Block-end = Right. |
+
+:::tip Deep Adaptability
+If `writing-mode` is set to `vertical-rl`, the **Inline Axis** becomes vertical (top-to-bottom), and the **Block Axis** becomes horizontal (right-to-left). Logical properties adapt perfectly: `margin-inline-start` would apply to the physical top edge.
+:::
+
+<AdsComponent />
+<br />
+
+## Interactive Logical Properties Demo
+
+This demo uses the logical property `margin-inline-start`. Use the controls to switch the `direction` of the container (`rtl` vs `ltr`) and observe how the margin automatically switches sides without changing the CSS for the `.box` element.
+
+<CodePenEmbed 
+  title="Interactive Logical Properties Demo"
+  penId="MYyGxPd"
+/>

@@ -1,0 +1,83 @@
+---
+title: "The height Property"
+description: "Explore the CSS height property, how it defines the vertical size of an element's content box, and how to use min-height and max-height effectively."
+keywords: [CSS height, min-height, max-height, vertical size, viewport units, box model, CodeHarborHub]
+tags: [CSS height, min-height, max-height, vertical size, viewport units, box model]
+sidebar_label: height
+---
+
+The **`height`** property controls the vertical dimension of the innermost layer of the Box Model: the **Content Area**. Setting `height` defines the vertical space reserved for the element's content, *before* vertical padding and borders are added (under `box-sizing: content-box`).
+
+<AdsComponent />
+<br />
+
+## Default Vertical Behavior
+
+Unlike `width`, which defaults to $100\%$ for block elements, `height` has different default behavior:
+
+### 1. Default `height: auto`
+
+By default, the `height` of a block-level element is set to `auto`. This means the element will only be as tall as necessary to contain its content (including any internal padding and border, but excluding margin).
+
+### 2. The Percentage Problem
+
+When you set `height` using a percentage value (e.g., `height: 50%;`), this value is calculated relative to the height of its **parent element**.
+
+* **The Dependency:** For `height: 50%;` to work, the parent element **must** have an explicitly defined `height`. If the parent's height is also `auto`, the percentage will fail to calculate, and the element's height will revert to `auto`.
+* This dependency often creates a chain, requiring you to define `height: 100%;` on every ancestor up to the `<html>` and `<body>` tags.
+
+## Viewport Units for Height
+
+To solve the percentage dependency problem, especially when you want an element to fill the entire screen vertically, you should use **Viewport Units**.
+
+| Unit | Description | Usage Example |
+| :--- | :--- | :--- |
+| **`vh`** | Viewport Height: $1\%$ of the browser window's height. | `height: 100vh;` (Fills the entire screen height). |
+| **`svh`** | Small Viewport Height: $1\%$ of the smallest possible viewport height. | Better for mobile, accounts for dynamic browser toolbars. |
+
+```css title="styles.css"
+/* Recommended for a full-screen landing section or hero banner */
+.hero-section {
+  height: 100vh; 
+}
+```
+
+<AdsComponent />
+<br />
+
+## Vertical Constraints: `min-height` and `max-height`
+
+Using vertical constraints is essential for maintaining design stability and preventing content from spilling outside its container.
+
+### 1. `min-height`
+
+This property sets the minimum vertical size an element's content box is allowed to be.
+
+  * **Primary Use:** It is critical for defining the initial size of containers, like a main content area (`min-height: 80vh;`), ensuring the page doesn't look empty even with minimal content. The element can still grow taller if content requires it.
+
+### 2. `max-height`
+
+Sets the maximum vertical size of the content box.
+
+  * **Primary Use:** Often used to limit the size of elements that contain variable content, such as modals, dropdown menus, or scrollable logs. If the content exceeds `max-height`, the browser typically adds a vertical scrollbar (if `overflow-y: auto` is set).
+
+```css title="styles.css"
+.content-area {
+  /* Ensure the area is at least 500px tall */
+  min-height: 500px; 
+  /* Allows it to grow taller if necessary */
+  
+  /* Prevent content from growing beyond 800px and set it to scroll */
+  max-height: 800px; 
+  overflow-y: auto;
+}
+```
+
+## Interactive `min-height` and `max-height` Demo
+
+Use the live editor to adjust the `min-height` and `max-height` properties. Then, try adding or deleting text in the HTML panel to see how the blue box reacts to its content constraints.
+
+<CodePenEmbed 
+  title="Interactive min-height and max-height Demo"
+  penId="KwzZvZX"
+/>

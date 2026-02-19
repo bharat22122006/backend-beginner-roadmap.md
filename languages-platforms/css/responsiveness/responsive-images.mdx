@@ -1,0 +1,126 @@
+---
+title: "Responsive Images (srcset, picture, and CSS)"
+description: "Master the techniques for delivering optimized and appropriately sized images for every device, using CSS max-width, HTML srcset, and the picture element."
+keywords: [responsive images, srcset, sizes, picture element, high-resolution images, art direction, performance, 'max-width 100%', image formats, webp, lazy loading]
+tags: [responsive images, srcset, sizes, picture element, high-resolution images, art direction, performance, 'max-width 100%', image formats, webp, lazy loading]
+sidebar_label: "Responsive Images"
+---
+
+Delivering images efficiently is one of the most critical aspects of web performance and responsive design. A large image optimized for a desktop monitor should not be loaded by a user on a small smartphone screen.
+
+Responsive image techniques allow the browser to choose the **best image source** based on the device's viewport size, resolution (pixel density), and screen orientation.
+
+<AdsComponent />
+<br />
+
+## 1. The Fundamental CSS Rule
+
+Before diving into advanced HTML attributes, the most important CSS rule for responsive images ensures that they never overflow their container.
+
+```css title="styles.css"
+img {
+  max-width: 100%; /* Ensures the image scales down to fit the container */
+  height: auto;    /* Prevents distortion by maintaining the original aspect ratio */
+  display: block;  /* Removes extra spacing below the image */
+}
+```
+
+This rule solves the layout problem (images won't break the design) but **not** the performance problem (the browser still loads the largest possible image file).
+
+## 2. Resolution Switching with `srcset` and `sizes`
+
+The `srcset` and `sizes` attributes, added to the standard `<img>` tag, tell the browser about the available image sources and the size the image will occupy on the page. The browser then uses this information to make the best decision for performance and quality.
+
+### 2.1. `srcset`: Defining Available Sources
+
+`srcset` provides a comma-separated list of image URLs and their associated descriptors.
+
+  * **Pixel Density Descriptor (`x`):** For high-resolution (Retina) screens.
+  * **Width Descriptor (`w`):** For different viewport widths.
+
+**Example (Pixel Density):**
+The browser chooses the `2x` image for Retina screens and the default `1x` image for standard screens.
+
+```html title="index.html"
+<img 
+  src="photo-1x.jpg" 
+  srcset="photo-1x.jpg 1x, photo-2x.jpg 2x" 
+  alt="Standard and High-Res Photo"
+/>
+```
+
+<AdsComponent />
+<br />
+
+### 2.2. `sizes`: Defining Layout Slot Size
+
+`sizes` tells the browser how much space the image will take up in the final layout, based on media query conditions.
+
+**Example (Layout Size):**
+
+  * On viewports wider than 900px, the image takes up 25vw.
+  * Otherwise (default), the image takes up 100vw.
+
+```html title="index.html"
+<img 
+  src="photo-default.jpg"
+  srcset="photo-small.jpg 400w, photo-medium.jpg 800w, photo-large.jpg 1200w"
+  sizes="(min-width: 900px) 25vw, 100vw"
+  alt="A responsive photo that scales"
+/>
+```
+
+The browser combines `srcset` (available images) and `sizes` (layout size) to efficiently select the optimal image file.
+
+## 3. Art Direction with `<picture>`
+
+The `<picture>` element is used when you need **art direction**, which means changing the actual image (not just the resolution) to fit different layouts or aesthetic needs (e.g., cropping a horizontal image into a vertical image on mobile).
+
+The `<picture>` element contains multiple `<source>` elements and one required `<img>` element. The browser uses the first `<source>` element whose `media` condition matches.
+
+### Example (Changing Crop Based on Viewport)
+
+```html title="index.html"
+<picture>
+  <!-- 1. Source for desktop (wide screen, shows full horizontal image) -->
+  <source 
+    media="(min-width: 1024px)" 
+    srcset="photo-wide-crop.jpg"
+  >
+  
+  <!-- 2. Source for mobile (narrow screen, shows a tight vertical crop) -->
+  <source 
+    media="(max-width: 1023px)" 
+    srcset="photo-vertical-crop.jpg"
+  >
+  
+  <!-- 3. Fallback (Required <img> element) -->
+  <img src="photo-default.jpg" alt="A responsive landscape photo" style="max-width: 100%; height: auto;">
+</picture>
+```
+
+<AdsComponent />
+<br />
+
+## 4. Image Format Switching (`type`)
+
+The `<picture>` element is also perfect for providing modern image formats (like WebP) with a reliable fallback (like JPEG) for older browsers. The browser will use the first supported format it encounters.
+
+```html title="index.html"
+<picture>
+  <!-- Try WebP first (modern, better compression) -->
+  <source type="image/webp" srcset="image.webp">
+  
+  <!-- Fallback to JPEG if WebP is not supported -->
+  <img src="image.jpg" alt="Optimized image delivery">
+</picture>
+```
+
+## Interactive Responsive Image Demo
+
+While we cannot load external images in this environment, this demo shows the essential HTML structure and CSS that would enable a fully responsive image setup.
+
+<CodePenEmbed 
+  title="Interactive Responsive Image Demo"
+  penId="vEGrWXL"
+/>
