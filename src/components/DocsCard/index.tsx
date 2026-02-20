@@ -1,9 +1,20 @@
-import React from 'react';
-import clsx from 'clsx';
-import Link from '@docusaurus/Link';
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import React from "react";
+import clsx from "clsx";
+import Link from "@docusaurus/Link";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "ion-icon": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement> & { name?: string },
+        HTMLElement
+      >;
+    }
+  }
+}
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   href?: string;
@@ -13,81 +24,87 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   iconset?: string;
   ionicon?: string;
   img?: string;
-  size?: 'md' | 'lg';
+  size?: "md" | "lg";
+  activeIndex?: number;
 }
 
 function DocsCard(props: Props): JSX.Element {
-  const isStatic = typeof props.href === 'undefined';
-  const isOutbound = typeof props.href !== 'undefined' ? /^http/.test(props.href) : false;
-  const header = props.header === 'undefined' ? null : <header className="Card-header">{props.header}</header>;
+  const isStatic = typeof props.href === "undefined";
+  const isOutbound =
+    typeof props.href !== "undefined" ? /^http/.test(props.href) : false;
+  // const header =
+  //   props.header === "undefined" ? null : (
+  //     <header>{props.header}</header>
+  //   );
   const hoverIcon = props.hoverIcon || props.icon;
 
   const content = (
     <>
-      {props.img && <img src={useBaseUrl(props.img)} className="Card-image" />}
-      <div className="Card-container">
-        {(props.icon || hoverIcon) && (
-          <div className="Card-icon-row">
-            {/* {props.icon && <img src={useBaseUrl(props.icon)} className="Card-icon Card-icon-default" />} */}
-            {hoverIcon && <img src={useBaseUrl(hoverIcon)} className="Card-icon Card-icon-hover" />}
-          </div>
-        )}
-        {props.ionicon && <ion-icon name={props.ionicon} className="Card-ionicon"></ion-icon>}
-        {props.iconset && (
-          <div className="Card-iconset__container">
-            {props.iconset.split(',').map((icon, index) => (
-              <img
-                src={useBaseUrl(icon)}
-                className={`Card-icon ${index === props.activeIndex ? 'Card-icon-active' : ''}`}
-                data-index={index}
-                key={index}
-              />
-            ))}
-          </div>
-        )}
-        <h3>
-          {props.header && header}
-        </h3>
-        <div className="Card-content">
-          <p>
-            {props.children}
-          </p>
+      {props.img && <img src={useBaseUrl(props.img)} />}
+      {/* FLEX HEADER (ICON + TITLE) */}
+      {(props.icon || props.ionicon || hoverIcon) && (
+        <div className={styles.cardHeaderRow}>
+          {hoverIcon && (
+            <img
+              src={useBaseUrl(hoverIcon)}
+              className={styles.cardIcon}
+              alt=""
+            />
+          )}
+
+          {props.ionicon && (
+            <ion-icon
+              name={props.ionicon}
+              className={styles.cardIonicon}
+            ></ion-icon>
+          )}
+
+          {props.header && (
+            <h3 className={styles.cardHeader}>{props.header}</h3>
+          )}
         </div>
+      )}
+      <div>
+        <p>{props.children}</p>
       </div>
     </>
   );
 
   const className = clsx({
-    'Card-with-image': typeof props.img !== 'undefined',
-    'Card-without-image': typeof props.img === 'undefined',
-    'Card-size-lg': props.size === 'lg',
-    [props.className]: props.className,
+    "Card-with-image": typeof props.img !== "undefined",
+    "Card-without-image": typeof props.img === "undefined",
+    "Card-size-lg": props.size === "lg",
+    ...(props.className ? { [props.className]: true } : {}),
   });
 
   if (isStatic) {
     return (
-      <docs-card class={className}>
-        <div className={clsx(styles.card, 'docs-card')}>{content}</div>
-      </docs-card>
+      <div className={className}>
+        <div className={clsx(styles.card, "docs-card")}>{content}</div>
+      </div>
     );
   }
 
   if (isOutbound) {
     return (
-      <docs-card class={className}>
-        <a className={clsx(styles.card, 'docs-card')} href={props.href} target="_blank">
+      <div className={className}>
+        <a
+          className={clsx(styles.card, "docs-card")}
+          href={props.href}
+          target="_blank"
+        >
           {content}
         </a>
-      </docs-card>
+      </div>
     );
   }
 
   return (
-    <docs-card class={className}>
-      <Link to={props.href} className={clsx(styles.card, 'docs-card')}>
+    <div className={className}>
+      <Link to={props.href} className={clsx(styles.card, "docs-card")}>
         {content}
       </Link>
-    </docs-card>
+    </div>
   );
 }
 
