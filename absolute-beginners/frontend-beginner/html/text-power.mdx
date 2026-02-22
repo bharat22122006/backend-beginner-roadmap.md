@@ -1,0 +1,82 @@
+---
+title: "Headings & Paragraphs"
+sidebar_label: Text Power
+sidebar_position: 3
+description: "Learn how to structure text like a pro using HTML tags."
+---
+
+Now that you have your **Skeleton** ready, it’s time to add some content! In the world of the web, not all text is created equal. You wouldn't want your main title to be the same size as your "Terms and Conditions," right?
+
+In HTML, we use specific tags to tell the browser: *"This is important!"* or *"This is just a regular sentence."*
+
+## 1. The Heading Hierarchy (`<h1>` to `<h6>`)
+
+Think of headings like a **Newspaper**. You have the big front-page headline, sub-headlines, and smaller section titles.
+
+HTML gives us **six levels** of headings:
+
+```html title="index.html"
+<h1>The Main Title (Use only once!)</h1>
+<h2>A Major Section</h2>
+<h3>A Sub-section</h3>
+<h4>A Small Heading</h4>
+<h5>An Extra Small Heading</h5>
+<h6>The Tiny Heading</h6>
+```
+
+### The Golden Rule of Headings
+
+* **`<h1>` is the King:** Only use one `<h1>` per page. It tells Google what your page is actually about.
+* **Don't skip levels:** Don't jump from `<h1>` to `<h4>` just because you like the size. Keep them in order!
+
+## 2. The Paragraph Tag (`<p>`)
+
+For your regular text, stories, or descriptions, we use the `<p>` tag.
+
+```html title="index.html"
+<p>This is a paragraph. It automatically adds a little bit of space 
+above and below it to make your text easy to read.</p>
+
+<p>If you start a second paragraph tag, it will start on a new line!</p>
+```
+
+## 3. Making Text Pop (**Bold** & *Italic*)
+
+Sometimes you want to emphasize a word. In 2026, we use these tags to make our text stand out:
+
+* **`<strong>`**: Makes text **Bold**. (Tells the browser: "This is important!")
+* **`<em>`**: Makes text *Italic*. (Stands for *Emphasis*).
+
+```html title="index.html"
+<p>I am learning HTML at <strong>CodeHarborHub</strong> and it is <em>awesome</em>!</p>
+
+```
+
+## Let's Build a "News Article"
+
+Copy this code into your `index.html` file (inside the `<body>` tags) to see how a real structure looks:
+
+```html title="index.html"
+<h1>Breaking News: Local Coder Learns HTML</h1>
+
+<h2>The First 24 Hours</h2>
+<p>It was a <strong>historic</strong> day when the student opened VS Code for the first time.</p>
+
+<h3>What happened next?</h3>
+<p>After learning about <em>text power</em>, there was no turning back. 
+The internet will never be the same again.</p>
+```
+
+## Common Beginner Mistakes
+
+* **Mistake:** Using a Heading tag just to make text bold.
+* **Fix:** Use CSS (which we will learn later) for styling, and use HTML tags for **meaning**.
+
+
+:::tip Quick Challenge!
+Try to create a "Recipe" page.
+
+1. Use an `<h1>` for the Dish Name.
+2. Use an `<h2>` for "Ingredients."
+3. Use `<p>` tags for the instructions.
+:::

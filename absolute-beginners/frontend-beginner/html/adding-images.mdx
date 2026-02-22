@@ -1,0 +1,89 @@
+---
+sidebar_position: 5
+title: "Adding Images Visualizing Your Site"
+sidebar_label: Adding Images
+description: "Learn how to bring your website to life with pictures."
+---
+
+A website without pictures is like a book without a cover, it can be great, but it's much harder to grab someone's attention! Today, you are going to learn how to embed images into your pages.
+
+## The "No-Sandwich" Tag
+
+Most tags we've learned (`<h1>`, `<p>`, `<ul>`) are like sandwiches: they have a start and an end. 
+
+However, the **Image tag** is a bit of a rebel. It is **Self-Closing**. Since you don't put text "inside" a picture, it doesn't need a closing tag!
+
+## The Anatomy of `<img>`
+
+To show an image, we need two very important "Attributes" (extra pieces of info):
+
+1.  **`src` (Source):** This is the path to your image. It’s the URL or the filename.
+2.  **`alt` (Alternative Text):** This is a text description of the image.
+
+```html
+<img src="https://codeharborhub.github.io/img/codeharborhub-social-card.jpg" alt="codeharborhub social card">
+
+```
+
+### Why is `alt` text so important?
+
+* **Accessibility:** People who are blind use "Screen Readers" that read this description aloud.
+* **Broken Links:** If the image fails to load, the browser shows this text instead.
+* **SEO:** Google uses it to understand what your image is about.
+
+## Two Ways to Add Images
+
+### 1. Using a Web URL (External)
+
+You can link to any image already on the internet.
+
+```html
+<img src="https://codeharborhub.github.io/img/nav-logo.jpg" alt="CodeHarborHub Official Logo">
+
+```
+
+### 2. Using a Local File (Internal)
+
+If you have a photo on your computer, put it in the same folder as your `index.html`.
+
+```html
+<img src="./my-photo.jpg" alt="Me at the beach">
+
+```
+
+## Changing the Size
+
+Sometimes an image is way too big and takes up the whole screen. You can control the size directly in HTML using `width` and `height`.
+
+```html
+<img src="./cool-robot.png" alt="A cool blue robot" width="300" height="200">
+
+```
+
+:::warning Beginner Alert!
+In 2026, we usually use **CSS** to resize images because it's more flexible. But for now, using `width` in HTML is a great way to keep things tidy!
+:::
+
+## Practice: Create a "Profile Card"
+
+Let’s combine everything! Try to build this in your `index.html`:
+
+```html title="index.html"
+<div style="border: 1px solid #ccc; padding: 20px; width: 300px; text-align: center;">
+    <img src="https://github.com/ajay-dhangar.png" alt="Profile Picture" style="border-radius: 50%;">
+    <h2>Your Name</h2>
+    <p>I am a <strong>Frontend Developer</strong> in training.</p>
+    <ul>
+        <li>Coding</li>
+        <li>Gaming</li>
+        <li>Coffee</li>
+    </ul>
+</div>
+
+```
+
+## Summary Checklist
+
+* [X] I remember that `<img>` does **not** have a closing `</img>` tag.
+* [X] I always include an `alt` attribute for accessibility.
+* [X] I know how to use `src` to point to my image.

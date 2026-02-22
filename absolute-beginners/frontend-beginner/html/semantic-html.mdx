@@ -1,0 +1,93 @@
+---
+sidebar_position: 8
+title: Semantic HTML
+description: Learn how to write clean, professional, and accessible code.
+---
+
+Imagine walking into a supermarket where none of the aisles have signs. The milk is next to the hammers, and the bread is hidden in the pharmacy section. You could eventually find what you need, but it would be a nightmare!
+
+**Semantic HTML** is like putting signs on your aisles. It tells the browser and search engines (like Google) exactly what each part of your webpage is.
+
+## What is "Semantic"?
+
+The word **Semantic** simply means "relating to meaning." 
+
+In the old days, developers used `<div>` (a generic box) for everything. In 2026, we use descriptive tags so the computer understands the content.
+
+| Non-Semantic (The "Old" Way) | Semantic (The "Pro" Way) | What it tells the computer |
+| :--- | :--- | :--- |
+| `<div id="header">` | `<header>` | "This is the top of my site (Logo/Nav)." |
+| `<div id="nav">` | `<nav>` | "This contains the navigation links." |
+| `<div class="post">` | `<article>` | "This is a standalone story or post." |
+| `<div id="footer">` | `<footer>` | "This is the bottom (Copyright/Links)." |
+
+## The Layout Map
+
+When you use semantic tags, you create a clear map for the browser. 
+
+### The Core Semantic Tags:
+* **`<header>`**: The introductory content (logo, search bar, etc.).
+* **`<nav>`**: The "Navigation" block. Use this for your menus.
+* **`<main>`**: The unique, central content of your page. You should only have **one** `<main>` per page.
+* **`<section>`**: A group of related content (like a "Features" or "About" section).
+* **`<aside>`**: Content that is indirectly related (like a sidebar or a "Fun Fact" box).
+* **`<footer>`**: The "basement" of your site. It contains contact info, copyrights, and social links.
+
+## Why Should You Care?
+
+You might think, *"But my site looks the same whether I use a div or a header!"* True, but here is why the Pros use Semantic HTML:
+
+1.  **Accessibility (A11y):** Screen readers for the visually impaired use these tags to help users skip to the "Main" content or find the "Nav."
+2.  **SEO (Search Engine Optimization):** Google’s bots read your site. If they see an `<article>` tag, they know that’s the important stuff to show in search results!
+3.  **Cleaner Code:** It’s much easier to read `<header>` than to see a sea of 100 `<div>` tags.
+
+## Practice: Upgrade Your Skeleton
+
+Let's take our basic skeleton and make it professional. Copy this into your `index.html`:
+
+```html title="index.html"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Professional Site</title>
+</head>
+<body>
+
+    <header>
+        <h1>CodeHarborHub</h1>
+        <nav>
+            <a href="#">Home</a> | <a href="#">Tutorials</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Welcome to HTML 101</h2>
+            <p>Today we are learning about semantic tags.</p>
+        </section>
+
+        <article>
+            <h3>Why I love Coding</h3>
+            <p>It allows me to build things that help people.</p>
+        </article>
+    </main>
+
+    <aside>
+        <p>Did you know? HTML5 was released in 2014!</p>
+    </aside>
+
+    <footer>
+        <p>&copy; 2026 CodeHarborHub Student</p>
+    </footer>
+
+</body>
+</html>
+
+```
+
+## Summary Checklist
+
+* [x] I used `<header>` and `<footer>` for the top and bottom.
+* [x] I used `<nav>` for my links.
+* [x] I used `<main>` for the star of the show (the content).
+* [x] I’m not just using `<div>` for everything anymore!

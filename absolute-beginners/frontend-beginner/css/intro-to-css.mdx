@@ -1,0 +1,103 @@
+---
+title: Making the Web Beautiful
+sidebar_label: Intro to CSS
+description: Learn how to add style, color, and personality to your HTML.
+---
+
+If **HTML** is the skeleton of your house, **CSS** (Cascading Style Sheets) is the paint on the walls, the style of the furniture, and the layout of the rooms. 
+
+Without CSS, every website would look like a boring black-and-white research paper. With CSS, you can turn that paper into a masterpiece!
+
+## How CSS Works: The Rulebook
+
+CSS works by creating "Rules." You tell the browser: *"Hey, find all the **H1 tags**, and make them **Blue**."*
+
+### The Anatomy of a CSS Rule:
+1.  **Selector:** The HTML element you want to style (e.g., `h1`).
+2.  **Property:** What you want to change (e.g., `color`).
+3.  **Value:** How you want to change it (e.g., `blue`).
+
+```css
+/* This is a CSS Rule */
+h1 {
+  color: blue;
+  font-size: 30px;
+}
+
+```
+
+## 3 Ways to Add CSS
+
+How do you actually connect your CSS "Paint" to your HTML "Walls"? There are three ways, but professionals almost always use **Number 3**.
+
+### 1. Inline CSS (The "Quick Fix")
+
+Writing styles directly inside the HTML tag.
+
+* *Best for:* Quick tests. *Worst for:* Large projects.
+
+```html
+<h1 style="color: red;">Hello World</h1>
+
+```
+
+### 2. Internal CSS (The "One Page" Method)
+
+Writing styles inside a `<style>` tag in your `<head>`.
+
+```html
+<head>
+  <style>
+    p { color: green; }
+  </style>
+</head>
+
+```
+
+### 3. External CSS (The "Pro" Way)
+
+Creating a separate file (e.g., `style.css`) and linking it to your HTML. This keeps your code clean and organized.
+
+**In your HTML `<head>`:**
+
+```html
+<link rel="stylesheet" href="style.css">
+
+```
+
+## Your First Styling Challenge
+
+1. Open your `portfolio.html` from the previous lesson.
+2. Create a new file in the same folder called `style.css`.
+3. Paste the following code into `style.css`:
+
+```css title="style.css"
+body {
+  background-color: #f0f8ff; /* Light blue background */
+  font-family: sans-serif;   /* Modern, clean text */
+}
+
+h1 {
+  color: #2c3e50;
+  text-align: center;
+}
+
+p {
+  color: #34495e;
+  line-height: 1.6;
+}
+
+```
+
+4. Link it in your HTML `<head>` using the `<link>` tag.
+
+
+:::tip The "Cascade"
+Why is it called **Cascading** Style Sheets? Because rules fall down like a waterfall! If you tell a `<body>` to have blue text, every paragraph inside it will also be blue, unless you specifically tell that paragraph to be different.
+:::
+
+## Summary Checklist
+
+* [X] I understand that CSS handles the **visuals**.
+* [X] I know the difference between a **Selector**, **Property**, and **Value**.
+* [X] I have successfully linked an external `.css` file.

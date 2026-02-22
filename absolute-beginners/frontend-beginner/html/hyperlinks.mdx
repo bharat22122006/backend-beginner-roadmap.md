@@ -1,0 +1,92 @@
+---
+sidebar_position: 6
+title: "Hyperlinks in Website"
+sidebar_label: Hyperlinks
+description: "Learn how to connect pages using the Anchor tag."
+---
+
+If HTML is the skeleton, and images are the skin, then **Hyperlinks** are the nervous system. They connect everything together! Without links, the internet would just be billions of lonely pages with no way to travel between them.
+
+In HTML, we create links using the **Anchor Tag**: `<a>`.
+
+## The Anatomy of a Link
+
+To make a link, you need a destination. We use the `href` attribute (which stands for **H**ypertext **REF**erence) to tell the browser where to go.
+
+```html
+<a href="https://www.google.com">Click here to go to Google</a>
+
+```
+
+### How to read this:
+
+1. **`<a>`**: The opening "Anchor" tag.
+2. **`href="..."`**: The address of the destination.
+3. **Clickable Text**: The words that the user actually sees (usually blue and underlined).
+4. **`</a>`**: The closing tag.
+
+## Two Types of Destinations
+
+### 1. External Links (Going to another site)
+
+Use these when you want to send someone to a completely different website.
+
+**Pro Tip:** Use `target="_blank"` so the link opens in a **new tab**, keeping your site open in the background!
+
+```html
+<a href="https://codeharborhub.github.io" target="_blank">Visit CodeHarborHub</a>
+
+```
+
+### 2. Internal Links (Moving between your own pages)
+
+If you have a file named `about.html` in the same folder as your `index.html`, you can link to it like this:
+
+```html
+<a href="about.html">Learn more about me</a>
+
+```
+
+## Creative Linking: Images as Links
+
+You aren't limited to just linking text! You can wrap the `<a>` tag around an `<img>` tag to make a clickable button or picture.
+
+```html
+<a href="https://youtube.com">
+    <img src="youtube-logo.png" alt="Watch my videos on YouTube" width="50">
+</a>
+
+```
+
+## The "Dead End" (Avoid this!)
+
+Have you ever clicked a link and it took you nowhere? Beginners often forget to include the `http://` or `https://` for external sites.
+
+* ❌ `href="google.com"` (The browser will look for a file named "https://www.google.com/url?sa=E&source=gmail&q=google.com" on *your* computer).
+* ✅ `href="https://google.com"` (The browser goes to the internet).
+
+## Practice: Create a Mini-Navigation
+
+Try to add a "Menu" to the top of your `index.html` file so users can find their way around:
+
+```html title="index.html"
+<nav>
+    <a href="index.html">Home</a> |
+    <a href="https://github.com/username" target="_blank">My GitHub</a> |
+    <a href="contact.html">Contact Me</a>
+</nav>
+
+<h1>Welcome to my Homepage</h1>
+<p>Feel free to explore the links above!</p>
+
+```
+
+:::info Why "Anchor"?
+Why is the tag `<a>` and not `<l>` for link? In the early days of the web, creators thought of links as "anchoring" two points in the vast digital ocean together.
+:::
+
+## Summary Checklist
+
+* [X] I know that `href` holds the destination URL.
+* [X] I use `target="_blank"` for external websites.
+* [X] I remember to close my `</a>` tag so the whole page doesn't become a link!
