@@ -1,0 +1,86 @@
+---
+sidebar_position: 4
+title: "Lists and Orders"
+sidebar_label: Lists & Orders
+description: "Learn how to create bullet points and numbered lists in HTML."
+---
+
+Imagine trying to read a grocery list where all the items were just jammed into one long sentence. *Messy, right?* In HTML, we have two main ways to organize items so they are easy to read. Whether you are listing your favorite games or the steps to bake a cake, there is a tag for that!
+
+## 1. The "Random" List (Unordered)
+
+If the order doesn't matter (like a shopping list), we use an **Unordered List**. 
+
+* **The Container:** `<ul>` (Unordered List)
+* **The Items:** `<li>` (List Item)
+
+```html
+<h3>My Shopping List</h3>
+<ul>
+    <li>Apples</li>
+    <li>Oat Milk</li>
+    <li>Coffee Beans</li>
+</ul>
+
+```
+
+:::tip Pro Tip
+Think of `<ul>` as the "Box" and `<li>` as the "Items" inside the box. You **cannot** have an `<li>` just floating around by itself!
+:::
+
+## 2. The "Step-by-Step" List (Ordered)
+
+If the order **does** matter (like a recipe or a Top 10 list), we use an **Ordered List**. The browser will automatically number these for you!
+
+* **The Container:** `<ol>` (Ordered List)
+* **The Items:** `<li>` (List Item)
+
+```html
+<h3>My Top 3 Coding Skills</h3>
+<ol>
+    <li>HTML (I'm a pro now!)</li>
+    <li>Patience</li>
+    <li>Searching on Google</li>
+</ol>
+
+```
+
+## Building a "Survival Guide"
+
+Let's combine everything we've learned so far. Copy this into your `index.html`:
+
+```html title="index.html"
+<h2>How to Survive a Zombie Apocalypse</h2>
+
+<h3>Step-by-Step Instructions:</h3>
+<ol>
+    <li>Find a sturdy <strong>base</strong>.</li>
+    <li>Gather supplies.</li>
+    <li>Learn how to code (to rebuild society).</li>
+</ol>
+
+<h3>Supplies Needed:</h3>
+<ul>
+    <li>First Aid Kit</li>
+    <li>Canned Beans</li>
+    <li><em>Extra Batteries</em></li>
+</ul>
+
+```
+
+## The "Parent & Child" Concept
+
+This is a big developer secret. In HTML, some tags are **Parents** and some are **Children**.
+
+* **The Parent:** The `<ul>` or `<ol>` (The Boss).
+* **The Child:** The `<li>` (The Worker).
+
+The Child must always live inside the Parent. If you put a `<p>` tag directly inside a `<ul>`, the "Code Police" (and your browser) will get confused!
+
+## The "Level Up" Challenge
+
+Can you create a **List within a List**?
+
+Try to make a grocery list where "Fruits" is a list item, but *underneath* it, there is another list containing "Apple" and "Banana."
+
+> **Hint:** You can put a whole `<ul>` inside an `<li>`!

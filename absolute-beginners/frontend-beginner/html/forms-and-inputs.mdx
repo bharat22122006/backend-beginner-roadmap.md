@@ -1,0 +1,110 @@
+---
+sidebar_position: 7
+title: "Forms & Inputs"
+description: Learn how to create text boxes, buttons, and checkboxes.
+---
+
+Up until now, your website has been a "One-Way Street"—you talk, and the user reads. **Forms** change everything! They turn your site into a "Two-Way Street" where users can type messages, choose options, and send you data.
+
+Whether it’s a Google search bar or a Facebook login, they all use the same HTML tags you're about to learn.
+
+## 1. The Container: The `<form>` Tag
+
+Just like a list needs a `<ul>` "box," all your inputs need to live inside a `<form>` tag.
+
+```html
+<form> </form>
+
+```
+
+## 2. The Text Box: `<input>`
+
+The `<input>` tag is the most versatile tag in HTML. By changing its `type`, you can turn it into many different things.
+
+**Note:** Like the `<img>` tag, `<input>` is **Self-Closing** (No closing tag needed!).
+
+### Common Input Types:
+
+* **`type="text"`**: A standard box for names or usernames.
+* **`type="password"`**: Hides the characters with dots (very important for security!).
+* **`type="email"`**: Makes sure the user includes an "@" symbol.
+
+```html
+<input type="text" placeholder="Enter your name">
+<input type="password" placeholder="Password">
+
+```
+
+## 3. The Label: `<label>`
+
+Every input needs a label. Without a label, a user won't know what the box is for! We use the `for` attribute to "lock" the label to the input's `id`.
+
+```html
+<label for="username">Username:</label>
+<input type="text" id="username" name="username">
+
+```
+
+:::tip Why use Labels?
+If you click on the text of a label, the browser automatically puts the cursor inside the input box. It’s great for accessibility and mobile users!
+:::
+
+## 4. Choices: Checkboxes and Radios
+
+Sometimes you want users to pick from options rather than typing.
+
+* **Checkboxes:** Use these when a user can pick **multiple** options.
+* **Radio Buttons:** Use these when a user can only pick **ONE** option (like a multiple-choice test).
+
+```html
+<p>Which languages are you learning?</p>
+<input type="checkbox" id="html" name="skill"> <label for="html">HTML</label>
+<input type="checkbox" id="css" name="skill"> <label for="css">CSS</label>
+
+<p>Choose your favorite:</p>
+<input type="radio" id="coffee" name="drink"> <label for="coffee">Coffee</label>
+<input type="radio" id="tea" name="drink"> <label for="tea">Tea</label>
+
+```
+
+## 5. The "Go" Button: `<button>`
+
+A form is useless if you can't submit it!
+
+```html
+<button type="submit">Send Message 🚀</button>
+
+```
+
+## Practice: Build a "Join the Club" Form
+
+Copy this into your `index.html` to see a full, working form structure:
+
+```html title="index.html"
+<h2>Join the CodeHarborHub Club</h2>
+
+<form>
+    <label for="fname">First Name:</label><br>
+    <input type="text" id="fname" placeholder="e.g. Alex"><br><br>
+
+    <label for="email">Email Address:</label><br>
+    <input type="email" id="email" required><br><br>
+
+    <input type="checkbox" id="terms">
+    <label for="terms">I agree to learn every day</label><br><br>
+
+    <button type="submit">Sign Me Up!</button>
+</form>
+
+```
+
+## Important Beginner Tip
+
+In 2026, when you click "Submit," the page will usually refresh. Later, when we learn **JavaScript**, we will learn how to catch that data and send it to a database without the page refreshing!
+
+## Summary Checklist
+
+* [X] I wrapped my inputs in a `<form>` tag.
+* [X] I used `<label>` to make my form accessible.
+* [X] I used `type="password"` for sensitive info.
+* [X] I added a `submit` button to finish the form.

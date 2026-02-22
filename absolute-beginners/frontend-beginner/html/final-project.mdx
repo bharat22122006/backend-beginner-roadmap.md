@@ -1,0 +1,130 @@
+---
+sidebar_position: 9
+title: Your Personal Portfolio
+sidebar_label: Final Project
+description: "Put everything together to build your first real-world website."
+---
+
+Congratulations! You’ve moved from "What is a tag?" to understanding the full structure of a webpage. Now, it’s time to stop following tutorials and start **building**.
+
+Your mission is to create a **Personal Portfolio Page**. This site will tell the world who you are, what you’re learning, and how to contact you.
+
+## The Project Blueprint
+
+Before we code, let's look at the structure we want to achieve. We are going to use **Semantic HTML** to keep it professional.
+
+## Step-by-Step Instructions
+
+### Step 1: The Foundation
+
+Create a new file named `portfolio.html`. Start with your "Skeleton" (the boilerplate). Give your site a title like `[Your Name] | Developer Portfolio`.
+
+### Step 2: The Header & Nav
+
+Inside the `<body>`, add a `<header>`. 
+* Use an `<h1>` for your name.
+* Create a `<nav>` with links to "About," "Skills," and "Contact." (Hint: You can use internal links like `href="#about"` later!)
+
+### Step 3: The "About Me" Section
+
+Use a `<main>` tag, and inside it, create a `<section>`.
+* Add an `<h2>` that says "About Me."
+* Add an `<img>` of yourself (or a cool avatar).
+* Write a `<p>` explaining your journey into coding. Use `<strong>` to highlight your goal.
+
+### Step 4: The Skills List
+
+Create another `<section>`.
+* Use an `<h2>` called "Technical Skills."
+* Create a `<ul>` and list the things you've learned: HTML5, Semantic Markup, Forms, etc.
+
+### Step 5: The Contact Form
+
+Create a final `<section>`.
+* Use an `<h2>` for "Get In Touch."
+* Build a `<form>` with inputs for `Name` (text), `Email` (email), and a `Message`.
+* Don't forget the `<button type="submit">`.
+
+### Step 6: The Footer
+
+Add a `<footer>` at the very bottom with a copyright notice: `&copy; 2026 [Your Name]`.
+
+## The "Final Boss" Code Template
+
+If you get stuck, here is a structure to guide you. Try to fill in the blanks with your own info!
+
+```html title="portfolio.html"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Awesome Portfolio</title>
+</head>
+<body>
+
+    <header>
+        <h1>Jane Doe</h1>
+        <nav>
+            <a href="#about">About</a> | 
+            <a href="#skills">Skills</a> | 
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <img src="avatar.jpg" alt="A photo of Jane smiling" width="150">
+            <p>I am an aspiring <strong>Frontend Developer</strong> learning at CodeHarborHub.</p>
+        </section>
+
+        <section id="skills">
+            <h2>My Skills</h2>
+            <ul>
+                <li>Writing Semantic HTML</li>
+                <li>Creating Accessible Forms</li>
+                <li>Hyperlinking the Web</li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <form>
+                <input type="text" placeholder="Your Name" required><br>
+                <input type="email" placeholder="Your Email" required><br>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Built with ❤️ at CodeHarborHub</p>
+    </footer>
+
+</body>
+</html>
+
+```
+
+---
+
+## How to Make it "Your Own"
+
+* **Add Links:** Link your "My Skills" section to your GitHub profile.
+* **Add Video:** Use a `<video>` tag to show a screen recording of your code.
+* **Emojis:** Use emojis to make the text more friendly!
+
+## Submission Checklist
+
+Before you call it finished, check these four things:
+
+1. [X] Does every image have an `alt` tag?
+2. [X] Is there only **one** `<h1>` and **one** `<main>`?
+3. [X] Do all your links work?
+4. [X] Did you use `<label>` for your form inputs?
+
+:::success YOU DID IT!
+You have officially completed the html beginners tutorial. You have a real website you built from scratch.
+
+**Next Stop:** [CSS Basics](/absolute-beginners/frontend-beginner/css/intro-to-css) — Let's learn how to make this portfolio look beautiful with colors, fonts, and layouts!
+:::

@@ -1,0 +1,81 @@
+---
+title: The HTML Skeleton
+sidebar_position: 2
+sidebar_label: The Skeleton
+description: "Learn the essential boilerplate code every website needs."
+---
+
+If you opened up a car, you’d see a chassis. If you looked at a house, you’d see wooden beams. Every single webpage on the internet has a **hidden skeleton** that keeps everything organized.
+
+Without this skeleton, the browser (Chrome or Safari) won't know how to read your code properly!
+
+## The "Must-Have" Boilerplate
+
+Every time you start a new project, you begin with these exact lines of code. Think of it as the "Startup Sequence" for a website.
+
+```html title="index.html"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Website | CodeHarborHub</title>
+</head>
+<body>
+    <h1>Welcome to the Web!</h1>
+    <p>This is where the magic happens.</p>
+</body>
+</html>
+
+```
+
+## Breaking Down the Bones
+
+Let’s look at what each part actually does. It looks intimidating, but it's actually quite simple:
+
+### 1. The Document Type
+
+**`<!DOCTYPE html>`** 
+
+This is a shout-out to the browser: *"Hey! I am using the latest version of HTML (HTML5). Treat me right!"*
+
+### 2. The Root
+
+**`<html lang="en"> ... </html>`** 
+
+The "Mother Tag." Everything else lives inside here. The `lang="en"` tells search engines your site is in English.
+
+### 3. The Brain (The Head)
+
+**`<head> ... </head>`**
+
+This part is **invisible** to your visitors. It contains:
+
+* **Characters:** `UTF-8` ensures your emojis and special symbols show up correctly.
+* **Responsiveness:** The `viewport` tag makes sure your site doesn't look tiny on an iPhone.
+* **The Tab Name:** `<title>` is what appears on the browser tab at the top.
+
+### 4. The Heart (The Body)
+
+**`<body> ... <body>`** 
+
+***This is the most important part!*** Everything you put here text, images, buttons, videos, is what the user actually sees.
+
+## Interactive Exercise: Your Turn!
+
+1. Open **VS Code** (or any text editor).
+2. Create a new file and save it as `index.html`.
+3. Type `!` and press **Tab** (This is a pro shortcut called Emmet!).
+4. Change the text inside the `<title>` tags to your name.
+5. Inside the `<body>`, write: `<h1>I am a Developer!</h1>` and save it.
+6. Right-click the file and "Open in Browser."
+
+:::info Did it work?
+If you see a big bold heading in your browser, congratulations! You just launched your first official web document.
+:::
+
+## Summary Checklist
+
+* [x] I know that `<head>` is for settings (invisible).
+* [x] I know that `<body>` is for content (visible).
+* [x] I saved my file with the `.html` extension.
