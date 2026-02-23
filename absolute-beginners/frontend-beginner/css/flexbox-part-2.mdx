@@ -1,0 +1,88 @@
+---
+sidebar_position: 8
+title: "Flexibility & Wrapping"
+sidebar_label: "Flexbox (Advanced)"
+description: "Learn flex-grow, flex-shrink, and wrapping for dynamic layouts."
+---
+
+In Part 1, we learned how to move items around. But what happens when there are too many items to fit in one row? Or what if you want one specific item to take up all the extra space? 
+
+Now, we look at the properties that live directly on the **Flex Items (Children)**.
+
+## 1. Flex Wrap: Don't Squash the Content
+
+By default, Flexbox tries to jam every item into a single line, even if they have to shrink to the size of a toothpick! To allow items to move to a new line, we use `flex-wrap` on the **Parent**.
+
+```css
+.container {
+  display: flex;
+  flex-wrap: wrap; /* Items will now drop to the next line if they run out of space */
+}
+
+```
+
+## 2. Flex Grow: Filling the Gaps
+
+`flex-grow` tells an item to take up any remaining empty space in the container.
+
+* **Value 0 (Default):** The item stays its original size.
+* **Value 1:** The item will stretch to fill the empty space.
+
+If you give one item `flex-grow: 2` and another `flex-grow: 1`, the first one will grow **twice as fast** to fill the gap.
+
+```css
+.big-item {
+  flex-grow: 2;
+}
+
+```
+
+## 3. Flex Basis & Shrink
+
+* **`flex-basis`**: Sets the "ideal" starting size of an item before it grows or shrinks. Think of it as a more flexible version of `width`.
+* **`flex-shrink`**: Tells an item if it’s allowed to get smaller than its basis if the screen is too tight.
+
+## The Shorthand: `flex`
+
+Instead of writing three lines of code, pros use the `flex` shorthand:
+
+```css
+.item {
+  /* flex: [grow] [shrink] [basis] */
+  flex: 1 1 200px;
+}
+
+```
+
+## Interactive CodePen: The Flexibility Lab
+
+In this Pen, try resizing your browser window (or the preview pane). Watch how the items wrap and how the "Main Feature" box grows to fill the extra space.
+
+<CodePenEmbed
+title="Flexbox Advanced: Grow & Wrap"
+penId="JoRPeeG"
+/>
+
+### Challenge Tasks:
+
+1. Change the `flex-grow` value of Item 2 to `3`. Watch it hog all the space!
+2. Set `flex-wrap: nowrap` on the container. What happens to the items?
+3. Use `align-self: flex-end` on Item 1 to move just that one item to the bottom.
+
+## 4. Align Self: The Rebel Item
+
+What if you want all items at the top, but **one** item at the bottom? You can override the parent's `align-items` by using `align-self` on a specific child.
+
+```css
+.rebel-child {
+  align-self: flex-end;
+}
+
+```
+
+## Summary Checklist
+
+* [x] I used `flex-wrap: wrap` to prevent items from squishing.
+* [x] I used `flex-grow` to make items fill empty space.
+* [x] I used `flex-basis` to set a starting size.
+* [x] I know that `align-self` controls a single item's vertical position.

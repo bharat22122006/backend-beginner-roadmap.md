@@ -1,0 +1,137 @@
+---
+sidebar_position: 10
+title: "Final Challenge: Style Your Portfolio"
+sidebar_label: CSS Challenge
+description: "The ultimate test! Apply all your CSS skills to your personal portfolio."
+---
+
+It’s time to take your "plain" HTML Portfolio and give it a professional makeover. This is the exact process developers use: starting with a wireframe, building the structure, and then adding the "visual polish."
+
+## Step 1: The Design Strategy
+
+Before writing code, we need a plan. We will use a **Mobile-First** strategy. This means we will style the mobile version first, then use Media Queries to adjust it for Desktop.
+
+## Step-by-Step Implementation
+
+### Step 1: Reset & Setup
+
+At the very top of your `style.css`, add the "Universal Reset." This ensures every browser starts with the same clean slate.
+
+```css title="style.css"
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* The layout savior! */
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f4f4;
+}
+
+```
+
+### Step 2: Flex the Navigation
+
+Use Flexbox to move your Logo to the left and your Links to the right.
+
+```css title="style.css"
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+  background: #2d3436;
+  color: white;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+```
+
+### Step 3: The "Hero" (About) Section
+
+This is the first thing people see. We want it centered and impactful.
+
+```css title="style.css"
+#about {
+  display: flex;
+  flex-direction: column; /* Stacked for mobile */
+  align-items: center;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+#about img {
+  border-radius: 50%; /* Makes your photo a circle */
+  border: 5px solid #0984e3;
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+```
+
+### Step 4: The Skills Grid
+
+We’ll use Flexbox to make your skills look like neat badges.
+
+```css title="style.css"
+#skills ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+}
+
+#skills li {
+  background: #0984e3;
+  color: white;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+```
+
+### Step 5: Make it Responsive
+
+Now, add a Media Query to make the "About" section look better on big screens.
+
+```css title="style.css"
+@media (min-width: 768px) {
+  #about {
+    flex-direction: row; /* Side-by-side for desktop */
+    text-align: left;
+    justify-content: center;
+  }
+  
+  #about img {
+    margin-right: 40px;
+    margin-bottom: 0;
+  }
+}
+
+```
+
+## See the Final Result on CodePen
+
+Check out how these steps come together in this interactive demo. Try clicking the "Mobile View" in CodePen to see how the layout shifts!
+
+<CodePenEmbed
+title="Final CSS Portfolio Challenge"
+penId="ByLBGXV"
+/>
+
+:::success YOU ARE NOW A CSS STYLIST!
+You've completed the CSS Basics module. You have the power to take any boring HTML page and turn it into a beautiful, responsive experience.
+
+**What's next?**
+Would you like to start **JavaScript: The Brains of the Web**, or would you like to explore **CSS Grid** for even more complex layouts?
+:::

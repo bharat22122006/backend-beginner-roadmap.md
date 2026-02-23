@@ -1,0 +1,87 @@
+---
+sidebar_position: 7
+title: "Flexbox Part 1: Modern Layouts"
+sidebar_label: "Flexbox (Basics)"
+description: "Learn the modern way to align and distribute space on your page."
+---
+
+Imagine you have a row of boxes. You want to center them, space them out evenly, or turn them into a column. Doing this with margins is a nightmare. Doing it with **Flexbox** is easy!
+
+Flexbox is a "One-Dimensional" layout system. This means it handles content in **either** a row or a column at a time.
+
+## The Parent & The Children
+
+Flexbox works on a **Parent-Child** relationship.
+1.  **Flex Container (Parent):** The box that holds everything.
+2.  **Flex Items (Children):** The boxes inside.
+
+To start the magic, you simply tell the Parent:
+
+```css
+.container {
+  display: flex;
+}
+
+```
+
+## The Two Axes
+
+This is the most important concept to visualize:
+
+* **Main Axis:** Usually horizontal (Left to Right).
+* **Cross Axis:** Usually vertical (Top to Bottom).
+
+## The "Big Three" Properties
+
+Once you set `display: flex`, you use these three properties on the **Parent** to control the children:
+
+### 1. `justify-content` (Main Axis)
+
+Moves items horizontally (if in a row).
+
+* `flex-start`: Items at the beginning.
+* `center`: Items in the middle! (Finally!)
+* `space-between`: Items push to the edges with equal space between them.
+
+### 2. `align-items` (Cross Axis)
+
+Moves items vertically.
+
+* `flex-start`: Top.
+* `center`: Perfect vertical centering.
+* `stretch`: Stretches items to fill the height.
+
+### 3. `flex-direction`
+
+Changes the direction of the flow.
+
+* `row`: Default (Side-by-side).
+* `column`: Stacks items vertically like a list.
+
+## Interactive CodePen: Flexbox Playground
+
+In this Pen, try changing `justify-content` to `space-around`. See how the boxes react!
+
+<CodePenEmbed
+title="Flexbox Basics Playground"
+penId="ogzvQyx"
+/>
+
+### Challenge Tasks:
+
+1. Set `justify-content: center` AND `align-items: center`. You have now achieved the **"Holy Grail" of web design**: Perfect centering!
+2. Change `flex-direction` to `column`.
+3. Try `justify-content: space-evenly`.
+
+## Why use Flexbox?
+
+* **No more floats:** You don't need to use old, broken layout methods.
+* **Responsive:** Items can shrink or grow to fit the screen.
+* **Simplicity:** Centering takes seconds, not hours.
+
+## Summary Checklist
+
+* [x] I know that `display: flex` goes on the **Parent**.
+* [x] I can use `justify-content` to move items along the Main Axis.
+* [x] I can use `align-items` to center items vertically.
+* [x] I understand the difference between a `row` and a `column`.

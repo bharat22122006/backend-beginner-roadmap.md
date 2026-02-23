@@ -1,0 +1,85 @@
+---
+sidebar_position: 5
+title: "Fonts & Typography"
+sidebar_label: "Text Styling"
+description: "Learn how to control fonts, sizes, spacing, and alignment."
+---
+
+If you use the wrong font or bad spacing, your users will leave your site—not because the content is bad, but because it’s hard to read. Good typography is invisible; it makes reading feel effortless.
+
+In CSS, we have a specific set of tools to turn "plain text" into "designed content."
+
+## 1. The Font Family
+
+The `font-family` property tells the browser which "typeface" to use. You should always provide a "fallback" in case the user doesn't have your favorite font installed.
+
+```css
+h1 {
+  /* Use 'Roboto', if not found, use any 'sans-serif' font */
+  font-family: 'Roboto', sans-serif;
+}
+
+```
+
+### Serif vs. Sans-Serif
+
+* **Serif:** Has small "feet" at the ends of letters (e.g., Times New Roman). Feels traditional and formal.
+* **Sans-Serif:** No feet (e.g., Arial). Feels modern, clean, and is easier to read on digital screens.
+
+## 2. Sizing and Weight
+
+How big is it, and how bold is it?
+
+* **`font-size`**: We use `px` (pixels) for fixed sizes, or `rem` (relative sizes) for modern, responsive sites.
+* **`font-weight`**: Controls thickness. Common values: `normal`, `bold`, or numbers like `400` (regular) and `700` (bold).
+
+```css
+p {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+```
+
+## 3. Spacing: The Secret to Readability
+
+The most common beginner mistake is jamming lines of text too close together.
+
+* **`line-height`**: The space between lines of text. A value of `1.5` or `1.6` is usually perfect for reading.
+* **`letter-spacing`**: The space between individual characters.
+* **`text-align`**: Moves text to the `left`, `center`, `right`, or `justify`.
+
+## Interactive CodePen: The Type Lab
+
+Experiment with the text below. Try changing the `line-height` from `1` to `2` and see how much easier the paragraph becomes to read!
+
+<CodePenEmbed
+title="CSS Typography Lab"
+penId="yyaBQXR"
+/>
+
+### Challenge Tasks:
+
+1. Change the `text-transform` property to `uppercase` on the `h2`.
+2. Try setting `text-decoration: underline` on the paragraph.
+3. Center the heading using `text-align`.
+
+## 4. Text Decoration & Transform
+
+You can change the "case" of your text without re-typing it in HTML!
+
+```css
+.announcement {
+  text-transform: uppercase; /* MAKES EVERYTHING CAPS */
+  text-decoration: underline; /* Adds an underline */
+  font-style: italic;        /* Slants the text */
+}
+
+```
+
+## Summary Checklist
+
+* [x] I know the difference between **Serif** and **Sans-Serif**.
+* [x] I used `line-height` to make my paragraphs readable.
+* [x] I remember to provide a "fallback" font in `font-family`.
+* [x] I practiced centering text in the CodePen.

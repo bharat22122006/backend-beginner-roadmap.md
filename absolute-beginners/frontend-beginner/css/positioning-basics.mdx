@@ -1,0 +1,73 @@
+---
+sidebar_position: 6
+title: Positioning Basics
+sidebar_label: Positioning Basics
+description: Learn how to move elements out of the normal flow of the page.
+---
+
+By default, the browser places elements on the page in the order they appear in your HTML. This is called the **Normal Document Flow**. But what if you want a "Back to Top" button that stays in the corner while you scroll? Or a logo that sits exactly on top of an image?
+
+To do that, we use the `position` property along with **Top, Bottom, Left,** and **Right**.
+
+## The Four Main Positions
+
+### 1. Static (The Default)
+
+Every element starts as `static`. It just follows the natural flow of the page. You cannot move it using `top` or `left`.
+
+### 2. Relative (The "Nudge")
+
+The element stays in the normal flow, but you can "nudge" it from its original spot without affecting the elements around it.
+* **Key use:** It becomes a "Parent" for absolute elements.
+
+### 3. Absolute (The "Free Spirit")
+
+The element is removed from the normal flow. It ignores its neighbors and positions itself relative to its **nearest positioned parent** (usually a parent with `position: relative`).
+* **Key use:** Overlapping text on images or placing icons in corners.
+
+### 4. Fixed (The "Sticky Note")
+
+The element is removed from the flow and stays in the **exact same spot** on the screen, even when you scroll.
+* **Key use:** Navigation bars and "Chat" buttons.
+
+## Interactive CodePen: The Positioning Lab
+
+In this Pen, try changing the "Absolute" box's `top` and `right` values. Watch how it ignores the other boxes and flies to the corner of the gray parent box!
+
+<CodePenEmbed 
+  title="CSS Positioning Explorer"
+  penId="myrbQqW" 
+/>
+
+### Challenge Tasks:
+
+1.  In the CSS, change the `.navbar` class to `position: fixed` and `top: 0`. Scroll the page and see it stick!
+2.  Change the `.child` box to `left: 50px`. Notice how it moves relative to its parent.
+3.  Try giving a box a `z-index: 10`. Does it jump to the front of the stack?
+
+## The Z-Index (Stacking Order)
+
+When elements start overlapping, CSS needs to know which one goes on top. We use `z-index` for this. Think of it like layers in Photoshop or a deck of cards.
+
+* **Higher number** = Closer to you (on top).
+* **Lower number** = Further away (behind).
+
+```css
+.top-layer {
+  position: absolute;
+  z-index: 10; /* This stays on top */
+}
+
+.bottom-layer {
+  position: absolute;
+  z-index: 1;  /* This stays behind */
+}
+
+```
+
+## Summary Checklist
+
+* [x] I know that `relative` keeps the element in the flow.
+* [x] I understand that `absolute` needs a `relative` parent to stay "contained."
+* [x] I can use `fixed` to create menus that don't move when scrolling.
+* [x] I know that `z-index` only works on positioned elements.

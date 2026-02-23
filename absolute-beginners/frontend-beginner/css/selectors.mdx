@@ -1,0 +1,116 @@
+---
+sidebar_position: 2
+title: Targeting Your Styles
+sidebar_label: Selectors
+description: "Learn how to pick specific HTML elements to style."
+---
+
+In the last lesson, we styled every `<h1>` and every `<p>` on the page. But what if you want **one** specific paragraph to be red and the others to stay black? 
+
+This is where **Selectors** come in. Selectors are how you tell CSS exactly which HTML element you want to decorate.
+
+## The Three Main Selectors
+
+Think of selectors like a "Filtering System" for your code.
+
+### 1. Element Selector (The Broad Brush)
+Targets every single tag of that type.
+* **Best for:** Setting global styles like fonts or background colors.
+```css
+p {
+  color: gray; /* Every paragraph on the site becomes gray */
+}
+
+```
+
+### 2. Class Selector (The Multi-Tool)
+
+Targets specific elements that you "tag" with a class name. You can use the same class on many different elements.
+
+* **Syntax:** Starts with a **dot** `.`
+* **HTML:** `<p class="highlight">...</p>`
+
+```css
+.highlight {
+  background-color: yellow;
+  font-weight: bold;
+}
+
+```
+
+### 3. ID Selector (The Unique Name)
+
+Targets **only one** specific element on the entire page.
+
+* **Syntax:** Starts with a **hashtag** `#`
+* **HTML:** `<button id="submit-btn">...</button>`
+
+```css
+#submit-btn {
+  background-color: orange;
+}
+
+```
+
+## Interactive CodePen Challenge
+
+Let's see this in action! Open the CodePen below. Notice how we use different selectors to give each box a unique personality.
+
+<CodePenEmbed
+title="CSS Selectors Practice"
+penId="JoRPejq"
+/>
+
+### Try this in the CodePen:
+
+1. Change the `.box` class `border-radius` to `50%`. What happens? (All boxes change!)
+2. Change the `#special-box` color to `purple`. What happens? (Only one box changes!)
+
+## The "Specificity" Battle
+
+What happens if you style a paragraph with both a **Class** and an **ID**? Who wins?
+
+CSS follows a hierarchy of power:
+
+1. **ID (#)** is the strongest (The King).
+2. **Class (.)** is middle-strength (The Knight).
+3. **Element** is the weakest (The Citizen).
+
+:::tip Pro Tip
+In 2026, professional developers prefer using **Classes** (`.`) for almost everything. IDs are usually reserved for special JavaScript functions or very unique layout pieces.
+:::
+
+## Practice: Update Your Portfolio
+
+Go back to your `style.css` and try adding classes to your HTML:
+
+**1. Update your HTML:**
+
+```html
+<p class="intro-text">Welcome to my site!</p>
+<button id="main-contact-btn">Email Me</button>
+
+```
+
+**2. Update your CSS:**
+
+```css
+.intro-text {
+  font-style: italic;
+  font-size: 1.2rem;
+}
+
+#main-contact-btn {
+  background-color: #2ecc71;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+```
+
+## Summary Checklist
+
+* [x] I know that `.class` is for groups and `#id` is for unique items.
+* [x] I remember the **dot** for classes and the **hashtag** for IDs.
+* [x] I understand that IDs are "stronger" than classes.
