@@ -1,0 +1,87 @@
+---
+sidebar_position: 3
+title: "Colors & Backgrounds"
+sidebar_label: "Colors & Backgrounds"
+description: "Learn how to use Hex, RGB, and background images to make your site pop."
+---
+
+In the physical world, paint comes in buckets. In the digital world, paint comes in **codes**. To build a professional-looking site, you need to understand how computers "read" color and how to layer backgrounds to create depth.
+
+## Three Ways to Define Color
+
+While you can use names like `red` or `skyblue`, there are actually 140 named colors in HTML. Professionals need more variety, so we use these three systems:
+
+### 1. Hexadecimal (The Industry Standard)
+Hex codes start with a `#` followed by 6 characters. It is the most common way to share colors between designers and developers.
+* **Example:** `#ff5733` (A vibrant orange).
+
+### 2. RGB (The Digital Screen Way)
+Stands for **Red, Green, Blue**. It tells the screen how much of each light to mix.
+* **Example:** `rgb(255, 87, 51)`
+
+### 3. RGBA (The Transparency Trick)
+The `a` stands for **Alpha**. This allows you to make colors see-through!
+* **Value:** `0.0` (invisible) to `1.0` (fully solid).
+* **Example:** `rgba(0, 0, 0, 0.5)` (A 50% transparent black).
+
+## Beyond Solid Colors: Backgrounds
+
+You can style the background of any element (a button, a section, or the whole page) using the `background` properties.
+
+### Background Images
+
+Want a cool photo behind your text?
+
+```css
+.hero-section {
+  background-image: url('ocean.jpg');
+  background-size: cover;    /* Makes the image fit the whole area */
+  background-position: center; 
+}
+
+```
+
+### Linear Gradients
+
+Gradients are a smooth transition between two or more colors. They look very modern in 2026!
+
+```css
+.gradient-box {
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+}
+
+```
+
+## Interactive CodePen: Color Mixer
+
+Check out how these different color types look in real-time. Try changing the `background-color` of the second box to a `rgba` value to see it become transparent!
+
+<CodePenEmbed
+title="CSS Color Systems"
+penId="qEaWQNW"
+/>
+
+### Challenge Tasks:
+
+1. Find a color you love on [Adobe Color](https://color.adobe.com/) and copy the **Hex code**.
+2. Apply that Hex code to the `h1` in the CodePen.
+3. Try making the background a `linear-gradient`.
+
+## Accessibility: The Contrast Rule
+
+As a developer at **CodeHarborHub**, you have a responsibility to make sure everyone can read your site.
+
+:::danger Don't do this!
+Never put light gray text on a white background. It's impossible for people with low vision to read.
+:::
+
+:::tip
+Always use a [Contrast Checker](https://webaim.org/resources/contrastchecker/) to ensure your text "pops" against the background.
+:::
+
+## Summary Checklist
+
+* [x] I know that Hex codes start with `#`.
+* [x] I can use `rgba()` to create transparent overlays.
+* [x] I understand that `background-size: cover` helps images fit properly.
+* [x] I checked my color contrast for accessibility.

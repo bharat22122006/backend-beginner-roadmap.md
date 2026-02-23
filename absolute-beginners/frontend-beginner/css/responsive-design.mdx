@@ -1,0 +1,89 @@
+---
+sidebar_position: 9
+title: "Responsive Design & Media Queries"
+sidebar_label: Responsive Design
+description: "Learn how to make your website look great on phones, tablets, and desktops."
+---
+
+Have you ever visited a website on your phone and had to "pinch and zoom" just to read the text? That happens because the site isn't **Responsive**.
+
+Responsive design is the art of using CSS to automatically adjust your layout based on the screen size. We do this using **Media Queries**.
+
+## 1. The Magic Meta Tag
+
+Before CSS can do its job, you must tell the browser to respect the phone's screen width. This tag goes inside your HTML `<head>`:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+
+## 2. Media Queries: The "If" Statements of CSS
+
+A Media Query tells the browser: *"**If** the screen is smaller than 768px, use **these** styles instead of the default ones."*
+
+### The Syntax:
+
+```css
+/* Desktop Styles (Default) */
+body {
+  background-color: white;
+}
+
+/* Tablet & Mobile Styles */
+@media (max-width: 768px) {
+  body {
+    background-color: lightblue;
+  }
+  
+  .container {
+    flex-direction: column; /* Stack items instead of side-by-side */
+  }
+}
+
+```
+
+## 3. Breakpoints: Where the Magic Happens
+
+Breakpoints are the "points" where the layout changes. While every device is different, these are the standard targets:
+
+* **480px:** Mobile phones.
+* **768px:** Tablets.
+* **1024px+:** Desktops and Laptops.
+
+## Interactive CodePen: The Screen-Shifter
+
+In this Pen, try resizing the preview window width. Watch how the layout flips from a **Row** (Desktop) to a **Column** (Mobile) once the screen gets narrow!
+
+<CodePenEmbed
+title="Responsive Media Query Practice"
+penId="VYKZVRp"
+/>
+
+### Challenge Tasks:
+
+1. Resize the window until the background turns **coral**.
+2. In the CSS, change the `@media` width to `500px`. Now how small do you have to go to see the change?
+3. Add a rule inside the media query to hide the `img` tag (`display: none;`) on small screens.
+
+## Pro Strategy: Mobile-First
+
+Most professional developers at **CodeHarborHub** use a "Mobile-First" approach.
+
+1. Write your CSS for the small screen first (it's simpler!).
+2. Use `@media (min-width: 768px)` to add complexity for bigger screens.
+
+This makes your site load faster on phones and keeps your code cleaner.
+
+## Summary Checklist
+
+* [x] I added the `viewport` meta tag to my HTML.
+* [x] I understand that `@media` creates a conditional style rule.
+* [x] I can change a Flexbox layout from `row` to `column` for mobile.
+* [x] I practiced resizing my browser to test breakpoints.
+
+:::success FINAL CHAPTER COMPLETE!
+You have mastered the foundations of CSS. You can now structure content, style it with color and fonts, move it with the Box Model and Flexbox, and make it work on mobile.
+
+**Final Challenge:** [CSS Portfolio Project](./css-challenge) — It's time to take that plain HTML portfolio you built and turn it into a modern, responsive masterpiece!
+:::
