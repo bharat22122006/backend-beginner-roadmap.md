@@ -1,0 +1,79 @@
+---
+sidebar_position: 2
+title: "Variables: Giving JS a Memory"
+sidebar_label: Variables
+description: "Learn how to store and manage data using let and const."
+---
+
+Imagine you are moving into a new house. You have a lot of stuff, so you put your things into **boxes** and write **labels** on them (like "Kitchen Supplies" or "Books"). 
+
+In JavaScript, a **Variable** is just a box with a label that holds a piece of information.
+
+## How to Create a Variable
+
+To create a variable, we use a keyword, give it a name, and assign a value to it using the `=` sign.
+
+```javascript
+let playerName = "Ajay";
+let playerScore = 100;
+
+```
+
+### The Three Parts of a Variable:
+
+1. **The Keyword:** (`let` or `const`) This tells the computer you are creating a new "box."
+2. **The Label (Name):** This is how you will refer to the data later.
+3. **The Value:** The actual data you are storing inside the box.
+
+## `let` vs `const` (The Golden Rule)
+
+In modern JavaScript (2026), we use two main keywords. Choosing the right one is very important!
+
+### 1. `let` (The Changeable Box)
+
+Use `let` when the information inside the box **will change** later (like a score in a game or a timer).
+
+```javascript
+let score = 0;
+score = 10; // This is allowed!
+```
+
+### 2. `const` (The Locked Box)
+
+Short for "Constant." Use `const` for information that **should never change** (like your birthday or a fixed setting).
+*Pro Tip: If you aren't sure, use `const` first!*
+
+```javascript
+const birthYear = 2000;
+birthYear = 2005; // ❌ ERROR! You can't change a constant.
+```
+
+## Interactive Playground
+
+Let's see how variables work in real-time. In this CodePen, we have a "Counter" app. One variable keeps track of the number!
+
+<CodePenEmbed
+title="JS Variables Counter"
+penId="dPpyRGb"
+/>
+
+### Challenge Tasks:
+
+1. In the JS tab, look for `let count = 0;`. Change the `0` to `100`. Notice the starting number changes!
+2. Try changing the keyword `let` to `const`. Click the "Increase" button. Does it still work? (Hint: Check your console for an error!)
+
+## Naming Rules (The "Dos and Don'ts")
+
+You can't just name your variables anything. JavaScript has a few rules:
+
+* **Do** use **camelCase**: Start with a small letter, and every new word starts with a Capital (e.g., `userProfilePicture`).
+* **Do** use descriptive names: `let price = 10;` is better than `let p = 10;`.
+* **Don't** start with a number: `let 1stPlace = "Gold";` will break your code.
+* **Don't** use spaces: `let user name = "Ajay";` is not allowed.
+
+## Summary Checklist
+
+* [x] I understand that a variable is a **container** for data.
+* [x] I know that `let` is for values that change.
+* [x] I know that `const` is for values that stay the same.
+* [x] I practiced naming variables using **camelCase**.
