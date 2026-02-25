@@ -1,0 +1,106 @@
+---
+sidebar_position: 3
+title: Data Types in JS
+sidebar_label: Data Types
+description: "Learn the different types of data JavaScript can handle, from text to logic."
+---
+
+JavaScript needs to know what kind of data it is working with so it knows what it can do with it. For example, you can multiply two **Numbers**, but you can't multiply two **Sentences**.
+
+There are 7 "Primitive" data types in JS, but as a beginner, you only need to master the **Big 5**.
+
+## 1. Strings (Text)
+A **String** is just plain text. It must always be wrapped in quotes: single `' '`, double `" "`, or backticks <code>&#x60; &#x60;</code>.
+
+* **Analogy:** Like a "string" of pearls, it is a sequence of characters linked together.
+* **Use for:** Names, addresses, or any messages.
+
+```javascript
+const name = "Ajay Dhangar";
+const message = 'Welcome to CodeHarborHub';
+```
+
+## 2. Numbers (Math)
+
+Unlike many other languages, JS only has one type for numbers. They can be whole integers or decimals. **Do not use quotes** for numbers, or JS will think they are text!
+
+* **Use for:** Scores, prices, age, or calculations.
+
+```javascript
+const age = 25;
+const price = 9.99;
+
+// Comparison:
+const score = 10;   // This is a Number (You can do math with this)
+const points = "10"; // This is a String (This is just a picture of a 10)
+```
+
+## 3. Booleans (Logic)
+
+A Boolean can only be one of two values: `true` or `false`.
+
+* **Analogy:** Like a light switch. It is either **ON** or **OFF**.
+* **Use for:** Checking if a user is logged in, if a game is over, or if a checkbox is clicked.
+
+```javascript
+let isDarkMode = true;
+let isGameOver = false;
+```
+
+## 4. Undefined (The Empty Box)
+
+When you create a variable but don't put anything in it yet, it is `undefined`.
+
+* **Analogy:** You bought a box (variable), but it's still empty and waiting for content.
+
+```javascript
+let mySecret;
+console.log(mySecret); // Result: undefined
+```
+
+## 5. Null (The Intentional Nothing)
+
+`null` is a value that represents "nothing" or "empty" on purpose.
+
+* **The Difference:** `undefined` is an accidental empty box. `null` is you specifically saying, "This box is intentionally empty."
+
+```javascript
+let userAwards = null; // The user has zero awards right now
+```
+
+## Interactive Lab: The "Typeof" Tool
+
+How do you check what is inside a variable? We use a special command called `typeof`.
+
+<CodePenEmbed
+title="JS Data Types Explorer"
+penId="bNwNbOE"
+/>
+
+### Challenge Tasks:
+
+1. In the JS tab, create a variable `let test = "5";`.
+2. Use `console.log(typeof test);`. Is it a number or a string?
+3. Remove the quotes around the `5`. Check the `typeof` again. See the difference?
+
+## Pro Tip: Template Literals
+
+When you want to mix a **String** with a **Variable**, use backticks ``` and the `${}` syntax. It’s much easier than using the `+` sign!
+
+```javascript title="index.js"
+const username = "Ajay";
+
+// The old way (Hard)
+console.log("Hello " + username + "!"); 
+
+// The modern way (Easy)
+console.log(`Hello ${username}!`); 
+```
+
+## Summary Checklist
+
+* [x] I know that **Strings** must be inside quotes.
+* [x] I understand that **Numbers** do not use quotes.
+* [x] I know that **Booleans** are for True/False logic.
+* [x] I can use `typeof` to identify a data type.
+* [x] I understand the difference between `null` and `undefined`.
