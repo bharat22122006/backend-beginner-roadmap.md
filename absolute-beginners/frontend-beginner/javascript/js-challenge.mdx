@@ -1,0 +1,113 @@
+---
+sidebar_position: 7
+title: "Final Challenge: The Smart Task Master"
+sidebar_label: JS Challenge
+description: "Put it all together! Build a functional To-Do list app using JavaScript."
+---
+
+You’ve learned about **Variables** (to store data), **Functions** (to perform actions), the **DOM** (to change the page), and **Events** (to react to the user). 
+
+Now, we combine them into one real-world project.
+
+## The Project Blueprint
+
+We are building a Task Manager. Here is how our "Brain" (JS) will handle the logic:
+
+1.  **Variable:** Store the input text from the user.
+2.  **Event:** Listen for a "Click" on the Add button.
+3.  **Function:** Create a new `<li>` element.
+4.  **DOM:** Inject that new element into the `<ul>` list.
+
+## Step-by-Step Implementation
+
+### Step 1: The Structure (HTML)
+
+First, we need a place for users to type and a list to show the tasks.
+
+```html title="index.html"
+<div class="app-container">
+  <h1>Task Master 📝</h1>
+  <div class="input-group">
+    <input type="text" id="taskInput" placeholder="Enter a new task...">
+    <button id="addBtn">Add Task</button>
+  </div>
+  <ul id="taskList">
+    </ul>
+</div>
+
+```
+
+### Step 2: The "Brain" Setup (Variables)
+
+In your `script.js`, grab the elements you need to talk to.
+
+```javascript title="script.js"
+const input = document.getElementById('taskInput');
+const btn = document.getElementById('addBtn');
+const list = document.getElementById('taskList');
+```
+
+### Step 3: The Action (Function & Event)
+
+We need a function that runs whenever the button is clicked.
+
+```javascript title="script.js"
+btn.addEventListener('click', function() {
+  // 1. Get the value from the input
+  const taskText = input.value;
+
+  // 2. Check if the input is empty (Don't add empty tasks!)
+  if (taskText === "") {
+    alert("Please enter a task!");
+    return;
+  }
+
+  // 3. Create a new List Item (li)
+  const newTask = document.createElement('li');
+  newTask.innerText = taskText;
+
+  // 4. Add a "Delete" feature to the task
+  newTask.addEventListener('click', function() {
+    newTask.style.textDecoration = "line-through";
+    newTask.style.opacity = "0.5";
+  });
+
+  // 5. Append (Add) the task to our UL list
+  list.appendChild(newTask);
+
+  // 6. Clear the input box for the next task
+  input.value = "";
+});
+```
+
+## Interactive Demo
+
+Check out the completed version below. Try adding a few tasks and clicking them to "cross them off"!
+
+<CodePenEmbed
+title="Final JS Project: Task Master"
+penId="QwKjKMQ"
+/>
+
+## Level Up: The "Pro" Challenges
+
+If you finished the basic version, try adding these features to earn your **CodeHarborHub Master Badge**:
+
+1. **Delete Button:** Add a "❌" button next to each task that removes the element entirely using `element.remove()`.
+2. **Enter Key Support:** Make it so the user can press the "Enter" key on their keyboard to add a task, not just click the button.
+3. **Task Counter:** Create a variable that counts how many tasks are on the list and displays "You have X tasks left."
+
+## Graduation Checklist
+
+* [x] I used `document.getElementById` to find my elements.
+* [x] I used a `click` event listener.
+* [x] I used `document.createElement` to generate new HTML.
+* [x] I managed my app data using **Variables**.
+
+---
+
+:::success 🎉 CONGRATULATIONS!
+You have officially completed the **Frontend Beginner** path. You can now build, style, and power a website from scratch.
+
+**What's next?** The world of **React.js** or **Backend Development** awaits. Keep building, keep breaking things, and keep sailing with **CodeHarborHub**!
+:::
