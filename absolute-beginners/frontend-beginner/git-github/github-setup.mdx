@@ -1,0 +1,87 @@
+---
+sidebar_position: 3
+title: "Connecting to the Cloud: GitHub Setup"
+sidebar_label: "3. GitHub Setup"
+description: "Learn how to create a GitHub account and connect it to your local environment."
+---
+
+Think of GitHub as your **Professional Portfolio**. It’s where your code lives, where you collaborate with others at **CodeHarborHub**, and where future employers look to see your progress.
+
+To get your computer talking to GitHub, we need to follow three main steps.
+
+## 1. Create Your Account
+
+First things first: head over to [GitHub.com](https://github.com) and sign up.
+
+* **Pick a professional username:** This will stay with you for a long time (e.g., `ajay-developer` is better than `cool-gamer-99`).
+* **Verify your email:** You won't be able to contribute until you do!
+
+## 2. Introduce Yourself to Git
+
+[Git](https://git-scm.com/install/) is installed on your computer, but it doesn't know who you are yet. We need to give it your name and email so that your "Save Points" have your signature on them.
+
+Open your **Terminal** and type these two lines (replace with your info):
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your-email@example.com"
+```
+
+## 3. The "Secret Handshake" (SSH Keys)
+
+GitHub needs to know that the code coming from your computer is actually from *you*. Instead of using a password every time, we use an **SSH Key**.
+
+Think of an SSH Key as a **Digital Keycard**. You keep the "Private Key" on your laptop and give the "Public Key" to GitHub. When they match, the door opens!
+
+### How to generate your Key:
+
+1. **Open your terminal** and type:
+
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+*(Press Enter for all prompts—don't worry about a password for now.)*
+
+2. **Copy the key** to your clipboard:
+
+* **Windows:** `clip < ~/.ssh/id_ed25519.pub`
+* **Mac:** `pbcopy < ~/.ssh/id_ed25519.pub`
+
+
+3. **Add to GitHub:** * Go to GitHub **Settings** -> **SSH and GPG keys** -> **New SSH Key**.
+* Paste your key and give it a name like "My Laptop".
+
+## Your First Repository (Remote Storage)
+
+Now, let's create a home for your project on GitHub!
+
+1. Click the **+** icon on GitHub and select **New repository**.
+2. Name it `my-first-project`.
+3. Keep it **Public** so others can see your hard work!
+4. Copy the URL provided (it looks like `git@github.com:username/repo.git`).
+
+### Connecting Local to Remote:
+
+In your project folder on your computer, run this command to tell Git where the "Cloud Version" lives:
+
+```bash
+git remote add origin [PASTE_YOUR_URL_HERE]
+```
+
+## Testing the Connection
+
+Let's see if the bridge is working. Try to push your first commit:
+
+```bash
+git push -u origin main
+```
+
+**Success?** Refresh your GitHub page. If you see your files there, you are officially a **Cloud-Connected Developer!**
+
+## Summary Checklist
+
+* [x] I created a GitHub account.
+* [x] I configured my `user.name` and `user.email`.
+* [x] I generated and added my **SSH Key** to GitHub.
+* [x] I linked my local folder to a **Remote Repository**.
