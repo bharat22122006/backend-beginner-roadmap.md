@@ -1,0 +1,97 @@
+---
+sidebar_position: 6
+title: "Events: Making Your Site React"
+sidebar_label: Events
+description: "Learn how to listen for user actions like clicks, keypresses, and scrolls."
+---
+
+If **DOM Manipulation** is the ability to change the page, then **Events** are the "Triggers" that tell JavaScript *when* to make those changes. 
+
+An Event is simply a signal that something has happened. Your job as a developer is to "Listen" for those signals.
+
+## The Event Listener (The Watchman)
+
+To react to an event, we use a special method called `addEventListener`. Think of it as hiring a 24/7 watchman for a specific button. You tell the watchman: *"Watch this button. **If** it gets clicked, **run** this function."*
+
+### The Syntax:
+
+```javascript
+const btn = document.querySelector('#myButton');
+
+// element.addEventListener('event_type', function_to_run);
+btn.addEventListener('click', function() {
+  alert("Button was clicked! 🎉");
+});
+```
+
+## Common Types of Events
+
+There are hundreds of events, but you will use these "Big Four" almost every day:
+
+### 1. Click (`click`)
+
+Triggered when the user clicks (or taps) an element.
+
+* **Use for:** Submitting forms, opening menus, or liking a post.
+
+### 2. Input (`input`)
+
+Triggered every time a user types a single character into an input box.
+
+* **Use for:** Real-time search or checking password strength.
+
+### 3. Mouse Over (`mouseover`)
+
+Triggered when the mouse pointer enters the area of an element.
+
+* **Use for:** Showing tooltips or changing image highlights.
+
+### 4. Submit (`submit`)
+
+Triggered when a user sends a form.
+
+* **Important:** We usually use `event.preventDefault()` here so the page doesn't refresh!
+
+## Interactive Lab: The Event Dashboard
+
+Open this CodePen and move your mouse around. Notice how the "Event Log" updates instantly based on what you are doing!
+
+<CodePenEmbed
+title="JS Event Listeners Practice"
+penId="gbwawWg"
+/>
+
+### Challenge Tasks:
+
+1. Find the `mouseover` event in the JS tab and change the color to `orange`.
+2. Add a new listener for `dblclick` (double click) that changes the text to "Double Magic!".
+3. Create an input box and use the `keyup` event to display whatever the user types onto the screen.
+
+## The Event Object (`e`)
+
+When an event happens, JavaScript automatically sends a "Package" of information to your function. We usually call this package `e` or `event`.
+
+It contains useful data, like which key was pressed or exactly where the mouse was clicked.
+
+```javascript
+const myInput = document.querySelector('input');
+
+myInput.addEventListener('keydown', function(e) {
+  console.log(`You just pressed the ${e.key} key!`);
+});
+```
+
+## The "Interactive" Formula
+
+To build any interactive feature on **CodeHarborHub**, just follow this formula:
+
+1. **Target:** Find the element (`querySelector`).
+2. **Listen:** Add the listener (`addEventListener`).
+3. **React:** Write the code to change the DOM inside the function.
+
+## Summary Checklist
+
+* [x] I know that an **Event** is a signal that something happened.
+* [x] I can use `addEventListener` to trigger code.
+* [x] I understand common events like `click`, `input`, and `mouseover`.
+* [x] I know how to use the event object (`e`) to get extra details.

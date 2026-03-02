@@ -1,0 +1,93 @@
+---
+sidebar_position: 4
+title: "Functions: The Action Creators"
+sidebar_label: Functions
+description: "Learn how to write reusable blocks of code that perform specific tasks."
+---
+
+A **Function** is a reusable block of code designed to perform a specific task. Instead of writing the same 10 lines of code over and over again, you wrap them in a function and "call" it whenever you need it.
+
+## The "Cooking" Analogy
+
+Think of a function like a **Microwave**. 
+1. **The Input:** You put in a cold slice of pizza (Data).
+2. **The Process:** You press the "Start" button (The Function runs its code).
+3. **The Output:** You get back a hot slice of pizza (The Result).
+
+You don't need to know how the microwave works inside every time; you just need to know how to press the button!
+
+## How to Build a Function
+
+To create a function, you follow these steps:
+
+1. **Declare** it (Give it a name).
+2. **Define** the task (Write the code inside `{ }`).
+3. **Call** it (Tell it to run!).
+
+```javascript
+// 1. Defining the function
+function sayHello() {
+  console.log("Hello CodeHarborHub!");
+}
+
+// 2. Calling (running) the function
+sayHello();
+```
+
+## Inputs: Parameters & Arguments
+
+Sometimes, a function needs extra information to do its job. We call these **Parameters**.
+
+Imagine a greeting function. It’s boring if it only says "Hello." We want it to say hello to a *specific* person.
+
+```javascript
+// 'name' is a parameter (a placeholder)
+function greetUser(name) {
+  console.log(`Hello, ${name}! Welcome back.`);
+}
+
+// 'Ajay' is the argument (the actual data)
+greetUser("Ajay"); 
+greetUser("Vikas");
+```
+
+## Outputs: The `return` Keyword
+
+Most functions don't just "do" something; they "give back" a result. We use the `return` keyword for this. Once a function hits `return`, it stops and hands the value back to you.
+
+```javascript
+function addNumbers(a, b) {
+  return a + b;
+}
+
+let sum = addNumbers(5, 10); // sum now holds the value 15
+console.log(sum);
+```
+
+## Interactive Lab: The "Magic Math Machine"
+
+In this CodePen, try changing the numbers being passed into the function. Watch how the function processes the math and updates the screen!
+
+<CodePenEmbed
+title="JS Functions Practice"
+penId="Kwgdgao"
+/>
+
+### Challenge Tasks:
+
+1. Look for the `multiply` function in the JS tab.
+2. Create a new function called `subtract` that takes two numbers and returns the difference.
+3. Call your new function and log the result to the console.
+
+## Why Use Functions?
+
+* **Don't Repeat Yourself (DRY):** Write once, use a thousand times.
+* **Organization:** Break a big, scary project into small, manageable "tasks."
+* **Easy Testing:** If something breaks, you know exactly which "recipe" is wrong.
+
+## Summary Checklist
+
+* [x] I know that a function is a **reusable** block of code.
+* [x] I understand that **Parameters** are inputs and **Return** is the output.
+* [x] I can define a function using the `function` keyword.
+* [x] I can "call" a function to make it run.

@@ -1,0 +1,98 @@
+---
+sidebar_position: 5
+title: DOM Manipulation
+sidebar_label: DOM Manipulation
+description: "Learn how to use JavaScript to select, change, and animate HTML elements in real-time."
+---
+
+Up until now, your JavaScript has been living inside the "Console." It’s been doing math and storing variables, but the user can't see that. 
+
+**DOM Manipulation** is how JavaScript talks to your HTML.
+
+## What is the DOM?
+
+**DOM** stands for **Document Object Model**. 
+
+When a browser loads your HTML file, it converts it into a "Tree" structure. Every tag (`<h1>`, `<div>`, `<p>`) is a "Branch" or a "Leaf" on that tree. JavaScript can climb this tree, find a specific leaf, and change its color, text, or even delete it!
+
+## Step 1: Selecting Elements (Finding the Target)
+
+Before you can change something, you have to "find" it. Imagine you are a sniper; you need a target. 
+
+In modern JS, we use two main "Scanners":
+
+### 1. `document.getElementById('id-name')`
+
+The fastest way to find a **single, unique** element.
+
+```javascript
+const myTitle = document.getElementById('main-title');
+```
+
+### 2. `document.querySelector('.class-name')`
+
+The "Swiss Army Knife." It can find anything using CSS selectors (tags, classes, or IDs).
+
+```javascript
+const myButton = document.querySelector('.submit-btn');
+const firstParagraph = document.querySelector('p');
+```
+
+## Step 2: Changing Elements (The Transformation)
+
+Once you have grabbed the element and stored it in a variable, you can change it!
+
+### Changing Text
+
+```javascript
+const heading = document.querySelector('h1');
+heading.innerText = "Hello CodeHarborHub!"; // Changes the text
+```
+
+### Changing Style
+
+```javascript
+const box = document.querySelector('.box');
+box.style.backgroundColor = "blue"; // Changes the CSS
+box.style.borderRadius = "50%";
+```
+
+### Adding/Removing Classes
+
+Instead of changing styles one by one, professionals usually just swap classes.
+
+```javascript
+const card = document.querySelector('.card');
+card.classList.add('active');    // Adds the .active CSS class
+card.classList.remove('hidden'); // Removes the .hidden CSS class
+```
+
+## Interactive Lab: The "Shape Shifter"
+
+In this CodePen, notice how JavaScript "grabs" the box and changes its properties when you edit the code.
+
+<CodePenEmbed
+title="JS DOM Manipulation Practice"
+penId="JoRYRKq"
+/>
+
+### Challenge Tasks:
+
+1. Find the line `box.style.backgroundColor = "red";` and change it to `green`.
+2. Use `box.innerText = "I have been hacked!";` to change the text inside.
+3. Try changing the `width` of the box to `300px` using `.style.width`.
+
+## The "Workflow" Secret
+
+Every time you want to make a change on a website, you follow these **3 Steps**:
+
+1. **SELECT:** `const element = document.querySelector(...)`
+2. **LISTEN:** (We will learn this in the next lesson!)
+3. **CHANGE:** `element.style.color = "blue"`
+
+## Summary Checklist
+
+* [x] I know that **DOM** stands for Document Object Model.
+* [x] I can find an element using `getElementById` or `querySelector`.
+* [x] I can change the text of an element using `.innerText`.
+* [x] I understand that I can edit CSS directly using `.style`.
