@@ -1,0 +1,8 @@
+{
+  "label": "Frontend Beginner",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Welcome to CodeHarborHub! This guide is designed to take you from Hello World to building modern, tested web applications. In 2026, frontend development is more than just making things look pretty, it's about performance, accessibility, and clean code."
+  }
+}

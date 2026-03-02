@@ -1,0 +1,86 @@
+---
+sidebar_position: 4
+title: "Branching & Merging: Parallel Universes"
+sidebar_label: "4. Branching & Merging"
+description: "Learn how to work on new features safely without breaking your main project."
+---
+
+When you are working on a professional project at **CodeHarborHub**, you never want to break the "Live" version of your website. This is why we use **Branches**.
+
+## What is a Branch?
+
+By default, every Git project has a main branch (usually called `main`). 
+* **The `main` branch** is like the "Master Copy" of your project. It should always be clean and working.
+* **A Feature Branch** is a copy you pull off to the side to work on something new (like a "Contact Us" page or a new button).
+
+## The Branching Workflow
+
+### 1. Create a New Branch
+
+Before you start a new task, create a new branch. This keeps your work isolated.
+
+```bash
+git checkout -b feature-new-button
+```
+
+*The `-b` stands for "new branch". The `checkout` tells Git to move your "Time Machine" to that branch.*
+
+### 2. Do Your Work
+
+Make your changes, `add` them, and `commit` them just like normal. These saves only exist in this "Parallel Universe."
+
+### 3. Switch Back to Main
+
+Once you are happy with your work, switch back to the "Master Copy."
+
+```bash
+git checkout main
+```
+
+### 4. The Merge (The Reunion)
+
+Now, bring the changes from your feature branch into the main branch.
+
+```bash
+git merge feature-new-button
+```
+
+## Dealing with "Merge Conflicts"
+
+Sometimes, Git gets confused. If you change Line 10 on the `main` branch and also change Line 10 on your `feature` branch, Git won't know which one you want to keep. This is called a **Merge Conflict**.
+
+**Don't Panic!** When this happens, VS Code will highlight the conflicting lines in **Red** and **Blue**. You simply click:
+
+* "Accept Current Change" (Keep the old one)
+* "Accept Incoming Change" (Keep the new one)
+* "Accept Both"
+
+## The Professional "Git Flow"
+
+In the real world, developers follow this loop:
+
+1. **Pull** the latest code from the team (`git pull origin main`).
+2. **Branch** out for a new feature (`git checkout -b my-feature`).
+3. **Code** and **Commit** small changes.
+4. **Push** the branch to GitHub (`git push origin my-feature`).
+5. **Merge** it after it's been checked by others.
+
+## Interactive Challenge: The Branch Hopper
+
+Try to visualize this sequence. If you are on the `main` branch and you want to fix a typo:
+
+1. `git checkout -b fix-typo`
+2. *Fix the typo in the file.*
+3. `git add .`
+4. `git commit -m "Fixed typo in footer"`
+5. `git checkout main`
+6. `git merge fix-typo`
+
+**Why go back to `main` before merging?** Because you always merge the "New Work" **into** the "Master Copy."
+
+## Summary Checklist
+
+* [x] I know that the `main` branch should always be stable.
+* [x] I can create a new branch using `git checkout -b`.
+* [x] I can switch between branches using `git checkout`.
+* [x] I understand that a **Merge Conflict** is just a choice I need to make.

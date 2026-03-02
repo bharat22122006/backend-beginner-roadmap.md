@@ -1,0 +1,85 @@
+---
+sidebar_position: 2
+title: "Git Basics: The Big Three Commands"
+sidebar_label: "2. Git Basics"
+description: "Master the workflow of Add, Commit, and Push to save your progress."
+---
+
+Saving code with Git is a bit different than hitting `Ctrl + S` in Word. It’s more like a **Photography Session**. 
+
+Imagine you are a photographer:
+1. **The Pose:** You arrange your subjects (Stage your files).
+2. **The Click:** You take the photo (Commit the snapshot).
+3. **The Gallery:** You upload the photo to your online portfolio (Push to GitHub).
+
+## The Three Stages of Git
+
+Before we learn the commands, you need to visualize where your code "lives" during the saving process.
+
+1.  **Working Directory:** This is your "Work Desk." Any changes you make in VS Code happen here.
+2.  **Staging Area:** This is your "Shopping Cart." You put the changes here that you are *ready* to save.
+3.  **Local Repository:** This is your "Vault." Once you commit, your changes are safely locked in the history of your computer.
+
+## The Commands You'll Use 90% of the Time
+
+Open your terminal in VS Code (Press `Ctrl + ` `) and let's walk through a save point.
+
+### Step 1: `git add` (The Selection)
+
+This tells Git: "Hey, look at these specific changes I just made."
+
+```bash
+git add index.html
+``` 
+
+:::tip 
+Use `git add .` to add **every** file you changed at once!*
+:::
+
+### Step 2: `git commit` (The Snapshot)
+
+This creates the actual "Save Point" in your timeline. You **must** add a message so you know what you did.
+
+```bash
+git commit -m "Added a cool new button to the homepage"
+```
+
+### Step 3: `git push` (The Upload)
+
+This sends your local "Vault" up to the cloud (GitHub).
+
+```bash
+git push origin main
+```
+
+## Visualizing the Flow
+
+### Interactive Lab: Git Command Simulator
+
+Think you’ve got it? Let's test your logic. If you were building a website for **CodeHarborHub**, in what order would you do these tasks?
+
+1. **Modify** the `style.css` to make the background blue.
+2. Type `git add style.css` to put it in the cart.
+3. Type `git commit -m "Changed background to blue"`.
+4. Type `git push` to show it to your team.
+
+**What happens if you skip Step 2?** Git will tell you: *"Nothing added to commit."* You can't take a photo if nobody is standing in front of the camera!
+
+### Checking the Status
+
+If you ever feel lost and don't know if you saved your work, use this "GPS" command:
+
+```bash
+git status
+```
+
+* **Red Files:** You changed them, but haven't "Added" them yet.
+* **Green Files:** They are in the "Cart" (Staged) and ready to be committed.
+* **"Nothing to commit":** You are all caught up!
+
+## Summary Checklist
+
+* [x] I know that `git add` puts files in the **Staging Area**.
+* [x] I know that `git commit` creates a permanent **Save Point**.
+* [x] I understand that `git push` sends my work to **GitHub**.
+* [x] I can use `git status` to check my progress.
