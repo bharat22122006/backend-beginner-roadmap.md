@@ -1,0 +1,69 @@
+---
+sidebar_position: 3
+title: "Adding and Removing Packages"
+sidebar_label: "3. Installing Dependencies"
+description: "Master the npm install command and understand the difference between production and development tools."
+---
+
+When you find a cool tool on the [NPM website](https://www.npmjs.com), you need to "install" it to use it in your code. 
+
+There are two main ways to install packages, depending on **when** you need them.
+
+## 1. Production Dependencies (`--save`)
+
+These are the "Main Ingredients." Your website **needs** these to function for the user. If you are building a calculator, the math library you use is a production dependency.
+
+**The Command:**
+```bash
+npm install lodash
+```
+
+* **What happens?** NPM downloads the code into `node_modules` and adds it to the `"dependencies"` section of your `package.json`.
+* **Shortcut:** You can just type `npm i lodash`.
+
+## 2. Dev Dependencies (`--save-dev`)
+
+These are the "Kitchen Tools." You need a knife and a pan to **cook** the meal, but the customer doesn't eat the knife!
+
+"DevDeps" are tools you only use while you are coding (like a tool that auto-refreshes your browser or a code-cleaner).
+
+**The Command:**
+
+```bash
+npm install nodemon --save-dev
+```
+
+* **Shortcut:** You can use `-D` as a shortcut: `npm i nodemon -D`.
+* **Look inside:** These will appear in a special `"devDependencies"` section in your `package.json`.
+
+## What is this `package-lock.json` file?
+
+The moment you install your first package, a new, scary-looking file called `package-lock.json` will appear.
+
+**Don't delete it!** Think of it as a **Security Seal**. While `package.json` says "I need a math library," the `package-lock.json` says "I need **exactly** version 4.17.21 of the math library with this specific security ID."
+
+It ensures that if 10 people are working on the same project at **CodeHarborHub**, everyone has the **exact same** version of the code.
+
+## Removing a Package
+
+If you decide you don't like a tool, don't just delete the folder manually. Use the "clean-up" command:
+
+```bash
+npm uninstall lodash
+```
+
+This safely removes the code from `node_modules` and deletes the line from your `package.json` recipe.
+
+## Summary Comparison
+
+| Type | Command | Where it goes | Purpose |
+| --- | --- | --- | --- |
+| **Dependency** | `npm i <name>` | `"dependencies"` | Needed for the website to run. |
+| **DevDependency** | `npm i <name> -D` | `"devDependencies"` | Only needed by the developer. |
+
+## Summary Checklist
+
+* [x] I can install a package using `npm i`.
+* [x] I understand that `-D` is for tools only I (the developer) use.
+* [x] I know that `package-lock.json` is a security lock for versions.
+* [x] I can use `npm uninstall` to keep my project clean.

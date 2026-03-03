@@ -1,0 +1,86 @@
+---
+sidebar_position: 4
+title: "Final Challenge: The Terminal Cow"
+sidebar_label: "4. NPM Challenge"
+description: "Put your NPM skills to the test by creating a project and running your first package."
+---
+
+It’s time to use your "Developer Warehouse" (NPM) to add a fun feature to your computer. We are going to install a package called **Cowsay**. 
+
+Why? Because if you can install a cow that talks, you can install **React**, **Vite**, or any other professional tool!
+
+## The Mission Blueprint
+
+Follow these **4 Steps** to complete your graduation:
+
+### 1. The Setup
+Create a brand new folder on your computer named `my-npm-adventure`. Open your terminal (or VS Code) inside that folder and initialize your "Recipe File":
+```bash
+npm init -y
+```
+
+*Check: Do you see a `package.json` file now? Good!*
+
+### 2. The Installation
+
+Now, let's "borrow" the Cowsay code from the warehouse.
+
+```bash
+npm install cowsay
+```
+
+*Check: Open your `package.json`. You should see `cowsay` listed under `"dependencies"`. Also, notice the giant `node_modules` folder that just appeared!*
+
+### 3. The Execution
+
+To run a package we just downloaded, we use a special command called `npx` (think of it as "NPM Execute").
+
+```bash
+npx cowsay "CodeHarborHub is the best!"
+```
+
+**Look at your terminal!** A cow should appear, speaking the words you typed. You didn't write the code to draw that cow; you used the power of NPM!
+
+## Level Up: Create a Custom Script
+
+Professional developers don't like typing long commands. They create **Shortcuts**.
+
+1. Open your `package.json` file.
+2. Find the `"scripts"` section.
+3. Add a new line called `"moo"` like this:
+
+```json {4}
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "start": "node index.js",
+  "moo": "cowsay CodeHarborHub Graduation!"
+},
+```
+
+4. Now, go back to your terminal and run your shortcut:
+
+```bash
+npm run moo
+```
+
+## What did you just learn?
+
+By completing this challenge, you have mastered the **Standard Developer Workflow**:
+
+* **Init:** Created a project foundation.
+* **Install:** Brought in external code.
+* **Execute:** Ran a third-party tool.
+* **Script:** Created a custom automation shortcut.
+
+## Graduation Checklist
+
+* [x] I successfully created a `package.json` using `npm init`.
+* [x] I installed a package and saw it in `node_modules`.
+* [x] I ran a package using the `npx` command.
+* [x] I created a custom script and ran it with `npm run`.
+
+:::success 🎉 CONGRATULATIONS!
+You have officially completed the **NPM Basics** module. You are no longer just a "Coder"—you are a "Developer" who knows how to use the global ecosystem of software.
+
+**What's Next?** You are now fully prepared for the **Intermediate Frontend** track, where we will use NPM to install **React** and build modern, high-speed web applications!
+:::
