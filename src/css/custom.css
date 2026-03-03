@@ -4,6 +4,7 @@
 
 :root {
   --ifm-color-primary: #2e93e2;
+  --ifm-background-color: #FFFDD0; /* background color*/
   --ifm-color-primary-dark: #29784c;
   --ifm-color-primary-darker: #277148;
   --ifm-color-primary-darkest: #205d3b;
@@ -49,6 +50,7 @@
 
 [data-theme="dark"] {
   --ifm-color-primary: #48bf84;
+  --ifm-background-color: #121212; /* background color */
   --ifm-color-primary-dark: #21af90;
   --ifm-color-primary-darker: #1fa588;
   --ifm-color-primary-darkest: #1a8870;
@@ -253,9 +255,9 @@ mark {
   -webkit-text-fill-color: transparent;
 }
 
-/* [data-theme='dark'] #__docusaurus_skipToContent_fallback {
-  background: linear-gradient(rgba(15, 23, 42, 0.796), rgba(15, 23, 42, 0.23));
-} */
+#__docusaurus_skipToContent_fallback {
+  background: var(--ifm-background-color);
+}
 [data-theme="dark"] .navbar {
   background: rgba(15, 23, 42, 0.862);
   border-bottom: 1px solid #4e8da0db;
