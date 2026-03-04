@@ -1,0 +1,99 @@
+---
+sidebar_position: 2
+title: "Setting Up Your First App"
+sidebar_label: "2. Installation & Setup"
+description: "See how React works in its simplest form without any complex installation."
+---
+
+Before we learn how to install React on your computer, let’s see what React actually *does* inside a standard webpage. 
+
+> Most tutorials start with a "Black Box" of 1,000 files. At **CodeHarborHub**, we want you to see the "Engine" first.
+
+Now that you know **why** we use React, it’s time to actually build one! 
+
+In the past, setting up React was a headache. Today, we use a tool called **Vite** (pronounced "veet," which is French for "fast"). It sets up the folders, the server, and the tools you need in about 10 seconds.
+
+## Step 1: The Pre-Requisites
+
+To run React on your computer, you must have **Node.js** installed.
+* **Check it:** Open your terminal and type `node -v`.
+* **Don't have it?** Download the **LTS Version** from [nodejs.org](https://nodejs.org/).
+
+## Step 2: Creating the Project
+
+Open your terminal in the folder where you want to keep your projects and run this "Magic Command":
+
+```bash
+npm create vite@latest my-react-app -- --template react
+```
+
+### What happens next?
+
+1. **Navigate into the folder:**
+
+    ```bash
+    cd my-react-app
+    ```
+2. **Install the "Ingredients":**
+
+    ```bash
+    npm install
+    ```
+3. **Start the Engine:**
+
+    ```bash
+    npm run dev
+    ```
+
+**🎉 Success!** Your terminal will give you a link (usually http://localhost:5173). Open it in your browser to see your brand new React app running!
+
+## Step 3: Understanding the "Big Three" Files
+
+When you open your new project in **VS Code**, you will see many files. Don't be overwhelmed! Beginners only need to care about these three:
+
+1. **`index.html`**: The "Skeleton." This is the only HTML file in your project. It has one empty `<div>` with an ID of `root`.
+2. **`main.jsx`**: The "Bridge." This file connects your React code to that `root` div in the HTML.
+3. **`App.jsx`**: The "Heart." This is where you will spend 90% of your time. It is your main component.
+
+## The "Hello World" Test
+
+Let's make sure everything is working.
+
+1. Open `App.jsx`.
+2. Delete everything inside the file.
+3. Type this simple code:
+
+```jsx title="App.jsx"
+function App() {
+  return (
+    <div>
+      <h1>Hello CodeHarborHub! 🚀</h1>
+      <p>My first React app is officially alive.</p>
+    </div>
+  );
+}
+
+export default App;
+```
+
+Check your browser at `http://localhost:5173`. If you see your message, **congratulations!** You are officially a React Developer.
+
+
+:::warning A Note on Tools (Vite vs. CRA)
+You might see older tutorials mention `create-react-app` (CRA). While it was popular for years, it is now considered outdated and slow. 
+
+At **CodeHarborHub**, we use **Vite** because it is the professional standard for 2024 and beyond. It provides a much faster and smoother experience for developers.
+
+👉 **Ready to build?** For a complete, step-by-step walkthrough on installing Node.js and initializing your project, check out our [Detailed Guide to Creating Your First React App](https://codeharborhub.github.io/tutorial/react/getting-started).
+:::
+
+## Summary Checklist
+
+* [x] I have **Node.js** installed on my machine.
+* [x] I created a project using the **Vite** template.
+* [x] I know that `App.jsx` is the main file I need to edit.
+* [x] My local development server is running.
+
+:::tip Pro Tip
+Keep your terminal open while you code! Every time you press **Save** (Ctrl+S) in VS Code, Vite will automatically refresh your browser instantly. This is called **Hot Module Replacement (HMR)**.
+:::
