@@ -1,0 +1,89 @@
+---
+sidebar_position: 4
+title: "Tailwind Core Concepts"
+sidebar_label: "4. Core Concepts"
+description: "Master the utility-first naming system, responsive design, and hover states."
+---
+
+Think of Tailwind as a language. Once you learn the "grammar" (how classes are named), you can style anything without looking at the documentation.
+
+## Pillar 1: The Box Model (Sizing & Spacing)
+
+In standard CSS, you write `padding: 16px;`. In Tailwind, we use a numeric scale (where `1` = `4px`).
+
+### Spacing Scale
+
+* **Padding (p):** `p-4` (16px all sides), `px-4` (left/right), `py-4` (top/bottom).
+* **Margin (m):** `m-2` (8px), `-mt-4` (Negative top margin).
+* **Width/Height:** `w-full` (100%), `h-screen` (100vh), `w-1/2` (50%).
+
+## Pillar 2: Colors and Typography
+
+Tailwind comes with a professional color palette. Each color has a weight from **50** (lightest) to **950** (darkest).
+
+* **Text:** `text-blue-600` (Blue text), `text-center` (Centered), `text-xl` (Extra Large).
+* **Backgrounds:** `bg-gray-100` (Light gray background).
+* **Borders:** `border-2 border-red-500` (Red 2px border).
+
+## Pillar 3: States (Hover, Focus, Active)
+
+In CSS, you would write a separate `:hover` selector. In Tailwind, you just add a **prefix**. It’s like saying: *"Only apply this color IF the mouse is hovering."*
+
+```html title="index.html"
+<button class="bg-blue-500 hover:bg-blue-700 active:bg-black text-white p-4">
+  Interactive Button
+</button>
+```
+
+## Pillar 4: Responsive Design (Mobile-First)
+
+Tailwind is **Mobile-First**. This means:
+
+1. Unprefixed classes (like `text-sm`) apply to **Mobile**.
+2. Prefixed classes (like `md:text-xl`) apply to **Tablets and Desktop**.
+
+| Prefix | Screen Size | Standard CSS |
+| --- | --- | --- |
+| **sm:** | 640px + | `@media (min-width: 640px)` |
+| **md:** | 768px + | `@media (min-width: 768px)` |
+| **lg:** | 1024px + | `@media (min-width: 1024px)` |
+
+**Example: A card that is red on mobile but turns green on desktop.**
+
+```html title="index.html"
+<div class="bg-red-500 md:bg-green-500 p-10">
+  Watch me change color when you resize the window!
+</div>
+```
+
+## Live Interactive: Putting it Together
+
+Try changing the `rounded-lg` to `rounded-full` or `bg-purple-600` to `bg-orange-500` in the editor below!
+
+```jsx live
+function TailwindDemo() {
+  return (
+    <div className="p-8 bg-blue-50 flex flex-col items-center gap-4">
+      {/* A simple styled card */}
+      <div className="p-6 rounded-lg shadow-md border border-blue-200 max-w-sm">
+        <h2 className="text-2xl font-bold text-blue-600">Core Concepts</h2>
+        <p className="text-blue-600 mt-2">
+          I am using Flexbox, Spacing, and Typography classes all at once.
+        </p>
+        
+        <button className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded transition-colors">
+          Get Started
+        </button>
+      </div>
+    </div>
+  );
+}
+
+```
+
+## Summary Checklist
+
+* [x] I understand that `p-4` is actually `16px`.
+* [x] I can change an element's style on hover using `hover:`.
+* [x] I know that `md:` classes only kick in on larger screens.
+* [x] I can center items using `flex` and `justify-center`.
