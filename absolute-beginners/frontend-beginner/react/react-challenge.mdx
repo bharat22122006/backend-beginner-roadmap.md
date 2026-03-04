@@ -1,0 +1,115 @@
+---
+sidebar_position: 7
+title: "Final Challenge: The Profile Switcher"
+sidebar_label: "7. React Challenge"
+description: "Put your React skills to the test by building an interactive Profile Card Switcher."
+---
+
+You’ve learned the theory; now it’s time for the "Proof of Skill." Your mission is to build a React app that allows a user to switch between different developer profiles with the click of a button.
+
+## The Mission Blueprint
+
+To complete this challenge, you will need to:
+1.  **Create a Component** that accepts `name`, `role`, and `color` as **Props**.
+2.  **Use State** to keep track of which user is currently selected.
+3.  **Use Event Listeners** (`onClick`) to update the state.
+
+## The Starter Code
+
+Copy this code into your local environment or play with it right here in the live editor. Your goal is to understand how the data flows from the buttons into the state, and then down into the props.
+
+```jsx live
+function App() {
+  // 1. DATABASE: An array of user objects
+  const users = [
+    { id: 1, name: "Ajay", role: "Frontend Master", color: "#61dafb" },
+    { id: 2, name: "Sanya", role: "UI/UX Queen", color: "#ff6b6b" },
+    { id: 3, name: "CodeHarborBot", role: "AI Assistant", color: "#4ecdc4" }
+  ];
+
+  // 2. STATE: Start by showing the first user
+  const [currentUser, setCurrentUser] = React.useState(users[0]);
+
+  // 3. CHILD COMPONENT: Receives info via Props
+  const ProfileCard = ({ name, role, color }) => (
+    <div style={{
+      padding: '30px',
+      borderRadius: '20px',
+      backgroundColor: '#fff',
+      color: '#333',
+      boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+      textAlign: 'center',
+      borderTop: `10px solid ${color}`,
+      transition: 'all 0.3s ease'
+    }}>
+      <div style={{ 
+        width: '80px', height: '80px', backgroundColor: color, 
+        borderRadius: '50%', margin: '0 auto 15px', display: 'flex',
+        alignItems: 'center', justifyContent: 'center', color: 'white',
+        fontSize: '1.5rem', fontWeight: 'bold'
+      }}>
+        {name[0]}
+      </div>
+      <h2>{name}</h2>
+      <p style={{ color: '#666' }}>{role}</p>
+    </div>
+  );
+
+  return (
+    <div style={{ fontFamily: 'sans-serif', padding: '20px', color: '#333', backgroundColor: '#f0f2f5', borderRadius: '15px' }}>
+      <h3 style={{ textAlign: 'center' }}>Select a Team Member:</h3>
+      
+      {/* 4. NAVIGATION: Buttons to update State */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginBottom: '20px' }}>
+        {users.map(user => (
+          <button 
+            key={user.id}
+            onClick={() => setCurrentUser(user)}
+            style={{
+              padding: '8px 15px',
+              cursor: 'pointer',
+              borderRadius: '5px',
+              border: 'none',
+              backgroundColor: currentUser.id === user.id ? user.color : '#ddd',
+              color: currentUser.id === user.id ? 'white' : '#333',
+              fontWeight: 'bold'
+            }}
+          >
+            {user.name}
+          </button>
+        ))}
+      </div>
+
+      {/* 5. DISPLAY: Passing current state as props */}
+      <ProfileCard 
+        name={currentUser.name} 
+        role={currentUser.role} 
+        color={currentUser.color} 
+      />
+    </div>
+  );
+}
+
+```
+
+## Level Up Challenges
+
+If the code above was too easy for you, try adding these features:
+
+1. **Status State:** Add a button inside the `ProfileCard` that toggles a "Status" between "Available" and "Busy."
+2. **Add a Dynamic Message:** Add a `message` property to each user object and display it in the card.
+3. **Dark Mode:** Add a global state that toggles the entire app background between light and dark.
+
+## What did you just prove?
+
+By finishing this, you have officially moved past "HTML/CSS" thinking. You are now:
+
+* **Managing Data:** Using arrays and state.
+* **Building Components:** Making reusable UI templates.
+* **Connecting Logic:** Letting user actions (clicks) drive the interface.
+
+:::success Graduation Day!
+You have completed the **React Beginners** module at **CodeHarborHub**. You now have the foundation to explore advanced concepts like **API Fetching**, **Routing**, and **Global State Management**.
+
+Keep building, keep breaking things, and most importantly, keep sailing!
+:::

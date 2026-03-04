@@ -1,0 +1,112 @@
+---
+sidebar_position: 6
+title: "Hooks: Powering Up with useState"
+sidebar_label: "6. The useState Hook"
+description: "Learn how to make your components interactive by managing state with the useState hook."
+---
+
+Imagine you are building a **Counter** app. You have a button that says "Click Me," and you want a number on the screen to go up every time you click it.
+
+In plain JavaScript, you would have to find the HTML element and manually change its text. In React, we use the `useState` hook to tell React: *"Hey, keep track of this number, and whenever it changes, update the screen for me automatically!"*
+
+## 🤔 What is a Hook?
+
+Hooks are special functions that let you "hook into" React features. Think of them as **Power-Ups** for your components. 
+* **Regular Function:** Just displays data.
+* **Function with Hooks:** Can remember things, perform actions, and react to user input.
+
+## The Anatomy of useState
+
+When you use `useState`, it always gives you back **two things** in an array:
+
+1.  **The Current State:** The current value stored in memory (e.g., `0`).
+2.  **The Setter Function:** A special function used to update that value (e.g., `setCount`).
+
+```javascript
+const [count, setCount] = useState(0);
+```
+
+* `count` is the value.
+* `setCount` is the remote control to change that value.
+* `0` is the starting point (Initial State).
+
+## Live Interactive: Your First State
+
+Try clicking the button below! Watch how React instantly re-renders the component every time the `count` changes.
+
+```jsx live
+function App() {
+  // 1. Import (implicitly) and initialize state
+  // We start at 0
+  const [count, setCount] = React.useState(0);
+
+  return (
+    <div style={{ 
+      textAlign: 'center', 
+      padding: '20px', 
+      border: '2px solid #61dafb',
+      borderRadius: '15px',
+      backgroundColor: '#282c34',
+      color: 'white'
+    }}>
+      <h2>The Click-O-Meter</h2>
+      <h1 style={{ fontSize: '4rem', margin: '10px 0' }}>{count}</h1>
+      
+      <button 
+        onClick={() => setCount(count + 1)}
+        style={{
+          padding: '10px 20px',
+          padding: '5px',
+          fontSize: '1.2rem',
+          backgroundColor: '#61dafb',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          fontWeight: 'bold'
+        }}
+      >
+        Increase Count +
+      </button>
+
+      <button 
+        onClick={() => setCount(count - 1)}
+        style={{
+          padding: '10px 20px',
+          padding: '5px',
+          fontSize: '1.2rem',
+          backgroundColor: '#ff6b6b',
+          border: 'none',
+          borderRadius: '5px',
+          cursor: 'pointer',
+          fontWeight: 'bold',
+          marginLeft: '10px'
+        }}
+      >
+        Decrease Count -
+      </button>
+    </div>
+  );
+}
+
+```
+
+## The Golden Rule of State
+
+**Never change state directly:** 
+* `count = count + 1` (React won't notice, and the screen won't update).
+* `setCount(count + 1)` (React notices, updates the memory, and refreshes the UI).
+
+:::tip Want to dive deeper?
+
+`useState` is just the beginning! React has many other hooks like `useEffect` (for fetching data) and `useContext` (for global themes).
+
+👉 **Explore the full Hook library:** For a detailed breakdown of all React Hooks, check out our [Comprehensive Hooks Guide](https://codeharborhub.github.io/tutorial/category/hooks).
+
+:::
+
+## Summary Checklist
+
+* [x] I know that Hooks start with the word `use`.
+* [x] I understand that `useState` returns a value and a function to change it.
+* [x] I know that I must use the **Setter Function** to update the UI.
+* [x] I successfully built a working counter!

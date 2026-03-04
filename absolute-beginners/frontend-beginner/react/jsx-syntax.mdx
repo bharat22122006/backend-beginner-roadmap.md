@@ -1,0 +1,163 @@
+---
+sidebar_position: 4
+title: "JSX: JavaScript + XML"
+sidebar_label: "4. JSX Syntax"
+description: "Learn the syntax that allows you to write HTML-like code inside your JavaScript."
+---
+
+**JSX** stands for JavaScript XML. It is a syntax extension for JavaScript that allows you to write code that looks like HTML directly inside your React components.
+
+Think of JSX as a **Translation Layer**. It allows you to describe what the UI should look like using a familiar HTML-like language, while still having the full power of JavaScript behind it.
+
+## Why not just use regular HTML?
+
+In the old way, your **Content** (HTML) and your **Logic** (JavaScript) lived in separate houses. They had to shout across the street to talk to each other.
+
+With **JSX**, they live in the same room. This makes building interactive features much faster and easier to manage.
+
+## The 3 Golden Rules of JSX
+
+To keep the "React Engine" running smoothly, you must follow these three rules:
+
+### 1. The "One Parent" Rule
+
+A component must return a **single** parent element. You cannot return two `<div>` tags side-by-side.
+
+<Tabs>
+  <TabItem value="wrong" label="Wrong">
+    ```jsx
+    return (
+      <h1>Hello</h1>
+      <p>Welcome to CodeHarborHub</p>
+    );
+    ```
+  </TabItem>
+  <TabItem value="right" label="Right">
+    Wrap them in a `<div>` or a **Fragment** `<>...</>` (an invisible container).
+
+    ```jsx
+    return (
+      <>
+        <h1>Hello</h1>
+        <p>Welcome to CodeHarborHub</p>
+      </>
+    );
+    ```
+  </TabItem>
+</Tabs>
+
+### 2. Close All Tags
+
+In HTML, you might forget to close an `<img>` or a `<br>`. In JSX, **every tag must be closed**, or the code will crash.
+
+* `<img src="..." />`
+* `<br />`
+
+### 3. CamelCase Everything
+
+Since JSX is closer to JavaScript than HTML, we use camelCase for attributes.
+
+* Use `className` instead of `class`.
+* Use `tabIndex` instead of `tabindex`.
+* Use `onClick` instead of `onclick`.
+
+## The Power of Curly Braces `{ }`
+
+This is where the magic happens. Any code inside `{ curly braces }` is treated as **Real JavaScript**. This allows you to bring your data into your HTML.
+
+```jsx live
+function Profile() {
+  const userName = "Ajay";
+  const status = "Pro Developer";
+
+  return (
+    <div>
+      <h1>User: {userName}</h1>
+      <p>Status: {status.toUpperCase()}</p>
+      <p>Calculation: 2 + 2 = {2 + 2}</p>
+    </div>
+  );
+}
+
+```
+
+## Styling in JSX
+
+In regular HTML, you write styles as a long string: `style="color: blue; font-size: 20px;"`. In JSX, we do things differently. Styles are treated as **JavaScript Objects**.
+
+### 1. The "Double Curly" Secret `{{ }}`
+
+When you see `style={{ ... }}`, it’s not a special React command. It’s actually two things happening at once:
+
+* **The Outer Braces `{ }`:** These tell JSX, "Hey, get ready! I’m about to write some JavaScript."
+* **The Inner Braces `{ }`:** These create the **JavaScript Object** that holds your CSS rules.
+
+### 2. CamelCase Properties
+
+Since we are writing JavaScript, we can't use dashes (like `background-color`). Instead, we use **camelCase**.
+
+* `background-color` becomes **`backgroundColor`**
+* `font-size` becomes **`fontSize`**
+* `margin-top` becomes **`marginTop`**
+
+### Live Interactive Example
+
+Try changing the `backgroundColor` to `"gold"` or the `padding` to `"20px"` in the editor below to see it update instantly!
+
+```jsx live
+function StyledComponent() {
+  // We are passing an object directly into the style attribute
+  return (
+    <div
+      style={{ 
+        color: "white", 
+        backgroundColor: "royalblue", 
+        padding: "15px",
+        borderRadius: "8px",
+        textAlign: "center",
+        fontFamily: "sans-serif"
+      }}
+    >
+      Hello! I am a styled box created with Inline JSX!
+    </div>
+  );
+}
+
+```
+
+### Clean Code Tip: Using Style Objects
+
+If you have a lot of styles, your JSX can look messy. A better way is to define your style object **outside** of your return statement. This makes your code much easier to read and maintain.
+
+```jsx live
+function ProfileCard() {
+  // 1. Define the style object
+  const cardStyle = {
+    color: 'white',
+    backgroundColor: '#333',
+    padding: '20px',
+    borderRadius: '10px',
+    boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
+  };
+
+  // 2. Reference the object in your JSX
+  return (
+    <div style={cardStyle}>
+      <h2>User Profile</h2>
+      <p>This card is styled using a constant object.</p>
+    </div>
+  );
+}
+
+```
+
+## Summary Checklist
+
+* [x] I know that JSX is "HTML inside JavaScript."
+* [x] I remember to use `className` instead of `class`.
+* [x] I always wrap my tags in a single parent (or Fragment).
+* [x] I use `{ }` whenever I want to use a JavaScript variable or math.
+
+:::tip Top Secret
+Browsers cannot read JSX. Behind the scenes, a tool called **Babel** takes your JSX and converts it into pure JavaScript functions that the browser understands!
+:::
