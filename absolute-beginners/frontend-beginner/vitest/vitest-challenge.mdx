@@ -1,0 +1,94 @@
+---
+sidebar_position: 4
+title: "Final Challenge: The Bulletproof Utility"
+sidebar_label: "4. Vitest Challenge"
+description: "Put your testing skills to the test by writing a suite for a String and Math utility."
+---
+
+A developer on your team wrote a small library called `stringUtils.js`. They claim it works perfectly, but we don't believe them until we see the **Green Checkmarks**!
+
+## Step 1: Prepare the "Source of Truth"
+
+Create a file in your `src/` folder named `stringUtils.js` and paste this code:
+
+```javascript title="src/stringUtils.js"
+export function reverseString(str) {
+  return str.split('').reverse().join('');
+}
+
+export function isPalindrome(word) {
+  const reversed = reverseString(word);
+  return word.toLowerCase() === reversed.toLowerCase();
+}
+
+export function getCartTotal(items) {
+  return items.reduce((total, item) => total + item.price, 0);
+}
+
+```
+
+## Step 2: Your Mission (The Test Suite)
+
+Create a file named `stringUtils.test.js`. Your goal is to write **at least 4 tests** that cover these scenarios:
+
+### Task Checklist:
+
+1. **Reverse Test:** Does `reverseString("react")` return `"tcaer"`?
+2. **Palindrome Test (Positive):** Does `isPalindrome("racecar")` return `true`?
+3. **Palindrome Test (Negative):** Does `isPalindrome("hello")` return `false`?
+4. **Array Test:** Does `getCartTotal` correctly add up an array of objects like `[{price: 10}, {price: 20}]`?
+
+## Starter Template
+
+If you get stuck, use this as your foundation:
+
+```javascript title="src/stringUtils.test.js"
+import { expect, test, describe } from 'vitest';
+import { reverseString, isPalindrome, getCartTotal } from './stringUtils';
+
+describe('String and Math Utilities', () => {
+
+  test('should reverse a string correctly', () => {
+    // Write your expect() here
+  });
+
+  test('should identify a palindrome', () => {
+     // Hint: expect(isPalindrome("madam")).toBe(true)
+  });
+
+  test('should calculate the total price of cart items', () => {
+    const cart = [
+      { name: 'Laptop', price: 10000 },
+      { name: 'Mouse', price: 500 }
+    ];
+    // Write your expect() here using .toBe()
+  });
+
+});
+
+```
+
+## Level Up: The "Edge Case" Challenge
+
+The best testers look for ways to "break" the code. Try adding these tests:
+
+* **Empty String:** What happens if you call `reverseString("")`?
+* **Empty Cart:** Does `getCartTotal([])` return `0`?
+* **Case Sensitivity:** Does `isPalindrome("Madam")` work? (Check the source code—did the developer handle uppercase letters?)
+
+## Graduation Day!
+
+Once your terminal shows **All Tests Passed**, you have officially mastered the basics of Frontend Development.
+
+### What you have achieved:
+
+1. **HTML/CSS/JS:** You built the foundation.
+2. **React:** You learned to think in components and manage state.
+3. **Vite:** You mastered modern build tools.
+4. **Vitest:** You built a safety net for your code.
+
+:::success 🎉 CONGRATULATIONS!
+You have successfully navigated the **CodeHarborHub Frontend Beginner** map. You are no longer just a "coder", you are a **Developer**.
+
+Ready for the next adventure? Head over to our **Full-Stack Roadmaps** to start learning Backend, Databases, and API integration!
+:::

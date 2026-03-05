@@ -1,0 +1,85 @@
+---
+sidebar_position: 5
+title: "Final Challenge: The Modern Product Card"
+sidebar_label: "5. Tailwind Challenge"
+description: "Put your Tailwind CSS skills to the test by building a responsive, interactive product card."
+---
+
+In this challenge, you will use **Flexbox**, **Spacing**, **Typography**, and **Hover States** to build a sleek Product Card. 
+
+## The Mission Blueprint
+
+Your card must include the following features:
+1.  **Layout**: A vertical card that is centered on the screen.
+2.  **Image Section**: A placeholder for a product image with rounded corners.
+3.  **Badge**: A "New Arrival" badge with a colorful background.
+4.  **Interactivity**: A "Add to Cart" button that changes color and scales up slightly when hovered.
+5.  **Shadows**: Use Tailwind's shadow classes to make the card "pop" off the page.
+
+## The Starter Code (Live Editor)
+
+We have provided the basic structure. Your job is to fill in the empty `className=""` strings to make it look professional. 
+
+### Hints for Success:
+* **Card Container**: Try `bg-white p-4 rounded-3xl shadow-2xl max-w-sm`.
+* **The Badge**: Try `bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-bold`.
+* **The Button**: Try `w-full bg-black text-white py-3 rounded-xl hover:bg-gray-800 transition-all`.
+
+```jsx live
+function ProductCard() {
+  return (
+    <div className="flex justify-center items-center bg-gray-50 p-10">
+      
+      {/* 1. Main Card Container */}
+      <div className="bg-white p-5 rounded-3xl shadow-xl max-w-xs border border-gray-100">
+        
+        {/* 2. Image Placeholder */}
+        <div className="bg-gray-200 h-48 rounded-2xl mb-4 flex items-center justify-center text-gray-400 font-bold">
+          [ Product Image ]
+        </div>
+
+        {/* 3. Badge */}
+        <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase">
+          In Stock
+        </span>
+
+        {/* 4. Text Content */}
+        <h2 className="text-xl font-extrabold text-gray-900 mt-3">Wireless Headphones</h2>
+        <p className="text-gray-500 text-sm mt-1">
+          Experience high-quality sound with noise-canceling technology.
+        </p>
+
+        {/* 5. Pricing and Action */}
+        <div className="flex items-center justify-between mt-6">
+          <span className="text-2xl font-bold text-gray-900">$199</span>
+          
+          {/* CHALLENGE: Add hover:scale-105 to this button! */}
+          <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-xl font-semibold transition-transform duration-200">
+            Buy Now
+          </button>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+```
+
+## Level Up: The "Pro" Tweaks
+
+If you finished the basic card, try these advanced Tailwind features:
+
+1. **Gradient Text**: Use `text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500` on the title.
+2. **Dark Mode**: Add `dark:bg-gray-800` to the card and `dark:text-white` to the text to see how it looks in a dark theme.
+3. **Group Hover**: Make the image "zoom in" when you hover anywhere on the card using the `group` and `group-hover:` classes.
+
+## Why this Matters
+
+By completing this challenge, you have moved from "knowing" classes to "composing" them. Professional developers don't just use `p-4`; they understand how to combine `shadow`, `rounded`, `flex`, and `transition` to create a high-end **User Experience (UX)**.
+
+:::success Roadmap Complete!
+You have successfully finished the **Tailwind CSS** module and the entire **Frontend Absolute Beginner** path at **CodeHarborHub**.
+
+You started with basic HTML, moved into React logic, added Testing with Vitest, and finished with Modern Styling. You are now ready to build real projects!
+:::

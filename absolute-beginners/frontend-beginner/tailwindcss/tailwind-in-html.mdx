@@ -1,0 +1,64 @@
+---
+sidebar_position: 1.5
+title: "Using Tailwind in Pure HTML"
+sidebar_label: "2. Tailwind in HTML"
+description: "Learn the quickest way to use Tailwind CSS using the Play CDN for simple HTML projects."
+---
+
+Before we jump into the "Professional Setup" with React and Vite, let's see how Tailwind works in a simple, single HTML file. This is the fastest way to practice and experiment!
+
+## The "Play CDN" Method
+
+You don't need to install anything to start playing with Tailwind. You can just drop a **Script Tag** into your HTML `<head>`, and Tailwind will start working instantly.
+
+### Try This Example:
+
+Create a file named `index.html` on your computer and paste this:
+
+```html title="index.html"
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+  <div class="bg-white p-8 rounded-2xl shadow-lg text-center border-t-4 border-blue-500">
+    <h1 class="text-3xl font-bold text-gray-800">HTML + Tailwind!</h1>
+    <p class="text-gray-600 mt-2">No CSS file needed. Just classes.</p>    
+    <button class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full transition">
+      Explore More
+    </button>
+  </div>
+</body>
+</html>
+```
+
+## What’s Happening Under the Hood?
+
+When you add the `<script src="https://cdn.tailwindcss.com"></script>` tag:
+
+1. **Scanning:** The script looks at every class name you wrote (like `bg-gray-100` or `rounded-full`).
+2. **Generating:** It instantly generates the corresponding CSS in the background.
+3. **Injecting:** It applies those styles to your page in real-time.
+
+## When should you use the CDN?
+
+The Play CDN is amazing for learning, but you should know when to use it and when to stop.
+
+| Use the CDN for... | Use the Vite Setup for... |
+| --- | --- |
+| Quick prototypes & practice. | Real-world production websites. |
+| Single-page simple HTML projects. | Large React/Next.js applications. |
+| Learning the class names. | Optimizing for speed and performance. |
+
+## Summary Checklist
+
+* [x] I know I can use Tailwind via a simple `<script>` tag.
+* [x] I understand that the CDN is for **learning and prototyping** only.
+* [x] I successfully built a styled card in a single `.html` file.
+
+:::info Pro-Tip for CodeHarborHub Students
+If you are used to the "Old Way" of linking a `<link rel="stylesheet" href="style.css">`, the CDN method feels very familiar. It’s the perfect "Training Wheels" before we move to the professional Vite installation!
+:::

@@ -1,0 +1,70 @@
+---
+sidebar_position: 2
+title: "Setting Up Vitest"
+sidebar_label: "2. Setup & Installation"
+description: "Learn how to add Vitest to your Vite-React project and configure your test environment."
+---
+
+Adding Vitest to your project is a quick 3-step process. Once it's set up, you'll have a "Testing Dashboard" that watches your code changes in real-time.
+
+## Step 1: Install the Package
+
+Open your terminal in your project's root folder. We need to install Vitest as a **DevDependency** because we only need testing tools while we are developing, not when the website is live for users.
+
+```bash
+npm install -D vitest
+```
+
+## Step 2: Configure Your Scripts
+
+To make running tests easy, we need to add a shortcut to our `package.json` file. This allows us to simply type `npm test` instead of a long command.
+
+1. Open your **`package.json`** file.
+2. Find the `"scripts"` section.
+3. Add the `"test": "vitest"` line:
+
+```json title="package.json" {6}
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest"
+  }
+}
+
+```
+
+## Step 3: Launch the Test Runner
+
+Now, let's see if the engine starts. Run this command in your terminal:
+
+```bash
+npm test
+```
+
+### What should I see?
+
+Since you haven't written any test files yet, Vitest will show you a message like this:
+
+> `No test files found, exiting with code 1`
+
+**Don't panic!** This is actually a good sign. It means Vitest is installed and looking for work. It's like a security guard reporting for duty at an empty building.
+
+## How Vitest "Finds" Your Tests
+
+By default, Vitest is like a detective looking for specific clues. It will automatically run any file that matches these naming patterns:
+
+* `something.test.js`
+* `something.spec.js`
+* `__tests__/anyfile.js`
+
+## Pro-Tip: The "Watch" Mode
+
+Unlike other tools, Vitest starts in **Watch Mode** by default. This means you don't have to restart the command every time you fix a bug. Keep the terminal open, save your file, and Vitest will re-check your code in the blink of an eye!
+
+## Summary Checklist
+
+* [x] I installed Vitest using `npm install -D vitest`.
+* [x] I added the `test` script to my `package.json`.
+* [x] I understand that `.test.js` is the secret handshake for test files.

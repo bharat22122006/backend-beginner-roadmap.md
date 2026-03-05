@@ -1,0 +1,93 @@
+---
+sidebar_position: 3
+title: "Writing Your First Test"
+sidebar_label: "3. The 'Expect' Syntax"
+description: "Learn the language of testing: describe, test, and expect."
+---
+
+In Vitest, testing feels like writing a sentence. You describe a scenario and then check if the outcome matches your expectations.
+
+## The Three Keywords of Testing
+
+To write a test, you only need to learn three main words from the Vitest library:
+
+1.  **`describe`**: Used to group related tests together (e.g., "User Authentication" or "Math Functions").
+2.  **`test`** (or `it`): The actual individual test case.
+3.  **`expect`**: The tool used to check if a value is correct.
+
+## Example: Testing a Greeting Function
+
+Let's imagine you have a simple function in a file called `greet.js`.
+
+```javascript title="src/utils/greet.js"
+export function getGreeting(name) {
+  return `Hello, ${name}! Welcome to CodeHarborHub.`;
+}
+```
+
+Now, we create a **Test File** right next to it called `greet.test.js`.
+
+```javascript title="src/utils/greet.test.js"
+import { expect, test, describe } from 'vitest';
+import { getGreeting } from './greet';
+
+describe('Greeting Utility', () => {
+
+  test('should return a personalized welcome message', () => {
+    // 1. Arrange (Set up data)
+    const name = "Ajay";
+
+    // 2. Act (Run the function)
+    const result = getGreeting(name);
+
+    // 3. Assert (Check the result)
+    expect(result).toBe("Hello, Ajay! Welcome to CodeHarborHub.");
+  });
+
+});
+```
+
+## Common "Matchers"
+
+Matchers are the methods we attach to `expect()` to check values. Here are the ones you will use 90% of the time:
+
+| Matcher | What it checks | Example |
+| --- | --- | --- |
+| `.toBe()` | Exact equality (numbers, strings) | `expect(2+2).toBe(4)` |
+| `.toEqual()` | Deep equality (objects, arrays) | `expect([1,2]).toEqual([1,2])` |
+| `.toContain()` | If an item exists in an array | `expect(colors).toContain('red')` |
+| `.toBeDefined()` | If a variable is not `undefined` | `expect(user).toBeDefined()` |
+| `.not` | The opposite of any matcher | `expect(price).not.toBe(0)` |
+
+## Running Your Test
+
+1. Save your files.
+2. Look at your terminal where `npm test` is running.
+3. You should see a beautiful **Green Checkmark**!
+
+<br />
+
+```bash
+ ✓ src/utils/greet.test.js (1)
+   ✓ Greeting Utility (1)
+     ✓ should return a personalized welcome message
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+
+```
+
+## The "Break It" Experiment
+
+The best way to learn testing is to **try to fail**.
+
+* Change the expected string in your test to `"Hi, Ajay"`.
+* Save the file.
+* Watch the terminal turn **Red**. Vitest will show you exactly what it expected vs. what it actually got. This is how you find bugs!
+
+## Summary Checklist
+
+* [x] I know that `describe` groups tests and `test` runs them.
+* [x] I understand the **Arrange-Act-Assert** pattern.
+* [x] I know the difference between `.toBe()` and `.toEqual()`.
+* [x] I've seen my first green checkmark in the terminal.

@@ -1,0 +1,8 @@
+{
+  "label": "Tailwind CSS",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "description": "Stop writing CSS files and start styling with utility classes. Learn how to build beautiful, responsive UIs directly inside your HTML/JSX."
+  }
+}

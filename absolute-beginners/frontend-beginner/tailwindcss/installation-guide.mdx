@@ -1,0 +1,109 @@
+---
+sidebar_position: 3
+title: "Installing Tailwind with Vite"
+sidebar_label: "3. Setup & Installation"
+description: "A step-by-step guide to adding Tailwind CSS to your React project."
+---
+
+Adding Tailwind to a Vite project is a standard 3-step process. If you already have your React app running from our previous [Vite Setup guide](../react/setting-up-react), you are ready to go!
+
+## Step 1: Install via Terminal
+
+Open your terminal in your project's root folder and run these two commands. This installs Tailwind and its "helpers" (PostCSS and Autoprefixer) which make sure your CSS works on all browsers.
+
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
+### What just happened?
+
+Two new files appeared in your folder:
+
+1. **`tailwind.config.js`**: The "Brain" of your styles.
+2. **`postcss.config.js`**: The "Translator" that helps browsers understand Tailwind.
+
+## Step 2: Configure Your Paths
+
+We need to tell Tailwind which files it should look at to find your CSS classes. Open **`tailwind.config.js`** and update the `content` section:
+
+```javascript title="tailwind.config.js"
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}", // Scan all React files in the src folder
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+## Step 3: Add the Directives
+
+Now, we need to inject Tailwind's "DNA" into your CSS.
+
+1. Open your **`src/index.css`** file.
+2. Delete everything inside it.
+3. Paste these three "Directives" at the very top:
+
+```css title="src/index.css"
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+## The "Hello Tailwind" Test
+
+Let's make sure everything is working. Open your **`App.jsx`** and replace the code with this:
+
+```jsx title="App.jsx"
+function App() {
+  return (
+    <div className="flex h-screen items-center justify-center bg-blue-100">
+      <h1 className="text-4xl font-bold text-blue-600 underline">
+        Tailwind is Working!
+      </h1>
+    </div>
+  )
+}
+
+export default App
+```
+
+### Check your browser:
+
+* Is the background light blue? (`bg-blue-100`)
+* Is the text large and bold? (`text-4xl font-bold`)
+* Is everything centered? (`flex justify-center`)
+
+**If yes, congratulations! You just styled a page without writing a single line of traditional CSS.**
+
+## Try it Yourself!
+
+<br />
+
+```jsx live
+function App() {
+  return (
+    <div className="flex h-screen items-center justify-center bg-blue-100">
+      <h1 className="text-4xl font-bold text-blue-600 underline">
+        Tailwind is Working!
+      </h1>
+    </div>
+  )
+}
+```
+
+## Summary Checklist
+
+* [x] I installed the 3 core packages via NPM.
+* [x] I initialized the config files.
+* [x] I pointed Tailwind to my `src` folder.
+* [x] I added the `@tailwind` directives to my CSS file.
+
+:::tip Extension Recommendation
+If you use **VS Code**, search for the extension **"Tailwind CSS IntelliSense"**. It will give you "Autocomplete" suggestions as you type, so you don't have to memorize every class name!
+:::
