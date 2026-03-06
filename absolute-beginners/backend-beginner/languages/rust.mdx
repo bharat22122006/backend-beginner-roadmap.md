@@ -1,0 +1,84 @@
+---
+sidebar_position: 7
+title: "Rust - The Performance King"
+sidebar_label: "7. Rust"
+description: "Learn why Rust is the most loved language for high-performance, memory-safe backend systems."
+---
+
+Rust was created by Mozilla (the people behind Firefox) to solve a massive problem in programming: **Memory Safety.** In older languages like C++, it was very easy to accidentally leave a "memory leak" or a security hole that hackers could use. Rust solves this by having a "Strict Guard" (The Borrow Checker) that ensures your code is safe **before** it even runs.
+
+## 🧐 What is Rust?
+
+Rust is a **Compiled, Low-Level** language. 
+
+"Low-level" means it talks very closely to the computer's hardware, similar to C++. Because it doesn't have a "Garbage Collector" (a background tool that cleans up memory like in Java or Python), it is incredibly fast and uses very little RAM.
+
+## Why Choose Rust?
+
+1.  **Zero-Cost Abstractions:** You can write high-level, beautiful code, and Rust will turn it into machine code that is just as fast as if you had written it by hand in assembly.
+2.  **Memory Safety without a Garbage Collector:** This is Rust's "Holy Grail." It prevents 70% of the most common security bugs automatically.
+3.  **Incredible Tooling:** Rust comes with **Cargo**, which is widely considered the best package manager and build tool in the industry.
+4.  **WebAssembly (Wasm):** Rust is the #1 choice for writing high-performance code that runs in the browser at near-native speeds.
+
+## How it Looks: Strict but Expressive
+
+Rust syntax looks a bit more complex than Python, but it is very powerful. It uses `let` for variables and `fn` for functions.
+
+```rust title="main.rs"
+fn main() {
+    // Variables are 'Immutable' (unchangeable) by default for safety
+    let message = "Hello from Rust Backend!";
+    let mut visitor_count = 100; // 'mut' allows the variable to change
+
+    println!("{}", message);
+
+    // A simple loop with range
+    for i in 1..4 {
+        println!("Processing packet {}...", i);
+    }
+
+    visitor_count += 1;
+    println!("Total visitors today: {}", visitor_count);
+}
+
+```
+
+### Key Features:
+
+* **`let mut`**: In Rust, you have to be explicit. If you want a variable to change, you must label it as "Mutable" (`mut`).
+* **`println!`**: The exclamation mark means this is a "Macro," a powerful Rust tool that handles text formatting safely.
+* **The "Borrow Checker"**: If you try to use a variable in two places at once in a way that might be dangerous, Rust will refuse to compile. It acts like a very strict but helpful teacher.
+
+## Technical Concept: Ownership
+
+This is the "Secret Sauce" of Rust. Every piece of data has an **Owner**. When the owner goes out of style (the function ends), the data is instantly deleted.
+
+* **No Memory Leaks:** Because the computer knows exactly when to delete data.
+* **No Crashes:** Because you can't access data that has already been deleted.
+
+## Recommended Learning Resources
+
+### Official & Documentation
+
+* **[The Rust Book](https://doc.rust-lang.org/book/)**: Affectionately known as "The Book," it is the most famous and well-written programming guide in existence.
+* **[Rust by Example](https://doc.rust-lang.org/rust-by-example/)**: For those who prefer to learn by seeing and doing rather than reading theory.
+
+### Free Courses
+
+* **[Rust Programming Course for Beginners](https://www.youtube.com/watch%3Fv%3DBpPEoZW5IiY)**: A 2-hour crash course by FreeCodeCamp.
+* **[No Boilerplate: Rust](https://www.youtube.com/%40NoBoilerplate)**: A fantastic YouTube channel that explains *why* Rust matters in short, fast-paced videos.
+
+### Community
+
+* **[The Rust Discord](https://discord.gg/rust-lang)**: The "Rustaceans" (Rust fans) are known for being one of the most welcoming communities in tech.
+
+## Summary Checklist
+
+* [x] I understand that Rust is focused on **Safety** and **Performance**.
+* [x] I know that **Cargo** is the tool used to manage Rust projects.
+* [x] I understand that Rust has no "Garbage Collector," making it extremely fast.
+* [x] I have seen the `fn main()` structure.
+
+:::warning The Learning Curve
+Rust is known for having a "steep" learning curve. You will fight with the compiler. You will see many error messages. **Don't give up.** Once you "click" with Rust, you will never want to go back to any other language.
+:::

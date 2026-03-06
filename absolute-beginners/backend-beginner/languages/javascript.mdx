@@ -1,0 +1,97 @@
+---
+sidebar_position: 1
+title: "JavaScript (Node.js) - The Full-Stack Powerhouse"
+sidebar_label: "1. JavaScript (Node.js)"
+description: "Learn how to use JavaScript on the server-side with Node.js."
+---
+
+For a long time, JavaScript lived only inside the browser (Chrome, Safari, Firefox). In 2009, **Node.js** was created, allowing us to take JavaScript out of the browser and run it on our computers and servers.
+
+This gave birth to the **Full-Stack Developer**: Someone who can write the Frontend and the Backend using just **one language**.
+
+## What is Node.js?
+
+Node.js is not a programming language; it is a **Runtime Environment**. 
+
+Think of JavaScript as a "pilot" and the Browser as a "plane." Node.js is simply a **different plane** (a cargo jet) for the same pilot. It uses the **V8 Engine** (the same one Google Chrome uses) to execute code at lightning speed.
+
+## Why Choose Node.js?
+
+1.  **Uniformity:** You use the same syntax, the same variables, and the same logic for your entire app.
+2.  **NPM (Node Package Manager):** You get access to over **2 million** pre-written code packages. Need to handle passwords? There's a package. Need to resize images? There's a package.
+3.  **Non-Blocking I/O:** Node.js is "Asynchronous." It can handle thousands of connections at once without waiting for one to finish before starting the next. It’s like a waiter who takes 5 orders at once instead of waiting for the chef to cook each meal one by one.
+4.  **Massive Community:** Companies like **Netflix, PayPal, and LinkedIn** all migrated their backends to Node.js for its speed and scalability.
+
+## How it Looks: Your First Server
+
+In the frontend, you have `document` and `window`. In Node.js, those don't exist. Instead, you have `process` and `require`.
+
+Here is a basic "Hello World" server using the built-in `http` module:
+
+```javascript title="server.js"
+// 1. Import the internal HTTP module
+const http = require('http');
+
+// 2. Create the server logic
+const server = http.createServer((req, res) => {
+  // req = Request (What the user sends)
+  // res = Response (What the server sends back)
+  
+  res.statusCode = 200; // Success!
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello from CodeHarborHub Backend!');
+});
+
+// 3. Tell the server to listen on a specific port (3000)
+server.listen(3000, '127.0.0.1', () => {
+  console.log('Server running at http://127.0.0.1:3000/');
+});
+
+```
+
+## The Ecosystem: Express.js
+
+While you *can* use the built-in `http` module, most developers use a framework called **Express.js**. It makes building APIs much easier.
+
+**Compare this to the code above:**
+
+```javascript
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Hello World with Express!');
+});
+
+app.listen(3000);
+```
+
+## Technical Architecture: The Event Loop
+
+Node.js operates on a **Single-Threaded Event Loop**.
+
+* **Single Threaded:** It uses only one "worker" to handle the main logic.
+* **Non-Blocking:** If a task takes a long time (like reading a huge file), Node.js sends it to the "background" and keeps working on other requests. When the file is ready, it sends a notification (Callback).
+
+## Recommended Learning Resources
+
+### Official & Documentation
+
+* [Node.js Official Website](https://nodejs.org/en/about) - The best place to download and read the core docs.
+* [NPM Registry](https://www.npmjs.com/) - Explore millions of packages.
+
+### Free Courses
+
+* [Node.js Crash Course by Traversy Media](https://www.youtube.com/watch?v=fBNz5xF-Kx4) - Perfect for a 1-hour deep dive.
+* [The Odin Project: NodeJS](https://www.theodinproject.com/paths/full-stack-javascript/courses/nodejs) - High-quality, open-source curriculum.
+
+### Books
+
+* *"Node.js Design Patterns"* by Mario Casciaro - For when you want to go from Junior to Senior.
+
+## Summary Checklist
+
+* [x] I understand that Node.js runs JavaScript on the server.
+* [x] I know that Node.js is asynchronous and non-blocking.
+* [x] I realize that I can be a "Full-Stack" developer using only JavaScript.
+* [x] I have seen what a basic server looks like.

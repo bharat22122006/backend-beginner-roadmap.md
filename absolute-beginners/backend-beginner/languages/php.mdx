@@ -1,0 +1,91 @@
+---
+sidebar_position: 3
+title: "PHP - The Language of the Web"
+sidebar_label: "3. PHP"
+description: "Learn why PHP powers over 75% of the internet and how it’s making a massive modern comeback."
+---
+
+PHP stands for **Hypertext Preprocessor**. Unlike Python or Java, which were made for general computing, PHP was created specifically for **Web Development**. 
+
+It was the first language that allowed developers to easily mix "Logic" (Backend) with "HTML" (Frontend) in the same file. Today, it powers **WordPress, Wikipedia, and Facebook**.
+
+## 🧐 What is PHP?
+
+PHP is a **Server-Side Scripting** language. 
+
+When a user visits a PHP page, the server executes the PHP code, turns it into plain HTML, and sends that HTML to the browser. The user never sees the actual PHP code; they only see the result.
+
+## Why Choose PHP?
+
+1.  **Hosting is Everywhere:** You can find a $2/month server that runs PHP perfectly. It is the easiest language to "Deploy" (put online).
+2.  **WordPress Power:** 40%+ of all websites use WordPress. If you know PHP, you can build custom themes and plugins for a massive market.
+3.  **The Laravel Revolution:** Many people thought PHP was "old," but **Laravel** (a modern PHP framework) changed everything. It is now considered one of the most beautiful and developer-friendly ways to build apps.
+4.  **Built for the Web:** PHP has built-in functions for handling HTML forms, cookies, and sessions that other languages require extra libraries for.
+
+## How it Looks: Mixing with HTML
+
+This is why beginners love PHP. You can take a standard HTML file and just "drop" some logic into it using `<?php ... ?>` tags.
+
+```php title="index.php"
+<!DOCTYPE html>
+<html>
+<body>
+
+  <h1>Welcome to my Store</h1>
+
+  <?php
+    $visitor_name = "CodeHarborHub Student";
+    $hour = date("H");
+
+    if ($hour < 12) {
+        echo "<p>Good morning, $visitor_name!</p>";
+    } else {
+        echo "<p>Good afternoon, $visitor_name!</p>";
+    }
+  ?>
+
+</body>
+</html>
+
+```
+
+### Key Detail: The Dollar Sign `$`
+
+In PHP, every variable **must** start with a `$`. It makes them very easy to spot in your code. Also, unlike Python, PHP uses semicolons `;` at the end of every line, similar to JavaScript and Java.
+
+## Modern PHP: Laravel
+
+If you want to build a "Modern" app (like a clone of Twitter or Airbnb), you wouldn't use "Raw PHP." You would use **Laravel**.
+
+Laravel handles the difficult parts of web development for you:
+
+* **Routing:** Simple URLs like `/profile/username`.
+* **Eloquent (ORM):** Talking to your database using simple English-like code instead of complex SQL.
+* **Blade:** A powerful templating engine to make your HTML clean.
+
+## Recommended Learning Resources
+
+### Official & Documentation
+
+* **[PHP.net](https://www.php.net/manual/en/intro-whatis.php)**: The official manual. It’s famous for having great user comments with code examples.
+* **[Laravel.com](https://laravel.com/docs)**: The gold standard for framework documentation.
+
+### Free Courses
+
+* **[PHP for Beginners (Traversy Media)](https://www.youtube.com/watch?v=2eebptXfEvw)**: A great crash course to get the basics down in under 2 hours.
+* **[Laracasts (PHP for Beginners)](https://laracasts.com/series/php-for-beginners-2023-edition)**: Widely considered the best video tutorials for PHP and Laravel in the world.
+
+### Tools
+
+* **XAMPP / MAMP**: Software that lets you run a PHP server on your own computer with one click.
+
+## Summary Checklist
+
+* [x] I understand that PHP turns into HTML before it reaches the browser.
+* [x] I know that PHP variables always start with a `$`.
+* [x] I recognize that PHP powers the majority of CMS platforms like WordPress.
+* [x] I understand that Laravel is the modern way to build PHP applications.
+
+:::warning A Note on History
+You might hear people say "PHP is dead." **Don't believe them.** While it isn't the "trendiest" language on Twitter, it still runs 75% of the web and has some of the highest-paying freelance opportunities in the industry.
+:::
