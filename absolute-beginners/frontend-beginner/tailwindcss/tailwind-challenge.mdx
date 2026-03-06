@@ -28,15 +28,14 @@ We have provided the basic structure. Your job is to fill in the empty `classNam
 ```jsx live
 function ProductCard() {
   return (
-    <div className="flex justify-center items-center bg-gray-50 p-10">
+    <div style={{height:"500px"}} className="flex justify-center items-center p-10">
       
       {/* 1. Main Card Container */}
-      <div className="bg-white p-5 rounded-3xl shadow-xl max-w-xs border border-gray-100">
+      <div className="bg-white p-4 rounded-3xl shadow-xl max-w-xs border border-blue-600">
         
         {/* 2. Image Placeholder */}
         <div className="bg-gray-200 h-48 rounded-2xl mb-4 flex items-center justify-center text-gray-400 font-bold">
-          [ Product Image ]
-        </div>
+           <img style={{height:"200px", borderRadius: "15px 15px 0 0"}} class="w-full" src="https://i.rtings.com/assets/pages/QnKwCNI6/best-true-wireless-earbuds-20240708-medium.jpg?format=auto" alt="" />        </div>
 
         {/* 3. Badge */}
         <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase">
@@ -54,7 +53,7 @@ function ProductCard() {
           <span className="text-2xl font-bold text-gray-900">$199</span>
           
           {/* CHALLENGE: Add hover:scale-105 to this button! */}
-          <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-xl font-semibold transition-transform duration-200">
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-semibold transition-transform duration-200">
             Buy Now
           </button>
         </div>
@@ -63,6 +62,7 @@ function ProductCard() {
     </div>
   );
 }
+
 
 ```
 

@@ -1,0 +1,87 @@
+---
+sidebar_position: 5
+title: "C# - The Microsoft Powerhouse"
+sidebar_label: "5. C#"
+description: "Explore C#, the versatile language powering Windows apps, Enterprise web servers, and Game Development."
+---
+
+C# (pronounced "C-Sharp") was created by Microsoft as a modern, object-oriented alternative to C++ and Java. Today, it is part of the **.NET (dot-net)** ecosystem, a massive collection of tools that allows you to build for the Web, Mobile, Desktop, and even the Cloud.
+
+While it started as a Windows-only language, modern C# is **Open Source** and runs perfectly on Mac and Linux.
+
+## 🧐 What is C#?
+
+C# is a **Compiled, Strongly-Typed** language. Like Java, it uses a virtual execution engine called the **Common Language Runtime (CLR)**. 
+
+## Why Choose C#?
+
+1.  **The Best Tooling:** C# developers use **Visual Studio**, which is widely considered the most powerful "Integrated Development Environment" (IDE) in the world.
+2.  **Unity Game Engine:** If you want to build games (like *Among Us* or *Hollow Knight*), C# is the language used by the **Unity** engine.
+3.  **ASP.NET Core:** This is the backend framework for C#. It is consistently ranked as one of the **fastest** web frameworks in existence.
+4.  **Modern Syntax:** C# takes the best ideas from Java and JavaScript and combines them. It feels very clean and "smart" to write.
+
+## How it Looks: Familiar yet Powerful
+
+If you have seen Java, C# will look very familiar. However, it has some "shorthand" tricks that make it faster to write.
+
+```csharp title="Program.cs"
+using System;
+
+namespace CodeHarborHub {
+    class Program {
+        static void Main(string[] args) {
+            
+            // Defining variables with strict types
+            string greeting = "Welcome to C# Backend!";
+            int studentCount = 1500;
+
+            Console.WriteLine(greeting);
+            
+            // "Interpolated Strings" (Like backticks in JavaScript!)
+            Console.WriteLine($"We have {studentCount} students learning today.");
+        }
+    }
+}
+
+```
+
+### Key Features:
+
+* **`using System`**: This imports the basic tools needed to talk to the computer.
+* **Namespaces**: These help organize your code so that a "User" class in one file doesn't crash with a "User" class in another.
+* **PascalCase**: In C#, we usually capitalize method names (like `Main` and `WriteLine`), whereas in JS we use `main` and `writeLine`.
+
+## The Ecosystem: .NET
+
+When you learn C#, you aren't just learning a language; you are learning the **.NET Ecosystem**.
+
+* **Entity Framework (EF Core):** The easiest way to connect your code to a Database.
+* **MAUI:** A way to write one piece of C# code and turn it into an Android, iOS, and Windows app all at once.
+* **Blazor:** A revolutionary way to write **Frontend** code using C# instead of JavaScript!
+
+## Recommended Learning Resources
+
+### Official & Documentation
+
+* **[Microsoft Learn for C#](https://learn.microsoft.com/en-us/dotnet/csharp/)**: One of the best official learning paths provided by any tech company.
+* **[.NET YouTube Channel](https://www.youtube.com/watch?v=O_huuhKWqVA)**: Weekly shows explaining new features and best practices.
+
+### Free Courses
+
+* **[C# Full Course by FreeCodeCamp](https://www.youtube.com/watch?v=GhQdlIFylQ8)**: A massive, all-in-one guide to becoming a C# developer.
+* **[C# for Absolute Beginners (Bob Tabor)](https://channel9.msdn.com/)**: A legendary course designed specifically for people who have never coded before.
+
+### Community
+
+* **[Stack Overflow](https://stackoverflow.com/questions/tagged/c%23)**: C# has one of the most active and helpful communities for solving bugs.
+
+## Summary Checklist
+
+* [x] I know that C# belongs to the .NET family.
+* [x] I understand that C# is excellent for both Web APIs and Game Development.
+* [x] I recognize that C# is strongly typed and very fast.
+* [x] I have seen the structure of a C# `Main` method.
+
+:::info Pro-Tip
+If you enjoy the structure of **TypeScript** in the frontend, you will love C#. The creator of C# (Anders Hejlsberg) is the same person who created TypeScript!
+:::
