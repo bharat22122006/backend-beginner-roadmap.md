@@ -31,11 +31,11 @@ const sidebars: SidebarsConfig = {
 
     // JavaScript Tutorial Structure
 
-    {
-      type: "link",
-      label: "JavaScript",
-      href: "/languages-platforms/javascript/introduction-to-javascript/what-is-js",
-    },
+    // {
+    //   type: "link",
+    //   label: "JavaScript",
+    //   href: "/languages-platforms/javascript/introduction-to-javascript/what-is-js",
+    // },
 
     // Java Tutorial Structure
 
@@ -690,80 +690,6 @@ const sidebars: SidebarsConfig = {
         "css/project-practicals/animation-practice",
         "css/project-practicals/responsive-design-practice",
         "css/project-practicals/performance-optimization",
-      ],
-    },
-  ],
-
-  javascript: [
-    {
-      type: "category",
-      label: "Introduction to JavaScript",
-      link: {
-        type: "doc",
-        id: "javascript/introduction-to-javascript/what-is-js",
-      },
-      items: [
-        "javascript/introduction-to-javascript/what-is-js",
-        "javascript/introduction-to-javascript/history-of-javascript",
-        "javascript/introduction-to-javascript/javascript-versions",
-        "javascript/introduction-to-javascript/how-to-run-javascript",
-      ],
-    },
-
-    {
-      type: "category",
-      label: "All About Variables",
-      link: {
-        type: "doc",
-        id: "javascript/all-about-variables/variable-declarations",
-      },
-      items: [
-        "javascript/all-about-variables/variable-declarations",
-        "javascript/all-about-variables/variable-naming-rules",
-        "javascript/all-about-variables/variable-scopes",
-        "javascript/all-about-variables/hoisting",
-      ],
-    },
-
-    {
-      type: "category",
-      label: "Data Types",
-      link: {
-        type: "doc",
-        id: "javascript/data-types/intro",
-      },
-      items: [
-        "javascript/data-types/intro",
-
-        {
-          type: "category",
-          label: "Primitive Types",
-          link: {
-            type: "doc",
-            id: "javascript/data-types/primitive-types/intro",
-          },
-          items: [
-            "javascript/data-types/primitive-types/number",
-            "javascript/data-types/primitive-types/string",
-            "javascript/data-types/primitive-types/boolean",
-            "javascript/data-types/primitive-types/null",
-            "javascript/data-types/primitive-types/undefined",
-            "javascript/data-types/primitive-types/symbol",
-            "javascript/data-types/primitive-types/bigint",
-          ],
-        },
-        {
-          type: "category",
-          label: "Non-Primitive Types",
-          link: {
-            type: "doc",
-            id: "javascript/data-types/non-primitive-types/object/intro",
-          },
-          items: [
-            "javascript/data-types/non-primitive-types/object/intro",
-            "javascript/data-types/non-primitive-types/object/creating-objects",
-          ],
-        },
       ],
     },
   ],
