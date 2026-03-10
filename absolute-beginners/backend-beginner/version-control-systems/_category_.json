@@ -1,0 +1,8 @@
+{
+  "label": "Version Control Systems",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn how to manage your code history, collaborate with others, and never lose a line of code again. This is the most essential skill for any modern developer."
+  }
+}
