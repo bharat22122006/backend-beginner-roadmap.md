@@ -1,0 +1,8 @@
+{
+  "label": "Repo Hosting Services",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Where does your code live? Explore the major cloud platforms used to host, share, and collaborate on Git repositories, from GitHub to GitLab."
+  }
+}

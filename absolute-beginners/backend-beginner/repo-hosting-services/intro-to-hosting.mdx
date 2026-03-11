@@ -1,0 +1,63 @@
+---
+sidebar_position: 1
+title: "Why Host Your Code?"
+sidebar_label: "1. Intro to Hosting"
+description: "Understand the importance of Repository Hosting services and how they transform solo coding into professional engineering."
+---
+
+Up until now, you’ve learned how to use **Git** to track changes on your local machine. But what happens if your laptop spills coffee, or if you want to work with a developer across the world? 
+
+This is where **Repository Hosting Services** come in.
+
+## What is a Hosting Service?
+
+A Repository Hosting service is a cloud-based platform that acts as a "Remote Server" for your Git or SVN repositories. It provides a central place where your code lives, accessible from anywhere with an internet connection.
+
+Think of it this way:
+* **Git** is the software on your computer that manages your files.
+* **GitHub/GitLab** is the "Cloud Drive" that stores those files and adds social and professional tools on top of them.
+
+## Why is Hosting Essential for Developers?
+
+### 1. The Ultimate Backup
+If your computer crashes, is stolen, or breaks, your code is safe. By running `git push`, you are sending a copy of your entire project history to a secure server. You can download it back onto a new machine in seconds.
+
+### 2. Collaboration & Open Source
+Hosting services allow multiple people to work on the same project. 
+* **Pull Requests:** You can propose changes to someone else's code.
+* **Code Review:** Teammates can leave comments on specific lines of your code to help you improve.
+
+### 3. Visibility & Portfolio
+For a **CodeHarborHub** student, your hosting profile (like GitHub) is your **Digital Resume**. Employers don't just want to see that you *can* code; they want to see the actual code you’ve written, how you document it, and how you interact with others.
+
+### 4. Automation (CI/CD)
+Hosting platforms integrate with "Continuous Integration and Continuous Deployment" tools. 
+* Every time you push code, the server can automatically run tests to make sure you didn't break anything.
+* It can then automatically deploy your website to the internet.
+
+## How it Works: Local vs. Remote
+
+When you use a hosting service, you are dealing with two versions of your repository:
+
+1.  **Local Repository:** The one sitting on your hard drive (where you work).
+2.  **Remote Repository:** The one sitting on the cloud server (where the "official" version lives).
+
+```mermaid
+graph LR
+    A[Your Computer] -- git push --> B((Hosting Service))
+    B -- git pull --> A
+    C[Teammate's Computer] -- git push --> B
+    B -- git pull --> C
+
+```
+
+## Summary Checklist
+
+* [x] I understand that hosting services provide a remote home for my code.
+* [x] I know that hosting is required for collaborating with other developers.
+* [x] I recognize that my GitHub profile acts as a professional portfolio.
+* [x] I understand the basic "Push/Pull" relationship between local and remote.
+
+:::tip Pro-Tip
+Even if you are working alone, always host your code! It builds a habit of frequent saving and prepares you for the way professional teams operate.
+:::
