@@ -7,8 +7,6 @@ Welcome to **CodeHarborHub Tutorials**, the official source for learning resourc
 Hosted site: [https://codeharborhub.github.io/tutorial/](https://codeharborhub.github.io/tutorial/)  
 Repository: [github.com/codeharborhub/tutorial](https://github.com/codeharborhub/tutorial)
 
----
-
 ## 📘 Table of Contents
 
 - [About](#about)  
@@ -24,16 +22,11 @@ Repository: [github.com/codeharborhub/tutorial](https://github.com/codeharborhub
 - [License](#license)  
 - [Acknowledgements](#acknowledgements)  
 
----
-
 ## About
 
 CodeHarborHub Tutorials is an open-source project aimed at providing clear, structured tutorials and coding examples to help learners and developers strengthen their skills. Whether you're new to programming or an experienced dev exploring new technologies, this repository offers step-by-step guides, sample projects, and educational content.
 
-The tutorials are published as a site built from this repository and can be viewed at [codeharborhub.github.io/tutorial](https://codeharborhub.github.io/tutorial/).
-
----
-
+The tutorials are published as a site built from this repository and can be viewed at [codeharborhub.github.io/tutorial](https://codeharborhub.github.io/tutorial/).                                                                                                                                                                                                                                      
 ## Features
 
 - Well-organized tutorials covering a variety of topics (web, AI, tooling, etc.)  
