@@ -1,0 +1,97 @@
+---
+sidebar_position: 7
+title: "Indexes & Query Performance"
+sidebar_label: "7. Performance"
+description: Learn "how to make your database queries lightning fast using Indexes and execution analysis."
+---
+
+Imagine you are in a massive library with 1,000,000 books. If you want to find a book about "Node.js," you don't start at the first shelf and check every book. You go to the **Index Catalog** at the front, find the shelf number, and go straight there.
+
+In a database, an **Index** does exactly the same thing.
+
+## What is an Index?
+
+An index is a separate data structure (usually a **B-Tree**) that stores a sorted version of a specific column. This allows the database to "jump" to the data instead of scanning the whole table.
+
+### ✅ Pros:
+
+* **Speed:** Searching becomes 100x to 1000x faster.
+* **Efficiency:** Reduces the load on your server's CPU and Memory.
+
+### ❌ Cons:
+
+* **Storage:** Indexes take up extra disk space.
+* **Write Speed:** Every time you `INSERT` or `UPDATE`, the database has to update the index too. **Don't index every column!**
+
+## How to Create an Index
+
+<Tabs>
+  <TabItem value="single" label="☝️ Single Column" default>
+
+  If you frequently search for users by their email, add an index to the `email` column.
+
+  ```sql
+  CREATE INDEX idx_user_email ON Users(email);
+  ```
+
+</TabItem>
+<TabItem value="composite" label="✌️ Composite Index">
+
+If you often search for people using both `first_name` AND `last_name`, a composite index is better.
+
+```sql
+CREATE INDEX idx_full_name ON Users(first_name, last_name);
+
+```
+
+</TabItem>
+</Tabs>
+
+## Performance Analysis: The `EXPLAIN` Command
+
+How do you know if your query is actually using an index or being slow? You ask the database to explain its "Query Plan."
+
+```sql
+EXPLAIN ANALYZE 
+SELECT * FROM Users WHERE email = 'aryan@codeharborhub.github.io';
+```
+
+**What to look for in the output:**
+
+* **Seq Scan (Sequential Scan):** BAD. The DB is reading every row in the table.
+* **Index Scan:** GOOD. The DB is using your index to find the data instantly.
+* **Cost:** Lower is better!
+
+## Top 3 Performance Tips for Backend Devs
+
+### 1. Avoid `SELECT *`
+
+Only ask for the columns you need.
+
+* `SELECT * FROM Users;` (Heavy and slow)
+* `SELECT name, email FROM Users;` (Light and fast)
+
+### 2. Use `LIMIT`
+
+If you have 1 million users, don't fetch them all at once. Use pagination.
+
+```sql
+SELECT * FROM Users LIMIT 10 OFFSET 0;
+```
+
+### 3. Index your Foreign Keys
+
+Always create an index on columns used in `JOIN` operations. This prevents the database from getting confused when linking large tables.
+
+## Summary Checklist
+
+* [x] I understand that an Index is like a library catalog for my data.
+* [x] I know that Indexes speed up **Reads** but slow down **Writes**.
+* [x] I can use `EXPLAIN ANALYZE` to check my query performance.
+* [x] I know why `SELECT *` is a "Red Flag" in professional code.
+
+:::tip Interview Secret
+If a Senior Developer asks you "How do you optimize a slow API?", your first answer should always be: **"I would check the database logs and see if we need to add an Index or optimize the SQL query using EXPLAIN."**
+:::
+
+**Congratulations!** You've completed the Relational Database Module.

@@ -1,0 +1,106 @@
+---
+sidebar_position: 2
+title: "SQL - The Language of Data"
+sidebar_label: "2. SQL Basics"
+description: "Master the syntax and commands of Structured Query Language (SQL) for backend development."
+---
+
+**SQL** (Structured Query Language) is the universal language used to communicate with Relational Databases. Whether you use MySQL, PostgreSQL, or SQL Server, the way you ask for data is 95% the same.
+
+## The 4 Pillars: CRUD Operations
+
+In backend development, almost everything you do with a database falls into one of four categories: **CRUD**.
+
+<Tabs>
+  <TabItem value="create" label="➕ CREATE (Insert)" default>
+
+  Use the `INSERT` command to add new records to a table.
+
+  ```sql
+  INSERT INTO Students (name, email, age) 
+  VALUES ('Aryan Kumar', 'aryan@codeharborhub.github.io', 21);
+  ```
+
+</TabItem>
+<TabItem value="read" label="📖 READ (Select)">
+
+Use the `SELECT` command to retrieve data. You can filter results using `WHERE`.
+
+```sql
+-- Get everyone's name and email
+SELECT name, email FROM Students;
+
+-- Get only the student with a specific ID
+SELECT * FROM Students WHERE id = 1;
+
+```
+
+</TabItem>
+<TabItem value="update" label="📝 UPDATE">
+
+Use the `UPDATE` command to modify existing data. **Always use a WHERE clause** or you will update every single row!
+
+```sql
+UPDATE Students 
+SET email = 'new-aryan@gmail.com' 
+WHERE id = 1;
+
+```
+
+</TabItem>
+<TabItem value="delete" label="🗑️ DELETE">
+
+Use the `DELETE` command to remove records. Again, the `WHERE` clause is your best friend here.
+
+```sql
+DELETE FROM Students 
+WHERE id = 1;
+
+```
+
+</TabItem>
+</Tabs>
+
+## Joining the Dots: SQL JOINS
+
+The true power of SQL is its ability to combine data from multiple tables. This is called a **JOIN**.
+
+Imagine you have a `Students` table and a `Courses` table. To see which student is in which course, you link them:
+
+```sql
+SELECT Students.name, Courses.course_name
+FROM Students
+JOIN Enrollments ON Students.id = Enrollments.student_id
+JOIN Courses ON Enrollments.course_id = Courses.id;
+```
+
+## Filtering and Sorting
+
+SQL allows you to organize your data exactly how you want it.
+
+* **ORDER BY:** Sort your results (e.g., `ORDER BY age DESC`).
+* **LIMIT:** Only get a specific number of rows (great for pagination).
+* **LIKE:** Search for patterns (e.g., `WHERE name LIKE 'A%'` finds all names starting with A).
+
+## Advanced Data Manipulation
+
+Sometimes you need to perform math or group data together.
+
+```sql
+-- Count how many students are in the database
+SELECT COUNT(*) FROM Students;
+
+-- Find the average age of students
+SELECT AVG(age) FROM Students;
+```
+
+## Summary Checklist
+
+* [x] I understand that SQL is the language used to manage RDBMS.
+* [x] I can explain what CRUD stands for.
+* [x] I know the danger of running `UPDATE` or `DELETE` without a `WHERE` clause.
+* [x] I understand how `JOIN` combines data from different tables.
+
+:::warning Professional Warning
+In a real production environment, never use `SELECT *` (Select All) if you only need one or two columns. Selecting only what you need makes your application much faster and saves memory!
+:::

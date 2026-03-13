@@ -1,0 +1,8 @@
+{
+  "label": "Relational Databases",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn how to store data in structured tables, use SQL to query information, and understand why RDBMS is the backbone of the banking and enterprise world."
+  }
+}

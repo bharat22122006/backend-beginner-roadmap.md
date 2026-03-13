@@ -1,0 +1,68 @@
+---
+sidebar_position: 3
+title: "ACID Properties: The DNA of RDBMS"
+sidebar_label: "3. ACID Properties"
+description: "Learn the four essential rules that keep your database safe and reliable."
+---
+
+In India, we use apps like **PhonePe, GPay, or Paytm** every single day. Have you ever wondered what happens if your internet cuts out exactly when you are sending ₹500 to a friend? 
+
+Does the money vanish? Does it get stuck in the "middle"? 
+
+**No.** This is thanks to **ACID Properties**. These are the 4 golden rules that every Relational Database must follow to ensure your data is 100% safe.
+
+## The 4 Pillars of ACID
+
+### 1. Atomicity (The "All or Nothing" Rule)
+
+In a database, a "Transaction" is a series of steps. Atomicity ensures that either **every step** happens, or **none** of them do.
+
+**The Real-World Example:**
+Imagine you are transferring ₹500 to your friend Rahul.
+1. Bank deducts ₹500 from your account.
+2. **Server Crashes!**
+3. Bank fails to add ₹500 to Rahul's account.
+
+Because of **Atomicity**, the database will "Rollback." It sees the crash, cancels the first step, and puts the ₹500 back in your account as if nothing ever happened.
+
+### 2. Consistency (The "Follow the Rules" Rule)
+
+Every database has rules (Constraints). Consistency ensures that a transaction never leaves the database in a "weird" state.
+
+**The Real-World Example:**
+If your bank has a rule that "Balance cannot be negative," and you try to send ₹1000 when you only have ₹500, the database will block the transaction immediately. The rules stay intact!
+
+### 3. Isolation (The "No Cutting in Line" Rule)
+
+Modern databases handle thousands of users at the same time. Isolation ensures that one person's transaction doesn't "leak" into another's.
+
+**The Real-World Example:**
+Imagine there is only **1 last seat** left on a bus from Delhi to Mumbai.
+* You and another person click "Book" at the exact same microsecond.
+* **Isolation** makes them wait in a digital line. One person gets the seat, and the other gets a "Sold Out" message. They don't both get charged for the same seat!
+
+### 4. Durability (The "Saved Forever" Rule)
+
+Once the database tells you "Transaction Successful," that data is permanent. 
+
+**The Real-World Example:**
+Even if the bank's data center loses power or a server explodes 1 second after your transaction is finished, your balance will still be correct when the power comes back. The record is written to a permanent disk, not just temporary memory.
+
+## Summary Table
+
+| Property | Short Meaning | "Desi" Analogy |
+| :--- | :--- | :--- |
+| **A**tomicity | All or Nothing | Like a 'Paisa Vasool' deal—you get everything promised or your money back. |
+| **C**onsistency | Data Integrity | No "Jugaad" allowed—the rules are the rules. |
+| **I**solation | Separate Work | Mind your own business—don't let others' work mix with yours. |
+| **D**urability | Permanent Save | Written in stone—even if the world ends, the record stays. |
+
+## Summary Checklist
+* [x] I understand that ACID keeps data safe during crashes.
+* [x] I know that "Atomicity" prevents partial updates.
+* [x] I understand why "Isolation" is needed for many users.
+* [x] I recognize that "Durability" means the data is permanent.
+
+:::tip Career Advice
+Interviewers love asking about ACID. If you explain it using the "Bank Transfer" example like we did here, you will show them that you don't just memorize definitions—you actually understand how the real world works!
+:::
