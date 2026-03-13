@@ -1,0 +1,78 @@
+---
+sidebar_position: 5
+title: "Database Normalization"
+sidebar_label: "5. Normalization"
+description: "Learn how to organize your database tables to reduce redundancy and improve data integrity."
+---
+
+Have you ever seen a messy room where everything is piled up in one corner? It’s impossible to find anything! A "messy" database is just like that. **Normalization** is the process of organizing data into multiple related tables to clean up that mess.
+
+## Why do we Normalize?
+
+1.  **Remove Redundancy:** We don't want to type the same information (like a teacher's phone number) in 50 different rows.
+2.  **Data Integrity:** If a student changes their email, we should only have to update it in **one** place.
+3.  **Efficiency:** Smaller tables are faster for the database to search through.
+
+## The Three Stages (Normal Forms)
+
+We usually normalize databases up to the **3rd Normal Form (3NF)**. Let's look at them step-by-step.
+
+<Tabs>
+  <TabItem value="1nf" label="1️⃣ 1st Normal Form (1NF)" default>
+
+  ### Rule: "Atomic Values Only"
+  Each cell in your table must contain only **one** piece of information. No lists or comma-separated values!
+
+  ❌ **Bad (Not 1NF):**
+  | Student | Courses |
+  | :--- | :--- |
+  | Aryan | Math, Science |
+
+  ✅ **Good (1NF):**
+  | Student | Course |
+  | :--- | :--- |
+  | Aryan | Math |
+  | Aryan | Science |
+
+  </TabItem>
+  <TabItem value="2nf" label="2️⃣ 2nd Normal Form (2NF)">
+
+  ### Rule: "Fully Depend on the Primary Key"
+  Must be in 1NF + remove data that only partialy depends on a composite primary key. In simple terms: **Split the table** if it's talking about two different things.
+
+  *Example:* Don't store "Course Teacher" in the "Students" table. Create a separate `Courses` table.
+
+  </TabItem>
+  <TabItem value="3nf" label="3️⃣ 3rd Normal Form (3NF)">
+
+  ### Rule: "No Transitive Dependencies"
+  Must be in 2NF + non-key columns shouldn't depend on other non-key columns.
+
+  *Analogy:* If Column A determines Column B, and Column B determines Column C, then Column C shouldn't be in the same table as Column A!
+
+  </TabItem>
+</Tabs>
+
+## The "Desi" Summary (The Key Oath)
+
+There is a famous saying by Bill Kent to help you remember the rules of normalization. For our Indian students, think of it as a **"Pavitra Kasam" (Sacred Oath)**:
+
+> "I promise to design my tables so that every column depends on **The Key** (1NF), **The Whole Key** (2NF), and **Nothing But The Key** (3NF), so help me Codd!"
+
+## Before vs. After Normalization
+
+| Problem | Normalization Solution |
+| :--- | :--- |
+| **Updating is hard** | You only update data in one place. |
+| **Deleting is dangerous** | Deleting a student won't accidentally delete the whole course. |
+| **Wasted Space** | No more repeating long strings of text in every row. |
+
+## Summary Checklist
+* [x] I understand that Normalization reduces data repetition.
+* [x] I know that 1NF means no lists in a single cell.
+* [x] I understand that 2NF and 3NF are about splitting tables logically.
+* [x] I can explain the "Key Oath" for designing tables.
+
+:::warning Don't Over-Normalize!
+In the real world, sometimes developers "De-normalize" (make things messy on purpose) to make the database **even faster** for specific types of searches. But for now, always aim for **3NF**!
+:::
