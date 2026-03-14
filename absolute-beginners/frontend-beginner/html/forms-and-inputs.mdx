@@ -8,13 +8,14 @@ Up until now, your website has been a "One-Way Street"—you talk, and the user 
 
 Whether it’s a Google search bar or a Facebook login, they all use the same HTML tags you're about to learn.
 
+<AdsComponent />
+
 ## 1. The Container: The `<form>` Tag
 
 Just like a list needs a `<ul>` "box," all your inputs need to live inside a `<form>` tag.
 
 ```html
 <form> </form>
-
 ```
 
 ## 2. The Text Box: `<input>`
@@ -32,7 +33,6 @@ The `<input>` tag is the most versatile tag in HTML. By changing its `type`, you
 ```html
 <input type="text" placeholder="Enter your name">
 <input type="password" placeholder="Password">
-
 ```
 
 ## 3. The Label: `<label>`
@@ -42,12 +42,13 @@ Every input needs a label. Without a label, a user won't know what the box is fo
 ```html
 <label for="username">Username:</label>
 <input type="text" id="username" name="username">
-
 ```
 
 :::tip Why use Labels?
 If you click on the text of a label, the browser automatically puts the cursor inside the input box. It’s great for accessibility and mobile users!
 :::
+
+<AdsComponent />
 
 ## 4. Choices: Checkboxes and Radios
 
@@ -64,7 +65,6 @@ Sometimes you want users to pick from options rather than typing.
 <p>Choose your favorite:</p>
 <input type="radio" id="coffee" name="drink"> <label for="coffee">Coffee</label>
 <input type="radio" id="tea" name="drink"> <label for="tea">Tea</label>
-
 ```
 
 ## 5. The "Go" Button: `<button>`
@@ -73,7 +73,6 @@ A form is useless if you can't submit it!
 
 ```html
 <button type="submit">Send Message 🚀</button>
-
 ```
 
 ## Practice: Build a "Join the Club" Form
@@ -95,8 +94,9 @@ Copy this into your `index.html` to see a full, working form structure:
 
     <button type="submit">Sign Me Up!</button>
 </form>
-
 ```
+
+<AdsComponent />
 
 ## Important Beginner Tip
 
