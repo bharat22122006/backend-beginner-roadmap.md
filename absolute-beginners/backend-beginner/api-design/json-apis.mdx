@@ -1,0 +1,105 @@
+---
+sidebar_position: 5
+title: "JSON & API Communication"
+sidebar_label: "5. JSON APIs"
+description: "Learn about JSON, the universal data format for modern API communication."
+---
+
+When a Waiter (the API) brings your order from the Kitchen (the Server), the food is served on a **Plate**. In the digital world, **JSON** is that plate. 
+
+**JSON** stands for **JavaScript Object Notation**. It is a lightweight, text-based format that is easy for humans to read and even easier for machines to parse.
+
+## 🧐 Why JSON?
+
+Before JSON, the world used **XML**, which was very bulky and hard to read. JSON won the "format war" because:
+1.  **Lightweight:** It uses very few characters, making it fast to send over the internet.
+2.  **Language Independent:** Even though it has "JavaScript" in the name, almost every language (Python, Java, PHP, C#) can read it.
+3.  **Key-Value Pairs:** It organizes data exactly like a dictionary or a map.
+
+## The Structure of a JSON Object
+
+A JSON object is wrapped in curly braces `{}` and contains data in `key: value` pairs.
+
+```json
+{
+  "id": 101,
+  "name": "Ajay Dhangar",
+  "isMentor": true,
+  "skills": ["React", "Node.js", "SQL"],
+  "address": {
+    "city": "Mandsaur",
+    "state": "MP"
+  }
+}
+```
+
+### Supported Data Types
+
+<Tabs>
+<TabItem value="strings" label="🔤 Strings" default>
+Text wrapped in double quotes: `"Hello CodeHarborHub"`
+</TabItem>
+<TabItem value="numbers" label="🔢 Numbers">
+Integers or decimals: `25` or `99.99`
+</TabItem>
+<TabItem value="arrays" label="📚 Arrays">
+Ordered lists inside brackets: `["JavaScript", "HTML"]`
+</TabItem>
+<TabItem value="objects" label="📂 Objects">
+Nested data inside braces: `{"key": "value"}`
+</TabItem>
+</Tabs>
+
+## Sending and Receiving JSON
+
+When you build a backend at **CodeHarborHub**, you will deal with JSON in two ways:
+
+### 1. The Request Body
+
+When a user registers, they send their data to your server as a JSON string.
+
+```http
+POST /users
+Content-Type: application/json
+
+{
+  "username": "coder_ajay",
+  "password": "securepassword123"
+}
+```
+
+### 2. The Response
+
+Your server processes the logic and sends back a JSON response.
+
+```json
+{
+  "status": "success",
+  "message": "User created successfully",
+  "userId": 502
+}
+```
+
+## Tools for JSON
+
+### 1. JSON Formatter
+
+Raw JSON can sometimes look like a giant "wall of text." Use a browser extension like **JSON Viewer** to make it look beautiful and organized.
+
+### 2. JSON.stringify() vs JSON.parse()
+
+If you are using JavaScript:
+
+* **`JSON.stringify(obj)`**: Converts a JS object into a JSON string (to send to a server).
+* **`JSON.parse(str)`**: Converts a JSON string into a JS object (to use in your code).
+
+## Summary Checklist
+
+* [x] I understand that JSON is a text format for storing and transporting data.
+* [x] I know that JSON uses Key-Value pairs.
+* [x] I can identify different data types like Strings, Numbers, and Arrays in JSON.
+* [x] I understand that `Content-Type: application/json` is required in the header.
+
+:::tip Pro-Tip
+Always validate your JSON! A single missing comma `,` or a missing double quote `"` will cause your entire API request to fail. Use a tool like **JSONLint** to check your work.
+:::

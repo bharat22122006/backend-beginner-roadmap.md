@@ -1,0 +1,91 @@
+---
+sidebar_position: 4
+title: "REST Best Practices"
+sidebar_label: "4. Best Practices"
+description: "Learn the industry-standard naming conventions and structural rules for building professional APIs."
+---
+
+Building an API is easy, but building a **good** API is an art. At **CodeHarborHub**, we want our developers to follow industry standards so that their code is "Production Ready" and easy for teammates to use.
+
+## Rule 1: Use Nouns, Not Verbs
+
+In REST, the URL should represent **What** the resource is, not **What you are doing** to it. The "doing" part is already handled by the HTTP Method (GET, POST, etc.).
+
+| Bad (Verb-based) | Good (Noun-based) |
+| :--- | :--- |
+| `GET /getAllUsers` | `GET /users` |
+| `POST /createNewUser` | `POST /users` |
+| `POST /updateUser/1` | `PATCH /users/1` |
+| `DELETE /removeUser/1` | `DELETE /users/1` |
+
+## Rule 2: Use Plurals
+
+Consistency is key. It is a standard practice to use plural nouns for all endpoints, even if you are only interacting with a single item.
+
+* `/user/1`
+* `/users/1`
+
+## Rule 3: Logical Hierarchies (Nesting)
+
+If a resource belongs to another resource, reflect that in the URL. This makes the relationship crystal clear, mimicking how you designed your SQL database tables.
+
+**Scenario:** You want to get all the orders placed by a specific user.
+
+```text
+GET /users/101/orders
+```
+
+*This reads as: "Inside Users, find user 101, and give me their Orders."*
+
+## Rule 4: Filtering, Sorting, and Searching
+
+Don't create new URLs for searching. Use **Query Parameters** (the part after the `?`). This keeps your API surface small and predictable.
+
+<Tabs>
+<TabItem value="filtering" label="🧹 Filtering" default>
+
+```text
+GET /users?role=admin
+```
+
+*(Returns only the users who are admins)*
+
+</TabItem>
+<TabItem value="sorting" label="🔢 Sorting">
+
+```text
+GET /users?sort=desc
+```
+
+*(Returns users sorted in descending order)*
+
+</TabItem>
+<TabItem value="searching" label="🔎 Searching">
+
+```text
+GET /users?search=aryan
+```
+
+*(Returns users whose name contains 'aryan')*
+
+</TabItem>
+</Tabs>
+
+## Rule 5: Versioning Your API
+
+As your app grows, you might need to change how the API works. To avoid breaking the app for existing users, always version your API.
+
+* `https://api.codeharborhub.com/v1/users`
+* `https://api.codeharborhub.com/v2/users`
+
+## Summary Checklist
+
+* [x] I use **Nouns** for endpoints and **HTTP Verbs** for actions.
+* [x] I always use **Plural** nouns (e.g., `/products` instead of `/product`).
+* [x] I use **Nesting** to show relationships between resources.
+* [x] I use **Query Parameters** for filtering and sorting data.
+* [x] I understand why `/v1/` is important for future-proofing my API.
+
+:::info Pro-Tip
+A clean API is self-documenting. If a developer can look at your URL and guess what it does without reading your manual, you have succeeded!
+:::
