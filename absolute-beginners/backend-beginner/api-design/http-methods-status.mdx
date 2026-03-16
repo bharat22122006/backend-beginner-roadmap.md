@@ -1,0 +1,74 @@
+---
+sidebar_position: 3
+title: "HTTP Methods & Status Codes"
+sidebar_label: "3. Methods & Status"
+description: "Learn the vocabulary of the web—how to tell the server what to do and how to understand its response."
+---
+
+When you send a request to a REST API, you are essentially sending a message. To make sure the server understands you, you must use specific **Methods**. Once the server processes your request, it replies with a **Status Code**.
+
+## HTTP Methods (The "Verbs")
+
+Every request starts with a method that defines the **intent** of the action.
+
+<Tabs>
+  <TabItem value="get" label="📖 GET" default>
+
+  ### Purpose: Retrieve Data
+  Used when you want to "fetch" information. It is **Read-Only**.
+  * **Analogy:** Browsing a menu at a cafe.
+  * **Example:** `GET /users` (Get all users).
+
+  </TabItem>
+  <TabItem value="post" label="➕ POST">
+
+  ### Purpose: Create Data
+  Used to send new data to the server to create a resource.
+  * **Analogy:** Placing a new order at the counter.
+  * **Example:** `POST /users` (Create a new account).
+
+  </TabItem>
+  <TabItem value="put" label="📝 PUT / PATCH">
+
+  ### Purpose: Update Data
+  * **PUT:** Replaces the entire resource.
+  * **PATCH:** Updates only specific parts (like just the email).
+  * **Analogy:** Changing your mobile number on an existing account.
+
+  </TabItem>
+  <TabItem value="delete" label="🗑️ DELETE">
+
+  ### Purpose: Remove Data
+  Used to delete a specific resource.
+  * **Analogy:** Canceling your subscription.
+  * **Example:** `DELETE /users/1` (Delete user with ID 1).
+
+  </TabItem>
+</Tabs>
+
+## HTTP Status Codes (The Feedback)
+
+After you send a request, the server sends back a 3-digit number. This tells the client exactly what happened.
+
+| Range | Category | "Desi" Meaning | Typical Examples |
+| :--- | :--- | :--- | :--- |
+| **2xx** | **Success** | "Sab sahi hai!" (All Good) | **200 OK**, **201 Created** |
+| **3xx** | **Redirection** | "Rasta badal lo." (Go elsewhere) | **301 Moved Permanently** |
+| **4xx** | **Client Error** | "Tumhari galti hai." (Your fault) | **400 Bad Request**, **404 Not Found** |
+| **5xx** | **Server Error** | "Meri galti hai." (My fault) | **500 Internal Server Error** |
+
+## Understanding the "Big Three" Codes
+
+1.  **200 OK:** The request was successful, and here is your data!
+2.  **404 Not Found:** The URL you requested doesn't exist. (The "classic" internet error).
+3.  **500 Internal Server Error:** Your code crashed on the server. The client did nothing wrong, but the backend failed.
+
+## Summary Checklist
+* [x] I know that **GET** is for reading and **POST** is for creating.
+* [x] I understand the difference between **PUT** (Full update) and **PATCH** (Partial).
+* [x] I can identify that **4xx** codes mean the issue is on the user's side.
+* [x] I know that **201** is the standard code for a successful "Create" action.
+
+:::warning Common Beginner Mistake
+Never use **GET** to send sensitive data like passwords! Data in a GET request is visible in the URL. Always use **POST** with a "Body" for secure information.
+:::
