@@ -1,0 +1,101 @@
+---
+sidebar_position: 4
+title: "Introduction to Redis"
+sidebar_label: "4. Redis Basics"
+description: "Learn about Redis, the world's most popular in-memory data store for caching and real-time performance."
+---
+
+In our previous lessons, we learned the theory of caching. Now, let's look at the industry-standard tool: **Redis**. 
+
+**Redis** stands for **RE**mote **DI**ctionary **S**erver. It is an open-source, in-memory data structure store. Unlike a traditional database that writes to a hard drive, Redis keeps everything in the **RAM**.
+
+## Why is Redis so fast?
+
+A traditional database (like PostgreSQL or MySQL) is like a **Warehouse**; it’s huge but takes time to retrieve items. Redis is like your **Kitchen Counter**; it's small, but everything is right there and ready to use.
+
+* **In-Memory:** RAM access is 1,000x faster than SSD/Hard Drive access.
+* **Simple Data Structures:** It doesn't use complex tables or joins. It uses simple keys and values.
+* **Single-Threaded:** It processes commands one by one, which avoids "locks" and keeps things predictably fast.
+
+## How we use Redis at CodeHarborHub
+
+As a Backend Developer, you will primarily use Redis for three things:
+
+1.  **Database Caching:** Storing the result of a slow SQL query.
+2.  **Session Management:** Keeping users logged in (storing JWTs or Session IDs).
+3.  **Rate Limiting:** Stopping hackers from hitting your API 1,000 times a second.
+
+## Common Redis Commands
+
+Redis is a **Key-Value** store. Think of it like a giant JavaScript Object that lives in your RAM.
+
+<Tabs>
+  <TabItem value="strings" label="🔤 Strings" default>
+
+  The most basic type of data.
+
+  ```bash
+  SET user:101 "Ajay Dhangar"   # Save data
+  GET user:101                  # Retrieve data -> "Ajay Dhangar"
+  EXPIRE user:101 60            # Delete after 60 seconds (TTL)
+  ```
+
+</TabItem>
+<TabItem value="hashes" label="📂 Hashes">
+
+Perfect for storing objects (like a User profile).
+
+```bash
+HSET student:1 name "Aryan" role "Mentor"
+HGET student:1 name           # -> "Aryan"
+```
+
+</TabItem>
+<TabItem value="lists" label="📜 Lists">
+
+Ordered collections of strings (perfect for a "Latest News" feed).
+
+```bash
+LPUSH notifications "New Course Added!"
+LPUSH notifications "Welcome to CodeHarborHub"
+```
+
+</TabItem>
+</Tabs>
+
+## The Implementation Logic (Code View)
+
+Here is how you would typically implement Redis in a **Node.js + Express** application:
+
+```javascript
+// Example: Caching a User Profile
+async function getUserProfile(userId) {
+  // 1. Try to find user in Redis
+  const cachedUser = await redis.get(`user:${userId}`);
+
+  if (cachedUser) {
+    console.log("⚡ Cache Hit!");
+    return JSON.parse(cachedUser);
+  }
+
+  // 2. If not in Redis, get from SQL Database
+  console.log("🐢 Cache Miss. Querying Database...");
+  const user = await db.users.findUnique({ where: { id: userId } });
+
+  // 3. Store in Redis for 1 hour so next time it's fast
+  await redis.set(`user:${userId}`, JSON.stringify(user), 'EX', 3600);
+
+  return user;
+}
+```
+
+## Summary Checklist
+
+  * [x] I understand that Redis is an in-memory store (RAM).
+  * [x] I know that Redis uses a Key-Value structure.
+  * [x] I can explain why Redis is used for caching and sessions.
+  * [x] I understand basic commands like `SET`, `GET`, and `EXPIRE`.
+
+:::success 🏆 Caching Module Complete!
+You now have the knowledge to make any application scale to millions of users. By combining **Relational Databases** with **Redis Caching**, you are building backends like a senior engineer!
+:::
