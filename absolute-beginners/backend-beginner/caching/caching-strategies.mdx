@@ -1,0 +1,75 @@
+---
+sidebar_position: 3
+title: "Caching Strategies"
+sidebar_label: "3. Caching Strategies"
+description: "Learn the industry-standard logic for managing when to store, update, and delete cached data."
+---
+
+"There are only two hard things in Computer Science: cache invalidation and naming things." 
+
+If you cache a user's profile and they change their name, but your cache still shows the old name, your app is "broken" in the user's eyes. This is called **Stale Data**. We use different strategies to prevent this.
+
+## 1. TTL (Time to Live)
+
+This is the simplest and most common strategy. You give every piece of data an "expiry date."
+
+* **How it works:** When you save data to the cache (like Redis), you set a timer (e.g., 3600 seconds). Once the timer hits zero, the cache automatically deletes that data.
+* **Best For:** Data that changes occasionally but isn't "mission critical" (like weather updates or trending posts).
+
+## 2. Write Strategies
+
+How does the data get into the cache in the first place?
+
+<Tabs>
+  <TabItem value="cache-aside" label="🏹 Cache Aside (Lazy Loading)" default>
+
+  ### The "Check First" Method
+
+  The application code is responsible for managing the cache.
+  1. Check cache. 
+  2. If found (Hit), return. 
+  3. If not found (Miss), get from DB and **then** save to cache.
+
+  * **Pros:** Only requested data is cached.
+  * **Cons:** The first user always experiences a "slow" request (Cache Miss).
+
+  </TabItem>
+  <TabItem value="write-through" label="✍️ Write Through">
+
+  ### The "Always Sync" Method
+
+  Data is written to the cache and the database **at the same time**.
+  
+  * **Pros:** Cache is never stale; data is always ready.
+  * **Cons:** Writing data takes slightly longer because you are saving it in two places.
+
+  </TabItem>
+</Tabs>
+
+## 3. Cache Eviction (The Cleanup)
+
+What happens when your cache (RAM) is full? You can't just stop saving data. You have to kick something out.
+
+* **LRU (Least Recently Used):** The most popular strategy. It deletes the data that hasn't been touched in the longest time.
+* **LFU (Least Frequently Used):** Deletes data that is requested the least number of times.
+* **FIFO (First In, First Out):** Deletes the oldest data regardless of how often it's used.
+
+## 4. Cache Invalidation (The "Kill" Switch)
+
+This is the process of manually removing data from the cache because you know the source data has changed.
+
+**Example at CodeHarborHub:**
+A student updates their "Bio."
+1. Your code updates the **Database**.
+2. Your code immediately runs `cache.delete('user_101_bio')`.
+3. The next time the user visits their profile, the app sees a **Cache Miss** and fetches the new bio from the DB.
+
+## Summary Checklist
+* [x] I understand that **TTL** is a timer that automatically clears old data.
+* [x] I know that **Cache Aside** is the most common way to load data.
+* [x] I understand that **LRU** helps manage limited memory by deleting unused data.
+* [x] I recognize that manual **Invalidation** is necessary when data is updated.
+
+:::info The 80/20 Rule
+In most applications, 80% of your traffic comes from 20% of your data. Focus your caching efforts on that 20% (like top-selling products or homepage banners) to get the biggest performance boost!
+:::
