@@ -1,0 +1,69 @@
+---
+sidebar_position: 3
+title: "Relational Database Basics"
+sidebar_label: "3. Relational Basics"
+description: "Learn the fundamental building blocks of a Relational Database—Tables, Rows, Columns, and Schema."
+---
+
+A **Relational Database Management System (RDBMS)** organizes data into one or more tables. These tables are linked to each other using common data, which is why we call them "Relational."
+
+## The Anatomy of a Table
+
+Every table in a database like **PostgreSQL** or **MySQL** follows a strict structure. Let’s look at a sample `Students` table:
+
+### 1. The Table (The Container)
+A table is a collection of related data entries. In our case, the table is named `Students`.
+
+### 2. Columns / Fields (The Attributes)
+Columns define **what** kind of data is stored. Each column has a specific **Data Type** (e.g., Integer, String, Date).
+* *Example:* `first_name`, `email`, `enrollment_date`.
+
+### 3. Rows / Records (The Entries)
+A row represents a single, complete unit of information. 
+* *Example:* One row contains all the info for a student named "Ajay."
+
+## The Schema (The Blueprint)
+
+Before you can add any data, you must define a **Schema**. This is a roadmap that tells the database exactly how many columns to have and what "rules" they must follow.
+
+```sql
+-- Example Schema for a Students Table
+CREATE TABLE Students (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+## Common Data Types
+
+When designing your tables at **CodeHarborHub**, you need to choose the right "bucket" for your data:
+
+| Data Type | Description | Use Case |
+| :--- | :--- | :--- |
+| **INT / INTEGER** | Whole numbers | IDs, Age, Quantity |
+| **VARCHAR / TEXT** | Strings of characters | Names, Emails, Bios |
+| **BOOLEAN** | True or False | `is_active`, `has_paid` |
+| **DECIMAL / FLOAT**| Numbers with decimals | Prices, Ratings |
+| **TIMESTAMP** | Date and Time | `created_at`, `updated_at` |
+
+## The Goal: Atomic Data
+
+In a good relational design, each piece of data should be **Atomic** (indivisible).
+
+  * **Bad:** A column called `address` containing `"123 Street, Indore, MP, 452001"`.
+  * **Good:** Four separate columns: `street`, `city`, `state`, `zip_code`.
+
+*Why?* Because it's much easier to search for all students in "Indore" if the city has its own column!
+
+## Summary Checklist
+
+  * [x] I know that a **Table** is a collection of Rows and Columns.
+  * [x] I understand that a **Row** is a single record.
+  * [x] I know that a **Column** defines the type of data (Integer, String, etc.).
+  * [x] I understand that the **Schema** is the blueprint for the database.
+
+:::info Pro-Tip
+Always use **Snake Case** (`first_name`) or **Camel Case** (`firstName`) for your column names consistently. At **CodeHarborHub**, we recommend `snake_case` for SQL columns as it is the industry standard!
+:::

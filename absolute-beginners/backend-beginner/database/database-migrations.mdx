@@ -1,0 +1,65 @@
+---
+sidebar_position: 6
+title: "Database Migrations"
+sidebar_label: "6. Database Migrations"
+description: "Learn how to manage changes to your database schema safely and consistently across your entire team."
+---
+
+Imagine you are working in a team of 5 developers at **CodeHarborHub**. You decide to add a `profile_picture` column to the `Users` table. You run the SQL command on your local computer, and everything works.
+
+But when your teammate pulls your code, their app **crashes**. Why? Because their local database doesn't have that new column. **Migrations** solve this "It works on my machine" problem.
+
+## What is a Migration?
+
+A migration is a small file (usually JS, TS, or SQL) that describes a specific change to the database. These files are saved in your Git repository along with your code.
+
+Each migration file usually has two parts:
+1.  **Up:** The instructions to apply the change (e.g., `ADD COLUMN bio`).
+2.  **Down:** The instructions to undo the change (e.g., `DROP COLUMN bio`).
+
+## The Migration Workflow
+
+Instead of manually typing SQL in a terminal, a professional developer follows this cycle:
+
+1.  **Create Migration:** You run a command to generate a new file.
+2.  **Write Logic:** You define the change (e.g., "Create a table called `Lessons`").
+3.  **Run Migration:** The tool executes the SQL and updates your local DB.
+4.  **Commit to Git:** Your teammates pull the file and run it. **Now everyone is perfectly synced!**
+
+## Why use Migrations?
+
+<Tabs>
+  <TabItem value="history" label="📜 History" default>
+    You can see exactly who changed the database, when they changed it, and why.
+  </TabItem>
+  <TabItem value="safety" label="🛡️ Safety">
+    If a database change breaks the app, you can "Rollback" to the previous version in seconds.
+  </TabItem>
+  <TabItem value="automation" label="🤖 Automation">
+    When you deploy your app to a server (like AWS or Vercel), the server can automatically update the database during the build process.
+  </TabItem>
+</Tabs>
+
+## Example: A Migration File (Prisma)
+
+At **CodeHarborHub**, we often use **Prisma**. Here is what a small migration looks like in the background:
+
+```sql
+-- Migration: Add bio to Users
+-- UP
+ALTER TABLE "Users" ADD COLUMN "bio" TEXT;
+
+-- DOWN
+ALTER TABLE "Users" DROP COLUMN "bio";
+```
+
+## Summary Checklist
+
+  * [x] I understand that migrations are "Version Control" for the database.
+  * [x] I know that migration files should be saved in Git.
+  * [x] I understand the difference between **Up** (Apply) and **Down** (Undo).
+  * [x] I recognize that migrations prevent "schema mismatch" errors in teams.
+
+:::warning The Golden Rule
+**Never** manually change your database structure in a production environment. Always use a migration. If you skip a migration, your code and your database will eventually "drift" apart, leading to nightmare bugs!
+:::

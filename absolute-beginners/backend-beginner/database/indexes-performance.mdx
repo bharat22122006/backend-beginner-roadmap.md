@@ -1,0 +1,70 @@
+---
+sidebar_position: 7
+title: "Database Indexes & Performance"
+sidebar_label: "7. Indexes & Performance"
+description: "Learn how to make your database queries 100x faster by using Indexes and avoiding common performance traps."
+---
+
+As your app at **CodeHarborHub** grows from 10 users to 10,000, your database will naturally slow down. A query that took **5ms** might suddenly take **2 seconds**. **Indexing** is the primary way we fix this.
+
+## The "Book Index" Analogy
+
+Imagine you have a 500-page book on "Node.js." You want to find the chapter on "Middleware."
+
+1.  **Without an Index (Full Table Scan):** You start at page 1 and flip through every single page until you find the word "Middleware." 🐢 (Very Slow)
+2.  **With an Index:** You flip to the back of the book, look up "M" for Middleware, see it's on page 245, and jump straight there. ⚡ (Very Fast)
+
+## How an Index Works
+
+When you create an index on a column (like `email`), the database creates a separate, hidden "mini-table" that is sorted alphabetically.
+
+Instead of looking through the main table, the database searches this sorted list first. Since it's sorted, it can use a **Binary Search** to find the data instantly.
+
+```sql
+-- How to add an index in SQL
+CREATE INDEX idx_user_email ON Users(email);
+```
+
+## The Trade-off: Read vs. Write
+
+Indexes aren't "free." Every time you add an index, you are making a trade-off.
+
+| Action | Impact with Index | Why? |
+| :--- | :--- | :--- |
+| **SELECT** (Read) | 100x Faster | The database jumps straight to the data. |
+| **INSERT** (Write) | Slower | The DB must update the table **and** the index. |
+| **STORAGE** | Increased | The index takes up extra space on the disk. |
+
+## When should you use an Index?
+
+Don't index every single column! At **CodeHarborHub**, follow these rules:
+
+<Tabs>
+<TabItem value="do" label="✅ Do Index" default>
+1. **Primary Keys:** Most databases index these automatically.
+2. **Foreign Keys:** Columns used in `JOIN` operations.
+3. **Search Columns:** Columns used in `WHERE` clauses (e.g., `email`, `username`).
+</TabItem>
+<TabItem value="dont" label="❌ Don't Index">
+1. **Small Tables:** If a table has only 50 rows, an index is overkill.
+2. **Frequently Changing Data:** Columns that get updated 100 times a second.
+3. **Low Cardinality:** Columns with very few options (e.g., a `Gender` column with only 3 options).
+</TabItem>
+</Tabs>
+
+## Tools for Performance
+
+How do you know if your query is slow? Use the `EXPLAIN` command.
+
+```sql
+EXPLAIN ANALYZE SELECT * FROM Users WHERE email = 'ajay@example.com';
+```
+
+*This will tell you if the database used an index or if it had to read every single row.*
+
+## Summary Checklist
+
+  * [x] I understand that an Index is a sorted pointer to data.
+  * [x] I know that Indexes make **Reads** faster but **Writes** slower.
+  * [x] I understand that `JOIN` columns and `WHERE` columns are the best candidates for indexing.
+  * [x] I know how to use `EXPLAIN` to check query performance.

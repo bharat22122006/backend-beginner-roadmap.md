@@ -1,0 +1,72 @@
+---
+sidebar_position: 5
+title: "Database Normalization"
+sidebar_label: "5. Normalization"
+description: "Learn how to organize your database tables to reduce redundancy and improve data integrity."
+---
+
+Imagine you have a spreadsheet where every time a student buys a course, you type their name, email, phone number, and address again. 
+
+If that student changes their phone number, you have to find and update **10 different rows**. If you miss one, your data is inconsistent. **Normalization** is the cure for this "Data Mess."
+
+## 🧐 The Goal of Normalization
+
+1.  **Eliminate Redundant Data:** Don't store the same info twice.
+2.  **Ensure Data Dependencies:** Only store related data together (e.g., don't put a "Course Price" in the "Student" table).
+3.  **Protect Data Integrity:** Make updates, deletions, and insertions easy and error-free.
+
+## The Three Normal Forms (1NF, 2NF, 3NF)
+
+Think of these as "Levels" of cleanliness for your database. Most professional apps at **CodeHarborHub** aim for **3rd Normal Form (3NF)**.
+
+<Tabs>
+  <TabItem value="1nf" label="1️⃣ 1st Normal Form (Atomic)" default>
+
+  ### Rule: No Multi-Valued Attributes
+  Every cell must contain only **one** value. No lists or comma-separated strings!
+
+  * **Bad:** `Courses: "React, Node, CSS"`
+  * **Good:** Three separate rows, one for each course.
+
+  </TabItem>
+  <TabItem value="2nf" label="2️⃣ 2nd Normal Form (Partial)">
+
+  ### Rule: Must be in 1NF + No Partial Dependencies
+  Every non-key column must depend on the **entire** Primary Key. If a table has a composite key (two IDs), don't store data that only relates to one of them.
+
+  * **Action:** Move "Course Details" into a `Courses` table and "Student Details" into a `Students` table. 
+
+  </TabItem>
+  <TabItem value="3nf" label="3️⃣ 3rd Normal Form (Transitive)">
+
+  ### Rule: Must be in 2NF + No Transitive Dependencies
+  Non-key columns should not depend on other non-key columns. 
+
+  * **Example:** In a `Students` table, don't store `City` and `ZipCode` together if the `City` depends on the `ZipCode`. 
+  * **Action:** Move `ZipCode` and `City` to a separate `Locations` table.
+
+  </TabItem>
+</Tabs>
+
+## The "Key" Oath
+
+To remember how 3NF works, database experts often use this famous quote:
+
+> "Every non-key attribute must provide a fact about **the key** (1NF), **the whole key** (2NF), and **nothing but the key** (3NF), so help me Codd."
+> — *E.F. Codd (The inventor of the Relational Model)*
+
+## When to STOP Normalizing?
+
+While Normalization is great for data integrity, too much of it can make your queries slow because the computer has to "Join" 10 different tables just to show a user profile.
+
+In high-performance systems (like a massive "Search" feature), we sometimes **De-normalize** data (purposefully repeat it) to make reading faster.
+
+## Summary Checklist
+* [x] I understand that Normalization reduces data redundancy.
+* [x] I know that **1NF** means one value per cell.
+* [x] I know that **2NF** and **3NF** are about splitting tables so data only lives where it belongs.
+* [x] I understand that "The Key Oath" is the secret to 3NF.
+
+:::tip Real-World Tip
+When you are just starting your project, **always normalize first**. It is much easier to "De-normalize" a clean database later than it is to fix a "Messy" database after it has 1,000 users!
+:::
