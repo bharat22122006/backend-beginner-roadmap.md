@@ -1,0 +1,88 @@
+---
+sidebar_position: 11
+title: "The N+1 Query Problem"
+sidebar_label: "11. N+1 Problem"
+description: "Learn how to identify and fix the N+1 query problem to prevent your database from slowing down as your data grows."
+---
+
+As a developer at **CodeHarborHub**, you want your app to be fast. However, many beginners accidentally write code that forces the database to do 100 times more work than necessary. This is known as the **N+1 Problem**.
+
+## 🧐 What is the N+1 Problem?
+
+This problem occurs when your application makes **one** initial query to fetch a list of items (N), and then makes **one additional query for each** item to fetch related data.
+
+### The "Grocery Store" Analogy
+Imagine you need to buy 10 different items from the store:
+* **The N+1 Way:** You drive to the store, buy milk, and drive home. Then you drive back, buy bread, and drive home. You repeat this **10 times**. (Exhausting!)
+* **The Efficient Way:** You make a list of all 10 items, drive to the store **once**, buy everything, and drive home. (Fast!)
+
+## Seeing it in Code
+
+Imagine we want to display a list of 10 **Users** and their **Posts**.
+
+### The Bad Way (N+1)
+If you use a loop to fetch related data, you create an N+1 disaster.
+
+```javascript
+// 1 Query to get 10 users
+const users = await prisma.user.findMany(); 
+
+// 10 separate queries (one inside each loop)
+for (const user of users) {
+  const posts = await prisma.post.findMany({
+    where: { userId: user.id }
+  });
+  console.log(`${user.name} has ${posts.length} posts.`);
+}
+// TOTAL QUERIES: 1 + 10 = 11
+````
+
+If you had 1,000 users, your app would hit the database **1,001 times** just to load one page!
+
+## The Solution: Eager Loading
+
+Instead of fetching related data inside a loop, we tell the database to join the tables and give us everything in **one single trip**.
+
+### The Good Way (Eager Loading)
+
+In modern ORMs like **Prisma**, we use the `include` keyword.
+
+```javascript
+// ONE SINGLE QUERY to get 10 users AND all their posts
+const usersWithPosts = await prisma.user.findMany({
+  include: {
+    posts: true,
+  },
+});
+
+// Now the data is already in memory! No more DB hits.
+usersWithPosts.forEach(user => {
+  console.log(`${user.name} has ${user.posts.length} posts.`);
+});
+// TOTAL QUERIES: 1
+```
+
+## Comparison: Why it matters
+
+| Feature | N+1 Strategy | Eager Loading (The Fix) |
+| :--- | :--- | :--- |
+| **Database Trips** | 1 + N (Many) | 1 (Single) |
+| **Performance** | Slows down as data grows | Consistently fast |
+| **Network Latency** | High (Multiple Roundtrips) | Low (One Roundtrip) |
+| **Server Load** | Very High | Minimal |
+
+## How to Spot it?
+
+1.  **Check your Logs:** If you see the same `SELECT` statement repeating 20 times in your console, you have an N+1 problem.
+2.  **Use Tools:** Tools like **Prisma Studio**, **Hibernate Profiler**, or even simple `console.log` can help you count your queries.
+
+## Summary Checklist
+
+  * [x] I understand that N+1 means making a separate query for every item in a list.
+  * [x] I know that loops + database queries = **Performance Disaster**.
+  * [x] I understand that **Eager Loading** (Joins) is the primary solution.
+  * [x] I can identify N+1 problems by looking at my server logs.
+
+:::success You've Mastered the Foundations!
+By understanding the N+1 problem, you've moved past "beginner" coding. You are now thinking about **Scalability** and **Efficiency**—the marks of a true Senior Backend Engineer at **CodeHarborHub**.
+:::

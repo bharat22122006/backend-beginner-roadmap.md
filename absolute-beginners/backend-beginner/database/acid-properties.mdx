@@ -1,0 +1,56 @@
+---
+sidebar_position: 9
+title: "ACID Properties"
+sidebar_label: "9. ACID Properties"
+description: "Learn the four key properties—Atomicity, Consistency, Isolation, and Durability—that guarantee database reliability."
+---
+
+When you are building an application like an E-commerce store or a Banking app, you cannot afford "glitches." If a user pays for a course but the database crashes halfway through, they might lose their money without getting the course. 
+
+**ACID** is a set of four properties that guarantee database transactions are processed reliably.
+
+## 1. Atomicity (All or Nothing)
+
+Think of a transaction as an "Atom"—it cannot be split. Either the **entire** transaction succeeds, or the **entire** transaction fails. There is no "halfway."
+
+* **Real-World Example:** You transfer ₹500 to a friend. 
+    1. Money is deducted from your account.
+    2. Money is added to your friend's account.
+* **If Step 2 fails (network error):** Atomicity ensures that Step 1 is "rolled back" so you don't lose your money!
+
+## 2. Consistency (Following the Rules)
+
+Consistency ensures that a transaction only takes the database from one valid state to another. Any data written to the database must follow all defined rules (Constraints).
+
+* **Example:** If you have a rule that "Account Balance cannot be negative," and a transaction tries to withdraw more money than you have, the database will **reject** the transaction to stay "Consistent."
+
+## 3. Isolation (Work in Private)
+
+In a popular app like **CodeHarborHub**, thousands of people might be buying courses at the exact same time. **Isolation** ensures that concurrent transactions don't "trip over" each other.
+
+* **How it works:** Even if 100 people hit the "Buy" button at the same second, the database processes them in a way that feels like they happened one after another. This prevents "Double Spending" or incorrect inventory counts.
+
+## 4. Durability (Saved Forever)
+
+Once a transaction is "Committed" (finished successfully), it is permanent. Even if the power goes out or the server crashes one second later, the data is safe.
+
+* **How it works:** Databases use a **Transaction Log**. Before updating the main data, they write the change to a permanent log file on the hard drive. If the system crashes, it reads the log to recover the lost work.
+
+## ACID Summary Table
+
+| Property | Key Concept | Simple Goal |
+| :--- | :--- | :--- |
+| **Atomicity** | All or Nothing | Prevent partial updates. |
+| **Consistency** | Validity | Prevent "illegal" data. |
+| **Isolation** | Independence | Prevent data mix-ups. |
+| **Durability** | Permanence | Prevent data loss after crashes. |
+
+## Summary Checklist
+* [x] I understand that **Atomicity** means no partial transactions.
+* [x] I know that **Consistency** keeps the data within the rules.
+* [x] I understand that **Isolation** handles multiple users at once.
+* [x] I know that **Durability** ensures data is saved to the disk forever.
+
+:::info The Trade-off
+Relational databases (SQL) are famous for being strictly **ACID** compliant. Many NoSQL databases trade some ACID properties for extreme speed (often called **BASE**). At **CodeHarborHub**, we start with ACID because data safety is our #1 priority!
+:::

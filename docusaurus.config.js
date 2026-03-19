@@ -120,6 +120,7 @@ const config = {
 
       navbar: {
         title: "CodeHarborHub",
+        hideOnScroll: true,
         logo: {
           alt: "CodeHarborHub Logo",
           src: "img/nav-logo.jpg",
@@ -186,6 +187,17 @@ const config = {
               },
             ],
           },
+          //   {
+          //   type: 'localeDropdown',
+          //   position: 'left',
+          //   dropdownItemsAfter: [
+          //     {
+          //       to: 'https://my-site.com/help-us-translate',
+          //       label: 'Help us translate',
+          //     },
+          //   ],
+          // },
+
           // {
           //   to: "https://codeharborhub.github.io/blog",
           //   html: '<span class="nav-emoji">📝</span> Blog',

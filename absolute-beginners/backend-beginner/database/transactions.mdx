@@ -1,0 +1,85 @@
+---
+sidebar_position: 10
+title: "Database Transactions"
+sidebar_label: "10. Transactions"
+description: "Learn how to group multiple SQL operations into a single, safe unit of work using Transactions."
+---
+
+A **Transaction** is a sequence of one or more SQL operations executed as a single unit. In a transaction, either **all** the changes are saved to the database, or **none** of them are.
+
+## The Classic Example: Bank Transfer
+
+Imagine a student at **CodeHarborHub** pays ₹1000 for a Premium Course. This requires two separate database updates:
+
+1.  **Update 1:** Subtract ₹1000 from the Student's balance.
+2.  **Update 2:** Add ₹1000 to the Instructor's balance.
+
+**The Nightmare Scenario:** What if the server crashes *after* Update 1 but *before* Update 2? The student loses money, and the instructor gets nothing. 
+
+## The 3 Key Commands
+
+To handle this, SQL provides three special commands to manage the lifecycle of a transaction:
+
+1.  **`BEGIN` (or `START TRANSACTION`):** Tells the database, "Everything I do from now on is part of a single unit."
+2.  **`COMMIT`:** Tells the database, "Everything went perfectly. Save all these changes permanently."
+3.  **`ROLLBACK`:** Tells the database, "Something went wrong! Undo everything since the `BEGIN` command."
+
+## Writing a Transaction in SQL
+
+Here is how that bank transfer looks in raw SQL:
+
+```sql
+BEGIN;
+
+-- Step 1: Deduct from Student
+UPDATE accounts SET balance = balance - 1000 WHERE user_id = 'student_01';
+
+-- Step 2: Add to Instructor
+UPDATE accounts SET balance = balance + 1000 WHERE user_id = 'instructor_99';
+
+-- If everything is okay:
+COMMIT;
+
+-- IF SOMETHING FAILED:
+-- ROLLBACK;
+```
+
+## Implementing Transactions in Node.js (Prisma)
+
+At **CodeHarborHub**, we use ORMs to make this even safer. In **Prisma**, we use the `$transaction` API:
+
+```javascript
+const transferMoney = await prisma.$transaction(async (tx) => {
+  // 1. Deduct from sender
+  const sender = await tx.account.update({
+    data: { balance: { decrement: 1000 } },
+    where: { userId: 'student_01' },
+  });
+
+  // 2. Add to receiver
+  const receiver = await tx.account.update({
+    data: { balance: { increment: 1000 } },
+    where: { userId: 'instructor_99' },
+  });
+
+  // If any line fails, Prisma automatically rolls back both steps!
+  return { sender, receiver };
+});
+```
+
+## When to use Transactions?
+
+  * **Financial Transfers:** Payments, refunds, and balance updates.
+  * **Inventory Management:** Reducing stock when an order is placed.
+  * **Multi-Table Inserts:** Creating a `User` record and a `Profile` record at the same time.
+
+## Summary Checklist
+
+  * [x] I understand that a Transaction is an "all or nothing" unit of work.
+  * [x] I know that **COMMIT** saves changes and **ROLLBACK** undoes them.
+  * [x] I can identify scenarios (like banking) where transactions are mandatory.
+  * [x] I know that modern ORMs like Prisma make transactions easier to write.
+
+:::warning Keep them Short!
+Transactions "lock" the rows they are touching so other users can't mess with them. If you keep a transaction open for a long time (e.g., waiting for an external API), you might slow down your entire database! **Get in, do the work, and COMMIT immediately.**
+:::

@@ -1,0 +1,69 @@
+---
+sidebar_position: 2
+title: "SQL vs. NoSQL"
+sidebar_label: "2. SQL vs. NoSQL"
+description: "Compare Relational (SQL) and Non-Relational (NoSQL) databases to choose the best fit for your project."
+---
+
+One of the first major decisions you will make as a Backend Developer is deciding where to store your data. This choice affects how you write code, how your app scales, and how you handle changes in the future.
+
+## SQL (Relational Databases)
+
+SQL databases are like a **Spreadsheet**. They use structured tables with fixed rows and columns. Every piece of data must fit into a predefined "Schema" (blueprint).
+
+### Key Characteristics:
+* **Relational:** Tables are linked using Keys (Primary and Foreign).
+* **Predefined Schema:** You must define your columns and data types *before* you add data.
+* **ACID Compliant:** High focus on data integrity and reliability.
+* **Vertical Scaling:** To handle more traffic, you usually need a bigger, more powerful server.
+
+**Best For:** Complex queries, financial systems, and apps where data consistency is non-negotiable (like an E-commerce store).
+
+## NoSQL (Non-Relational Databases)
+
+NoSQL databases are like a **Folder of Documents**. They don't use tables; instead, they store data in flexible formats like JSON.
+
+### Key Characteristics:
+* **Non-Relational:** Data is often "nested" inside a single document rather than linked across tables.
+* **Dynamic Schema:** You can add new fields to a record without changing the whole database.
+* **High Scalability:** Designed to be "Distributed." You can add 10 small servers instead of 1 giant one (**Horizontal Scaling**).
+* **Speed:** Optimized for high-speed read/write operations for massive amounts of data.
+
+**Best For:** Real-time big data, content management (CMS), social media feeds, and rapid prototyping.
+
+## Head-to-Head Comparison
+
+| Feature | SQL (PostgreSQL, MySQL) | NoSQL (MongoDB, Redis) |
+| :--- | :--- | :--- |
+| **Data Model** | Tables / Rows | Documents / Key-Value |
+| **Schema** | Fixed (Rigid) | Dynamic (Flexible) |
+| **Scaling** | Vertical (Bigger Server) | Horizontal (More Servers) |
+| **Joins** | Excellent (Native) | Poor (Manual or Nested) |
+| **Consistency** | Strong (ACID) | Eventual (BASE) |
+
+## 🤔 Which one should you pick?
+
+At **CodeHarborHub**, we recommend following this simple rule of thumb:
+
+<Tabs>
+  <TabItem value="pick-sql" label="✅ Pick SQL if..." default>
+    1. Your data is highly structured (User -> Order -> Product).
+    2. You need complex "Joins" to connect information.
+    3. Data accuracy is more important than raw speed (e.g., Banking).
+  </TabItem>
+  <TabItem value="pick-nosql" label="✅ Pick NoSQL if...">
+    1. Your data structure changes constantly.
+    2. You are dealing with massive amounts of unstructured data (e.g., IoT logs).
+    3. You need to scale your app across multiple global servers easily.
+  </TabItem>
+</Tabs>
+
+## Summary Checklist
+* [x] I understand that **SQL** uses tables and **NoSQL** uses documents.
+* [x] I know that SQL is better for "Relationships" and NoSQL is better for "Flexibility."
+* [x] I understand the difference between **Vertical** and **Horizontal** scaling.
+* [x] I can choose the right database type based on project requirements.
+
+:::info Real-World Tip
+Most modern "Unicorn" startups actually use **both**! They might use PostgreSQL (SQL) for their user accounts and payments, but use Redis (NoSQL) for their real-time chat and notifications.
+:::

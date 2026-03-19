@@ -1,6 +1,6 @@
 {
   "label": "Caching",
-  "position": 9,
+  "position": 7,
   "link": {
     "type": "generated-index",
     "description": "Master the art of high-speed data retrieval. Learn how to reduce database load and make your applications lightning-fast using Caching and Redis."

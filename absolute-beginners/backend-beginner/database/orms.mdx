@@ -1,0 +1,80 @@
+---
+sidebar_position: 8
+title: "Object-Relational Mapping (ORM)"
+sidebar_label: "8. ORMs"
+description: "Learn how to interact with your database using the programming language you already know."
+---
+
+Writing raw SQL inside your Node.js code can be messy. It’s hard to read, hard to debug, and dangerous if not handled correctly. An **ORM** is a library that acts as a translator between your **Object-Oriented Code** (JavaScript/TypeScript) and your **Relational Database** (SQL).
+
+## 🧐 The "Translator" Concept
+
+Imagine you speak English (JavaScript), but your database only speaks Spanish (SQL). You could learn Spanish, or you could hire a **Translator (ORM)**.
+
+1.  **In JavaScript:** You think in terms of **Objects** and **Arrays**.
+2.  **In SQL:** The database thinks in terms of **Tables** and **Rows**.
+3.  **The ORM:** Maps your JS Object properties to your SQL Table columns automatically.
+
+## Raw SQL vs. ORM
+
+Let’s see how we find a user with the email `ajay@example.com`.
+
+<Tabs>
+  <TabItem value="sql" label="📊 Raw SQL" default>
+
+  ```javascript
+  const query = "SELECT * FROM users WHERE email = 'ajay@example.com'";
+  const user = await db.execute(query);
+  ```
+
+  * **Risk:** High chance of "SQL Injection" if you don't sanitize inputs.
+  * **Maintenance:** If you change a column name, you have to find and replace it in every string.
+
+</TabItem>
+<TabItem value="orm" label="🏗️ Using an ORM (Prisma/Sequelize)">
+
+```javascript
+const user = await prisma.user.findUnique({
+  where: { email: 'ajay@example.com' }
+});
+```
+
+  * **Safety:** Automatically protects against SQL injection.
+  * **IntelliSense:** Your editor (VS Code) will suggest column names as you type\!
+
+</TabItem>
+</Tabs>
+
+## Why use an ORM at CodeHarborHub?
+
+1.  **Database Agnostic:** Want to switch from MySQL to PostgreSQL? With an ORM, you usually only have to change one line of config, not rewrite your entire codebase.
+2.  **Migrations:** Most ORMs (like Prisma) handle your **Database Migrations** automatically.
+3.  **Type Safety:** If you use TypeScript, an ORM ensures you don't accidentally try to save a "String" into a "Number" column.
+4.  **Relationships:** Fetching a user and all their posts is as simple as adding `include: { posts: true }`.
+
+## Popular ORMs in the Ecosystem
+
+| ORM | Language | Style |
+| :--- | :--- | :--- |
+| **Prisma** | JS / TS | **Modern Choice.** Uses a schema file to generate a client. (Highly Recommended) |
+| **Sequelize** | JS | **The Veteran.** Uses models and classes. Very stable. |
+| **TypeORM** | TS | **The Java Style.** Uses decorators (`@Entity`, `@Column`). |
+| **Mongoose** | JS / TS | **The NoSQL King.** Specifically for MongoDB. |
+
+## The "Performance" Warning
+
+While ORMs are amazing for developer productivity, they come with a small cost:
+
+  * **Overhead:** They are slightly slower than raw SQL because of the translation layer.
+  * **Complex Queries:** For very advanced reports or data science, raw SQL is still better.
+
+## Summary Checklist
+
+  * [x] I understand that an ORM maps Objects to Tables.
+  * [x] I know that ORMs provide better security and developer experience.
+  * [x] I can name at least two popular ORMs (Prisma, Sequelize).
+  * [x] I understand that ORMs make switching databases easier.
+
+:::tip Pro-Tip
+At **CodeHarborHub**, we will be using **Prisma** for our practical projects. It is currently the most loved ORM in the industry because of its incredible developer tools and TypeScript support!
+:::
