@@ -1,0 +1,95 @@
+---
+sidebar_position: 3
+title: Integration Testing
+sidebar_label: "3. Integration Testing"
+description: "Learn how to test the interaction between different modules, such as your code and the database."
+---
+
+While Unit Tests prove that a single brick is strong, **Integration Tests** prove that the mortar (the glue) holds the bricks together to form a wall. 
+
+In a typical **CodeHarborHub** backend, this means testing if your **Service Layer** can successfully talk to your **Database** or an **External API**.
+
+
+## 🧐 The "Why" Behind Integration Tests
+
+You might have a perfectly working `User` object and a perfectly working `Database`. But if the User object expects a `firstName` and the Database table is named `first_name`, your app will crash. 
+
+**Unit tests won't catch this. Integration tests will.**
+
+## What Are We Testing?
+
+In integration testing, we move beyond simple logic and start testing the "edges" of our application:
+
+1.  **Database Integration:** Does my query actually return data from PostgreSQL?
+2.  **API Integration:** Does my app correctly parse the JSON response from a payment gateway?
+3.  **File System:** Can my app successfully write a PDF report to the `/uploads` folder?
+
+## Setting Up the Environment
+
+Because integration tests touch real systems, they are slower and more complex than unit tests. Here is the professional workflow we use:
+
+<Tabs>
+  <TabItem value="db-test" label="🗄️ The Test Database" default>
+    **Never** run integration tests against your "Production" or "Development" database. 
+    1. Create a separate `test_db`.
+    2. Run **Migrations** to set up the schema.
+    3. Seed the database with "dummy" data.
+    4. Wipe the data after the tests finish.
+  </TabItem>
+  <TabItem value="env" label="🔑 Environment Variables">
+    Use a `.env.test` file to point your app to the test database instead of the real one.
+  </TabItem>
+</Tabs>
+
+## Example: Testing a User Service
+
+Let's test if our `UserService` can actually save a user into the database using **Prisma**.
+
+```javascript
+import { UserService } from '../services/userService';
+import { prisma } from '../lib/prisma';
+
+describe('UserService Integration', () => {
+  
+  // Clean up the database before each test
+  beforeEach(async () => {
+    await prisma.user.deleteMany();
+  });
+
+  test('should successfully create a user in the database', async () => {
+    const userService = new UserService();
+    const userData = { name: 'Ajay', email: 'ajay@codeharborhub.com' };
+
+    // Act: Call the service that talks to the DB
+    const newUser = await userService.createUser(userData);
+
+    // Assert: Check if it's in the real DB
+    const dbUser = await prisma.user.findUnique({
+      where: { email: 'ajay@codeharborhub.com' }
+    });
+
+    expect(dbUser).toBeDefined();
+    expect(dbUser.name).toBe('Ajay');
+  });
+});
+```
+
+## Unit vs. Integration
+
+| Feature | Unit Testing | Integration Testing |
+| :--- | :--- | :--- |
+| **Scope** | One function | Multiple modules |
+| **Dependencies** | Mocked (Fake) | Real (DB, APIs) |
+| **Speed** | Milliseconds | Seconds |
+| **Debugging** | Easy (Know exactly where) | Harder (Could be the DB, Config, or Code) |
+
+## Summary Checklist
+
+  * [x] I understand that integration tests check the "interaction" between modules.
+  * [x] I know that I should use a dedicated **Test Database**.
+  * [x] I understand that integration tests catch bugs that unit tests miss (like schema mismatches).
+  * [x] I know how to use `beforeEach` to keep my test database clean.
+
+:::warning Don't Overdo It!
+Because integration tests are slower, don't try to test every single "if/else" condition here. Use **Unit Tests** for the logic and **Integration Tests** just to ensure the connection works!
+:::

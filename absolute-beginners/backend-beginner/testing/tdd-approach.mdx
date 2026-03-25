@@ -1,0 +1,96 @@
+---
+sidebar_position: 5
+title: "Test-Driven Development (TDD)"
+sidebar_label: "5. TDD Approach"
+description: "Learn the Red-Green-Refactor cycle to write cleaner, more reliable code by writing tests first."
+---
+
+Most developers write code like this: **Write Code → Run App → Fix Bugs.** In TDD, we flip that on its head: **Write Test → Watch it Fail → Write Code to Pass.**
+
+This might feel slow at first, but it prevents 90% of the bugs that usually crawl into your codebase during the "Fixing" stage.
+
+## The Red-Green-Refactor Cycle
+
+This is the heartbeat of TDD. You repeat this cycle for every small feature you build.
+
+### 1. RED: Write a Failing Test
+Before you write a single line of application logic, you write a test for a feature that doesn't exist yet.
+* **Why?** It defines exactly what your code *should* do.
+* **Result:** The test fails because the function is missing or empty.
+
+### 2. GREEN: Make it Pass
+Write the **minimum** amount of code required to make the test pass. Don't worry about "clean code" yet—just make the light turn green.
+* **Why?** It keeps you focused on the specific goal.
+* **Result:** The test passes.
+
+### 3. REFACTOR: Clean it Up
+Now that you have a "Safety Net" (the passing test), you can clean up your code. Rename variables, remove duplication, and optimize.
+* **Why?** It ensures your code stays professional and maintainable.
+* **Result:** The code is beautiful, and the test **still passes**.
+
+## TDD in Action: A Password Validator
+
+Let's build a password validator for **CodeHarborHub** using TDD.
+
+### Step 1: RED (The Test)
+We want a function that returns `false` if the password is less than 8 characters.
+
+```javascript title="validator.test.js"
+import { isSecure } from './validator';
+
+test('should return false if password is less than 8 characters', () => {
+  expect(isSecure('12345')).toBe(false); // This fails because isSecure doesn't exist!
+});
+```
+
+### Step 2: GREEN (The Code)
+
+We write just enough code to pass.
+
+```javascript title="validator.js"
+export const isSecure = (password) => {
+  return password.length >= 8; 
+};
+```
+
+*Run the test: **Passed!***
+
+### Step 3: REFACTOR
+
+Maybe we want to rename the variable for better clarity.
+
+```javascript
+export const isSecure = (pwd) => {
+  const MIN_LENGTH = 8;
+  return pwd.length >= MIN_LENGTH;
+};
+```
+
+*Run the test again: **Still Passed!***
+
+## Why use TDD at CodeHarborHub?
+
+| Feature | Without TDD | With TDD |
+| :--- | :--- | :--- |
+| **Bugs** | Found late (by users) | Found early (by you) |
+| **Code Quality** | Messy (hard to fix later) | Clean (Refactored safely) |
+| **Requirements** | Vague | Crystal Clear (The Tests) |
+| **Confidence** | "I think it works..." | "I know it works\!" |
+
+## When NOT to use TDD?
+
+While TDD is amazing for core logic (like auth, payments, and math), it's not always the best for:
+
+  * **UI/CSS:** Hard to test "if it looks pretty" with a script.
+  * **Prototyping:** If you are just "exploring" an idea and don't know what the output should be yet.
+
+## Summary Checklist
+
+  * [x] I understand the **Red-Green-Refactor** cycle.
+  * [x] I know that TDD means writing the test *before* the code.
+  * [x] I understand that TDD acts as a blueprint for my logic.
+  * [x] I know that "Refactor" means cleaning code without changing its behavior.
+
+:::info Professional Advice
+TDD feels like "extra work" for the first week. But after your first giant project where you change 100 lines of code and **know** it's still safe because of your tests, you'll never go back!
+:::

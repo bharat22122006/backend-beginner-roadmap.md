@@ -1,0 +1,88 @@
+---
+sidebar_position: 6
+title: "Mocking & Stubs"
+sidebar_label: "6. Mocking & Stubs"
+description: "Learn how to fake external dependencies like APIs and Databases to keep your tests fast and reliable."
+---
+
+In a real-world application like **CodeHarborHub**, your code doesn't live in a bubble. It talks to:
+* 📧 Email Services (SendGrid/Nodemailer)
+* 💳 Payment Gateways (Stripe/Razorpay)
+* ☁️ Cloud Storage (AWS S3)
+* 🌐 External APIs (GitHub/Google)
+
+If you use the **real** services during testing, your tests will be slow, they might cost you money, and they will fail if the internet goes down. We solve this by using **Mocks** and **Stubs**.
+
+## 🧐 What’s the Difference?
+
+While people often use these terms interchangeably, there is a technical difference:
+
+| Concept | Simple Definition | Analogy |
+| :--- | :--- | :--- |
+| **Stub** | A "dumb" object that returns a hardcoded value. | A pre-recorded voicemail message. |
+| **Mock** | A "smart" object that records *how* it was called. | A spy who reports back: "The target called me twice at 5:00 PM." |
+
+## When to use Mocking?
+
+You should mock any dependency that is **non-deterministic** (unpredictable) or **external**:
+
+1.  **Network Requests:** Don't hit a real URL; mock the response.
+2.  **Time:** If a feature only works on weekends, "mock" the system clock to be a Saturday.
+3.  **Randomness:** If a function generates a random ID, mock it to always return `123`.
+4.  **Costly Actions:** Mocking the "Send Email" function so you don't spam real users during testing.
+
+## Mocking with Jest
+
+Let's say we have a function that sends a "Course Completion" email to a student.
+
+### The Service
+
+```javascript title="emailService.js"
+export const sendWelcomeEmail = async (email) => {
+  // Imagine this calls a real API like SendGrid
+  const response = await fetch('[https://api.sendgrid.com/v3/send](https://api.sendgrid.com/v3/send)', { ... });
+  return response.ok;
+};
+```
+
+### The Test
+We want to test our `signup` logic without actually sending an email.
+
+```javascript title="auth.test.js"
+import * as emailService from './emailService';
+import { signupUser } from './auth';
+
+// 1. Tell Jest to "hijack" the email service
+jest.mock('./emailService');
+
+test('signup should call the email service', async () => {
+  // 2. Setup the "Mock" to return a successful value
+  emailService.sendWelcomeEmail.mockResolvedValue(true);
+
+  const result = await signupUser('ajay@example.com');
+
+  // 3. Assert: Check if the function was CALLED
+  expect(emailService.sendWelcomeEmail).toHaveBeenCalledTimes(1);
+  expect(emailService.sendWelcomeEmail).toHaveBeenCalledWith('ajay@example.com');
+  expect(result.success).toBe(true);
+});
+```
+
+## The Dangers of Over-Mocking
+
+Mocking is powerful, but if you mock **everything**, your tests become useless. 
+
+* **Bad:** Mocking your own internal database logic in an *Integration Test*. (You want to test the real DB!)
+* **Good:** Mocking the Stripe API in a *Unit Test*. (You don't want to charge a real card!)
+
+> **Rule of Thumb:** Mock the things you don't control (3rd party APIs). Don't mock the things you do control (your own logic).
+
+## Summary Checklist
+* [x] I understand that Mocks replace "Real-world" unpredictable services.
+* [x] I know that **Stubs** provide data, while **Mocks** verify behavior.
+* [x] I can use `jest.mock()` to fake a module.
+* [x] I understand that over-mocking can lead to tests that pass even when the app is broken.
+
+:::success 🎉 Testing Module Complete!
+Congratulations! You've learned how to build a professional testing suite. From **Unit Tests** to **Mocks**, you now have the tools to build a robust, industrial-level backend for **CodeHarborHub**. 
+:::

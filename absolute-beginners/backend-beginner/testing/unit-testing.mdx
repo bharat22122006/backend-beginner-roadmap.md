@@ -1,0 +1,83 @@
+---
+sidebar_position: 2
+title: Unit Testing
+sidebar_label: "2. Unit Testing"
+description: "Learn how to test the smallest components of your code in isolation using Jest."
+---
+
+A **Unit Test** focuses on the smallest possible part of your application usually a single function, method, or class. The goal is to prove that a specific input always produces the expected output, without worrying about the database, the internet, or other files.
+
+## The Core Principles (FIRST)
+
+To write professional-grade unit tests at **CodeHarborHub**, your tests should follow the **FIRST** principles:
+
+* **Fast:** Tests should run in milliseconds. You should be able to run hundreds of them every time you save a file.
+* **Independent:** One test should not depend on the result of another.
+* **Repeatable:** A test should pass or fail the same way every time, regardless of the environment.
+* **Self-Validating:** The test should clearly report "Pass" or "Fail" without you having to check a log.
+* **Thorough/Timely:** Cover edge cases (like empty strings or negative numbers), not just the "happy path."
+
+## The Anatomy of a Test (AAA Pattern)
+
+Every good unit test follows the **AAA** structure. This keeps your test code organized and readable.
+
+1.  **Arrange:** Set up the data and conditions needed for the test.
+2.  **Act:** Call the function or method you are testing.
+3.  **Assert:** Check if the result matches your expectation.
+
+## Your First Test with Jest
+
+Let's say we have a utility function that calculates a discount for our **CodeHarborHub** courses.
+
+### The Function
+```javascript title="mathUtils.js"
+export const calculateDiscount = (price, percentage) => {
+  if (percentage < 0 || percentage > 100) return price;
+  return price - (price * (percentage / 100));
+};
+```
+
+### The Test
+
+```javascript title="mathUtils.test.js"
+import { calculateDiscount } from './mathUtils';
+
+describe('calculateDiscount()', () => {
+  
+  test('should apply a 20% discount correctly', () => {
+    // 1. Arrange
+    const price = 100;
+    const discount = 20;
+
+    // 2. Act
+    const result = calculateDiscount(price, discount);
+
+    // 3. Assert
+    expect(result).toBe(80);
+  });
+
+  test('should return original price if discount is invalid', () => {
+    const result = calculateDiscount(100, 150);
+    expect(result).toBe(100);
+  });
+});
+```
+
+## Why Is Isolation Important?
+
+Imagine you are testing a function that formats a user's name. If that function also tries to connect to a database to fetch the name, and the database is down, your test fails.
+
+**Is the name-formatter broken?** We don't know!
+
+By **Unit Testing**, we remove the database. We give the function a "hardcoded" name and check if it formats it correctly. This ensures that when a test fails, we know exactly which line of code is at fault.
+
+## Summary Checklist
+
+  * [x] I understand that a Unit Test only tests one small function.
+  * [x] I can explain the **Arrange, Act, Assert** (AAA) pattern.
+  * [x] I know that unit tests must be fast and independent.
+  * [x] I understand that unit tests do not talk to databases or external APIs.
+
+:::info Pro-Tip
+In the **CodeHarborHub** curriculum, we use **Jest**. It is the most popular testing framework for JavaScript and comes with everything you need: a test runner, an assertion library, and mocking tools.
+:::
