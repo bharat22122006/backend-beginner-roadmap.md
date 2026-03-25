@@ -1,0 +1,93 @@
+---
+sidebar_position: 4
+title: "Functional & E2E Testing"
+sidebar_label: "4. Functional Testing"
+description: "Learn how to test your API endpoints from the outside-in to ensure the business logic works for the user."
+---
+
+Functional testing (often called **End-to-End** or **Black Box** testing) doesn't care about your clean code, your design patterns, or your variable names. It only cares about one thing: **"Does the feature actually work for the user?"**
+
+In the **CodeHarborHub** backend, this usually means sending a real HTTP request to your API and checking if you get the correct HTTP response.
+
+## The "Black Box" Concept
+
+Imagine your API is a black box. You can't see inside it.
+1.  You push a button (Send a `POST` request to `/api/register`).
+2.  Something happens inside.
+3.  You check the result (Did I get a `201 Created` status and a Welcome email?).
+
+## Functional vs. Unit Testing
+
+| Feature | Unit Testing | Functional Testing |
+| :--- | :--- | :--- |
+| **Viewpoint** | Developer (White Box) | User (Black Box) |
+| **Goal** | Correctness of logic | Correctness of feature |
+| **Example** | Testing the `sum()` function | Testing the `Checkout` process |
+| **Dependencies** | Mocked (Fake) | Real (Server + DB) |
+
+## Tools for Functional Testing
+
+To test your API endpoints without opening a browser or using Postman manually, we use **Supertest**. It allows us to "simulate" HTTP requests inside our Jest tests.
+
+### Example: Testing the Signup Endpoint
+
+```javascript
+import request from 'supertest';
+import app from '../app'; // Your Express app
+import { prisma } from '../lib/prisma';
+
+describe('POST /api/auth/signup', () => {
+  
+  test('should create a new user and return 201', async () => {
+    // 1. Send the request
+    const response = await request(app)
+      .post('/api/auth/signup')
+      .send({
+        name: 'Ajay Dhangar',
+        email: 'test@codeharborhub.com',
+        password: 'securePassword123'
+      });
+
+    // 2. Assert the HTTP Status
+    expect(response.status).toBe(201);
+
+    // 3. Assert the Response Body
+    expect(response.body).toHaveProperty('id');
+    expect(response.body.name).toBe('Ajay Dhangar');
+
+    // 4. Verification: Is it actually in the DB?
+    const userInDb = await prisma.user.findUnique({
+      where: { email: 'test@codeharborhub.com' }
+    });
+    expect(userInDb).not.toBeNull();
+  });
+
+  test('should return 400 if email is missing', async () => {
+    const response = await request(app)
+      .post('/api/auth/signup')
+      .send({ name: 'Ajay' });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toMatch(/required/);
+  });
+});
+```
+
+## The "Happy Path" vs. "Edge Cases"
+
+In functional testing at **CodeHarborHub**, you must test both:
+
+1.  **The Happy Path:** Everything goes perfectly (User enters correct data, server is up).
+2.  **The Sad Path:** The user makes a mistake (Invalid email, password too short).
+3.  **The Edge Case:** What happens if a user tries to register with an email that already exists?
+
+## Summary Checklist
+
+  * [x] I understand that Functional Testing is "Black Box" testing.
+  * [x] I know that Functional Tests check the API from the user's perspective.
+  * [x] I can use **Supertest** to simulate HTTP requests.
+  * [x] I understand the importance of testing "Sad Paths" and "Edge Cases."
+
+:::info Best Practice
+Functional tests are slower than unit tests because they start the entire server and talk to the database. Run them **after** your unit tests have passed to catch "big picture" bugs before you deploy to production!
+:::
