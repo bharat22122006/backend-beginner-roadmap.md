@@ -1,0 +1,65 @@
+---
+sidebar_position: 1
+title: "Coding for DevOps: The Scripting Mindset"
+sidebar_label: "1. Intro to DevOps Coding"
+description: "Learn the difference between Software Development and DevOps Scripting, and why the Trinity of Python, Go, and JS is essential."
+---
+
+In the **Backend Development** path, you learned to write code for humans (APIs, Websites). In the **DevOps** path, you will learn to write code for **machines**.
+
+As a DevOps Engineer at **CodeHarborHub**, your code acts as the "glue" that connects your source code, your servers, and your cloud providers.
+
+## 🧐 Software Engineering vs. DevOps Scripting
+
+What's the difference? It's all about the **Goal**.
+
+| Feature | Software Engineering (Dev) | DevOps Coding (Ops) |
+| :--- | :--- | :--- |
+| **Target** | End Users (Customers) | Machines & Infrastructure |
+| **Output** | Applications / Features | Scripts / Automation / Tools |
+| **Focus** | User Experience (UX) | Reliability & Scalability |
+| **Execution** | Long-running (Servers) | Task-oriented (Jobs/Pipelines) |
+
+## The "DevOps Trinity"
+
+At **CodeHarborHub**, we focus on three specific languages. Each one has a unique "superpower" in the DevOps lifecycle.
+
+<Tabs>
+  <TabItem value="python" label="Python (The Glue)" default>
+    **Why?** It's pre-installed on Linux and has the best libraries for AWS (`boto3`) and Data.
+    **Best for:** Automation scripts, cron jobs, and AI-Ops.
+  </TabItem>
+  <TabItem value="go" label="Go (The Engine)">
+    **Why?** It's fast and compiles to a single binary. It's what Docker and Kubernetes are built with.
+    **Best for:** High-performance CLI tools and Cloud-native infrastructure.
+  </TabItem>
+  <TabItem value="js" label="JavaScript (The Pipe)">
+    **Why?** It's the native language of GitHub Actions and Serverless functions (AWS Lambda).
+    **Best for:** CI/CD workflows and Infrastructure as Code (CDK).
+  </TabItem>
+</Tabs>
+
+## Core Concepts for DevOps Coders
+
+To be successful in this path, you must master these three patterns:
+
+### 1. The CLI Pattern (Input/Output)
+Your scripts should take arguments (like `--env production`) and provide clear output (like `Success: Server Restarted`).
+
+### 2. Idempotency (The "Safety" Rule)
+In DevOps, an **Idempotent** script is one that can be run 100 times but only makes a change the *first* time.
+* **Bad Script:** Adds a new line to a file every time it runs.
+* **Good Script:** Checks if the line exists first, and only adds it if it's missing.
+
+### 3. Error Handling (The "Graceful" Failure)
+If a DevOps script fails halfway through, it could leave a server in a "broken" state. Your code must handle timeouts and network errors gracefully.
+
+## Summary Checklist
+* [x] I understand that DevOps coding focuses on automation and tools.
+* [x] I can explain why Python, Go, and JS are the preferred languages.
+* [x] I understand the concept of **Idempotency**.
+* [x] I know that my "users" are often other scripts or CI/CD pipelines.
+
+:::tip
+You don't need to be a "Master" of all three languages. Most DevOps engineers at **CodeHarborHub** are "Expert" in one (usually Python) and "Proficient" in the others. Pick one to start, and the rest will follow!
+:::
