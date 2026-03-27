@@ -1,0 +1,70 @@
+---
+sidebar_position: 4
+title: "JavaScript: Pipelines & Serverless"
+sidebar_label: "4. JS for DevOps"
+description: "Learn why JavaScript is essential for GitHub Actions, AWS CDK, and modern Serverless DevOps."
+---
+
+If you come from a **Full-Stack** background at **CodeHarborHub**, you already have a DevOps superpower. JavaScript isn't just for building UI; it is the native language of the modern "Automation Pipeline."
+
+## Where does JS fit in DevOps?
+
+In the DevOps world, JavaScript (and its safer brother, **TypeScript**) is used in three critical areas:
+
+### 1. GitHub Actions (CI/CD)
+GitHub is the home of your code. **GitHub Actions** is the engine that tests and deploys that code. Almost all custom GitHub Actions are written in Node.js because it starts instantly and has a massive library ecosystem (NPM).
+
+### 2. AWS CDK (Infrastructure as Code)
+Instead of writing messy YAML or JSON files to define your servers, the **AWS Cloud Development Kit (CDK)** lets you define your entire infrastructure using TypeScript classes. 
+* *Example:* `new s3.Bucket(this, 'MyDevOpsBucket');`
+
+### 3. Serverless Functions (AWS Lambda)
+When you need a tiny piece of code to run in response to an event (like a file being uploaded), **Node.js** is the most popular choice because of its "Event-Driven" nature.
+
+## Building a GitHub Action (Scripting)
+
+One common DevOps task is to automatically label Pull Requests or check for "TODO" comments. Here is a simple Node.js script that a DevOps engineer might run inside a CI/CD pipeline:
+
+```javascript
+const fs = require('fs');
+
+// A DevOps script to scan for "TODO" comments in the codebase
+const files = fs.readdirSync('./src');
+
+files.forEach(file => {
+  const content = fs.readFileSync(`./src/${file}`, 'utf8');
+  if (content.includes('TODO:')) {
+    console.warn(`⚠️ Warning: ${file} contains unfinished tasks!`);
+    // In a real pipeline, we might fail the build here
+    // process.exit(1);
+  }
+});
+```
+
+## Why JS over Python or Go?
+
+| Feature | JavaScript (Node.js) | Python / Go |
+| :--- | :--- | :--- |
+| **Eco-system** | Largest (NPM) | Large / Growing |
+| **Speed** | Fast (Event Loop) | Slower / Faster |
+| **Cloud Native** | Best for Lambda/Actions | Great for Automation/CLI |
+| **Integration** | Native to Web/GitHub | Needs 3rd Party Wrappers |
+
+## The DevOps JS Toolbox
+
+As a DevOps engineer at **CodeHarborHub**, you should be familiar with these JS-based tools:
+
+  * **zx:** A library by Google that makes writing shell scripts in JavaScript as easy as writing them in Bash.
+  * **Puppeteer:** Used for "Synthetic Monitoring" (Simulating a user clicking through your site to make sure it's not down).
+  * **Pulumi:** An alternative to Terraform that lets you manage infrastructure using standard JavaScript.
+
+## Summary Checklist
+
+  * [x] I understand that JS is the primary language for **GitHub Actions**.
+  * [x] I know that **TypeScript** is preferred for Infrastructure as Code (CDK).
+  * [x] I can explain why Node.js is a great fit for **Serverless** (Lambda).
+  * [x] I understand that JS allows Frontend and DevOps teams to speak the same language.
+
+:::tip
+If you are already a JavaScript developer, don't switch to Python immediately\! Start your DevOps journey by writing **GitHub Actions** and **AWS CDK** scripts in TypeScript. You’ll be surprised how much infrastructure you can manage with the skills you already have.
+:::

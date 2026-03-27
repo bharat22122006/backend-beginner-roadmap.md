@@ -1,0 +1,91 @@
+---
+sidebar_position: 2
+title: "Python: The DevOps Swiss Army Knife"
+sidebar_label: "2. Python for Automation"
+description: "Learn how to use Python to automate system tasks, manage files, and control the cloud with Boto3."
+---
+
+If you ask any DevOps Engineer at **CodeHarborHub** which language they use most, the answer is almost always **Python**. It is readable, powerful, and comes pre-installed on nearly every Linux server in the world.
+
+## The "Big Three" Automation Libraries
+
+In DevOps, we rarely use Python for "Algorithms." We use it to talk to the **Operating System**, the **Network**, and the **Cloud**.
+
+### 1. The `os` & `sys` Modules
+These allow your script to "click buttons" and "move files" in Linux.
+* **Use case:** Renaming 1,000 log files instantly.
+* **Use case:** Checking if a specific folder exists before running a backup.
+
+### 2. The `subprocess` Module
+This is how Python "types" into the terminal for you. It allows you to run shell commands (like `git`, `docker`, or `ls`) and capture the output.
+
+### 3. The `requests` Library
+The gold standard for talking to APIs.
+* **Use case:** Sending an alert to a Slack channel when a server goes down.
+* **Use case:** Fetching the latest deployment status from GitHub.
+
+## Cloud Automation with Boto3
+
+In the modern DevOps world, we don't manually create servers in the AWS Console. We use **Boto3**, the official AWS SDK for Python.
+
+### Example: Auto-Stop Idle Servers
+Imagine you want to save money at **CodeHarborHub** by stopping all "Dev" servers at 6:00 PM.
+
+```python
+import boto3
+
+ec2 = boto3.resource('ec2')
+
+# Find all instances with the tag "Environment: Dev"
+instances = ec2.instances.filter(
+    Filters=[{'Name': 'tag:Environment', 'Values': ['Dev']}]
+)
+
+for instance in instances:
+    instance.stop()
+    print(f"Stopped instance: {instance.id}")
+```
+
+## Practical Script: The "Log Cleaner"
+
+One common DevOps task is cleaning up old logs so the disk doesn't get full. Here is a professional-style script:
+
+```python
+import os
+import time
+
+# Configuration
+LOG_DIR = "/var/logs/app"
+DAYS_OLD = 7
+SECONDS_IN_DAY = 86400
+
+current_time = time.time()
+
+for filename in os.listdir(LOG_DIR):
+    file_path = os.path.join(LOG_DIR, filename)
+    
+    # Get the "Last Modified" time of the file
+    file_age = os.path.getmtime(file_path)
+    
+    # Calculate age in days
+    if (current_time - file_age) > (DAYS_OLD * SECONDS_IN_DAY):
+        os.remove(file_path)
+        print(f"🗑️ Deleted old log: {filename}")
+```
+
+## Python Best Practices for DevOps
+
+1.  **Use Virtual Environments (`venv`):** Never install libraries globally on a server. It can break the operating system's own Python tools.
+2.  **Shebang Lines:** Always start your scripts with `#!/usr/bin/env python3`. This tells Linux exactly how to run the file.
+3.  **Try/Except Blocks:** Servers are messy. Internet goes down. Disks get full. Always wrap your automation in error handling so one failure doesn't crash the whole pipeline.
+
+## Summary Checklist
+
+  * [x] I understand why Python is preferred for Linux automation.
+  * [x] I can explain the difference between `os` and `subprocess`.
+  * [x] I know that **Boto3** is the key to automating AWS.
+  * [x] I understand the importance of `try/except` for "resilient" scripts.
+
+:::tip Take Action
+Try running the `os.listdir()` command on your local machine to see a list of your files. You’ve just written your first piece of "Operational Code"\!
+:::

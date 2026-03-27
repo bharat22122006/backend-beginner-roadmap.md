@@ -1,0 +1,8 @@
+{
+  "label": "Programming Language",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Master the 'Trinity' of DevOps coding: Python for automation, Go for cloud-native tooling, and JavaScript for serverless and CI/CD workflows."
+  }
+}
