@@ -1,0 +1,92 @@
+---
+sidebar_position: 2
+title: "The Linux File System"
+sidebar_label: "2. Linux File System"
+description: "Understand the unique Everything is a File philosophy and the standard directory structure of a Linux server."
+---
+
+Before we look at folders, let’s answer the most common question: **What exactly is Linux?**
+
+:::info What is Linux?
+**Linux** is not a single "app" or a company product like Windows. It is an **Open-Source Kernel** (the core engine of an OS). 
+
+Think of Linux as the **Engine** of a car. Different companies take that engine, add a different "body" (UI), "seats" (Apps), and "paint" (Themes), and call it a **Distribution** (or **Distro**). 
+* **Ubuntu:** The friendly "Sedan" for beginners.
+* **CentOS/RHEL:** The heavy-duty "Truck" for big companies.
+* **Kali Linux:** The "Spy Car" for security experts.
+:::
+
+## The "Everything is a File" Philosophy
+
+This is the most important concept in Linux. 
+* Your **Hard Drive**? It's a file located at `/dev/sda`.
+* Your **Keyboard**? It's a file located at `/dev/input/event0`.
+* Your **Process**? It’s a folder full of files in `/proc`.
+
+**Why does this matter?** Because it means you can use the same simple tools (like `cat`, `grep`, or `nano`) to fix a website, check your RAM, or configure a database. You don't need a special "Dashboard" for everything.
+
+## The Linux Tree Structure (FHS)
+
+In Windows, you have `C:\` and `D:\`. In Linux, everything starts from a single point called the **Root**, represented by a forward slash: `/`.
+
+### The Essential Directories for DevOps:
+
+| Directory | Human Name | What's inside? |
+| :--- | :--- | :--- |
+| `/` | **Root** | The parent of every other folder on the system. |
+| `/bin` | **Binaries** | The "Power Tools" (commands like `ls`, `cp`, `mkdir`). |
+| `/etc` | **Et Cetera** | The **Control Room**. Almost all configuration files live here. |
+| `/home` | **Home** | The personal "Apartment" for each user (e.g., `/home/ajay`). |
+| `/var/log` | **Logs** | The "Black Box." If an app crashes, the reason is written here. |
+| `/tmp` | **Temporary** | The "Trash Can." Files here are usually deleted on reboot. |
+| `/root` | **Root Home** | The private home for the "God Mode" (Superuser) user. |
+| `/dev` | **Devices** | Where your hardware "files" live (Hard drives, USBs). |
+
+## Absolute vs. Relative Paths
+
+As a new coder at **CodeHarborHub**, you must know how to navigate the tree.
+
+1.  **Absolute Path:** The full address starting from the Root. 
+    * *Example:* `/home/ajay/projects/codeharborhub`
+    * (Like giving someone your full mailing address: Country, City, Street, House No.)
+
+2.  **Relative Path:** The address starting from where you are **now**.
+    * *Example:* If you are already in `/home/ajay`, the relative path is just `projects/codeharborhub`.
+    * (Like telling someone in your house, "The kitchen is the next door on the left.")
+
+:::info The Symbols
+* `.` (Single Dot): Refers to the **Current** directory.
+* `..` (Double Dot): Refers to the **Parent** directory (one level up).
+* `~` (Tilde): Refers to your **Home** directory.
+:::
+
+## Why DevOps Engineers Love This Structure
+
+Imagine you are deploying a website. 
+1.  You put your code in `/var/www/html`.
+2.  You configure the webserver (Nginx) in `/etc/nginx`.
+3.  You check why it’s not working in `/var/log/nginx/error.log`.
+
+Because every Linux server follows this **Filesystem Hierarchy Standard (FHS)**, once you learn it, you can manage any server in the world—whether it's at Google, Amazon, or on your local machine.
+
+## How to "Look" at the File System
+
+When you open your terminal, use these three magic commands to explore:
+
+* `pwd`: **P**rint **W**orking **D**irectory (Where am I?).
+* `ls`: **L**ist (What's in here?).
+* `cd`: **C**hange **D**irectory (Move me somewhere else).
+
+:::info Why this matters for you
+As a developer at **CodeHarborHub**, you will spend a lot of time in the `/etc` folder configuring web servers like Nginx and in the `/var/log` folder debugging why your Node.js app won't start. Mastering this "Map" is 50% of the battle!
+:::
+
+## Summary Checklist
+* [x] I understand that Linux is a "Kernel" and Ubuntu is a "Distro."
+* [x] I know that `/` is the root of the entire system.
+* [x] I can explain why `/etc` and `/var/log` are important for DevOps.
+* [x] I know the difference between an Absolute and a Relative path.
+
+:::success Mastery Moment
+You now know the "Map" of the Linux world. You won't get lost anymore! Next, we need to learn who is allowed to open these files.
+:::

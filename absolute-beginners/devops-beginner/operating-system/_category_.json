@@ -1,0 +1,8 @@
+{
+  "label": "Operating System",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Master the heart of the cloud. Learn how Linux manages memory, processes, and files to host your applications reliably."
+  }
+}

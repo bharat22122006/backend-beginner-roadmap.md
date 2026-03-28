@@ -1,0 +1,82 @@
+---
+sidebar_position: 6
+title: "Networking Basics for DevOps"
+sidebar_label: "6. Networking Basics"
+description: "Learn how servers communicate using IP addresses, Ports, DNS, and the magic of SSH."
+---
+
+Imagine you want to send a physical letter to a friend. You need:
+1.  **A House Address** (IP Address).
+2.  **A Specific Room Number** (Port).
+3.  **A Delivery Service** (Protocols like TCP/UDP).
+
+In the world of **CodeHarborHub**, understanding these three things is the difference between a working website and a "Site Can't Be Reached" error.
+
+## 1. The IP Address (The Home Address)
+
+Every machine connected to the internet has a unique **IP (Internet Protocol) Address**. 
+
+* **Public IP:** Your server's "Global" address that the whole world can see.
+* **Private IP:** The "Internal" address used only inside your private cloud (like AWS VPC).
+* **Localhost (`127.0.0.1`):** A special address that means "This machine right here." 
+
+:::info The Apartment Analogy
+The **IP Address** gets the mail to the building (The Server). The **Port** tells the mail which apartment (The App) to go to.
+:::
+
+## 2. Ports: The Digital Doors
+
+Your server can run many apps at once (a Web Server, a Database, and an Email server). How does the computer know which traffic belongs to which app? **Ports.**
+
+| Common Port | Service | What it does |
+| :--- | :--- | :--- |
+| **22** | **SSH** | Securely login to your server remotely. |
+| **80** | **HTTP** | Standard, unencrypted web traffic. |
+| **443** | **HTTPS** | Secure, encrypted web traffic (The Gold Standard). |
+| **3000 / 8080** | **Dev** | Common ports for Node.js or React apps in development. |
+| **5432** | **Postgres** | The "door" for your Database. |
+
+## 3. DNS: The Internet's Phonebook
+
+Humans are bad at remembering numbers like `142.250.190.46`. We are good at remembering names like `google.com` or `codeharborhub.com`.
+
+**DNS (Domain Name System)** is a giant database that translates a "URL" into an "IP Address." When you type a website name, your computer asks a DNS server: *"Hey, what's the IP for this name?"* and then connects you.
+
+## 4. SSH: The DevOps Magic Wand
+
+**SSH (Secure Shell)** is the most important tool for a DevOps engineer. It allows you to open a terminal on a server that is thousands of miles away as if you were sitting right in front of it.
+
+```bash
+# How to login to your server
+ssh username@your-server-ip
+```
+
+:::info Keys vs. Passwords
+Professional servers don't use passwords for SSH; they use **SSH Keys**.
+
+* **Public Key:** Stays on the server (The Lock).
+* **Private Key:** Stays on your laptop (The Key).
+
+Only the person with the private key can get in!
+:::
+
+## Resources for Deeper Learning
+
+Ready to become a networking pro? Here are the best places to go next:
+
+### Official Documentation & Guides
+
+* **[Cloudflare Learning Center](https://www.cloudflare.com/learning/):** The best beginner-friendly explanations of DNS, IP, and Web Security.
+* **[Linux Journey - Networking](https://linuxjourney.com/lesson/network-basics):** A fantastic, free interactive site for learning Linux networking commands.
+* **[MDN Web Docs - How the Web Works](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/How_the_web_works):** Great for understanding the request/response cycle.
+
+### Video Tutorials
+
+* **[NetworkChuck (YouTube)](https://www.youtube.com/@NetworkChuck):** Extremely high-energy and visual explanations of IP addresses and Subnetting.
+
+## Summary Checklist
+
+* [x] I can explain the difference between an IP and a Port.
+* [x] I know that Port 80/443 are for Web traffic and Port 22 is for SSH.
+* [x] I understand that DNS translates names into numbers.
+* [x] I know that SSH Keys are safer than passwords.
