@@ -1,0 +1,70 @@
+---
+sidebar_position: 4
+title: Process Management
+sidebar_label: "4. Process Management"
+description: "Learn how to monitor, manage, and control running applications on a Linux server."
+---
+
+When you write code in VS Code, it's just a "File." But the moment you type `node app.js` or `python script.py`, that code springs to life and becomes a **Process**. 
+
+A Process is a living, breathing program that has its own ID (PID), consumes memory (RAM), and uses the CPU to perform tasks.
+
+## How to See What's Running
+
+In DevOps, the first thing you do when a server feels "slow" is look at the process list.
+
+### 1. The `top` Command (The Live Dashboard)
+Type `top` in your terminal to see a real-time list of every process. It’s like the "Task Manager" on Windows.
+* **PID:** The unique "Social Security Number" for the process.
+* **%CPU:** How hard the process is making the brain work.
+* **%MEM:** How much space it's taking up in short-term memory.
+
+### 2. The `ps` Command (The Snapshot)
+If you want a quick list of all processes without the live updates, use:
+* `ps aux`: Shows every process running for every user on the system.
+* `ps aux | grep node`: A "Pro" trick to find only your Node.js processes.
+
+## How to Stop a Process
+
+Sometimes an app "hangs" or gets stuck in an infinite loop. When that happens, you have to use the `kill` command.
+
+:::info The "Levels" of Killing
+Not all "kills" are the same. You send a **Signal** to the process:
+* **SIGTERM (15):** The "Polite" kill. It tells the app, "Please save your work and close down." (`kill PID`)
+* **SIGKILL (9):** The "Angry" kill. It forces the app to stop immediately. Use this as a last resort. (`kill -9 PID`)
+:::
+
+## Foreground vs. Background
+
+At **CodeHarborHub**, you don't want to keep your terminal window open just to keep a script running. 
+
+1.  **Foreground:** The process takes over your terminal. You can't type anything else until it's done.
+2.  **Background:** You add an `&` at the end of your command (e.g., `python script.py &`). The script runs "behind the scenes," and you can keep using your terminal.
+
+## The Life-Saver: `systemd`
+
+In a professional environment, we don't manually start and stop apps. We use **systemd**. It is a manager that:
+* Starts your app automatically when the server turns on.
+* **Restarts** your app if it crashes.
+* Keeps logs of everything your app prints.
+
+### Common Systemd Commands:
+* `sudo systemctl start nginx`: Start the web server.
+* `sudo systemctl status nginx`: See if the server is healthy.
+* `sudo systemctl restart nginx`: Apply new settings by restarting.
+
+## Summary Checklist
+* [x] I understand that a **Process** is a running instance of a program.
+* [x] I can identify a process by its **PID**.
+* [x] I know how to use `top` and `ps aux` to monitor the server.
+* [x] I understand when to use `kill` vs `kill -9`.
+* [x] I know that `systemd` is used for "Production" level management.
+
+:::info Why this matters for DevOps
+Imagine you are hosting **CodeHarborHub** and the site goes down. 
+1. You SSH into the server. 
+2. You run `top` and see that a "Log Collector" script is using 100% CPU. 
+3. You `kill` that process. 
+4. The site is back up. 
+**You just saved the day!**
+:::

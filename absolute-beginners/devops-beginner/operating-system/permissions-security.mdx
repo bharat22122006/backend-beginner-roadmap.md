@@ -1,0 +1,76 @@
+---
+sidebar_position: 3
+title: "Permissions & Security"
+sidebar_label: "3. Permissions & Security"
+description: "Master the art of Linux file permissions, ownership, and the power of Sudo."
+---
+
+Imagine you are running a hotel (**Your Server**). 
+* The **Manager** (Root User) has a master key to every room.
+* The **Guests** (Users) only have keys to their own rooms.
+* The **Cleaners** (Service Accounts) only have keys to the supply closets.
+
+In Linux, we manage these "keys" using **Permissions** and **Ownership**.
+
+## The Three Types of "People"
+
+Every file and folder in Linux belongs to three categories of people:
+
+1.  **User (u):** The individual person who owns the file.
+2.  **Group (g):** A collection of users (e.g., the "developers" group).
+3.  **Others (o):** Everyone else in the world (The "Public").
+
+## The "rwx" Code
+
+When you run the command `ls -l` in your terminal, you will see a strange string of letters like `-rwxr-xr--`. Let’s decode it:
+
+* **r (Read):** Can you open and see the contents?
+* **w (Write):** Can you edit or delete the file?
+* **x (Execute):** Can you "run" the file (like a script or an app)?
+
+:::info The Numeric Method (Octal)
+Professional DevOps engineers often use numbers instead of letters:
+* **4** = Read | **2** = Write | **1** = Execute
+* **7** (4+2+1) = Full Access (rwx)
+* **5** (4+0+1) = Read & Execute (r-x)
+* **6** (4+2+0) = Read & Write (rw-)
+:::
+
+## Essential Security Commands
+
+To manage your "Hotel," you need these three tools:
+
+### 1. `chmod` (Change Mode)
+Used to change **permissions**.
+* *Example:* `chmod 755 script.sh` (Owner can do everything, others can only read/run).
+* *Example:* `chmod +x backup.py` (Make a script runnable).
+
+### 2. `chown` (Change Owner)
+Used to change **who owns** the file.
+* *Example:* `chown ajay:developers website.html` (Makes Ajay the owner and "developers" the group).
+
+### 3. `sudo` (SuperUser DO)
+This is the most powerful command. It tells Linux: "I know this is dangerous, but let me do it anyway using my Manager powers."
+* *Example:* `sudo apt update` (You need Manager powers to install software).
+
+## Best Practices for CodeHarborHub
+
+:::warning The Rule of "Least Privilege"
+Never give a file more permission than it needs. 
+* **Bad:** Giving every file `777` (Everyone can do everything). This is a massive security hole!
+* **Good:** Only give `x` (execute) permission to scripts that actually need to run.
+:::
+
+1.  **Avoid Root:** Don't stay logged in as the "Root" user. Use your normal account and only use `sudo` when necessary.
+2.  **Check your `ls -l`:** Get into the habit of checking who owns a file before you try to edit it.
+3.  **Group Power:** Instead of giving permissions to 10 different people, add them all to a "group" and give permissions to that group.
+
+## Summary Checklist
+* [x] I can identify the difference between User, Group, and Others.
+* [x] I understand what **r**, **w**, and **x** stand for.
+* [x] I know that **755** is a common safe permission for scripts.
+* [x] I understand that `sudo` should be used with caution.
+
+:::info Why this matters for DevOps
+In a CI/CD pipeline, if your script doesn't have "Execute" (x) permission, your build will fail. If your web server (Nginx) doesn't have "Read" (r) permission for your HTML files, your website will show a "403 Forbidden" error. Mastering permissions is the key to solving 90% of server errors!
+:::

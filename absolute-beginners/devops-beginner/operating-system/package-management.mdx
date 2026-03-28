@@ -1,0 +1,97 @@
+---
+sidebar_position: 5
+title: "Package Management"
+sidebar_label: "5. Package Management"
+description: "Learn how to install, update, and manage software on Linux using APT, YUM, and Snap."
+---
+
+When you want to install a web server like **Nginx**, a database like **PostgreSQL**, or a tool like **Git**, you don't go to a website and click "Download." Instead, you ask your OS to go to a **Repository** (a trusted library of software) and grab it for you.
+
+## What is a "Package"?
+
+In Linux, a "Package" is a compressed file that contains:
+1.  **The Application:** The actual code/binary.
+2.  **Metadata:** Information about the version and who built it.
+3.  **Dependencies:** A list of *other* software the app needs to run.
+
+:::info The Dependency Chain
+Imagine you want to install a "Book" (The App). But the book requires a "Shelf" (Dependency A) to stand on, and the shelf requires "Screws" (Dependency B) to be built. 
+A **Package Manager** is smart enough to see this and say: *"I will download the Book, the Shelf, and the Screws all at once for you."*
+:::
+
+## The Different "App Stores" (Managers)
+
+Because there are different "Distros" of Linux, there are different managers. As a **CodeHarborHub** engineer, you should know the two most common ones:
+
+<Tabs>
+  <TabItem value="apt" label="APT (Ubuntu/Debian)" default>
+    Used by the most popular server OS, **Ubuntu**. 
+    * **Command:** `apt` (Advanced Package Tool)
+    * **File Type:** `.deb`
+  </TabItem>
+  <TabItem value="yum" label="YUM/DNF (CentOS/RHEL)">
+    Used by "Enterprise" grade Linux systems like Red Hat.
+    * **Command:** `yum` or `dnf`
+    * **File Type:** `.rpm`
+  </TabItem>
+</Tabs>
+
+## Essential Commands for Every Day
+
+Let's look at how to use `apt` (the most common tool you'll use).
+
+### 1. Update the "Catalog"
+Before installing anything, you must tell Linux to check if there are new versions of software available in the online library.
+```bash
+sudo apt update
+```
+
+### 2. Install Software
+
+Want to install the Nginx web server? It's one line:
+
+```bash
+sudo apt install nginx
+```
+
+### 3. Remove Software
+
+If you no longer need a tool, clean it up:
+
+```bash
+sudo apt remove git
+```
+
+### 4. Upgrade Everything
+
+To keep your server secure, you should upgrade all your installed apps to the latest versions:
+
+```bash
+sudo apt upgrade
+```
+
+## What are Snaps and Flatpaks?
+
+Sometimes, an app is very complex and needs very specific versions of dependencies that might break your system. To solve this, developers created **Snaps**.
+
+:::info The Bento Box Analogy
+Think of a regular package like a meal on a plate where all the food touches. A **Snap** is like a **Bento Box**. It puts the app and all its specific dependencies in a "box" so they don't interfere with the rest of your system.
+**Common Snaps:** Docker, Certbot (for SSL), and VS Code.
+:::
+
+## Safety Rules for Package Management
+
+1.  **Always `sudo`:** You are changing the system, so you need "Manager" powers.
+2.  **Update before Install:** Always run `apt update` first so you don't install an old, buggy version of a tool.
+3.  **Read the Output:** Linux will tell you if it's about to delete something important. **Read before you press "Y"!**
+
+## Summary Checklist
+
+  * [x] I understand that a Package Manager handles dependencies automatically.
+  * [x] I know that **APT** is for Ubuntu and **YUM** is for CentOS.
+  * [x] I can explain the difference between `apt update` and `apt upgrade`.
+  * [x] I understand that Snaps are "isolated" versions of apps.
+
+:::info Why this matters for DevOps
+In the next module, we will build a **CI/CD Pipeline**. Your pipeline will need to "Spin up" a server and automatically run `apt install` to set up your environment. If you don't understand how packages work, your automated deployments will fail\!
+:::
