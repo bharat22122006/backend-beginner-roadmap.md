@@ -130,79 +130,117 @@ const config = {
         items: [
           {
             type: "dropdown",
-            html: '<span class="nav-emoji">🗺️</span> Tutorials',
+            html: '<span class="nav-emoji">🚀</span> Foundations',
             position: "left",
-            className: "mega-menu", // Add a custom class for CSS styling
             items: [
               {
-                type: "html",
-                value: `
-            <div class="mega-menu-container">
-              <div class="mega-menu-column">
-                <h3>🚀 Foundations</h3>
-                <hr style="margin: 0.5rem 0; opacity: 0.4;">
-                <a href="/tutorial/absolute-beginners">🐣 Absolute Beginner</a>
-                <a href="/tutorial/computer-science">🏛️ Computer Science</a>
-                <a href="/tutorial/languages-platforms">💻 Languages & Platforms</a>
-                <a href="/tutorial/git/introduction">🌿 Git & GitHub</a>
-              </div>
-              
-              <div class="mega-menu-column">
-                <h3>🌐 Development</h3>
-                <hr style="margin: 0.5rem 0; opacity: 0.4;">
-                <a href="/tutorial/web-development">🌍 Web Development</a>
-                <a href="/tutorial/frameworks">🧩 Frameworks</a>
-                <a href="/tutorial/mobile-development">📱 Mobile Development</a>
-                <a href="/tutorial/game-development">🎮 Game Development</a>
-              </div>
-
-              <div class="mega-menu-column">
-                <h3>⚙️ Data & Ops</h3>
-                <hr style="margin: 0.5rem 0; opacity: 0.4;">
-                <a href="/tutorial/ai-ml">🤖 AI & Machine Learning</a>
-                <a href="/tutorial/databases">🗄️ Databases</a>
-                <a href="/tutorial/devops">♾️ DevOps & Cloud</a>
-                <a href="/tutorial/cyber-security">🛡️ Cyber Security</a>
-              </div>
-
-              <div class="mega-menu-column">
-                <h3>💼 Career & Quality</h3>
-                <hr style="margin: 0.5rem 0; opacity: 0.4;">
-                <a href="/tutorial/management">👔 Management</a>
-                <a href="/tutorial/design">🎨 Design & UX</a>
-                <a href="/tutorial/blockchain">⛓️ Blockchain</a>
-                <a href="/tutorial/best-practices">✅ Best Practices</a>
-              </div>
-            </div>
-          `,
+                label: "🐣 Absolute Beginner",
+                to: "/tutorial/absolute-beginners",
+              },                
+              {
+                label: "🏛️ Computer Science",
+                to: "/tutorial/computer-science",
               },
               {
-                type: "html",
-                value: '<hr style="margin: 0.5rem 0; opacity: 0.2;">',
+                label: "💻 Languages & Platforms",
+                to: "/tutorial/languages-platforms",
               },
               {
-                to: "/",
-                label: "Explore All Tutorials",
-                className: "view-all-link",
+                label: "🌿 Git & GitHub",
+                to: "/tutorial/git/introduction",
               },
             ],
           },
+
+          {
+            type: "dropdown",
+            html: '<span class="nav-emoji">🌐</span> Development',
+            position: "left",
+            items: [
+              {
+                label: "🌍 Web Development",
+                to: "/tutorial/web-development",
+              },                
+              {
+                label: "🧩 Frameworks",
+                to: "/tutorial/frameworks",
+              },
+              {
+                label: "📱 Mobile Development",
+                to: "/tutorial/mobile-development",
+              },
+              {
+                label: "🎮 Game Development",
+                to: "/tutorial/game-development",
+              },
+            ],
+          },
+
+          {
+            type: "dropdown",
+            html: '<span class="nav-emoji">⚙️</span> Data & Ops',
+            position: "left",
+            items: [
+              {
+                label: "🤖 AI & Machine Learning",
+                to: "/tutorial/ai-ml",
+              },                
+              {
+                label: "🗄️ Databases",
+                to: "/tutorial/databases",
+              },
+              {
+                label: "♾️ DevOps & Cloud",
+                to: "/tutorial/devops",
+              },
+              {
+                label: "🛡️ Cyber Security",
+                to: "/tutorial/cyber-security",
+              },
+            ],
+          },
+
+          {
+            type: "dropdown",
+            html: '<span class="nav-emoji">💼</span> Career & Quality',
+            position: "left",
+            items: [
+              {
+                label: "👔 Management",
+                to: "/tutorial/management",
+              },                
+              {
+                label: "🎨 Design & UX",
+                to: "/tutorial/design",
+              },
+              {
+                label: "⛓️ Blockchain",
+                to: "/tutorial/blockchain",
+              },
+              {
+                label: "✅ Best Practices",
+                to: "/tutorial/best-practices",
+              },
+            ],
+          },
+
+
           //   {
           //   type: 'localeDropdown',
           //   position: 'left',
           //   dropdownItemsAfter: [
           //     {
-          //       to: 'https://my-site.com/help-us-translate',
+          //       to: '/help-us-translate',
           //       label: 'Help us translate',
           //     },
           //   ],
           // },
 
-          // {
-          //   to: "https://codeharborhub.github.io/blog",
-          //   html: '<span class="nav-emoji">📝</span> Blog',
-          //   position: "right",
-          // },
+          {
+            to: "https://codeharborhub.github.io/blog",
+            html: '<span class="nav-emoji">📝</span> Blog',
+            position: "right",
+          },
           {
             href: "https://github.com/codeharborhub",
             position: "right",
@@ -364,6 +402,7 @@ const config = {
           "rust",
           "java",
           "yaml",
+          // "dockerfile",
         ],
       },
       docs: {

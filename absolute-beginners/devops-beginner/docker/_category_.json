@@ -1,0 +1,8 @@
+{
+  "label": "Docker & Containers",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Stop worrying about environment issues. Learn how to package your code, libraries, and dependencies into a single, portable unit that runs anywhere. Docker is a powerful tool that simplifies application deployment and management. Whether you're a developer or a system administrator, mastering Docker will enhance your workflow and enable you to build, ship, and run applications with ease."
+  }
+}
