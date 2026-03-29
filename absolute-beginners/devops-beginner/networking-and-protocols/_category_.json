@@ -1,0 +1,8 @@
+{
+  "label": "Networking & Protocols",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn the rules of the road. Understand how data packets travel from a user's browser to your server using the OSI model and standard protocols."
+  }
+}
