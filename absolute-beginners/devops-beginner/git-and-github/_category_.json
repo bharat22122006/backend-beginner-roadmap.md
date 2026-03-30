@@ -1,0 +1,8 @@
+{
+  "label": "Git & GitHub",
+  "position": 6,
+  "link": {
+    "type": "generated-index",
+    "description": "Go beyond simple commits. Learn how to use Git to automate deployments, protect your production environment, and manage infrastructure through code. Discover how to leverage GitHub's powerful features to collaborate effectively, automate workflows, and enhance your DevOps practices."
+  }
+}

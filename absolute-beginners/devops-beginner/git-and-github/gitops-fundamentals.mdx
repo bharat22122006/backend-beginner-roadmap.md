@@ -1,0 +1,93 @@
+---
+title: "GitOps Fundamentals: The Future of Infrastructure Automation"
+sidebar_label: "5. GitOps Fundamentals"
+sidebar_position: 5
+description: "Master the principles of GitOps and modern infrastructure automation at CodeHarborHub. Learn how to manage your cloud environments using Git as the single source of truth."
+---
+
+**GitOps** is an operational framework that takes the best practices used in application development—like **version control**, **collaboration**, and **CI/CD**—and applies them to infrastructure automation.
+
+At **CodeHarborHub**, we believe GitOps is the future of "Infrastructure as Code" (IaC), allowing teams to manage complex cloud environments using the tools they already love: **Git**.
+
+## The Four Principles of GitOps
+
+To implement a true GitOps workflow, your system must adhere to these core pillars:
+
+1. **Declarative:** The entire system must be described declaratively (e.g., YAML or Terraform), representing the "Desired State."
+2. **Versioned & Immutable:** The desired state is stored in a version control system (Git), providing a complete audit trail.
+3. **Pulled Automatically:** Software agents automatically pull the desired state declarations from the source.
+4. **Continuously Reconciled:** Software agents continuously observe the actual state and automatically act to match the desired state.
+
+## GitOps vs. Traditional CI/CD
+
+Understanding the shift from "Push" to "Pull" based deployments is critical for modern **Full-Stack Developers**.
+
+<Tabs>
+  <TabItem value="traditional" label="Traditional CI/CD (Push)" default>
+
+    * **Process:** CI server pushes code/config to the environment.
+    * **Risk:** CI tool needs high-level credentials (SSH/API keys) to the cluster.
+    * **Issue:** Configuration drift (manual changes) often goes unnoticed.
+
+  </TabItem>
+  <TabItem value="gitops" label="GitOps (Pull)">
+
+    * **Process:** An agent *inside* the cluster pulls updates from Git.
+    * **Security:** No external credentials needed for the cluster.
+    * **Reliability:** The agent automatically corrects manual changes (drift) to match Git.
+
+  </TabItem>
+</Tabs>
+
+## Industrial Level Architecture
+
+In a production-grade GitOps environment, we separate our **Application Code** from our **Infrastructure Configuration**.
+
+| Component | Responsibility | Tool Example |
+| :--- | :--- | :--- |
+| **Git Repository** | The Single Source of Truth. | GitHub / GitLab |
+| **CI Pipeline** | Builds images and runs tests. | GitHub Actions |
+| **Container Registry**| Stores immutable images. | Docker Hub / GHCR |
+| **GitOps Controller** | Reconciles Git with the Cluster. | ArgoCD / Flux |
+
+## Sample Manifest (Desired State)
+
+Below is a declarative Kubernetes deployment manifest that a GitOps controller would monitor. If someone manually changes the `replicas` to 5 in the cloud console, the controller will automatically scale it back to 3.
+
+```yaml title="deployment.yaml"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: codeharborhub-web
+spec:
+  replicas: 3 # The Desired State
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: frontend
+        image: codeharborhub/web-app:v2.0.1
+        ports:
+        - containerPort: 80
+```
+
+## The GitOps Workflow
+
+1.  **Code Change:** A developer submits a Pull Request to the Config Repo.
+2.  **Review:** The team reviews the infrastructure change in Git.
+3.  **Merge:** Once merged, the GitOps Controller detects a new commit.
+4.  **Sync:** The Controller applies the change to the live environment.
+5.  **Observe:** The Controller monitors for any "Drift" and alerts the team.
+
+:::info The "GitOps" Secret
+GitOps isn't just for Kubernetes! You can apply GitOps principles to any system with a declarative API, including cloud resources via **Terraform** or **Crossplane**. The key is to have a "Controller" that continuously reconciles the actual state with the desired state defined in Git. This means you can manage your entire cloud infrastructure using Git, just like you manage your application code!
+:::
+
+## Learning Challenge
+
+Try creating a separate repository specifically for "Environment Config." Move your Kubernetes or Docker Compose files there and practice updating your application version only by editing a YAML file in that repo. Set up a GitHub Action to run tests on the config changes and use ArgoCD to automatically deploy those changes to a test cluster.
