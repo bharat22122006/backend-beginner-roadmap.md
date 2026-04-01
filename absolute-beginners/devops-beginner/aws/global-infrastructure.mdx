@@ -1,0 +1,95 @@
+---
+title: "AWS Global Infrastructure"
+sidebar_label: "2. Global Infrastructure"
+sidebar_position: 2
+description: "Understand how AWS Regions, Availability Zones, and Edge Locations work to provide high availability. Learn the core concepts of AWS's global footprint and how to choose the right region for your applications."
+---
+
+To build "Industrial Level" applications at **CodeHarborHub**, you must understand where your code actually lives. AWS doesn't just have "one big cloud"; it has a massive, physical footprint across every continent.
+
+The AWS Global Infrastructure is built around three core concepts: **Regions**, **Availability Zones (AZs)**, and **Edge Locations**.
+
+## The Infrastructure Hierarchy
+
+Visualizing the relationship between these components is key to passing the **AWS Cloud Practitioner** exam and building resilient systems.
+
+```mermaid
+graph TD
+    A[AWS Global Cloud] --> B[Region: ap-south-1 Mumbai]
+    A --> C[Region: us-east-1 N. Virginia]
+    
+    subgraph "Inside a Region (e.g., Mumbai)"
+    B --> D[AZ: ap-south-1a]
+    B --> E[AZ: ap-south-1b]
+    B --> F[AZ: ap-south-1c]
+    end
+
+    subgraph "Inside an Availability Zone"
+    D --> G[Data Center 1]
+    D --> H[Data Center 2]
+    end
+```
+
+## 1. Regions
+
+A **Region** is a physical location in the world where AWS clusters data centers.
+
+:::info Key Fact
+Each Region is completely independent and isolated from other regions. This achieves the greatest possible fault tolerance and stability.
+:::
+
+### How to Choose a Region?
+
+When deploying your project (like a **MERN stack** app), consider these four factors:
+
+1.  **Compliance:** Does the data need to stay in India (e.g., for government projects)?
+2.  **Latency:** How close is the region to your users? (e.g., Choose Mumbai for users in **Madhya Pradesh**).
+3.  **Pricing:** Some regions (like US-East) are cheaper than others (like Sao Paulo).
+4.  **Service Availability:** Not all AWS services are available in every region.
+
+## 2. Availability Zones (AZs)
+
+An **Availability Zone** consists of one or more discrete data centers with redundant power, networking, and connectivity in an AWS Region.
+
+| Feature | Description |
+| :--- | :--- |
+| **Isolation** | AZs are physically separated by miles to prevent "single point of failure." |
+| **Connectivity** | Connected via ultra-fast, low-latency private fiber-optic networking. |
+| **High Availability** | If one AZ goes down (flood/fire), your app fails over to another AZ. |
+
+## 3. Edge Locations & CloudFront
+
+**Edge Locations** are specialized data centers located in major cities globally. They are used by **Amazon CloudFront** (a Content Delivery Network) to deliver content to end-users with lower latency.
+
+```mermaid
+sequenceDiagram
+    participant U as User (Indore, India)
+    participant E as Edge Location (Mumbai)
+    participant O as Origin Server (US-East-1)
+
+    U->>E: Request codeharborhub.png
+    Note over E: Is it in Cache?
+    E-->>U: Yes! (Fast Delivery)
+    Note right of E: No? Fetch from Origin
+    E->>O: Request from US
+    O->>E: Send File
+    E->>U: Deliver to User & Cache
+```
+
+## Comparison Summary
+
+To help you remember for your interviews, here is the "CodeHarborHub Cheat Sheet":
+
+| Component | Physical Scale | Primary Purpose |
+| :--- | :--- | :--- |
+| **Region** | Large (Cluster of AZs) | Data Sovereignty & Latency. |
+| **AZ** | Medium (Data Center) | High Availability & Disaster Recovery. |
+| **Edge Location** | Small (Cache Point) | Content Delivery Speed (CDN). |
+
+## Hands-on Tip: Selecting a Region
+
+When you log into your **AWS Management Console**, look at the top right corner. You will see a dropdown menu (e.g., "N. Virginia").
+
+:::warning Important
+Always check your region **before** creating resources! If you create an EC2 instance in "Oregon" but your database is in "Mumbai," your application will be incredibly slow due to high latency.
+:::
