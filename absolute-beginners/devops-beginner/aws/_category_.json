@@ -1,0 +1,14 @@
+{
+  "label": "AWS",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "title": "AWS Cloud Practitioner Guide",
+    "description": "Master the fundamentals of Amazon Web Services (AWS). This track is designed specifically for absolute beginners to understand cloud infrastructure, core services, and industrial security practices used at CodeHarborHub."
+  },
+  "customProps": {
+    "icon": "☁️",
+    "status": "new",
+    "author": "CodeHarborHub Team"
+  }
+}
