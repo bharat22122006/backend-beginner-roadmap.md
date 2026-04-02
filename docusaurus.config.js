@@ -402,7 +402,7 @@ const config = {
           "rust",
           "java",
           "yaml",
-          // "dockerfile",
+          "hcl",
         ],
       },
       docs: {
