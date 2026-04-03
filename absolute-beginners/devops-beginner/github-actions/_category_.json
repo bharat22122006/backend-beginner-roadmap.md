@@ -1,0 +1,13 @@
+{
+  "label": "GitHub Actions",
+  "position": 10,
+  "link": {
+    "type": "generated-index",
+    "title": "GitHub Actions Automation",
+    "description": "Learn to automate your build, test, and deployment pipeline. Master CI/CD to ensure CodeHarborHub projects are always production-ready. Discover how to create workflows, manage secrets, and integrate with other tools to streamline your development process."
+  },
+  "customProps": {
+    "icon": "🚀",
+    "status": "Essential"
+  }
+}
