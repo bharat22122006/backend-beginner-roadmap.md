@@ -1,0 +1,13 @@
+{
+  "label": "Terraform",
+  "position": 8,
+  "link": {
+    "type": "generated-index",
+    "title": "Terraform Infrastructure as Code (IaC)",
+    "description": "Learn to automate your cloud infrastructure using HashiCorp Terraform. Move from manual console clicking to professional, version-controlled code. This section covers the basics of Terraform, including writing configuration files, managing state, and deploying infrastructure across multiple cloud providers. By the end, you'll be able to define and provision your entire infrastructure as code, making it easier to maintain, scale, and collaborate on your projects."
+  },
+  "customProps": {
+    "icon": "🏗️",
+    "status": "Advanced Beginner"
+  }
+}

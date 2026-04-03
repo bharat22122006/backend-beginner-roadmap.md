@@ -1,0 +1,131 @@
+---
+title: "Variables and Ansible Vault"
+sidebar_label: "5. Variables & Security"
+sidebar_position: 5
+description: "Learn to make your Ansible playbooks dynamic with variables and secure with encrypted Vaults. Perfect for handling different environments and sensitive data!"
+tags: ["Ansible", "Variables", "Vault", "Secrets Management", "Best Practices"]
+keywords: ["Ansible Variables", "Ansible Vault", "Secrets Management", "Dynamic Playbooks", "Industrial Automation"]
+---
+
+Static playbooks are useful, but "Industrial Level" automation requires flexibility and security. In this guide, we will learn how to use **Variables** to handle different environments (Dev/Prod) and **Ansible Vault** to protect sensitive data.
+
+:::tip Why Variables and Vault?
+* **Variables** allow you to write reusable playbooks that can adapt to different scenarios without changing the code.
+* **Ansible Vault** ensures that sensitive information like passwords and API keys are encrypted and safe from prying eyes, even in version control.
+:::
+
+## 1. Using Variables
+
+Variables in Ansible allow you to write one playbook and use it for multiple purposes. Instead of hardcoding a version number or a username, you use a placeholder.
+
+### Where to Define Variables?
+Ansible has a specific "Precedence" (priority) for variables, but these are the most common places:
+
+1.  **Playbook Level:** Directly inside the `.yml` file.
+2.  **Inventory Level:** Inside your `hosts.ini`.
+3.  **File Level:** In a dedicated `group_vars` or `host_vars` folder.
+
+```yaml title="Example: Playbook with Variables"
+---
+- name: Deploy CodeHarborHub App
+  hosts: webservers
+  vars:
+    app_version: "v2.0.4"
+    node_port: 3000
+
+  tasks:
+    - name: Start the application
+      command: "node app.js --port {{ node_port }}"
+```
+
+:::tip Syntax Note
+Always wrap variables in double curly braces `{{ var_name }}`. If the variable starts the line, you must wrap the entire value in quotes: `"{{ var_name }}"`.
+:::
+
+## 2. Ansible Vault (Securing Secrets)
+
+At **CodeHarborHub**, we **never** push plain-text passwords, SSH keys, or SSL certificates to GitHub. **Ansible Vault** is a built-in feature that encrypts these files so they can be safely stored in version control.
+
+### Common Vault Operations
+
+| Action | Command |
+| :--- | :--- |
+| **Create** | `ansible-vault create secrets.yml` |
+| **Edit** | `ansible-vault edit secrets.yml` |
+| **Encrypt Existing** | `ansible-vault encrypt my_passwords.txt` |
+| **Decrypt** | `ansible-vault decrypt secrets.yml` |
+
+### How to use Vault in a Playbook
+
+1.  Create an encrypted file `vars/secrets.yml`:
+    ```yaml title="Example: Encrypted Vault File"
+    db_password: "SuperSecretPassword123"
+    ```
+2.  Reference it in your playbook:
+    ```yaml title="Example: Using Vault in Playbook"
+    - name: Setup Database
+      hosts: dbservers
+      vars_files:
+        - vars/secrets.yml
+    ```
+3.  Run the playbook by providing the password:
+    ```bash title="Running Playbook with Vault"
+    ansible-playbook site.yml --ask-vault-pass
+    ```
+
+In this example, Ansible will prompt you for the vault password before it can read the encrypted variables. This way, you can safely store sensitive information in your repository without risking exposure.
+
+## 3. Facts: The Special Variables
+
+Ansible automatically discovers information about the Managed Node before running any tasks. These are called **Facts**.
+
+```mermaid
+graph LR
+    A[Control Node] -->|Setup Module| B[Managed Node]
+    B -->|Returns JSON| C[Facts: OS, IP, RAM, CPU]
+    C --> D[Use in Playbook: ansible_os_family]
+```
+
+**Example: Conditional Logic using Facts**
+
+```yaml title="Example: Using Facts in Playbook"
+- name: Install Web Server
+  apt:
+    name: apache2
+    state: present
+  when: ansible_os_family == "Debian"
+```
+
+## Comparison: Variables vs. Vault
+
+| Feature | Variables | Ansible Vault |
+| :--- | :--- | :--- |
+| **Visibility** | Plain text / Human readable. | Encrypted / Block of gibberish. |
+| **Purpose** | Configuration (Ports, Paths, Names). | Secrets (Passwords, Keys, Tokens). |
+| **Storage** | Committed directly to Git. | Committed to Git (but encrypted). |
+
+## Industrial Best Practice: `group_vars`
+
+Instead of cluttering your playbook, create a directory structure like this:
+
+```text title="Best Practice: group_vars Directory Structure"
+.
+├── inventory.ini
+├── playbook.yml
+└── group_vars/
+    ├── all.yml          # Variables for all servers
+    ├── webservers.yml   # Specific for web group
+    └── dbservers.yml    # Specific for DB group
+```
+
+Ansible will **automatically** load these variables based on the group names in your inventory! This keeps your playbooks clean and organized, making it easier to manage large infrastructures.
+
+## Final Graduation Challenge
+
+1.  Create a variable file named `user_config.yml`.
+2.  Add a variable `username: chh_admin`.
+3.  Create a playbook that creates a user on your local machine using `{{ username }}`.
+4.  Now, encrypt `user_config.yml` using `ansible-vault`.
+5.  Run the playbook and see how Ansible asks for the password before it can read the file\!
+
+Congratulations! You've just learned how to make your Ansible playbooks dynamic with variables and secure with Vault. This is a crucial step towards becoming an "Industrial Level" DevOps Engineer at CodeHarborHub!

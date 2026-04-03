@@ -1,0 +1,13 @@
+{
+  "label": "Ansible",
+  "position": 9,
+  "link": {
+    "type": "generated-index",
+    "title": "Ansible Configuration Management",
+    "description": "Learn to manage hundreds of servers simultaneously. Master Agentless automation, Playbooks, and YAML-based configuration for CodeHarborHub infrastructure. Ideal for DevOps beginners eager to streamline server management and deployment processes. Start your journey with Ansible and transform your infrastructure management skills!"
+  },
+  "customProps": {
+    "icon": "🤖",
+    "status": "Beginner-Friendly"
+  }
+}
