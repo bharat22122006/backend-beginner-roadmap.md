@@ -1,0 +1,9 @@
+{
+  "label": "Basic Git",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "title": "Basic Git Commands for Absolute Beginners",
+    "description": "Learn the essential commands you will use 90% of the time as a developer. From creating your first repository to pushing code to GitHub. Master the basics of Git to track changes, collaborate with others, and manage your code effectively. Whether you're new to version control or looking to solidify your understanding, this guide will walk you through the fundamental Git commands every developer should know. Start your journey to becoming a proficient developer today!"
+  }
+}
