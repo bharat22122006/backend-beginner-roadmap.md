@@ -1,0 +1,112 @@
+---
+title: "Installation and Initial Setup"
+sidebar_label: "3. Setup & Configuration"
+sidebar_position: 3
+description: "Step-by-step guide to installing Git on Windows, Mac, and Linux, and configuring your global developer identity. Learn how to verify your setup and connect Git to GitHub for seamless version control and collaboration."
+tags: ["git", "installation", "setup", "configuration", "version control"]
+keywords: ["git", "installation", "setup", "configuration", "version control"]
+---
+
+Before you can start contributing to **CodeHarborHub** projects, you need to turn your computer into a "Git-aware" machine. Follow the guide below for your specific Operating System.
+
+:::important
+Before we dive in, make sure you have a GitHub account set up. If you haven't done that, follow the instructions in **[Create a GitHub Account](/tutorial/github/create-a-github-account)** first, and then come back here to set up Git on your machine.
+:::
+
+## Step 1: Installing Git
+
+<Tabs>
+<TabItem value="windows" label="Windows" default>
+
+1.  **Download:** Visit [git-scm.com/download/win](https://git-scm.com/download/win) and the download will start automatically.
+2.  **Run the Installer:** Open the `.exe` file.
+3.  **The "CodeHarborHub" Recommended Settings:**
+    * **Editor:** Choose "Visual Studio Code" as Git's default editor.
+    * **Path:** Select "Git from the command line and also from 3rd-party software."
+    * **Line Endings:** Select "Checkout Windows-style, commit Unix-style."
+4.  **Finish:** Click Install.
+
+</TabItem>
+<TabItem value="mac" label="macOS">
+
+1.  **Check if installed:** Open Terminal and type `git --version`. macOS often comes with a version of Git pre-installed.
+2.  **Install via Homebrew (Recommended):**
+    ```bash
+    brew install git
+    ```
+3.  **Alternative:** Download the installer from [git-scm.com/download/mac](https://git-scm.com/download/mac).
+
+</TabItem>
+<TabItem value="linux" label="Linux">
+
+Use your distribution's package manager. For **Ubuntu/Debian** (the most common for CodeHarborHub learners):
+
+```bash
+sudo apt update
+sudo apt install git-all -y
+```
+
+For **Fedora**:
+
+```bash
+sudo dnf install git
+```
+
+</TabItem>
+</Tabs>
+
+## Step 2: Configuring Your Identity
+
+This is the most important step! Git needs to know who you are so it can attach your name to your "Commits" (Save Points).
+
+:::important
+Use the **same email address** you used for your GitHub account. This ensures your contributions are linked to your profile!
+:::
+
+Open your terminal (or Git Bash on Windows) and run these two commands:
+
+```bash
+# Set your professional name
+git config --global user.name "ajay-dhangar"
+
+# Set your GitHub email
+git config --global user.email "ajay...@gmail.com"
+```
+
+:::note 
+Replace `"ajay-dhangar"` and `"ajay...@gmail.com"` with your actual name and email. This information will be visible in your commit history and on GitHub.
+:::
+
+## Step 3: Verifying the Setup
+
+Let's make sure everything is working perfectly. Run the following command to see your configuration:
+
+```bash
+git config --list
+```
+
+**What you should see:**
+
+Look for the `user.name` and `user.email` lines in the output. If they match what you typed, your "Developer Identity" is now live!
+
+## How the Setup Connects
+
+```mermaid
+graph LR
+    A[Your PC] -- "Name & Email" --> B[Git Config File]
+    B -- "Identifies" --> C[Your Commits]
+    C -- "Pushed to" --> D[GitHub Profile]
+    D -- "Lights up" --> E[Contribution Green Squares]
+```
+
+## Extra Credit: Essential "Helper" Tools
+
+While you can do everything in the terminal, these tools make the **CodeHarborHub** experience much smoother:
+
+1.  **Visual Studio Code (VS Code):** The \#1 editor for developers. It has Git built right in!
+2.  **Git Lens (Extension):** An extension for VS Code that shows you exactly who wrote every line of code as you click on it.
+3.  **GitHub Desktop:** A simple visual interface if you aren't comfortable with the terminal yet.
+
+:::tip Did you know?
+If you are on Windows, always use **Git Bash** (which was installed with Git) instead of the standard Command Prompt. It gives you a Linux-like experience that matches all professional tutorials!
+:::

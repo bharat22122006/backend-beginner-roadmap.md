@@ -1,0 +1,13 @@
+{
+  "label": "Git & GitHub",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "title": "Git & GitHub For Absolute Beginners",
+    "description": "The foundation of every developer's career. Learn to track changes, collaborate with teams, and contribute to open-source at CodeHarborHub. Master Git and GitHub to navigate the world of software development with confidence. Whether you're a beginner or looking to deepen your understanding, our comprehensive resources will guide you through the essentials of version control, branching strategies, and collaborative workflows. Start your journey to becoming a proficient developer today!"
+  },
+  "customProps": {
+    "icon": "🐙",
+    "status": "Foundational"
+  }
+}
