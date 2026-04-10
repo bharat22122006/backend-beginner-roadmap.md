@@ -1,0 +1,114 @@
+---
+title: "Staging Your Changes (git add)"
+sidebar_label: "2. git add"
+sidebar_position: 2
+description: "Learn how to use the git add command to prepare your files for a permanent snapshot. This guide will explain the concept of staging, how to select specific changes, and best practices for beginners. Whether you're working on a new feature or fixing a bug, understanding git add is essential for effective version control."
+tags: ["git", "git add", "staging", "version control", "beginner guide"]
+keywords: ["git", "git add", "staging", "version control", "beginner guide"]
+---
+
+In the **CodeHarborHub** workflow, we don't just "save" everything at once. We use a professional two-step process. The first step is **Staging**.
+
+The `git add` command tells Git: *"Hey, look at these specific changes. I want them to be part of my next save-point (commit)."*
+
+:::info
+Think of `git add` as the "Call to the Backdrop" in a photo shoot. You choose which people (files) you want to stand in front of the camera for the next photo (commit).
+:::
+
+## The "Photo Studio" Analogy
+
+Think of your project like a **Group Photo**:
+
+1.  **Working Directory (The Room):** Everyone is hanging out in the room. Some people are ready, some are still fixing their hair.
+2.  **Staging Area (The Backdrop):** You call specific people to stand in front of the camera. They are "Staged."
+3.  **Commit (The Photo):** You click the shutter button. Only the people standing at the backdrop are in the photo.
+
+## How to Use `git add`
+
+You can choose exactly which changes you want to prepare.
+
+<Tabs>
+<TabItem value="single" label="Single File" default>
+
+If you only want to stage one specific file:
+
+```bash
+git add index.html
+```
+
+</TabItem>
+<TabItem value="multiple" label="Multiple Files">
+
+If you want to stage a few specific files:
+
+```bash
+git add style.css script.js
+```
+
+</TabItem>
+<TabItem value="all" label="Everything (The Daily Favorite)">
+
+If you want to stage **every** change you've made in the entire folder:
+
+```bash
+git add .
+```
+
+*Note: The dot `.` represents the current directory.*
+
+</TabItem>
+</Tabs>
+
+:::note Important
+Using `git add .` is a common practice, but be cautious! It will stage **all** changes, including those you might not want to commit (like temporary files or sensitive information). Always double-check with `git status` before running this command.
+:::
+
+## The Logic Flow
+
+```mermaid
+graph LR
+    A[index.html &lpar;Modified&rpar;] -- "git add ." --> B[index.html &lpar;Staged&rpar;]
+    B -- "git commit" --> C[Stored in History]
+    
+    subgraph "The Staging Area"
+    B
+    end
+```
+
+## Why not just save everything automatically?
+
+Beginners often ask: *"Why can't I just commit directly?"* At an **Industrial Level**, we use the Staging Area for **Precision**:
+
+  * **Scenario:** You worked on a new `Navbar` (finished) and a `Footer` (half-finished).
+  * **The Pro Way:** You only `git add Navbar.js` and commit it. Your half-finished footer stays safely in your "Working Directory" and doesn't break the main code\!
+
+## Verification: Did it work?
+
+After running `git add`, always check your progress with:
+
+```bash
+git status
+```
+
+**What you should see:**
+
+  * Files in **Red**: Changes that are NOT yet staged.
+  * Files in **Green**: Changes that ARE staged and ready to be committed.
+
+## Oops! How to Unstage?
+
+If you accidentally added a file to the staging area that you didn't mean to, don't panic\! You can "remove it from the backdrop" without deleting your code:
+
+```bash
+git reset index.html
+```
+
+This command unstages `index.html` but keeps your changes in the working directory. You can also unstage everything with:
+
+```bash
+git reset
+```
+
+:::info
+At **CodeHarborHub**, we recommend running `git status` before and after every `git add`. It helps you avoid accidentally staging sensitive files like `.env` or `node_modules`!
+:::

@@ -1,0 +1,73 @@
+---
+title: "Committing Changes (git commit)"
+sidebar_label: "3. git commit"
+sidebar_position: 3
+description: "Learn how to create permanent save-points in your project history using the git commit command. This guide will explain the concept of commits, how to write effective commit messages, and best practices for beginners. Whether you're adding a new feature or fixing a bug, understanding git commit is essential for maintaining a clear and organized project history."
+tags: ["git", "git commit", "committing changes", "version control", "beginner guide"]
+keywords: ["git", "git commit", "committing changes", "version control", "beginner guide"]
+---
+
+In the **CodeHarborHub** workflow, a **Commit** is more than just a "save." It is a permanent snapshot of your project at a specific point in time. 
+
+If `git add` is putting your files in a box, `git commit` is sealing that box, labeling it, and putting it on the shelf of history.
+
+:::info
+Think of a commit as a "Save Point" in a video game. You can always go back to that point if you need to. It's a way to keep track of your progress and changes over time.
+:::
+
+## The "Checkpoint" Concept
+
+Think of a video game. You don't want to restart the whole game every time you lose. You look for a **Checkpoint**. 
+
+* **Working Directory:** You are playing the level (typing code).
+* **Staging Area:** You reached the checkpoint flag (run `git add`).
+* **Commit:** The game saves your progress (run `git commit`).
+
+## How to Use `git commit`
+
+To create a commit, you must always include a **Message** (`-m`). This message tells your future self (and your teammates) *what* you changed and *why*.
+
+```bash
+git commit -m "feat: add user login validation logic"
+```
+
+### What happens behind the scenes?
+
+1.  Git takes all the files you "Staged" (the green files in `git status`).
+2.  It creates a unique ID for this save-point (called a **SHA-1 Hash**).
+3.  It records your Name, Email, Date, and Message.
+
+## The Professional "Commit Rule"
+
+At an **Industrial Level**, we follow the **Conventional Commits** standard. This makes your project history easy to read.
+
+| Type | When to use? | Example Message |
+| :--- | :--- | :--- |
+| **feat** | A new feature for the user. | `feat: add dark mode toggle` |
+| **fix** | Fixing a bug or error. | `fix: resolve crash on mobile header` |
+| **docs** | Changes to documentation only. | `docs: update nginx installation guide` |
+| **style** | Formatting, missing semi-colons, etc. | `style: fix indentation in index.html` |
+
+## Verification: Checking the History
+
+How do you see your "Shelf of History"? Use the log command:
+
+```bash
+git log --oneline
+```
+
+**What you will see:**
+
+> `a1b2c3d feat: add user login validation logic`  
+> `e4f5g6h docs: initial project setup`
+
+## The "Golden Rules" of Committing
+
+1.  **Commit Often:** Don't wait 5 hours to commit. Smaller commits are easier to fix if something goes wrong.
+2.  **One Feature, One Commit:** Don't fix a bug and add a new feature in the same commit. Keep them separate!
+3.  **Write Clear Messages:** Avoid messages like "Fixed stuff" or "Update." Be specific!
+
+:::info
+Did you forget to add a file to your last commit? Instead of making a new one, you can "amend" the previous save:  
+`git commit --amend -m "updated message"`
+:::

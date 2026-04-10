@@ -1,0 +1,69 @@
+---
+title: "Creating Public & Private Repositories"
+sidebar_label: "7. Public vs. Private Repositories"
+sidebar_position: 7
+description: "Learn how to set up your project on GitHub and choose the right visibility for your code. This guide will walk you through the process of creating a new repository, understanding the differences between public and private repositories, and best practices for beginners. Whether you're sharing your work with the world or keeping it private, this tutorial will help you get started with GitHub repositories effectively."
+tags: ["git", "github", "repositories", "public vs private", "version control", "beginner guide"]
+keywords: ["git", "github", "repositories", "public vs private", "version control", "beginner guide"]
+---
+
+A **Repository** (or "Repo") is the digital container for your project. It holds all your code, documentation, and the complete history of every change you've ever made. At **CodeHarborHub**, we use GitHub to host these repositories so we can collaborate and showcase our work.
+
+## Public vs. Private: Which should you choose?
+
+When you create a repo, GitHub will ask you to choose its visibility. This is an important "Industrial Level" decision.
+
+| Feature | Public Repository | Private Repository |
+| :--- | :--- | :--- |
+| **Visibility** | Anyone on the internet can see your code. | Only you and people you invite can see it. |
+| **Collaboration** | Anyone can "Fork" and suggest changes. | Strictly controlled access. |
+| **Best For...** | Open Source, Portfolios, Community projects. | School assignments, Startup ideas, API Keys. |
+| **Cost** | Always Free. | Free (with limits for large teams). |
+
+## Step-by-Step: Creating a Repo on GitHub
+
+1.  **Login:** Go to [GitHub](https://github.com/) and click the **+** icon in the top right, then select **New repository**.
+2.  **Naming:** Choose a short, memorable name (e.g., `codeharborhub-web-automation`).
+3.  **Description:** Add a quick summary (this helps people find your project!).
+4.  **Choose Visibility:** Select **Public** or **Private**.
+
+## Initializing Options (The "Clean" Start)
+
+GitHub gives you three options to add to your repo immediately. We recommend checking these for most projects:
+
+* **Add a README file:** This is the "Front Door" of your project. It explains what the project does.
+* **Add .gitignore:** Choose a template (like Node or Python) to keep your repo clean.
+* **Choose a license:** For Public repos, a license (like MIT) tells people how they are allowed to use your code.
+
+## Connecting Your Local Code
+
+If you already have code on your computer and want to upload it to your new GitHub repo, follow the **Remote Connection** flow:
+
+```bash
+# 1. Add the link to GitHub (The "Remote")
+git remote add origin https://github.com/username/your-repo-name.git
+
+# 2. Rename your main branch (Standard practice)
+git branch -M main
+
+# 3. Push your code to the cloud
+git push -u origin main
+```
+
+## Use Case: When to go Private?
+
+At **CodeHarborHub**, we encourage "Learning in Public," but here is when you should definitely use a **Private** repository:
+
+1.  **The "Draft" Phase:** You have a messy project that isn't ready for your portfolio yet.
+2.  **Sensitive Data:** You are building an app for a local business (like the *Jila Sahakari Bank*) that contains internal logic.
+3.  **Assignments:** You are working on a coding challenge for a job interview.
+
+## Pro Tip: Changing Visibility Later
+
+Don't worry! Your choice isn't permanent. You can always start a project as **Private** while you're building the foundation and change it to **Public** when you are ready to launch it to the world.
+
+> **Settings $\rightarrow$ General $\rightarrow$ Danger Zone $\rightarrow$ Change visibility**
+
+:::info 
+Even if a repository is **Public**, no one can change your code without your permission. Others can only *suggest* changes via a **Pull Request**, which you must approve\!
+:::

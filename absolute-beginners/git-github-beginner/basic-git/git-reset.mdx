@@ -1,0 +1,75 @@
+---
+title: "Undoing Changes (git reset)"
+sidebar_label: "4. git reset"
+sidebar_position: 4
+description: "Learn how to travel back in time and undo mistakes safely using the git reset command. This guide will explain the different modes of git reset, when to use each one, and best practices for beginners. Whether you need to fix a bad commit or unstage changes, understanding git reset is essential for maintaining a clean project history."
+tags: ["git", "git reset", "undo changes", "version control", "beginner guide"]
+keywords: ["git", "git reset", "undo changes", "version control", "beginner guide"]
+---
+
+Every developer makes mistakes. You might commit a bug, stage the wrong file, or realize your last three hours of work were a bad idea. At **CodeHarborHub**, we use `git reset` to move the project back to a "Known Good" state.
+
+## The Three Levels of "Undo"
+
+Think of `git reset` like a **Time Machine** with three different settings. Depending on how much you want to "erase," you choose a specific mode:
+
+### 1. Soft Reset (`--soft`)
+**The "Keep my work" mode.**
+This moves the history back one step, but keeps all your code changes in the **Staging Area**. Use this if you just want to rewrite your last commit message or add one more file to the save-point.
+
+```bash
+git reset --soft HEAD~1
+```
+
+### 2. Mixed Reset (Default)
+
+**The "Unstage my work" mode.**
+This moves the history back, but takes your files out of the Staging Area and puts them back into your **Working Directory**. Your code is still there, but Git is no longer "ready to save" it.
+
+```bash
+git reset HEAD~1
+```
+
+### 3. Hard Reset (`--hard`)
+
+**The "Nuke it" mode.**
+This destroys everything. It moves the history back and **deletes** all the code changes you made after that point.
+
+```bash
+git reset --hard HEAD~1
+```
+
+## Comparison Table
+
+| Mode | Changes History? | Keeps Code? | Where does code go? |
+| :--- | :--- | :--- | :--- |
+| **`--soft`** | Yes | Yes | Staging Area (Green) |
+| **`--mixed`** | Yes | Yes | Working Directory (Red) |
+| **`--hard`** | Yes | No | Deleted Forever |
+
+## Use Case: I committed a secret!
+
+Imagine you accidentally committed your `API_KEY` in a file called `.env`. You need to undo that commit immediately before pushing to GitHub.
+
+1.  **Perform a Soft Reset:**
+    ```bash
+    git reset --soft HEAD~1
+    ```
+2.  **Unstage the secret file:**
+    ```bash
+    git rm --cached .env
+    ```
+3.  **Commit again safely:**
+    ```bash
+    git commit -m "feat: add logic without secrets"
+    ```
+
+## The Golden Rule of Reseting
+
+> **Never `git reset --hard` on a commit that you have already pushed to GitHub.**
+
+If you delete history locally that other team members have already downloaded, it will cause "Merge Conflicts" and headaches for the whole **CodeHarborHub** team. Only reset commits that are still only on your computer!
+
+:::danger Warning
+`git reset --hard` is the only Git command that can actually **delete** your work. Use it with caution. If you aren't sure, always use `--soft` first!
+:::
