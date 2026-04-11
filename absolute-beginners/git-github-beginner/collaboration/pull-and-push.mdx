@@ -1,0 +1,80 @@
+---
+title: "Pulling and Pushing Changes"
+sidebar_label: "4. Pull & Push"
+sidebar_position: 4
+description: "Learn the daily workflow of syncing your local code with GitHub to keep your project up-to-date. Master the essential commands for pulling changes from the remote repository and pushing your work to share with your team. This is a crucial skill for collaborating effectively in any software development project."
+tags: ["git", "github", "pull", "push", "syncing", "collaboration"]
+keywords: ["git", "github", "pull", "push", "syncing", "collaboration"]
+---
+
+In a collaborative environment like **CodeHarborHub**, code is constantly moving between your computer (Local) and GitHub (Remote). To stay in sync with your team, you must master the two most frequent actions in a developer's day: **Pulling** and **Pushing**.
+
+:::important
+Pulling and Pushing are the heartbeat of any project. They keep everyone on the same page and ensure that your work is shared with the world. Master these commands to become a true collaborator at **CodeHarborHub**.
+:::
+
+## The "Daily Cycle" Concept
+
+Think of a shared **Google Doc**. 
+* **Pulling** is like refreshing the page to see what your friends wrote while you were away.
+* **Pushing** is like hitting "Save" so your friends can see what *you* just wrote. 
+
+## 1. Pulling Changes (`git pull`)
+
+**When to use it:** Every morning before you start coding, and every time a teammate tells you they've finished a feature.
+
+When you run `git pull`, two things happen:
+1. Git **Fetches** the new data from GitHub.
+2. Git **Merges** that data into your local files.
+
+```bash
+# Get the latest code from the 'main' branch on GitHub
+git pull origin main
+```
+
+## 2. Pushing Changes (`git push`)
+
+**When to use it:** After you have "Staged" and "Committed" your work locally and you are ready to share it with the world.
+
+```bash
+# Send your 'feat-login' branch to GitHub
+git push origin feat-login
+```
+
+## The "Golden Workflow"
+
+At an **Industrial Level**, we follow this 4-step loop to avoid errors and conflicts:
+
+| Step | Command | Why? |
+| :--- | :--- | :--- |
+| **1. Update** | `git pull origin main` | Start with the latest version of the project. |
+| **2. Code** | *(Work in VS Code)* | Make your magic happen. |
+| **3. Save** | `git add .` & `git commit` | Create your local "Save Point." |
+| **4. Share** | `git push origin your-branch` | Upload your work to the cloud. |
+
+## Dealing with "Rejected" Pushes
+
+Sometimes, you try to `git push` and see a scary red error message: **[rejected]**.
+
+**Why did this happen?**
+This happens because a teammate pushed code to GitHub *after* your last pull. GitHub won't let you push your work because it would overwrite your teammate's work.
+
+**The Fix:**
+
+1.  **Pull first:** `git pull origin main`
+2.  **Resolve any conflicts** (if they exist).
+3.  **Push again:** `git push origin main`
+
+## The `fetch` Alternative
+
+If you want to see what your teammates did **without** merging it into your files yet, use:
+
+```bash
+git fetch origin
+```
+
+This downloads the data but doesn't change your code. It's like "Previewing" the changes before you commit to them.
+
+:::tip
+Always **Pull before you Push**. This simple habit will save you from 90% of the merge conflicts you might face at **CodeHarborHub**.
+:::

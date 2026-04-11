@@ -1,0 +1,95 @@
+---
+title: "Stashing Your Work"
+sidebar_label: "3. Stashing"
+sidebar_position: 3
+description: "Learn how to temporarily shelf your changes without committing them using Git Stash. Perfect for when you need to switch tasks quickly without losing your progress."
+tags: ["git", "stashing", "temporary storage", "context switching", "code management"]
+keywords: ["git stash", "temporary storage", "context switching", "code management", "unstaged changes", "staged changes"]
+---
+
+Imagine you are deep into coding a complex "Dark Mode" feature for **CodeHarborHub**. Your workspace is messy, and your code isn't finished. Suddenly, a critical bug is found on the live site that you need to fix **immediately**.
+
+You can't commit your "Dark Mode" code because it's half-finished, and Git won't let you switch branches while you have unsaved changes. 
+
+**The solution?** Use `git stash`.
+
+## What is Stashing?
+
+`git stash` takes your uncommitted changes (both staged and unstaged) and "hides" them in a temporary storage area within Git. This gives you a **clean working directory** so you can switch tasks instantly.
+
+**Analogy:** It’s like being in the middle of a puzzle on your dining table. If you need the table for dinner, you don't throw the puzzle away; you slide it onto a tray and put it in a drawer. When dinner is over, you slide the tray back onto the table and continue exactly where you left off.
+
+## The Stashing Workflow
+
+### 1. Hide your work
+When the interruption happens, run:
+
+```bash
+git stash
+```
+
+*Your code is now safe, and your folder looks exactly like it did at your last commit.*
+
+### 2. Switch and Fix
+
+Now you can safely switch branches to fix that urgent bug:
+
+```bash
+git checkout main
+# ... fix bug, commit, and push ...
+```
+
+### 3. Bring your work back
+
+Switch back to your feature branch and retrieve your hidden work:
+
+```bash
+git checkout feat-dark-mode
+git stash pop
+```
+
+*The `pop` command takes the work out of the "drawer" and puts it back into your files.*
+
+## Managing the "Stash Stack"
+
+You can stash multiple times! Git keeps them in a "Stack" (the newest stash is always on top).
+
+| Command | Action |
+| :--- | :--- |
+| **`git stash list`** | See all your "hidden trays" in the drawer. |
+| **`git stash apply`** | Bring work back but keep a copy in the stash (safer than pop). |
+| **`git stash drop`** | Delete the most recent stash without applying it. |
+| **`git stash clear`** | Empty the entire drawer (Delete all stashes). |
+
+## Advanced Stashing
+
+<Tabs>
+<TabItem value="named" label="Naming your Stash" default>
+
+If you have many stashes, give them names so you don't get confused:
+
+```bash
+git stash save "UI work in progress"
+```
+
+</TabItem>
+<TabItem value="untracked" label="Stashing New Files">
+
+By default, Git Stash only saves files it already knows about. To stash **new files** you just created, use the `-u` flag:
+
+```bash
+git stash -u
+```
+
+</TabItem>
+</Tabs>
+
+## When to use Stashing at CodeHarborHub?
+
+1.  **Context Switching:** When a teammate needs you to review their code immediately.
+2.  **Pulling into a Dirty Branch:** If you try to `git pull` but have local changes that conflict, stash your work, pull, and then `pop` your stash back.
+3.  **Experimenting:** If you want to try a crazy idea but aren't sure it will work, stash your current stable work first.
+
+:::tip
+Before you `git stash pop`, run `git status`. It’s always best to be on the same branch you were on when you created the stash to avoid unnecessary merge conflicts\!
+:::

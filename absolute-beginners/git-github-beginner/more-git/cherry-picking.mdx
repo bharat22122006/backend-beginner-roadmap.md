@@ -1,0 +1,84 @@
+---
+title: "Cherry Picking Commits"
+sidebar_label: "4. Cherry Picking"
+sidebar_position: 4
+description: "Learn how to select and apply specific commits from one branch to another without merging the entire branch. Perfect for hotfixes and selective updates."
+tags: ["git", "cherry picking", "selective commits", "hotfixes", "code management"]
+keywords: ["git cherry-pick", "selective commits", "hotfixes", "code management", "commit ID", "conflicts"]
+---
+
+In the standard Git workflow, we usually combine branches using **Merge** or **Rebase**. However, sometimes you don't want the whole branch—you just want one specific "Win."
+
+**Cherry Picking** allows you to pick a single commit from any branch in your repository and apply it to your current branch.
+
+:::warning A Note on Terminology
+The term "Cherry Picking" is a bit whimsical, but it perfectly captures the idea of selecting just one "cherry" (commit) from a "bunch" (branch) without taking the whole thing.
+:::
+
+## The "Grocery Store" Analogy
+
+Imagine you are at a grocery store. 
+* **Merging** is like buying the entire pre-packaged "Fruit Basket." You get the apples, the grapes, and the bananas, even if you only wanted the grapes.
+* **Cherry Picking** is like walking up to the fruit stand, picking one perfect apple, and putting it in your own basket. You leave the rest of the fruit behind.
+
+## When to use Cherry Picking?
+
+At **CodeHarborHub**, we use cherry-picking in these specific "Industrial" scenarios:
+
+1.  **Hotfixes:** You fixed a critical bug in a `testing` branch, and you need that exact fix in the `main` branch **now**, without pulling in all the other unfinished test code.
+2.  **Undo a Revert:** If you accidentally reverted a commit, you can cherry-pick the original commit back into your history.
+3.  **Collaborative "Theft":** Your teammate wrote a perfect `Button.js` component on their messy `experimental-ui` branch. You can cherry-pick just that component commit into your clean branch.
+
+## Step-by-Step: How to Cherry Pick
+
+### 1. Find the Commit ID
+First, you need the "ID" (the SHA hash) of the commit you want to steal. You can find this on GitHub or by using:
+
+```bash
+git log --oneline --all
+```
+
+*Look for the 7-character code (like `a1b2c3d`) next to the commit message.*
+
+### 2. Switch to the Destination
+
+Move to the branch where you want the commit to land:
+
+```bash
+git checkout main
+```
+
+### 3. Pick the Cherry
+
+Run the command followed by the commit ID:
+
+```bash
+git cherry-pick a1b2c3d
+```
+
+## Merge vs. Cherry Pick
+
+| Feature | Git Merge | Git Cherry Pick |
+| :--- | :--- | :--- |
+| **Scope** | Combines the **entire** branch history. | Copies **one specific** commit. |
+| **History** | Creates a "Merge Commit." | Creates a brand new commit on your branch. |
+| **Use Case** | Finishing a feature. | Porting a specific fix or component. |
+
+## Handling Cherry-Pick Conflicts
+
+Just like a merge, if the "Cherry" you are picking changes the same lines as your current branch, a conflict will occur.
+
+**The Fix:**
+
+1.  Open the file in **VS Code**.
+2.  Resolve the conflict as usual.
+3.  Run:
+
+    ```bash
+    git add .
+    git cherry-pick --continue
+    ```
+
+:::warning A Note on Duplicate History
+When you cherry-pick, you are creating a **copy** of a commit. If you later merge the original branch into your current branch, Git is usually smart enough to know they are the same, but it can sometimes lead to a "messy" history. Use cherry-picking sparingly\!
+:::

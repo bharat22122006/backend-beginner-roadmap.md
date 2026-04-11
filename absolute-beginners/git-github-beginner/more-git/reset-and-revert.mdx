@@ -1,0 +1,88 @@
+---
+title: "Reset vs. Revert"
+sidebar_label: "1. Reset & Revert"
+sidebar_position: 1
+description: "Learn the crucial difference between 'Reset' and 'Revert' in Git. This guide will teach you when to use each command to safely undo changes without losing your work. Master these tools to confidently fix mistakes and maintain a clean project history."
+tags: ["git", "github", "reset", "revert", "undo", "version control", "history management"]
+keywords: ["git", "github", "reset", "revert", "undo", "version control", "history management"]
+---
+
+Mistakes are a natural part of coding. Whether you accidentally committed a bug or realized your last three hours of work were a bad idea, Git provides two main ways to go back in time.
+
+The secret to being a pro at **CodeHarborHub** is knowing when to use the **Eraser (Reset)** and when to use the **Correction (Revert)**.
+
+:::danger
+Using the wrong command can lead to lost work or a messy project history. Always double-check which one you need before you hit enter!
+:::
+
+## 1. Git Reset (The "Eraser")
+
+`git reset` moves your current branch pointer backward to an older commit. It’s like using an eraser on a pencil drawing—the work you erase simply disappears from the history.
+
+### The Three Flavors of Reset
+Depending on what you want to keep, you use different flags:
+
+| Flag | What happens to your code? | Safety |
+| :--- | :--- | :--- |
+| **`--soft`** | Keeps all changes in the **Staging Area**. | Safe |
+| **`--mixed`** | Keeps changes but puts them in **Working Directory**. | Neutral |
+| **`--hard`** | **Deletes everything.** Changes are gone forever. | Dangerous |
+
+**Use Case:** Use Reset when you are working **locally** on your own branch and haven't pushed to GitHub yet.
+
+## 2. Git Revert (The "Correction")
+
+`git revert` is the professional way to undo changes on a shared project. Instead of deleting the past, it creates a **new commit** that does the exact opposite of the one you want to remove.
+
+**Analogy:** Imagine a bank ledger. Instead of ripping out a page (Reset), the bank adds a new line that says "Refund: -$50" to cancel out an error. 
+
+**Use Case:** Use Revert for **Public Branches** (like `main`) where other team members are also working.
+
+## Comparison: Which one should I use?
+
+| Feature | Git Reset | Git Revert |
+| :--- | :--- | :--- |
+| **History** | Deletes/Rewrites history. | Preserves history (adds a new entry). |
+| **Best Environment**| Local / Private branches. | Public / Shared branches. |
+| **Risk** | High (can lose uncommitted code). | Low (nothing is ever deleted). |
+| **Result** | Cleaner history, but dangerous. | Messier history, but much safer. |
+
+## Practical Examples
+
+<Tabs>
+<TabItem value="reset-ex" label="Fixing a Local Typo" default>
+
+If you just committed a file with a typo and want to fix it:
+
+```bash
+# Move back 1 commit but keep your code staged
+git reset --soft HEAD~1
+# Fix the typo in VS Code, then:
+git add .
+git commit -m "feat: correct typo and add logic"
+```
+
+</TabItem>
+<TabItem value="revert-ex" label="Fixing a Production Bug">
+
+If you pushed code to the `main` branch that is crashing the live site:
+
+```bash
+# Find the ID of the bad commit using git log
+git revert a1b2c3d
+# This creates a 'reversal commit'. Now push it:
+git push origin main
+```
+
+</TabItem>
+</Tabs>
+
+## The Golden Rule of Undoing
+
+> **"Never Reset what you have Pushed."**
+
+If you use `git reset` on code that is already on GitHub, and then try to push, your teammates' computers will get confused because the history "disappeared." At **CodeHarborHub**, we always use `revert` for anything that has already been shared with the team.
+
+:::danger Warning
+`git reset --hard` is the only command in Git that can truly destroy your work. Always run `git status` or `git stash` before using it to make sure you don't have unsaved progress\!
+:::
