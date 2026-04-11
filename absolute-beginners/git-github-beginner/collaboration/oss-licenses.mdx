@@ -1,0 +1,71 @@
+---
+title: "Open Source Licenses"
+sidebar_label: "7. OSS Licenses"
+sidebar_position: 7
+description: "Understand the legal side of Open Source and learn how to choose the right license for your projects. This is crucial for protecting your work and allowing others to use and contribute to it. Master the art of licensing to ensure your code can be shared and built upon by the community while safeguarding your rights as a creator."
+tags: ["git", "github", "open source licenses", "collaboration", "legal", "protection", "sharing"]
+keywords: ["git", "github", "open source licenses", "collaboration", "legal", "protection", "sharing"]
+---
+
+Making a repository "Public" on GitHub does not automatically mean people can use, modify, or share your code. Without a **License**, your code is technically under "Exclusive Copyright," meaning you own it and no one else can touch it.
+
+At **CodeHarborHub**, we believe in sharing. A license is a simple text file that tells the community exactly what they are allowed to do with your work.
+
+:::info
+Think of a license like the "Terms and Conditions" for your code. It sets the rules for how others can use, modify, and share your project. Without it, your code is like a locked treasure chest that no one can open.
+:::
+
+## Why Do You Need a License?
+
+1.  **Permission:** It legally allows others to "Fork" and "Clone" your project.
+2.  **Protection:** Most licenses include a "No Warranty" clause, meaning you aren't responsible if your code breaks someone else's computer.
+3.  **Contribution:** Professional developers and companies will *never* use or contribute to a project that doesn't have a clear license.
+
+## The "Big Three" Licenses
+
+There are hundreds of licenses, but in the professional world, 90% of projects use one of these three:
+
+| License | Type | Permission Level | Summary |
+| :--- | :--- | :--- | :--- |
+| **MIT** | **Permissive** | High | "Do whatever you want, just keep my name on it." |
+| **Apache 2.0** | **Permissive** | High | Similar to MIT, but gives extra protection against patent lawsuits. |
+| **GNU GPLv3** | **Copyleft** | Medium | "You can use my code, but your project MUST also be open source." |
+
+## Which One Should You Choose?
+
+### 1. The MIT License (Recommended for Beginners)
+This is the most popular license at **CodeHarborHub**. It is short, simple, and very "friendly." It allows people to use your code in private, commercial, and open-source projects.
+* **Use it if:** You want the most people possible to use your code.
+
+### 2. The Apache License 2.0
+This is the standard for large-scale professional projects (like Android or Kubernetes). 
+* **Use it if:** You are building a serious library or tool and want to be professional about patents.
+
+### 3. The GNU GPLv3
+This is a "Restrictive" or "Copyleft" license. If someone uses your GPL code, they are legally forced to make their entire project open source too.
+* **Use it if:** You want to ensure that no one ever takes your code and makes a "secret" paid version of it.
+
+## How to Add a License to Your Repo
+
+GitHub makes this incredibly easy. You don't need a lawyer!
+
+1.  Go to your repository on GitHub.
+2.  Click **Add file** > **Create new file**.
+3.  Type `LICENSE` (all caps) as the filename.
+4.  A button will appear: **"Choose a license template"**. Click it.
+5.  Select a license (like MIT), click **Review and submit**, and commit the file.
+
+## What Happens if I Don't Choose One?
+
+If you have a public repo with **no license**:
+* People can read your code.
+* People can fork your code (because GitHub's Terms of Service allow it).
+* **But**, people cannot legally use your code in their own apps, and they cannot contribute back to you safely.
+
+> **Moral of the story:** If you want people to use your work, always add an **MIT License**.
+
+:::tip
+Not sure which one fits your specific vibe? Check out [choosealicense.com](https://choosealicense.com/). It's a simple tool created by GitHub to help you pick the perfect legal protection for your code.
+:::
+
+Now that you understand the legal side of sharing your code, you're ready to make your projects truly open source. In the next chapter, we'll dive into how to keep your fork in sync with the original project using the concept of "Upstream." This is essential for contributing to open-source projects and ensuring your code is built on the most recent version of the project. Let's get started!s

@@ -1,0 +1,65 @@
+---
+title: Automating with Git Hooks
+sidebar_label: 5. Git Hooks
+sidebar_position: 5
+description: Learn how to use Git Hooks to automate tasks like linting, testing, and formatting before you commit or push.
+---
+
+In a professional environment like **CodeHarborHub**, we want to ensure that the code we share is always high quality. We don't want to manually check for typos, formatting errors, or broken tests every single time.
+
+**Git Hooks** are scripts that Git executes automatically when specific actions happen—like committing, pushing, or receiving code.
+
+## What are Git Hooks?
+
+Think of a Git Hook as a **Security Guard** standing at the entrance of your repository. 
+* When you try to `commit`, the guard checks if you formatted your code correctly.
+* When you try to `push`, the guard checks if all your tests pass.
+* If the guard finds an error, they block the action until you fix it.
+
+## The Two Types of Hooks
+
+| Type | Location | Use Case |
+| :--- | :--- | :--- |
+| **Client-Side** | Your PC | Checks code style (Linting), runs local tests, checks commit messages. |
+| **Server-Side** | GitHub/Cloud | Enforces branch permissions, triggers "Deployment" to a website. |
+
+## Common Hooks at CodeHarborHub
+
+### 1. Pre-commit Hook
+This runs **before** you are even allowed to create a commit. 
+* **The Goal:** Catch small mistakes early.
+* **Example:** It can automatically run `Prettier` to fix your code formatting so you don't have to think about it.
+
+### 2. Pre-push Hook
+This runs **before** your code is sent to GitHub.
+* **The Goal:** Prevent "Breaking the Build."
+* **Example:** It runs your entire test suite. If a single test fails, the push is cancelled, preventing you from sending broken code to your teammates.
+
+## Where are Hooks stored?
+
+Every Git project has a hidden folder called `.git/hooks`. If you look inside, you will see several sample files (like `pre-commit.sample`). To activate a hook, you simply remove the `.sample` extension and add your script.
+
+## Modern Tooling: Husky
+
+Writing raw shell scripts for hooks can be difficult. At **CodeHarborHub**, we recommend using a tool called **Husky** (for JavaScript/Node projects). It makes managing hooks as easy as editing your `package.json`.
+
+```bash
+# Example: Adding a pre-commit hook with Husky
+npx husky add .husky/pre-commit "npm test"
+```
+
+*Now, every time you run `git commit`, your tests will run automatically\!*
+
+## Industrial Best Practices
+
+1.  **Don't Overdo It:** If your hooks take 10 minutes to run, you will start hating the `commit` command. Keep hooks fast!
+2.  **Shared Hooks:** Ensure your team uses the same hooks so everyone follows the same code style.
+3.  **The "Emergency Escape":** If you absolutely MUST commit something and skip the hooks (e.g., a tiny typo fix in a README), you can use the "no-verify" flag:
+    
+    ```bash
+    git commit -m "fix: tiny typo" --no-verify
+    ```
+
+:::tip
+Git Hooks are stored locally in the `.git` folder, which is **not** pushed to GitHub. To share hooks with your team, use a tool like **Husky** or **pre-commit (Python)** which stores the configuration in your project files\!
+:::
