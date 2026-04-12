@@ -1,0 +1,77 @@
+---
+title: "Introduction to GitHub Actions"
+sidebar_label: "1. GitHub Actions"
+sidebar_position: 1
+description: "Learn how to automate your software development workflows directly in your GitHub repository. From running tests to deploying your website, GitHub Actions has you covered."
+tags: ["github", "automation", "ci/cd", "devops", "workflow"]
+keywords: ["github actions", "automation", "ci/cd", "devops", "workflow", "yml", "events", "jobs", "actions"]
+---
+
+In a professional workflow, we don't want to manually run tests or deploy our website every time we make a change. We want a system that does it for us. 
+
+**GitHub Actions** is an automation platform that allows you to create custom software development life cycle (SDLC) workflows directly in your GitHub repository.
+
+:::info What is GitHub Actions?
+GitHub Actions is a powerful tool that lets you automate tasks like testing, building, and deploying your code whenever certain events happen in your repository. It's like having a robot assistant that takes care of the repetitive tasks for you.
+:::
+
+## How it Works: The "Robot Assistant"
+
+Think of GitHub Actions as a **Robot Assistant** that follows a simple rule: 
+> **"When [This Event] happens, do [This Job]."**
+
+* **The Event:** Someone pushes code, opens a Pull Request, or even stars your repo.
+* **The Job:** Run security scans, check for code errors, or deploy the site to a server.
+
+## The Core Concepts
+
+To master Actions at **CodeHarborHub**, you need to understand these four terms:
+
+1.  **Workflows:** The automated process (stored in a `.yml` file).
+2.  **Events:** The "Trigger" that starts the workflow (e.g., `push`).
+3.  **Jobs:** A set of steps that execute on the same runner (a virtual computer).
+4.  **Actions:** Reusable building blocks (like a "Login to AWS" block or "Install Node.js" block).
+
+## Creating Your First Workflow
+
+GitHub Actions are defined in **YAML** files. You must place them in a specific folder in your project: `.github/workflows/`.
+
+```yaml title=".github/workflows/welcome.yml"
+name: CodeHarborHub Welcome
+on: [push] # The Trigger
+
+jobs:
+  greet-developer:
+    runs-on: ubuntu-latest # The Virtual Machine
+    steps:
+      - name: Say Hello
+        run: echo "Automation is running successfully for CodeHarborHub!"
+```
+
+## The CI/CD Pipeline
+
+GitHub Actions is most commonly used for **CI/CD**:
+
+  * **Continuous Integration (CI):** Automatically building and testing code so that errors are caught immediately when a developer pushes a branch.
+  * **Continuous Deployment (CD):** Automatically "Pushing" the code to a live server (like Vercel, Netlify, or AWS) after the tests pass.
+
+## Why use Actions at CodeHarborHub?
+
+| Benefit | Description |
+| :--- | :--- |
+| **No More "Works on my machine"** | Tests run on a clean cloud computer every time. |
+| **Speed** | Robots work 24/7. Your site deploys the second you merge a PR. |
+| **Security** | Automatically scan your code for leaked passwords or vulnerable packages. |
+| **Free for Open Source** | GitHub provides free minutes for public repositories\! |
+
+## Monitoring Your Actions
+
+Once you push a workflow file, you can watch it run in real-time:
+
+1.  Go to your repository on GitHub.
+2.  Click the **Actions** tab.
+3.  Click on a specific "Workflow Run" to see the logs and status.
+
+:::tip
+Don't reinvent the wheel! Visit the [GitHub Marketplace](https://github.com/marketplace#type#Dactions) to find thousands of pre-written Actions created by the community that you can drop into your own projects.
+:::
