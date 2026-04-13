@@ -1,0 +1,116 @@
+---
+title: "Installing and Using GitHub CLI"
+sidebar_label: "2. GitHub CLI (gh)"
+sidebar_position: 2
+description: "Learn how to install and use the GitHub CLI (gh) to manage your repositories, issues, and pull requests directly from the command line. This guide covers installation steps for Windows, macOS, and Linux, as well as essential commands to streamline your workflow."
+tags: ["GitHub CLI", "gh", "Command Line", "GitHub Tools", "Developer Workflow"]
+keywords: ["GitHub CLI", "gh", "Command Line Interface", "GitHub Tools", "Developer Workflow"]
+---
+
+While the GitHub website is beautiful and easy to use, professional developers often find it faster to perform tasks directly from the command line. The **GitHub CLI (`gh`)** is the official tool that brings GitHub’s issues, pull requests, and other features to your terminal.
+
+At **CodeHarborHub**, we use `gh` to streamline our workflow and keep our focus on the code.
+
+:::tip
+Don't worry if you're new to the command line! The GitHub CLI is designed to be user-friendly, and this guide will help you get started step by step. By the end, you'll be able to manage your GitHub projects without ever leaving your terminal.
+:::
+
+## Why use the CLI?
+
+1.  **Context Switching:** You don't have to leave VS Code or your terminal to open a Pull Request.
+2.  **Automation:** You can write scripts to create repositories or check status automatically.
+3.  **Speed:** Most common actions (like cloning a repo or checking a PR) are 3x faster with a single command.
+
+## Installation
+
+<Tabs>
+  <TabItem value="windows" label="Windows" default>
+
+Open PowerShell or Command Prompt and run:
+
+```bash
+winget install --id GitHub.cli
+```
+
+</TabItem>
+<TabItem value="mac" label="macOS">
+
+Use Homebrew:
+
+```bash
+brew install gh
+```
+
+</TabItem>
+<TabItem value="linux" label="Linux">
+
+For Debian/Ubuntu:
+
+```bash
+type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+sudo apt update
+sudo apt install gh -y
+```
+
+</TabItem>
+</Tabs>
+
+## Getting Started: Authentication
+
+Once installed, you need to link the CLI to your GitHub account. Run:
+
+```bash
+gh auth login
+```
+
+Follow the interactive prompts:
+
+  * Select **GitHub.com** (unless you're using GitHub Enterprise).
+  * Choose **HTTPS** or **SSH**.
+  * Select **Login with a web browser** (this will open a page to authorize the app).
+
+## Essential Commands for Daily Work
+
+| Task | Command | Description |
+| :--- | :--- | :--- |
+| **Repo Status** | `gh repo view` | Shows the README and basic info for the current repo. |
+| **List PRs** | `gh pr list` | Lists all open Pull Requests in the repository. |
+| **Check out PR** | `gh pr checkout <number>` | Downloads a teammate's PR to your PC to test it. |
+| **Create PR** | `gh pr create` | Opens a new Pull Request for your current branch. |
+| **View Issues** | `gh issue list` | Shows all open bugs or tasks. |
+
+## Common Workflow Example
+
+Imagine you want to start a new project for **CodeHarborHub**. Instead of clicking through the website:
+
+1.  **Create a new repo:**
+    ```bash
+    gh repo create my-new-project --public --clone
+    ```
+2.  **Change into the folder:**
+    ```bash
+    cd my-new-project
+    ```
+3.  **Open in VS Code:**
+    ```bash
+    code .
+    ```
+
+*You just set up a full project in 5 seconds!*
+
+## The "Status" View
+
+One of the best features of `gh` is the **Dashboard** view. Run this to see everything happening with your work:
+
+```bash
+gh status
+```
+
+It shows your relevant Pull Requests, their review status, and if your **GitHub Actions** tests passed or failed.
+
+:::tip
+You can use the `--web` flag with almost any command (e.g., `gh pr view --web`) to instantly open that specific page in your browser if you need to see the full UI.
+:::
